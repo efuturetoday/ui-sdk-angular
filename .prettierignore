@@ -1,0 +1,11 @@
+vendor
+dist
+.angular
+test-results
+playwright-report
+package-lock.json
+# Text in fixtures is the specs' contract, whitespace included.
+projects/playground/src/fixtures
+todo.md
+projects/demo/src/examples/index.ts
+projects/demo/src/examples.css

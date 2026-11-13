@@ -1,0 +1,33 @@
+<nav class="components" aria-label="Components">
+  <div class="title">
+    <h1>ui-sdk-angular</h1>
+    <button
+      type="button"
+      [attr.aria-label]="dark() ? 'Light theme' : 'Dark theme'"
+      (click)="dark.set(!dark())"
+    >
+      @if (dark()) {
+        <svg lucideSun aria-hidden="true"></svg>
+      } @else {
+        <svg lucideMoon aria-hidden="true"></svg>
+      }
+    </button>
+  </div>
+  @for (component of components; track component) {
+    <a
+      [href]="'?component=' + component"
+      [attr.aria-current]="component === current() ? 'page' : null"
+      (click)="$event.preventDefault(); show(component)"
+      >{{ component }}</a
+    >
+  }
+</nav>
+<main>
+  <h2>{{ current() }}</h2>
+  @for (name of names(); track name) {
+    <section class="example">
+      <h3>{{ name.split("/")[1] }}</h3>
+      <app-example-frame [name]="name" />
+    </section>
+  }
+</main>

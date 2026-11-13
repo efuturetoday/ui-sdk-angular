@@ -1,0 +1,47 @@
+<div class="frame">
+  <div class="bar">
+    <div class="tabs">
+      <button
+        type="button"
+        [attr.aria-pressed]="tab() === 'preview'"
+        (click)="tab.set('preview')"
+      >
+        Preview
+      </button>
+      <button
+        type="button"
+        [attr.aria-pressed]="tab() === 'code'"
+        (click)="tab.set('code')"
+      >
+        Code
+      </button>
+    </div>
+    <button type="button" class="reset" aria-label="Reset" (click)="reset()">
+      <svg lucideRotateCcw aria-hidden="true"></svg>
+    </button>
+  </div>
+  <div
+    class="preview"
+    [attr.data-example]="name()"
+    [hidden]="tab() !== 'preview'"
+  >
+    @for (current of [run()]; track current) {
+      @if (component.value(); as example) {
+        <ng-container *ngComponentOutlet="example; injector: injector" />
+      }
+    }
+  </div>
+  @if (tab() === "code") {
+    <div class="code" [innerHTML]="source.value()"></div>
+  }
+  @if (caption(); as caption) {
+    <p class="caption">{{ caption }}</p>
+  }
+  @if (log().length) {
+    <ol #logList class="log" aria-label="Log">
+      @for (entry of log(); track $index) {
+        <li>{{ entry }}</li>
+      }
+    </ol>
+  }
+</div>

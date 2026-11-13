@@ -1,0 +1,22 @@
+@import "./examples.css";
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background: light-dark(#fafafa, #111);
+  color: light-dark(#171717, #dedcd7);
+}
+
+/* As on ui-sdk.dev: Geist, and square everywhere but marked shapes. */
+body {
+  font-family: Geist, ui-sans-serif, system-ui, sans-serif;
+}
+
+:not([data-round]),
+:not([data-round])::before,
+:not([data-round])::after {
+  border-radius: 0 !important;
+}

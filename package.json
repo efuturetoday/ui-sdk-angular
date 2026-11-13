@@ -1,0 +1,43 @@
+{
+  "name": "ui-sdk-angular",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve demo",
+    "build:lib": "ng build ui-sdk-angular",
+    "test:upstream": "playwright test -c playwright.upstream.config.ts",
+    "format": "prettier --check . --log-level warn",
+    "lint": "node scripts/check-code.mjs && node scripts/check-comments.mjs && node scripts/check-examples.mjs && eslint .",
+    "format:write": "prettier --write . --log-level warn"
+  },
+  "private": true,
+  "packageManager": "npm@11.19.0",
+  "dependencies": {
+    "@angular/common": "^22.2.0",
+    "@angular/compiler": "^22.2.0",
+    "@angular/core": "^22.2.0",
+    "@angular/forms": "^22.2.0",
+    "@angular/platform-browser": "^22.2.0",
+    "@angular/router": "^22.2.0",
+    "@ui-sdk/core": "^0.1.0-beta.1",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.2.7",
+    "@angular/cli": "^22.2.7",
+    "@angular/compiler-cli": "^22.2.0",
+    "@axe-core/playwright": "^4.14.0",
+    "@guidepup/virtual-screen-reader": "^0.33.0",
+    "@lucide/angular": "^1.72.0",
+    "@playwright/test": "^1.65.0",
+    "angular-eslint": "^22.6.0",
+    "eslint": "^10.14.0",
+    "jsdom": "^30.0.0",
+    "ng-packagr": "^22.2.0",
+    "prettier": "^3.8.1",
+    "shiki": "^4.6.0",
+    "typescript": "~6.0.2",
+    "vitest": "^5.0.0"
+  }
+}

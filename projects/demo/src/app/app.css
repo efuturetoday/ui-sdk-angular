@@ -1,0 +1,73 @@
+:host {
+  --frame-ink: light-dark(#171717, #ededed);
+  --frame-muted: light-dark(#737373, #8f8f8f);
+  --frame-line: light-dark(#e5e5e5, #2e2e2e);
+  --frame-paper: light-dark(#fff, #1a1a1a);
+
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  min-height: 100vh;
+}
+
+.components {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 1rem;
+  border-inline-end: 1px solid var(--frame-line);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: 1rem;
+}
+
+.title h1 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.title button {
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: var(--frame-muted);
+  cursor: pointer;
+}
+
+.title svg {
+  width: 16px;
+  height: 16px;
+}
+
+.components a {
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.components a[aria-current="page"] {
+  background: light-dark(#f0f0f0, #262626);
+}
+
+main {
+  max-width: 56rem;
+  padding: 1rem 2rem 4rem;
+}
+
+.example {
+  margin-block-end: 2.5rem;
+}
+
+.example h3 {
+  margin: 0 0 0.5rem;
+  color: var(--frame-muted);
+  font:
+    500 12px ui-monospace,
+    monospace;
+}
