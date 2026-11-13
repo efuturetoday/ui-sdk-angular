@@ -32,7 +32,14 @@
     }
   </div>
   @if (tab() === "code") {
-    <div class="code" [innerHTML]="source.value()"></div>
+    <div class="code">
+      @for (file of source.value(); track file.name) {
+        @if (source.value()!.length > 1) {
+          <p class="file">{{ file.name }}</p>
+        }
+        <div [innerHTML]="file.html"></div>
+      }
+    </div>
   }
   @if (caption(); as caption) {
     <p class="caption">{{ caption }}</p>

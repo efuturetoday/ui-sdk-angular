@@ -103,3 +103,12 @@
   align-items: flex-start;
   gap: 12px;
 }
+
+.code .file {
+  margin: 0;
+  padding: 8px 16px 0;
+  font:
+    12px/1.5 ui-monospace,
+    monospace;
+  color: var(--frame-muted, #737373);
+}

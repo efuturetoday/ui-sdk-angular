@@ -49,7 +49,8 @@ function createBinding<P extends Primitive, S extends SlotName<P>>(
   element: PartElement<StateOf<P, S>>,
   state: Signal<StateOf<P, S>>,
   props: () => PropsOf<P, S>,
-  join?: JoinedPart
+  join?: JoinedPart,
+  live?: () => void
 ) {
   let current: PropsOf<P, S> | undefined
   let record: Part | undefined
@@ -80,7 +81,13 @@ function createBinding<P extends Primitive, S extends SlotName<P>>(
         version = renderVersion(handle.instance)
         return syncSoon()
       }
-      if (liveOnly || renderVersion(handle.instance) === version) {
+      // Live state, like which item is highlighted, changes without a render
+      // and reaches only the parts it affects; their state follows it.
+      if (liveOnly) {
+        live?.()
+        return
+      }
+      if (renderVersion(handle.instance) === version) {
         return
       }
       version = renderVersion(handle.instance)

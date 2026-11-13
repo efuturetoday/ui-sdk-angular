@@ -30,7 +30,8 @@ const InheritedContainer = new InjectionToken<() => PopupContainer>(
 function createLayer<P extends Primitive>(
   handle: PrimitiveHandle<P>,
   container: (() => PopupContainer) | undefined,
-  viewport: SlotName<P> | undefined
+  viewport: SlotName<P> | undefined,
+  input: (() => HTMLElement | undefined) | undefined
 ) {
   const renderer = inject(Renderer2)
   const anchor = inject(ViewContainerRef).element.nativeElement as Node
@@ -38,6 +39,8 @@ function createLayer<P extends Primitive>(
   const resolved = () => container?.() ?? inherited?.()
   let el: HTMLElement | undefined
   let wrapper: HTMLElement | undefined
+  let header: HTMLElement | undefined
+  let placeholder: Comment | undefined
 
   const target = () => (container ? portalTarget(untracked(resolved)) : null)
   const sheet = () =>
@@ -80,6 +83,56 @@ function createLayer<P extends Primitive>(
     wrapper = undefined
   }
 
+  // A move takes focus, so a node that had it, like an input, keeps it and
+  // its caret: moving is the layer's business, not the user's.
+  const move = (node: Node, insert: () => void) => {
+    const active = node.ownerDocument?.activeElement
+    const focused = !!active && node.contains(active)
+    const field = active as HTMLInputElement | null
+    const caret = focused
+      ? [field?.selectionStart, field?.selectionEnd]
+      : undefined
+    insert()
+    if (focused && active !== node.ownerDocument?.activeElement) {
+      ;(active as HTMLElement).focus({ preventScroll: true })
+      if (caret?.[0] != null && caret[1] != null) {
+        field?.setSelectionRange(caret[0], caret[1])
+      }
+    }
+  }
+
+  // A sheet's input moves into a header at the top of its content while it's
+  // open, and back where a placeholder kept its place, as Vue's Teleport and
+  // web components do.
+  const showHeader = () => {
+    const field = input?.()
+    if (!el) {
+      return
+    }
+    header ??= renderer.createElement("div") as HTMLElement
+    if (header.parentNode !== el) {
+      renderer.insertBefore(el, header, el.firstChild)
+    }
+    if (field && field.parentNode !== header) {
+      placeholder = renderer.createComment("") as Comment
+      renderer.insertBefore(field.parentNode, placeholder, field)
+      move(field, () => renderer.appendChild(header, field))
+    }
+    return header
+  }
+
+  const hideHeader = () => {
+    const field = input?.()
+    if (field && placeholder?.parentNode) {
+      const at = placeholder
+      move(field, () => renderer.insertBefore(at.parentNode, field, at))
+    }
+    take(placeholder)
+    take(header)
+    placeholder = undefined
+    header = undefined
+  }
+
   const take = (node: Node | undefined) => {
     if (node?.parentNode) {
       renderer.removeChild(node.parentNode, node)
@@ -103,6 +156,7 @@ function createLayer<P extends Primitive>(
     },
     forget: () => {
       unwatchPresence(presence)
+      hideHeader()
       el = undefined
     },
     providers: [{ provide: InheritedContainer, useValue: resolved }],
@@ -117,7 +171,9 @@ function createLayer<P extends Primitive>(
     at: anchor,
   }
 
-  return { placement, viewportElement }
+  const headerElement = { show: showHeader, hide: hideHeader, at: anchor }
+
+  return { placement, viewportElement, headerElement }
 }
 
 /**
@@ -125,8 +181,10 @@ function createLayer<P extends Primitive>(
  * backdrop: `injectPresentPart`, rendered into `container` or the one the
  * popup around it renders into. A part that can show as a sheet passes the
  * popup's `viewport` slot: while that's present, the part sits in a viewport
- * element the layer makes around it. Call it in a field initializer and its
- * `init()` from `ngOnInit`.
+ * element the layer makes around it. A list with an input outside its popup,
+ * like a combobox's, passes `header` too: while the sheet is open, the input
+ * moves into a header the layer makes at the content's top. Call it in a field
+ * initializer and its `init()` from `ngOnInit`.
  * @experimental
  */
 function injectPopupPart<P extends Primitive, S extends SlotName<P>>(
@@ -136,24 +194,36 @@ function injectPopupPart<P extends Primitive, S extends SlotName<P>>(
   {
     container,
     viewport,
-  }: { container?: () => PopupContainer; viewport?: SlotName<P> } = {}
+    header,
+  }: {
+    container?: () => PopupContainer
+    viewport?: SlotName<P>
+    header?: { slot: SlotName<P>; input: () => HTMLElement | undefined }
+  } = {}
 ) {
-  const layer = createLayer(handle, container, viewport)
+  const layer = createLayer(handle, container, viewport, header?.input)
   const part = injectPresentPart(handle, slot, props, layer.placement)
-  if (!viewport) {
-    return part
-  }
-  const sheet = bindPart(
-    () => handle,
-    viewport,
-    () => ({}) as never,
-    layer.viewportElement
-  )
+  const extras = [
+    viewport &&
+      bindPart(
+        () => handle,
+        viewport,
+        () => ({}) as never,
+        layer.viewportElement
+      ),
+    header &&
+      bindPart(
+        () => handle,
+        header.slot,
+        () => ({}) as never,
+        layer.headerElement
+      ),
+  ].filter((extra) => !!extra)
   return {
     ...part,
     init: () => {
       part.init()
-      sheet.init()
+      extras.forEach((extra) => extra.init())
     },
   }
 }

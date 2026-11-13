@@ -5,7 +5,11 @@ import { renderLikeTheSpecs } from "./render-like-the-specs"
 
 // The same page contract as the upstream playground: /?fixture=dialog&framework=angular.
 const fixtures: Record<string, () => Promise<{ Fixture: Type<unknown> }>> = {
+  autocomplete: () => import("./fixtures/autocomplete"),
+  "autocomplete-render": () => import("./fixtures/autocomplete-render"),
   collapsible: () => import("./fixtures/collapsible"),
+  combobox: () => import("./fixtures/combobox"),
+  "combobox-render": () => import("./fixtures/combobox-render"),
   "collapsible-render": () => import("./fixtures/collapsible-render"),
   dialog: () => import("./fixtures/dialog"),
   "cached-page": () => import("./fixtures/cached-page"),
@@ -20,6 +24,7 @@ const fixtures: Record<string, () => Promise<{ Fixture: Type<unknown> }>> = {
   "popover-render": () => import("./fixtures/popover-render"),
   select: () => import("./fixtures/select"),
   "select-render": () => import("./fixtures/select-render"),
+  toast: () => import("./fixtures/toast"),
 }
 
 // Specs that check core's modules load them through the page, as the instances

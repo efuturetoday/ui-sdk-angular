@@ -12,7 +12,7 @@ Every part is a directive on an element you write: `<button uiDialogTrigger>`. C
 
 This is how Angular's own unstyled libraries work, the CDK (`cdkListbox`) and Angular Aria (`ngTabs`). A component would add a host element around the part, and Angular has no `render` to replace it. Upstream's shape still holds: the same parts, names, props and nesting, with `<Switch>` written as `uiSwitch` on an element.
 
-The package has no components and no styles. Styled components, like a design system's, are a layer above it: components that compose the parts with `hostDirectives`, so their host element is the part. Styled layers, like one with Tailwind, may ship later as packages of their own. A structural part can't be a host directive, since it needs a template; a styled panel takes its content as a template too, never as `<ng-content>` inside an `ng-template`, which Angular creates eagerly.
+The base package has no components and no styles; the few components there are live in entries of their own (see Components below). Styled components, like a design system's, are a layer above it: components that compose the parts with `hostDirectives`, so their host element is the part. Styled layers, like one with Tailwind, may ship later as packages of their own. A structural part can't be a host directive, since it needs a template; a styled panel takes its content as a template too, never as `<ng-content>` inside an `ng-template`, which Angular creates eagerly.
 
 - **The root** is the directive that makes the instance (`injectPrimitive`) and provides it to its parts through DI (`provideRoot`). A root without an element of its own, like Dialog's, goes on an `ng-container`.
 - **A part** injects its root (`injectHandle`) and makes its element one part (`injectPart`). Outside its root it throws.
@@ -22,6 +22,7 @@ The package has no components and no styles. Styled components, like a design sy
 
 A part whose presence core decides, like a dialog's content or a collapsible's panel (`conditional(part)` in core), is a structural directive: `<div *uiDialogContent class="dialog">`. Its element is created while the part is present and removed when it isn't, after its exit animation, as React and Vue unmount it. A closed dialog's content is never instantiated.
 
+- Some parts are present by the app's data rather than core's state, like a toast's title while the toast has one: `injectPresentPart` takes a function that gives the instance only while the part may be present.
 - Its props are inputs written in Angular's microsyntax, as `*ngFor` takes `trackBy`. A part with a required value takes it first: `*uiTabsPanel="tab.value; keepMounted: true"`. A part without one starts with `let state`, since Angular's grammar allows no key first: `*uiDialogContent="let state; initialFocus: 'content'"`. Each prop is an input named after the directive, `uiDialogContentInitialFocus`, for the long form on an `<ng-template>`.
 - `let state` is the part's state as a signal.
 - The part is the embedded view's first element.
@@ -63,6 +64,8 @@ An error without content shows the browser's message for the current problem: `<
 
 A popup's content and backdrop render in place, into a container, or, while the popup shows as a sheet, into a viewport: the element that goes into the top layer and scrolls for swiping (`popupViewport`, Drawer's `viewport`). Core finds the viewport as the content's parent. The popup layer (`injectPopupPart`) alone moves these nodes, with `Renderer2`; parts and bindings never do. It makes the viewport, binds it as that part and removes it when the sheet goes. Style it by `[data-slot]`, like `drawer-viewport`.
 
+A list with an input outside its popup, like a combobox, shows as a sheet with the input in a header at the content's top. The layer makes the header and moves the input into it while the sheet is open, leaving a comment where the input was and putting it back there, as web components and Vue's Teleport do. A move takes focus, so the layer gives an element that had it its focus and caret back: moving nodes has no side effects.
+
 ### Elements the adapter makes
 
 The adapter makes an element itself only when it's infrastructure: no upstream adapter exposes it as a part, and it never lands in your markup. Those are a sheet's viewport and header, whose presence core decides at runtime by device, and a list's form inputs, like a select's, which go right after its root, one per selected value with `multiple`. Write `name` on the root and a native form gets the value. A checkbox's, switch's or radio's hidden input is different: it would land inside your button or label, so you write it (see above).
@@ -84,6 +87,13 @@ There's no `render` and no `as`. A part is whatever element its directive is on.
 
 State for classes comes from `exportAs` (`[class.open]="dialog.state().open"`) or from the data attributes (`[data-open]`).
 
+## Components
+
+A component brings an element of its own, which a part can't have inside a structure like a listbox, so the base package is directives only. Components come where they bring markup of their own around a whole: in entries of their own, unstyled, with upstream's default markup.
+
+- `ui-sdk-angular/overlays`: `<ui-overlay-host>` renders what `toast()` and `confirm()` open from anywhere, like Vue's `OverlayHost`. A renderer per overlay type (`OVERLAY_RENDERERS`), so a new type comes with `provideOverlayRenderer`, not a change to the host. `[toast]` gives its regions options, and `<ng-template uiOverlayToast let-toast>` its toasts markup of your own; that template gets the region's injector, so its parts find their region. A region you place yourself takes over its toaster.
+- Later: complete components with the loop inside, like `<ui-select [items]>`, never a component for part of a list.
+
 ## Inputs, outputs and state
 
 - **Options and props are signal inputs**, named like upstream's: `[defaultOpen]`, `[disabled]`. Boolean ones take `optionalBoolean`, so `<div uiCollapsible disabled>` works and a left-out or `undefined` value stays `undefined`, which core reads as its default. Angular's `booleanAttribute` turns `undefined` into `false`.
@@ -91,6 +101,10 @@ State for classes comes from `exportAs` (`[class.open]="dialog.state().open"`) o
 - **`on<Key>Change`** becomes `(before<Key>Change)`, which emits `{ open, details }` before the change and can cancel it with `details.cancel()`. `(<key>Change)` emits the new value once it isn't canceled.
 - **Other callbacks** are outputs named without `on`: `(openChangeComplete)`.
 - **State** is a signal on every directive, `state()`, which changes with what affects rendering.
+
+### Options that load
+
+A list's options that load as the user types come from Angular's `resource()` or `httpResource()`, through the list's `[items]` and `[status]` like any data. `asyncOptions(resource)` gives both: its items, kept while it loads anew (a loading resource has no value, so the list would empty on every key), and its status in core's terms. Debounce by waiting first in the loader on its `abortSignal`, which the next change aborts. For pages that load more as the list scrolls, `injectAsyncOptions` wraps core's `createAsyncOptions`, as Vue's `useAsyncOptions` does.
 
 ## How the adapter is built
 
@@ -116,7 +130,9 @@ Angular sets inputs after the constructor, and options like `defaultOpen` count 
 - A part writes its attributes in `ngOnInit`, on the server too, so the server's HTML has them. It binds its behavior after the app's first render, in the browser only (`afterNextRender`). A part made after that, like one inside a structural part, binds in `ngOnInit`, before the part around it, as React and Vue bind children first.
 - Parts render and bind as React and Vue commit (`commit.ts`). Every change a part follows, from core or from its inputs, waits a microtask, so core finishes it first and no part renders in the middle of another. The parts that changed then render together in template order, whatever order Angular made their directives in, and bind children first; parts made while a part renders, like a title in a drawer's content, wait for it. So a popup binds with its backdrop and its whole content in the page, which a sheet measures for its snap points. Only a part's first attributes are written at once, in `ngOnInit`.
 - A part's props are a function the binding reads in `ngOnInit`, on every change, and once more right before its behavior attaches, after its element's content has rendered. So props that come from that content, like an item's text, need no lifecycle hook of their own.
-- An element's content has one owner, decided by the template: written empty, like `<span uiSelectValue></span>` or `<span uiSelectItemText></span>`, core fills it; with content of its own, it's yours and core never writes into it. The directive decides it once in `ngOnInit` (`injectContentOwner`): its children exist by then, and core has written none yet.
+- A part's `state()` follows its instance's renders and the live state that reaches the part, like which item is highlighted, which changes without a render and reaches only the parts it affects.
+- A part that renders no element, like a combobox's value, only gives its state (`injectStatePart`), on an `ng-container`: `<ng-container uiComboboxValue #value="uiComboboxValue">`.
+- An element's content has one owner, decided by the template: written empty, like `<span uiSelectValue></span>` or `<span uiSelectItemText></span>`, the library fills it, through core where core writes it (a value, an item's text, a chip overflow's count) and otherwise from the part's state (`injectDefaultText`, like a chip's label); with content of its own, it's yours and core never writes into it. The directive decides it once in `ngOnInit` (`injectContentOwner`): its children exist by then, and core has written none yet.
 - The instance is kept after the first render and destroyed with its root (`DestroyRef`), so nothing outlives a server request.
 - Ids come from creation order (`UiIds`), so the server and the hydrating client agree.
 

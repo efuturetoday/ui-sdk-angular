@@ -70,12 +70,14 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
   }
 
   // Only a connected part has no instance, and it passes `unbound`.
+  const liveVersion = signal(0)
   const state = computed(() => {
     const handle = target()
     if (!handle) {
       return unbound?.state() as StateOf<P, S>
     }
     handle.version()
+    liveVersion()
     return partState(handle.instance.part(slot, props())) as StateOf<P, S>
   })
 
@@ -102,7 +104,8 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
       tracked,
       state,
       () => untracked(props),
-      join
+      join,
+      () => liveVersion.update((version) => version + 1)
     )
     binding.start(rendered)
   }
@@ -182,6 +185,25 @@ function injectPart<P extends Primitive, S extends SlotName<P>>(
 }
 
 /**
+ * A part that renders no element, only its state, like a combobox's value
+ * read on an `ng-container`. Call it in a field initializer and its `init()`
+ * from `ngOnInit`.
+ * @experimental
+ */
+function injectStatePart<P extends Primitive, S extends SlotName<P>>(
+  handle: PrimitiveHandle<P>,
+  slot: S,
+  props = () => ({}) as PropsOf<P, S>
+) {
+  const at = inject(ElementRef).nativeElement as Node
+  return bindPart(() => handle, slot, props, {
+    show: () => undefined,
+    hide: () => {},
+    at,
+  })
+}
+
+/**
  * Makes this directive's element one part of whichever instance `target`
  * gives, like a hidden input of the checkbox its input names. While it gives
  * none, the element shows `unbound`. Call it in a field initializer and its
@@ -234,6 +256,7 @@ export {
   bindPart,
   injectConnectedPart,
   injectPart,
+  injectStatePart,
   injectTargetPart,
   type JoinedPart,
   type Unbound,
