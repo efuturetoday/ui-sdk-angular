@@ -1,6 +1,4 @@
 import type { Primitive, PropsOf, StateOf } from "@ui-sdk/core"
-import type { AlertDialogPrimitive } from "@ui-sdk/core/alert-dialog"
-import type { DialogPrimitive } from "@ui-sdk/core/dialog"
 import {
   computed,
   forwardRef,
@@ -66,7 +64,7 @@ function unboundTrigger(
 // A Shortcut part: in its root, or inside a trigger, which gives its keys and
 // the instance it opens. Inside a trigger whose instance isn't on the page
 // yet, it shows nothing.
-function injectShortcut<P extends DialogPrimitive | AlertDialogPrimitive>(
+function injectShortcut<P extends Primitive>(
   primitive: P,
   shortcut: () => string | undefined
 ) {
@@ -81,7 +79,7 @@ function injectShortcut<P extends DialogPrimitive | AlertDialogPrimitive>(
   return injectTargetPart(
     target,
     "shortcut",
-    // Both dialogs' shortcut slots take these props and state; TypeScript
+    // Every shortcut slot takes these props and state; TypeScript
     // can't see it through P.
     () =>
       ({ shortcut: shortcut() ?? trigger?.shortcut() }) as PropsOf<

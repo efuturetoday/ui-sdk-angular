@@ -38,12 +38,8 @@ import {
   type FieldOutsideSlot,
 } from "@ui-sdk/core/renderer"
 import { optionalBoolean } from "./inputs"
-import {
-  injectPart,
-  injectPresentPart,
-  type JoinedPart,
-  type PresentPartContext,
-} from "./part"
+import { injectPart, type JoinedPart } from "./part"
+import { injectPresentPart, type PresentPartContext } from "./structural"
 import {
   injectHandle,
   injectPrimitive,
@@ -422,6 +418,7 @@ export type {
 
 export {
   type FieldContext,
+  FieldContextToken,
   injectFieldControl,
   UiField,
   UiFieldControl,

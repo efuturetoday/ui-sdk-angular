@@ -25,7 +25,6 @@ A part whose presence core decides, like a dialog's content or a collapsible's p
 - Its props are inputs written in Angular's microsyntax, as `*ngFor` takes `trackBy`. A part with a required value takes it first: `*uiTabsPanel="tab.value; keepMounted: true"`. A part without one starts with `let state`, since Angular's grammar allows no key first: `*uiDialogContent="let state; initialFocus: 'content'"`. Each prop is an input named after the directive, `uiDialogContentInitialFocus`, for the long form on an `<ng-template>`.
 - `let state` is the part's state as a signal.
 - The part is the embedded view's first element.
-- A part that appears or leaves renders a microtask later, as Vue renders, so core finishes the change, like its open steps, before the part binds.
 - A new view renders at once (`detectChanges()` on it), with the parts inside it, since core binds the part and moves focus into it as it appears. It's the only render the package triggers.
 
 Every other part is an attribute directive and its element always exists.
@@ -60,6 +59,18 @@ Inside the control, DI would find it without a reference, but a `<button>` may h
 
 An error without content shows the browser's message for the current problem: `<div *uiFieldError></div>`. With content, it shows the content.
 
+### A popup's nodes: the popup layer
+
+A popup's content and backdrop render in place, into a container, or, while the popup shows as a sheet, into a viewport: the element that goes into the top layer and scrolls for swiping (`popupViewport`, Drawer's `viewport`). Core finds the viewport as the content's parent. The popup layer (`injectPopupPart`) alone moves these nodes, with `Renderer2`; parts and bindings never do. It makes the viewport, binds it as that part and removes it when the sheet goes. Style it by `[data-slot]`, like `drawer-viewport`.
+
+### Elements the adapter makes
+
+The adapter makes an element itself only when it's infrastructure: no upstream adapter exposes it as a part, and it never lands in your markup. Those are a sheet's viewport and header, whose presence core decides at runtime by device, and a list's form inputs, like a select's, which go right after its root, one per selected value with `multiple`. Write `name` on the root and a native form gets the value. A checkbox's, switch's or radio's hidden input is different: it would land inside your button or label, so you write it (see above).
+
+### Cached views
+
+Angular can take a view out of the document and put it back later without destroying it, like a route a `RouteReuseStrategy` keeps, and tells its directives nothing. Vue's `<KeepAlive>` and React's `<Activity>` do the same. So one `MutationObserver` (`presence.ts`) reports when a part's place in the template leaves the document and comes back, while any part is bound. A part that leaves lets go of the page and keeps its state, as Vue's do: an open dialog stops locking scroll and leaves the top layer. The popup layer takes out the nodes Angular doesn't know it moved. Back, the layer puts them where they belong and the parts bind again. Upstream's `cached-page` spec checks it, with a fixture that detaches the view as the router does.
+
 ### Rendering as another element
 
 There's no `render` and no `as`. A part is whatever element its directive is on. To make your own component a part, compose the directive with `hostDirectives`:
@@ -81,12 +92,31 @@ State for classes comes from `exportAs` (`[class.open]="dialog.state().open"`) o
 - **Other callbacks** are outputs named without `on`: `(openChangeComplete)`.
 - **State** is a signal on every directive, `state()`, which changes with what affects rendering.
 
+## How the adapter is built
+
+Each module has one job and knows nothing of the others' details:
+
+| Module           | Its job                                                                                                   |
+| ---------------- | --------------------------------------------------------------------------------------------------------- |
+| `primitive.ts`   | Instances: `injectPrimitive`, the root's DI, controllers.                                                 |
+| `binding.ts`     | One part of one instance on one element: attributes, attaching and releasing core's behavior, suspending. |
+| `commit.ts`      | When parts render and bind: the next commit, template order, children first.                              |
+| `presence.ts`    | Whether a place in the template is in the document.                                                       |
+| `part.ts`        | A directive's part: which instance it binds to, the directive's lifecycle, presence.                      |
+| `structural.ts`  | A structural part: its template's view while the part is present, placed by a `Placement`.                |
+| `popup-layer.ts` | A popup's nodes: in place, in a container or in a sheet's viewport.                                       |
+
+A component file composes these, like a dialog's content: `injectPopupPart`, which is a structural part with a popup layer for placement. Nothing generic knows about popups or sheets.
+
 ## Lifecycle
 
 Angular sets inputs after the constructor, and options like `defaultOpen` count only when an instance is made. So:
 
 - `injectPrimitive` and `injectPart` run in field initializers, and their `init()` runs in `ngOnInit`. A root's `ngOnInit` runs before its parts'.
 - A part writes its attributes in `ngOnInit`, on the server too, so the server's HTML has them. It binds its behavior after the app's first render, in the browser only (`afterNextRender`). A part made after that, like one inside a structural part, binds in `ngOnInit`, before the part around it, as React and Vue bind children first.
+- Parts render and bind as React and Vue commit (`commit.ts`). Every change a part follows, from core or from its inputs, waits a microtask, so core finishes it first and no part renders in the middle of another. The parts that changed then render together in template order, whatever order Angular made their directives in, and bind children first; parts made while a part renders, like a title in a drawer's content, wait for it. So a popup binds with its backdrop and its whole content in the page, which a sheet measures for its snap points. Only a part's first attributes are written at once, in `ngOnInit`.
+- A part's props are a function the binding reads in `ngOnInit`, on every change, and once more right before its behavior attaches, after its element's content has rendered. So props that come from that content, like an item's text, need no lifecycle hook of their own.
+- An element's content has one owner, decided by the template: written empty, like `<span uiSelectValue></span>` or `<span uiSelectItemText></span>`, core fills it; with content of its own, it's yours and core never writes into it. The directive decides it once in `ngOnInit` (`injectContentOwner`): its children exist by then, and core has written none yet.
 - The instance is kept after the first render and destroyed with its root (`DestroyRef`), so nothing outlives a server request.
 - Ids come from creation order (`UiIds`), so the server and the hydrating client agree.
 

@@ -10,7 +10,7 @@ An Angular adapter for [ui-sdk](https://github.com/vercel-labs/ui): `@ui-sdk/cor
 
 ## Layout
 
-- `projects/ui-sdk-angular`: the package. `src/lib/primitive.ts` (instances) and `src/lib/part.ts` (parts) are the adapter; one file per component beside them.
+- `projects/ui-sdk-angular`: the package. The adapter's modules (`primitive.ts`, `binding.ts`, `commit.ts`, `presence.ts`, `part.ts`, `structural.ts`, `popup-layer.ts`) are listed in the design's "How the adapter is built"; one file per component beside them.
 - `projects/playground`: the fixtures for upstream's specs.
 - `projects/demo`: a page to try components by hand (`npm start`).
 - `vendor/ui`: upstream, a git submodule. Never edit it.

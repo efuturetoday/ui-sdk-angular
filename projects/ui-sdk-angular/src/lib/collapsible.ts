@@ -8,7 +8,8 @@ import {
   type CollapsiblePanelState,
   type CollapsiblePrimitive,
 } from "@ui-sdk/core/collapsible"
-import { injectPart, injectPresentPart, type PresentPartContext } from "./part"
+import { injectPart } from "./part"
+import { injectPresentPart, type PresentPartContext } from "./structural"
 import { optionalBoolean } from "./inputs"
 import {
   injectHandle,

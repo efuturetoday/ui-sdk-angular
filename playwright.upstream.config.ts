@@ -7,11 +7,46 @@ const port = process.env["PLAYGROUND_PORT"] ?? "5320"
 const specRoot = "vendor/ui/tests/specs"
 
 // Specs that fail for a reason that isn't a bug, by title, each with why.
-const knownGaps: Record<string, string> = {}
+const knownGaps: Record<string, string> = {
+  "a menu inside the popover":
+    "The popover fixture leaves out its menu until Menu is ported.",
+}
 
 // Only popups move into a portal container, so the portal project runs these
-// components' specs again, as upstream's react-portal does.
-const portalComponents = ["dialog"]
+// components' specs again, as upstream's react-portal does. Upstream's list.
+const portalComponents = [
+  "alignment",
+  "autocomplete",
+  "combobox",
+  "command",
+  "date-picker",
+  "dialog",
+  "drawer",
+  "hover-card",
+  "list",
+  "menu",
+  "menubar",
+  "navigation-menu",
+  "popover",
+  "popup",
+  "presentation",
+  "select",
+  "toast",
+  "token-input",
+  "tooltip",
+  "trigger-menu",
+]
+
+// The popups that can present as a sheet run their shared specs once more as
+// one, as upstream's react-sheet does. Upstream's list.
+const sheetComponents = [
+  "menu",
+  "popover",
+  "dialog",
+  "select",
+  "combobox",
+  "autocomplete",
+]
 
 // The fixtures the playground has, like "dialog" or "dialog-render".
 const fixtures = new Set(
@@ -75,6 +110,19 @@ export default defineConfig<{
       testMatch: filesMatching(
         specs.filter((file) =>
           portalComponents.some((name) => file.startsWith(`${name}.`))
+        )
+      ),
+    },
+    {
+      name: "angular-sheet",
+      use: {
+        browserName: "chromium",
+        framework: "angular",
+        fixtureOptions: { presentation: "sheet" },
+      },
+      testMatch: filesMatching(
+        specs.filter((file) =>
+          sheetComponents.some((name) => file === `${name}.spec.ts`)
         )
       ),
     },

@@ -23,12 +23,9 @@ import {
   type DialogPayloadChangeReason,
   type DialogPrimitive,
 } from "@ui-sdk/core/dialog"
-import {
-  injectConnectedPart,
-  injectPart,
-  injectPresentPart,
-  type PresentPartContext,
-} from "./part"
+import { injectConnectedPart, injectPart } from "./part"
+import { injectPopupPart } from "./popup-layer"
+import type { PresentPartContext } from "./structural"
 import { optionalBoolean } from "./inputs"
 import {
   injectShortcut,
@@ -214,11 +211,13 @@ class UiDialogShortcut implements OnInit {
 @Directive({ selector: "[uiDialogBackdrop]" })
 class UiDialogBackdrop implements OnInit {
   readonly #root = inject(UiDialog)
-  readonly #part = injectPresentPart(
+  readonly #part = injectPopupPart(
     injectHandle(dialog),
     "backdrop",
     undefined,
-    () => this.#root.container()
+    {
+      container: () => this.#root.container(),
+    }
   )
 
   static ngTemplateContextGuard(
@@ -236,7 +235,8 @@ class UiDialogBackdrop implements OnInit {
 /**
  * The dialog itself, on the element it's written on: `<div *uiDialogContent>`.
  * It's in the page while the dialog is open, named by its title and described
- * by its description.
+ * by its description. Presented as a sheet, it sits in a viewport the adapter
+ * makes around it, styled by `[data-slot="dialog-viewport"]`.
  * @experimental
  */
 @Directive({ selector: "[uiDialogContent]" })
@@ -267,11 +267,14 @@ class UiDialogContent implements OnInit {
     container: this.container(),
   }))
   readonly #root = inject(UiDialog)
-  readonly #part = injectPresentPart(
+  readonly #part = injectPopupPart(
     injectHandle(dialog),
     "content",
     this.#props,
-    () => this.container() ?? this.#root.container()
+    {
+      container: () => this.container() ?? this.#root.container(),
+      viewport: "viewport",
+    }
   )
 
   static ngTemplateContextGuard(

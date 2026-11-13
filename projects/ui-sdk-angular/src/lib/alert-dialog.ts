@@ -26,12 +26,9 @@ import type {
   DialogInitialFocus,
   DialogOpenChangeDetails,
 } from "@ui-sdk/core/dialog"
-import {
-  injectConnectedPart,
-  injectPart,
-  injectPresentPart,
-  type PresentPartContext,
-} from "./part"
+import { injectConnectedPart, injectPart } from "./part"
+import { injectPopupPart } from "./popup-layer"
+import type { PresentPartContext } from "./structural"
 import { optionalBoolean } from "./inputs"
 import {
   injectShortcut,
@@ -207,11 +204,13 @@ class UiAlertDialogShortcut implements OnInit {
 @Directive({ selector: "[uiAlertDialogBackdrop]" })
 class UiAlertDialogBackdrop implements OnInit {
   readonly #root = inject(UiAlertDialog)
-  readonly #part = injectPresentPart(
+  readonly #part = injectPopupPart(
     injectHandle(alertDialog),
     "backdrop",
     undefined,
-    () => this.#root.container()
+    {
+      container: () => this.#root.container(),
+    }
   )
 
   static ngTemplateContextGuard(
@@ -259,11 +258,13 @@ class UiAlertDialogContent implements OnInit {
     container: this.container(),
   }))
   readonly #root = inject(UiAlertDialog)
-  readonly #part = injectPresentPart(
+  readonly #part = injectPopupPart(
     injectHandle(alertDialog),
     "content",
     this.#props,
-    () => this.container() ?? this.#root.container()
+    {
+      container: () => this.container() ?? this.#root.container(),
+    }
   )
 
   static ngTemplateContextGuard(

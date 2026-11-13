@@ -1,0 +1,149 @@
+import { Component } from "@angular/core"
+import { LucideCheck, LucideChevronDown } from "@lucide/angular"
+import {
+  type ListAnnouncement,
+  UiField,
+  UiFieldLabel,
+  UiSelect,
+  UiSelectContent,
+  UiSelectEmpty,
+  UiSelectGroup,
+  UiSelectGroupLabel,
+  UiSelectInput,
+  UiSelectItem,
+  UiSelectItemIndicator,
+  UiSelectItemText,
+  UiSelectList,
+  UiSelectTrigger,
+  UiSelectValue,
+} from "ui-sdk-angular"
+
+type Country = { value: string; label: string; code: string }
+type Popular = { type: "group"; label: string; items: Country[] }
+
+@Component({
+  selector: "app-example",
+  imports: [
+    LucideCheck,
+    LucideChevronDown,
+    UiField,
+    UiFieldLabel,
+    UiSelect,
+    UiSelectContent,
+    UiSelectEmpty,
+    UiSelectGroup,
+    UiSelectGroupLabel,
+    UiSelectInput,
+    UiSelectItem,
+    UiSelectItemIndicator,
+    UiSelectItemText,
+    UiSelectList,
+    UiSelectTrigger,
+    UiSelectValue,
+  ],
+  template: `
+    <div uiField>
+      <label uiFieldLabel>Country</label
+      ><ng-container
+        uiSelect
+        [items]="countries"
+        [emptyItems]="popularCountries"
+        placeholder="Select a country"
+        filter="contains"
+        [announcement]="announce"
+        ><button uiSelectTrigger>
+          <span uiSelectValue></span
+          ><svg lucideChevronDown aria-hidden="true"></svg>
+        </button>
+        <div *uiSelectContent>
+          <input
+            uiSelectInput
+            aria-label="Search countries"
+            placeholder="Search countries…"
+          />
+          <div uiSelectEmpty>No countries found.</div>
+          <div uiSelectList #list="uiSelectList">
+            @for (entry of entriesOf(list.state().items); track key(entry)) {
+              @if (isGroup(entry)) {
+                <div uiSelectGroup>
+                  <div uiSelectGroupLabel>{{ entry.label }}</div>
+                  @for (country of entry.items; track country.value) {
+                    <div
+                      uiSelectItem
+                      [value]="country.value"
+                      [label]="country.label"
+                    >
+                      <span uiSelectItemText></span
+                      ><span *uiSelectItemIndicator
+                        ><svg lucideCheck aria-hidden="true"></svg
+                      ></span>
+                    </div>
+                  }
+                </div>
+              } @else {
+                <div uiSelectItem [value]="entry.value" [label]="entry.label">
+                  <span uiSelectItemText></span
+                  ><span *uiSelectItemIndicator
+                    ><svg lucideCheck aria-hidden="true"></svg
+                  ></span>
+                </div>
+              }
+            }
+          </div></div
+      ></ng-container>
+    </div>
+  `,
+})
+class Example {
+  protected readonly countries: Country[] = [
+    { value: "ar", label: "Argentina", code: "+54" },
+    { value: "au", label: "Australia", code: "+61" },
+    { value: "at", label: "Austria", code: "+43" },
+    { value: "be", label: "Belgium", code: "+32" },
+    { value: "br", label: "Brazil", code: "+55" },
+    { value: "ca", label: "Canada", code: "+1" },
+    { value: "cl", label: "Chile", code: "+56" },
+    { value: "cn", label: "China", code: "+86" },
+    { value: "dk", label: "Denmark", code: "+45" },
+    { value: "fi", label: "Finland", code: "+358" },
+    { value: "fr", label: "France", code: "+33" },
+    { value: "de", label: "Germany", code: "+49" },
+    { value: "gr", label: "Greece", code: "+30" },
+    { value: "in", label: "India", code: "+91" },
+    { value: "ie", label: "Ireland", code: "+353" },
+    { value: "it", label: "Italy", code: "+39" },
+    { value: "jp", label: "Japan", code: "+81" },
+    { value: "mx", label: "Mexico", code: "+52" },
+    { value: "nl", label: "Netherlands", code: "+31" },
+    { value: "no", label: "Norway", code: "+47" },
+    { value: "pt", label: "Portugal", code: "+351" },
+    { value: "es", label: "Spain", code: "+34" },
+    { value: "se", label: "Sweden", code: "+46" },
+    { value: "ch", label: "Switzerland", code: "+41" },
+  ]
+  protected readonly popularCountries: Popular[] = [
+    {
+      type: "group",
+      label: "Popular",
+      items: [this.countries[5], this.countries[11], this.countries[16]],
+    },
+  ]
+  protected readonly announce = (change: ListAnnouncement) =>
+    change.type === "results"
+      ? `${change.count} ${change.count === 1 ? "country" : "countries"} found`
+      : null
+
+  protected entriesOf(items: unknown) {
+    return items as (Country | Popular)[]
+  }
+
+  protected isGroup(entry: Country | Popular): entry is Popular {
+    return "items" in entry
+  }
+
+  protected key(entry: Country | Popular) {
+    return this.isGroup(entry) ? entry.label : entry.value
+  }
+}
+
+export { Example }

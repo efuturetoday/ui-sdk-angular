@@ -8,11 +8,18 @@ const fixtures: Record<string, () => Promise<{ Fixture: Type<unknown> }>> = {
   collapsible: () => import("./fixtures/collapsible"),
   "collapsible-render": () => import("./fixtures/collapsible-render"),
   dialog: () => import("./fixtures/dialog"),
+  "cached-page": () => import("./fixtures/cached-page"),
   "dialog-render": () => import("./fixtures/dialog-render"),
+  drawer: () => import("./fixtures/drawer"),
   "field-choice-card": () => import("./fixtures/field-choice-card"),
   "field-radios": () => import("./fixtures/field-radios"),
   forms: () => import("./fixtures/forms"),
   "forms-render": () => import("./fixtures/forms-render"),
+  popover: () => import("./fixtures/popover"),
+  "popover-perf": () => import("./fixtures/popover-perf"),
+  "popover-render": () => import("./fixtures/popover-render"),
+  select: () => import("./fixtures/select"),
+  "select-render": () => import("./fixtures/select-render"),
 }
 
 // Specs that check core's modules load them through the page, as the instances

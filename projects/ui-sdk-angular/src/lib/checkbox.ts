@@ -29,12 +29,8 @@ import {
   UiValueAccessor,
 } from "./forms"
 import { optionalBoolean } from "./inputs"
-import {
-  injectPart,
-  injectPresentPart,
-  injectTargetPart,
-  type PresentPartContext,
-} from "./part"
+import { injectPart, injectTargetPart } from "./part"
+import { injectPresentPart, type PresentPartContext } from "./structural"
 import {
   injectHandle,
   injectPrimitive,
