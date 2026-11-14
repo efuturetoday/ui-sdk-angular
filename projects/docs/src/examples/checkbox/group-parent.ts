@@ -24,8 +24,7 @@ import {
         uiCheckboxGroup
         aria-labelledby="parent-toppings"
         [defaultValue]="['cheese', 'olives']"
-        [allValues]="values"
-      >
+        [allValues]="values">
         <label data-slot="label">
           <button uiCheckbox #box="uiCheckbox" parent>
             <span *uiCheckboxIndicator>

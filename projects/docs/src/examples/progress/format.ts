@@ -27,8 +27,7 @@ import {
           [value]="b.value"
           [max]="b.max"
           [format]="b.format"
-          [locale]="b.locale"
-        >
+          [locale]="b.locale">
           <span uiProgressLabel>{{ b.label }}</span>
           <span uiProgressValue uiText></span>
           <div uiProgressTrack><div uiProgressIndicator></div></div>

@@ -38,8 +38,7 @@ import { injectLog } from "../../shared/log"
         (anchorChange)="
           log($event.anchor ? 'Started on ' + $event.anchor : 'Range finished')
         "
-        (focusedChange)="log('Focus on ' + $event.date)"
-      >
+        (focusedChange)="log('Focus on ' + $event.date)">
         <div data-slot="row">
           <button uiCalendarPrevious data-variant="ghost">
             <svg lucideChevronLeft aria-hidden="true"></svg>

@@ -48,8 +48,7 @@ import { injectLog } from "../../shared/log"
         [items]="trace"
         [controller]="spans"
         [format]="{ style: 'unit', unit: 'millisecond', unitDisplay: 'narrow' }"
-        (beforeValueChange)="log('Selected ' + $event.value)"
-      >
+        (beforeValueChange)="log('Selected ' + $event.value)">
         <div uiWaterfallHeaderRow>
           <div uiWaterfallColumnHeader>Span</div>
           <div uiWaterfallColumnHeader aria-label="Timeline">

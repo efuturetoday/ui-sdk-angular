@@ -33,8 +33,7 @@ import { injectLog } from "../../shared/log"
       uiCombobox
       (openChangeComplete)="
         log($event ? 'Finished opening' : 'Finished closing')
-      "
-    >
+      ">
       <div data-slot="stack">
         <div uiComboboxLabel>Framework</div>
         <div data-slot="row">
@@ -51,8 +50,7 @@ import { injectLog } from "../../shared/log"
             <div
               uiComboboxItem
               [value]="framework.value"
-              [label]="framework.label"
-            >
+              [label]="framework.label">
               {{ framework.label }}
               <span *uiComboboxItemIndicator="let state; keepMounted: true">
                 <svg lucideCheck aria-hidden="true"></svg>

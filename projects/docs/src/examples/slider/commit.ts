@@ -31,8 +31,7 @@ import { injectLog } from "../../shared/log"
         [defaultValue]="50"
         (valueCommit)="
           log('Saved ' + $event.value + ' (' + $event.details.reason + ')')
-        "
-      >
+        ">
         <div data-slot="row">
           <label uiFieldLabel>Brightness</label>
           <output uiSliderValue uiText></output>

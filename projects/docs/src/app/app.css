@@ -181,6 +181,7 @@ main h2 {
   scroll-margin-top: 1.5rem;
 }
 
+.composition-title,
 .example h3 {
   margin: 0 0 0.75rem;
   color: var(--frame-ink);

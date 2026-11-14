@@ -36,8 +36,7 @@ import { injectLog } from "../../shared/log"
         <input
           uiCommandInput
           aria-label="Search commands"
-          placeholder="Type a command…"
-        />
+          placeholder="Type a command…" />
         <div uiCommandEmpty>No results found.</div>
         <div uiCommandList #list="uiCommandList">
           @for (entry of list.state().items; track $index) {
@@ -52,8 +51,7 @@ import { injectLog } from "../../shared/log"
                     [value]="asItem(child).value"
                     [label]="asItem(child).label"
                     [disabled]="asItem(child).disabled"
-                    [shortcut]="asItem(child).shortcut"
-                  >
+                    [shortcut]="asItem(child).shortcut">
                     {{ asItem(child).label }}
                     @if (asItem(child).shortcut) {
                       <span uiCommandShortcut uiText></span>
@@ -67,8 +65,7 @@ import { injectLog } from "../../shared/log"
                 [value]="asItem(entry).value"
                 [label]="asItem(entry).label"
                 [disabled]="asItem(entry).disabled"
-                [shortcut]="asItem(entry).shortcut"
-              >
+                [shortcut]="asItem(entry).shortcut">
                 {{ asItem(entry).label }}
                 @if (asItem(entry).shortcut) {
                   <span uiCommandShortcut uiText></span>

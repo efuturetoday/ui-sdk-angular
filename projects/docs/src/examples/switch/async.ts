@@ -23,15 +23,13 @@ const save = (_checked: boolean) =>
         #toggle="uiSwitch"
         [controller]="backups"
         [attr.aria-busy]="saving()"
-        (beforeCheckedChange)="onCheckedChange($event.checked, $event.details)"
-      >
+        (beforeCheckedChange)="onCheckedChange($event.checked, $event.details)">
         <span uiSwitchThumb>
           @if (saving()) {
             <svg
               lucideLoaderCircle
               data-slot="spinner"
-              aria-hidden="true"
-            ></svg>
+              aria-hidden="true"></svg>
           }
         </span>
       </button>

@@ -46,8 +46,7 @@ import {
               <button
                 uiCarouselIndicator
                 [page]="slide"
-                [attr.aria-label]="'الشريحة ' + slide"
-              ></button>
+                [attr.aria-label]="'الشريحة ' + slide"></button>
             }
           </div>
           <button uiCarouselNext aria-label="الشريحة التالية">

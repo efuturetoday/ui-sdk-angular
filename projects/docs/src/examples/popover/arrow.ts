@@ -37,8 +37,7 @@ type Side = (typeof sides)[number]["value"]
             type="button"
             data-size="sm"
             [attr.aria-pressed]="side() === option.value"
-            (click)="side.set(option.value)"
-          >
+            (click)="side.set(option.value)">
             {{ option.label }}
           </button>
         }
@@ -46,8 +45,7 @@ type Side = (typeof sides)[number]["value"]
       <ng-container
         uiPopover
         [open]="open()"
-        (beforeOpenChange)="onOpenChange($event.open, $event.details)"
-      >
+        (beforeOpenChange)="onOpenChange($event.open, $event.details)">
         <button uiPopoverTrigger aria-label="Help">
           <svg lucideCircleQuestionMark aria-hidden="true"></svg>
         </button>
@@ -57,8 +55,7 @@ type Side = (typeof sides)[number]["value"]
             side: side();
             sideOffset: 10;
             arrowPadding: 12
-          "
-        >
+          ">
           <div uiPopoverArrow></div>
           <h2 uiPopoverTitle>Keyboard shortcuts</h2>
           <p uiPopoverDescription>Press ? anywhere to see them all.</p>

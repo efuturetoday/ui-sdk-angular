@@ -10,16 +10,14 @@ import { UiListbox, UiListboxItem } from "@ngx-ui-sdk/core/listbox"
       uiListbox
       defaultValue="next"
       activation="manual"
-      aria-label="Framework docs"
-    >
+      aria-label="Framework docs">
       @for (framework of frameworks; track framework.value) {
         <a
           uiListboxItem
           #item="uiListboxItem"
           [value]="framework.value"
           [label]="framework.label"
-          [href]="'#' + framework.value"
-        >
+          [href]="'#' + framework.value">
           <span>{{ framework.label }}</span>
           @if (item.state().selected) {
             <svg lucideExternalLink aria-hidden="true"></svg>

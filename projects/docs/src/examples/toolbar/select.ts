@@ -40,8 +40,7 @@ import { injectLog } from "../../shared/log"
         uiToolbarButton
         aria-label="Zoom out"
         [disabled]="index() === 0"
-        (click)="change(zooms[index() - 1]!)"
-      >
+        (click)="change(zooms[index() - 1]!)">
         <svg lucideZoomOut aria-hidden="true"></svg>
       </button>
       <ng-container uiSelect [value]="zoom()" (valueChange)="onValue($event)">
@@ -64,8 +63,7 @@ import { injectLog } from "../../shared/log"
         uiToolbarButton
         aria-label="Zoom in"
         [disabled]="index() === zooms.length - 1"
-        (click)="change(zooms[index() + 1]!)"
-      >
+        (click)="change(zooms[index() + 1]!)">
         <svg lucideZoomIn aria-hidden="true"></svg>
       </button>
     </div>

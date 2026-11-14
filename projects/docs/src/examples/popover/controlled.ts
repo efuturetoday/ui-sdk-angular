@@ -43,8 +43,7 @@ import { injectLog } from "../../shared/log"
             uiCheckbox
             #box="uiCheckbox"
             [checked]="open()"
-            (checkedChange)="open.set($event === true)"
-          >
+            (checkedChange)="open.set($event === true)">
             <span *uiCheckboxIndicator>
               <svg lucideCheck aria-hidden="true"></svg>
             </span>
@@ -56,8 +55,9 @@ import { injectLog } from "../../shared/log"
       <ng-container
         uiPopover
         [(open)]="open"
-        (beforeOpenChange)="onOpenChange($event.open, $event.details, controls)"
-      >
+        (beforeOpenChange)="
+          onOpenChange($event.open, $event.details, controls)
+        ">
         <button uiPopoverTrigger>Set Status</button>
         <div *uiPopoverContent>
           <h2 uiPopoverTitle>Set a status</h2>

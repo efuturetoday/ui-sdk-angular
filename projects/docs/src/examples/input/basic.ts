@@ -34,8 +34,7 @@ import { injectLog } from "../../shared/log"
           uiInput
           placeholder="example.com"
           defaultValue="hollisgrant.com"
-          (beforeValueChange)="onChange($event)"
-        />
+          (beforeValueChange)="onChange($event)" />
         <button *uiInputClear aria-label="Clear website">
           <svg lucideX aria-hidden="true"></svg>
         </button>

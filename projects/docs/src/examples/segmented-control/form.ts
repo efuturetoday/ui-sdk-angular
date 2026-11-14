@@ -32,24 +32,21 @@ import {
           <button
             uiSegmentedControlItem
             #light="uiSegmentedControlItem"
-            value="light"
-          >
+            value="light">
             Light
           </button>
           <input [uiSegmentedControlInput]="light" />
           <button
             uiSegmentedControlItem
             #dark="uiSegmentedControlItem"
-            value="dark"
-          >
+            value="dark">
             Dark
           </button>
           <input [uiSegmentedControlInput]="dark" />
           <button
             uiSegmentedControlItem
             #system="uiSegmentedControlItem"
-            value="system"
-          >
+            value="system">
             System
           </button>
           <input [uiSegmentedControlInput]="system" />
@@ -63,16 +60,14 @@ import {
           <button
             uiSegmentedControlItem
             #compact="uiSegmentedControlItem"
-            value="compact"
-          >
+            value="compact">
             Compact
           </button>
           <input [uiSegmentedControlInput]="compact" />
           <button
             uiSegmentedControlItem
             #comfortable="uiSegmentedControlItem"
-            value="comfortable"
-          >
+            value="comfortable">
             Comfortable
           </button>
           <input [uiSegmentedControlInput]="comfortable" />

@@ -51,8 +51,7 @@ type Popular = { type: "group"; label: string; items: Country[] }
         [emptyItems]="popularCountries"
         placeholder="Select a country"
         filter="contains"
-        [announcement]="announce"
-      >
+        [announcement]="announce">
         <button uiSelectTrigger>
           <span uiSelectValue uiText></span>
           <svg lucideChevronDown aria-hidden="true"></svg>
@@ -61,8 +60,7 @@ type Popular = { type: "group"; label: string; items: Country[] }
           <input
             uiSelectInput
             aria-label="Search countries"
-            placeholder="Search countries…"
-          />
+            placeholder="Search countries…" />
           <div uiSelectEmpty>No countries found.</div>
           <div uiSelectList #list="uiSelectList">
             @for (entry of entriesOf(list.state().items); track key(entry)) {
@@ -73,8 +71,7 @@ type Popular = { type: "group"; label: string; items: Country[] }
                     <div
                       uiSelectItem
                       [value]="country.value"
-                      [label]="country.label"
-                    >
+                      [label]="country.label">
                       <span uiSelectItemText uiText></span>
                       <span *uiSelectItemIndicator>
                         <svg lucideCheck aria-hidden="true"></svg>

@@ -53,8 +53,7 @@ import {
           uiDatePickerInput
           end
           aria-label="Check out"
-          placeholder="Check out"
-        />
+          placeholder="Check out" />
         <button uiDatePickerTrigger data-variant="ghost">
           <svg lucideCalendar aria-hidden="true"></svg>
         </button>
@@ -95,22 +94,19 @@ import {
           <button
             uiDatePickerPreset
             data-variant="ghost"
-            [value]="['2026-10-10', '2026-10-16']"
-          >
+            [value]="['2026-10-10', '2026-10-16']">
             Last 7 Days
           </button>
           <button
             uiDatePickerPreset
             data-variant="ghost"
-            [value]="['2026-09-17', '2026-10-16']"
-          >
+            [value]="['2026-09-17', '2026-10-16']">
             Last 30 Days
           </button>
           <button
             uiDatePickerPreset
             data-variant="ghost"
-            [value]="['2026-10-01', '2026-10-31']"
-          >
+            [value]="['2026-10-01', '2026-10-31']">
             This Month
           </button>
         </div>

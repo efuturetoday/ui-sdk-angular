@@ -17,8 +17,7 @@ import { UiInput } from "@ngx-ui-sdk/core/input"
           uiInput
           name="username"
           placeholder="hollis"
-          autocomplete="username"
-        />
+          autocomplete="username" />
         <p uiFieldDescription>Choose a unique username for your account.</p>
       </div>
     </div>

@@ -38,8 +38,7 @@ import {
             </button>
             <section
               *uiNavigationMenuContent="let state"
-              [attr.aria-label]="section.label"
-            >
+              [attr.aria-label]="section.label">
               <p data-slot="hint">
                 {{ state().motion ? "Moved in " + state().motion : "Opened" }}
               </p>
@@ -54,8 +53,7 @@ import {
                       uiNavigationMenuLink
                       #entry="uiNavigationMenuLink"
                       [href]="link.href"
-                      [current]="index === 0"
-                    >
+                      [current]="index === 0">
                       <span>{{ link.title }}</span>
                       @if (entry.state().current) {
                         <span data-slot="hint" data-show="current">
@@ -73,8 +71,7 @@ import {
           <button
             uiNavigationMenuTrigger
             #pricing="uiNavigationMenuTrigger"
-            disabled
-          >
+            disabled>
             Pricing
             @if (pricing.state().disabled) {
               <span data-slot="badge" data-show="disabled">Soon</span>

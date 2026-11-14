@@ -40,8 +40,7 @@ import {
               "
               (openChangeComplete)="
                 openChangeComplete(week.value, $event, element)
-              "
-            >
+              ">
               <h3 uiAccordionHeader>
                 <button uiAccordionTrigger>
                   {{ week.label }}

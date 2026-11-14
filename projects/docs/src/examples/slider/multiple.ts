@@ -29,8 +29,7 @@ import {
         uiSlider
         [defaultValue]="[10, 20, 70]"
         [step]="10"
-        [format]="{ style: 'unit', unit: 'percent' }"
-      >
+        [format]="{ style: 'unit', unit: 'percent' }">
         <div data-slot="row">
           <label uiFieldLabel>Alert thresholds</label>
           <output uiSliderValue uiText></output>
@@ -42,8 +41,7 @@ import {
               <div
                 uiSliderThumb
                 [index]="index"
-                [attr.aria-label]="label"
-              ></div>
+                [attr.aria-label]="label"></div>
             }
           </div>
         </div>

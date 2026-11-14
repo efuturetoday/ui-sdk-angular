@@ -49,8 +49,7 @@ import { uniqueId } from "../../shared/id"
             [defaultValue]="4.5"
             [min]="0"
             [step]="0.5"
-            [format]="{ style: 'currency', currency: 'USD' }"
-          >
+            [format]="{ style: 'currency', currency: 'USD' }">
             <div uiNumberInputGroup>
               <button uiNumberInputDecrement aria-label="Decrease">
                 <svg lucideMinus aria-hidden="true"></svg>
@@ -70,8 +69,7 @@ import { uniqueId } from "../../shared/id"
           name="gift-cards"
           [form]="form"
           [defaultValue]="0"
-          [min]="0"
-        >
+          [min]="0">
           <div uiNumberInputGroup>
             <button uiNumberInputDecrement aria-label="Decrease">
               <svg lucideMinus aria-hidden="true"></svg>

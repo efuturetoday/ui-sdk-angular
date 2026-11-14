@@ -38,8 +38,7 @@ import { injectLog } from "../../shared/log"
           [min]="1"
           [max]="12"
           (beforeValueChange)="onValueChange($event.value, $event.details)"
-          (valueCommit)="onValueCommit($event.value, $event.details)"
-        >
+          (valueCommit)="onValueCommit($event.value, $event.details)">
           <div uiNumberInputGroup>
             <button uiNumberInputDecrement aria-label="Decrease">
               <svg lucideMinus aria-hidden="true"></svg>

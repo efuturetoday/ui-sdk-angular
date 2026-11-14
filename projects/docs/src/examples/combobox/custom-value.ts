@@ -31,8 +31,7 @@ import { injectLog } from "../../shared/log"
       uiCombobox
       [(value)]="value"
       allowCustomValue
-      (beforeValueChange)="changeValue($event.value, $event.details)"
-    >
+      (beforeValueChange)="changeValue($event.value, $event.details)">
       <div data-slot="stack">
         <div uiComboboxLabel>Job title</div>
         <input uiComboboxInput placeholder="Type any title…" />

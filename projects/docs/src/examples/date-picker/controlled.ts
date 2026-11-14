@@ -52,8 +52,7 @@ import { injectLog } from "../../shared/log"
       [(value)]="value"
       (beforeValueChange)="
         log(($event.value ?? 'No date') + ' (' + $event.details.reason + ')')
-      "
-    >
+      ">
       <div data-slot="row">
         <input uiDatePickerInput aria-label="Due date" />
         <button uiDatePickerTrigger data-variant="ghost">

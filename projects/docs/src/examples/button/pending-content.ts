@@ -14,8 +14,7 @@ const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
         lucideLoaderCircle
         data-show="pending"
         data-slot="spinner"
-        aria-hidden="true"
-      ></svg>
+        aria-hidden="true"></svg>
       Save
     </button>
   `,

@@ -29,8 +29,7 @@ import { injectLog } from "../../shared/log"
       (openChange)="log($event ? 'Opening' : 'Closing')"
       (openChangeComplete)="
         log($event ? 'Finished opening' : 'Finished closing')
-      "
-    >
+      ">
       <button uiMenuTrigger>Animated</button>
       <div *uiMenuContent="let state; keepMounted: true">
         <div uiMenuItem>Back</div>

@@ -23,8 +23,7 @@ import { injectLog } from "../../shared/log"
     <ng-container
       uiPopover
       (beforeOpenChange)="log($event.open ? 'Opening' : 'Closing')"
-      (openChangeComplete)="log($event ? 'Open' : 'Closed')"
-    >
+      (openChangeComplete)="log($event ? 'Open' : 'Closed')">
       <button uiPopoverTrigger>What's New</button>
       <div *uiPopoverContent="let state; keepMounted: true">
         <h2 uiPopoverTitle>What's new</h2>

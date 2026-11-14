@@ -48,8 +48,7 @@ import {
               uiComboboxItem
               [value]="country.value"
               [label]="country.label"
-              [keywords]="country.keywords"
-            >
+              [keywords]="country.keywords">
               <span uiComboboxItemText #text="uiComboboxItemText">
                 @for (segment of text.state().segments; track $index) {
                   @if (segment.match) {

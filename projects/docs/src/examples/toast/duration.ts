@@ -36,8 +36,7 @@ import {
               <button
                 uiToastClose
                 data-variant="solid"
-                [action]="cancel.onCancel"
-              >
+                [action]="cancel.onCancel">
                 {{ cancel.label }}
               </button>
             }

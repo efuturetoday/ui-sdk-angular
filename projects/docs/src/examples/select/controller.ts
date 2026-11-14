@@ -49,8 +49,7 @@ import { injectLog } from "../../shared/log"
         uiSelect
         [controller]="status"
         [items]="statuses"
-        placeholder="Select a status"
-      >
+        placeholder="Select a status">
         <div *uiSelectContent>
           @for (item of statuses; track item.value) {
             <div uiSelectItem [value]="item.value">

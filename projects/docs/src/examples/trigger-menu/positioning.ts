@@ -29,8 +29,7 @@ import {
         <input
           uiFieldControl
           uiTriggerMenuInput
-          placeholder="Type @ to mention someone…"
-        />
+          placeholder="Type @ to mention someone…" />
       </div>
       <div
         *uiTriggerMenuContent="
@@ -43,8 +42,7 @@ import {
           anchor: field;
           container: field;
           keepMounted: true
-        "
-      >
+        ">
         <div uiTriggerMenuList #list="uiTriggerMenuList">
           @for (item of itemsOf(list.state().items); track item.value) {
             <div uiTriggerMenuItem [value]="item.value" [label]="item.label">

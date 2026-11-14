@@ -39,8 +39,7 @@ import { UiTimeInput, UiTimeInputSegment } from "@ngx-ui-sdk/core/time-input"
           #c="uiTimeInput"
           granularity="second"
           [hourCycle]="24"
-          defaultValue="18:45:30"
-        >
+          defaultValue="18:45:30">
           @for (segment of c.state().segments; track segment.key) {
             @if (segment.editable) {
               <input uiTimeInputSegment [segment]="segment" />

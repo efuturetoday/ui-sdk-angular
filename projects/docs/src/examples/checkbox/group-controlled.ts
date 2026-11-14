@@ -33,8 +33,7 @@ import { injectLog } from "../../shared/log"
         [(value)]="value"
         aria-labelledby="controlled-days"
         [controller]="schedule"
-        (beforeValueChange)="onValueChange($event.value, $event.details)"
-      >
+        (beforeValueChange)="onValueChange($event.value, $event.details)">
         @for (day of days; track day.value) {
           <label data-slot="label">
             <button uiCheckbox #box="uiCheckbox" [value]="day.value">

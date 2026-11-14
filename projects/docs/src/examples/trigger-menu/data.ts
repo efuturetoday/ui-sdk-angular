@@ -22,8 +22,7 @@ import {
         <input
           uiFieldControl
           uiTriggerMenuInput
-          placeholder="Type @, / or #…"
-        />
+          placeholder="Type @, / or #…" />
       </div>
     </ng-container>
   `,

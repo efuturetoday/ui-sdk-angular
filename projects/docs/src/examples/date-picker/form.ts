@@ -82,8 +82,7 @@ import { injectLog } from "../../shared/log"
                       uiCalendarWeekday
                       scope="col"
                       [index]="$index"
-                      uiText
-                    ></th>
+                      uiText></th>
                   }
                 </tr>
               </thead>

@@ -24,24 +24,21 @@ import { uniqueId } from "../../shared/id"
             #radio="uiRadio"
             [value]="option.value"
             [attr.aria-labelledby]="id + '-' + option.value + '-label'"
-            [attr.aria-describedby]="id + '-' + option.value + '-description'"
-          >
+            [attr.aria-describedby]="id + '-' + option.value + '-description'">
             <span data-slot="stack">
               <span [id]="id + '-' + option.value + '-label'">
                 {{ option.label }}
               </span>
               <span
                 [id]="id + '-' + option.value + '-description'"
-                data-slot="hint"
-              >
+                data-slot="hint">
                 {{ option.description }}
               </span>
             </span>
             <svg
               lucideCheck
               aria-hidden="true"
-              [attr.data-checked]="radio.state().checked ? '' : null"
-            ></svg>
+              [attr.data-checked]="radio.state().checked ? '' : null"></svg>
           </button>
           <input [uiRadioInput]="radio" />
         }

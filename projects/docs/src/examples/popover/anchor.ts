@@ -35,8 +35,7 @@ import {
         #search
         type="search"
         placeholder="Search files…"
-        aria-label="Search files"
-      />
+        aria-label="Search files" />
       <ng-container uiPopover>
         <button uiPopoverTrigger aria-label="Search filters">
           <svg lucideSlidersHorizontal aria-hidden="true"></svg>
@@ -47,8 +46,7 @@ import {
             anchor: search;
             align: 'start';
             sideOffset: 8
-          "
-        >
+          ">
           <h2 uiPopoverTitle>Filters</h2>
           <p uiPopoverDescription>Show only these kinds of files.</p>
           <div data-slot="stack">
@@ -57,8 +55,7 @@ import {
                 <button
                   uiCheckbox
                   #box="uiCheckbox"
-                  [defaultChecked]="type.checked"
-                >
+                  [defaultChecked]="type.checked">
                   <span *uiCheckboxIndicator>
                     <svg lucideCheck aria-hidden="true"></svg>
                   </span>

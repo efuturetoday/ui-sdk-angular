@@ -24,7 +24,9 @@ import {
   UiTooltipTrigger,
 } from "@ngx-ui-sdk/core/tooltip"
 import { examples } from "../examples"
+import { compositions } from "../examples/composition"
 import { type Guide, guides } from "../guides"
+import { Composition } from "./composition"
 import { ExampleFrame } from "./example-frame"
 
 const components = [
@@ -62,6 +64,7 @@ const pageOf = (search: string): Page => {
 @Component({
   selector: "app-root",
   imports: [
+    Composition,
     ExampleFrame,
     LucideMenu,
     LucideMoon,
@@ -92,6 +95,11 @@ class App {
     return kind === "doc"
       ? guides.find((guide) => guide.slug === name)
       : undefined
+  })
+  // The component's parts as they nest, from its first example.
+  protected readonly composition = computed(() => {
+    const { kind, name } = this.page()
+    return kind === "component" ? compositions[name] : undefined
   })
   protected readonly guidePage = resource({
     params: () => this.guide(),

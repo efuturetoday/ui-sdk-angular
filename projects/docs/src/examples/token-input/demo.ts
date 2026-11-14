@@ -45,8 +45,7 @@ import {
                 <div
                   uiTriggerMenuItem
                   [value]="item.value"
-                  [label]="item.label"
-                >
+                  [label]="item.label">
                   {{ item.label }}
                 </div>
               }

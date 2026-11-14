@@ -18,8 +18,7 @@ import {
             type="button"
             data-size="sm"
             [attr.aria-pressed]="orientation() === option.value"
-            (click)="orientation.set(option.value)"
-          >
+            (click)="orientation.set(option.value)">
             {{ option.label }}
           </button>
         }

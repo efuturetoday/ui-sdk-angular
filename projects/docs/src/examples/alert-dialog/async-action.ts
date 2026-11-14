@@ -44,8 +44,7 @@ import {
                 #remove="uiAlertDialogClose"
                 data-variant="solid"
                 value="confirm"
-                [action]="deleteProject"
-              >
+                [action]="deleteProject">
                 {{
                   remove.state().pending
                     ? "Deleting…"

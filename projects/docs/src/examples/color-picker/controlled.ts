@@ -34,8 +34,7 @@ import { injectLog } from "../../shared/log"
         [controller]="picker"
         (valueCommit)="
           log('committed: ' + $event.value + ' (' + $event.details.reason + ')')
-        "
-      >
+        ">
         <div uiColorPickerArea>
           <div uiColorPickerAreaThumb></div>
         </div>

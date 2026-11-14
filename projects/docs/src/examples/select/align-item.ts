@@ -42,8 +42,7 @@ import {
             uiCheckbox
             #box="uiCheckbox"
             [checked]="aligned()"
-            (checkedChange)="aligned.set($event === true)"
-          >
+            (checkedChange)="aligned.set($event === true)">
             <span *uiCheckboxIndicator>
               <svg lucideCheck aria-hidden="true"></svg>
             </span>

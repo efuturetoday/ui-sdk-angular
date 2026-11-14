@@ -27,8 +27,7 @@ import { UiSwitch, UiSwitchInput, UiSwitchThumb } from "@ngx-ui-sdk/core/switch"
           <button
             uiSwitch
             #toggle="uiSwitch"
-            [defaultChecked]="setting.defaultChecked"
-          >
+            [defaultChecked]="setting.defaultChecked">
             <span uiSwitchThumb></span>
           </button>
           <input [uiSwitchInput]="toggle" />

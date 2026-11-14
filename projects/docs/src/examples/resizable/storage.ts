@@ -15,8 +15,7 @@ import {
         uiResizablePanel
         id="session-chats"
         [defaultSize]="35"
-        [minSize]="20"
-      >
+        [minSize]="20">
         <h3>Messages</h3>
         <ul>
           <li>Inès Moreau</li>

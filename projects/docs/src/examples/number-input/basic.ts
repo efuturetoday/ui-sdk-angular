@@ -34,8 +34,7 @@ import { injectLog } from "../../shared/log"
         uiNumberInput
         [defaultValue]="1"
         [min]="1"
-        (valueCommit)="log('Quantity ' + ($event.value ?? 'empty'))"
-      >
+        (valueCommit)="log('Quantity ' + ($event.value ?? 'empty'))">
         <span uiNumberInputScrubArea [pixelsPerStep]="4">
           <label uiFieldLabel>Quantity</label>
           <span *uiNumberInputScrubAreaCursor>

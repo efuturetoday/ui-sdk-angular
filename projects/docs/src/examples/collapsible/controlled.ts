@@ -27,8 +27,7 @@ import { injectLog } from "../../shared/log"
         [(open)]="open"
         data-variant="card"
         [controller]="collapsible"
-        (beforeOpenChange)="onOpenChange($event.open, $event.details)"
-      >
+        (beforeOpenChange)="onOpenChange($event.open, $event.details)">
         <button uiCollapsibleTrigger>
           <span data-slot="stack">
             <span>Recovery codes</span>

@@ -36,8 +36,7 @@ import {
       uiCombobox
       multiple
       [maxSelected]="3"
-      [defaultValue]="['Bug', 'Design']"
-    >
+      [defaultValue]="['Bug', 'Design']">
       <div data-slot="stack">
         <div uiComboboxLabel>Labels (up to 3)</div>
         <div uiComboboxChips>
@@ -47,8 +46,7 @@ import {
                 {{ item }}
                 <button
                   uiComboboxChipRemove
-                  [attr.aria-label]="'Remove ' + item"
-                >
+                  [attr.aria-label]="'Remove ' + item">
                   <svg lucideX aria-hidden="true"></svg>
                 </button>
               </div>

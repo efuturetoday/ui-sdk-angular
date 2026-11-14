@@ -27,15 +27,13 @@ import {
       uiTriggerMenu
       [triggers]="triggers"
       [autoHighlight]="false"
-      [loop]="false"
-    >
+      [loop]="false">
       <div uiField>
         <label uiFieldLabel>Task</label>
         <input
           uiFieldControl
           uiTriggerMenuInput
-          placeholder="Type @ to assign someone…"
-        />
+          placeholder="Type @ to assign someone…" />
       </div>
       <div *uiTriggerMenuContent="let state">
         <div uiTriggerMenuList #list="uiTriggerMenuList">

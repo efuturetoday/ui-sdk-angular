@@ -23,14 +23,12 @@ import {
       <div data-slot="controls">
         <button
           type="button"
-          (click)="controller.scrollToStart({ behavior: 'smooth' })"
-        >
+          (click)="controller.scrollToStart({ behavior: 'smooth' })">
           Back to Top
         </button>
         <button
           type="button"
-          (click)="controller.scrollToEnd({ behavior: 'instant' })"
-        >
+          (click)="controller.scrollToEnd({ behavior: 'instant' })">
           Jump to the End
         </button>
       </div>
@@ -39,8 +37,7 @@ import {
           uiScrollAreaViewport
           role="region"
           aria-label="Tags"
-          (scroll)="read()"
-        >
+          (scroll)="read()">
           <div uiScrollAreaContent>
             <h3>Tags</h3>
             <ul>

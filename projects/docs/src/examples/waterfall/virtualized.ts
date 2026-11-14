@@ -37,15 +37,13 @@ import {
         [items]="trace"
         [range]="[0, 400]"
         [style.height.px]="rows().length * row"
-        (highlight)="onHighlight($event.details)"
-      >
+        (highlight)="onHighlight($event.details)">
         @for (entry of visible(); track entry.item.value) {
           <div
             uiWaterfallRow
             [value]="entry.item.value"
             [attr.aria-rowindex]="entry.index + 1"
-            [style.top.px]="entry.index * row"
-          >
+            [style.top.px]="entry.index * row">
             <div uiWaterfallRowHeader>
               @if (entry.item.children) {
                 <span uiWaterfallIndicator>

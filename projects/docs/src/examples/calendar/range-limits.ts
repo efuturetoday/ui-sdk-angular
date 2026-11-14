@@ -36,8 +36,7 @@ import {
       [minDays]="3"
       [maxDays]="8"
       [unavailable]="unavailable"
-      allowUnavailable
-    >
+      allowUnavailable>
       <div data-slot="row">
         <button uiCalendarPrevious data-variant="ghost">
           <svg lucideChevronLeft aria-hidden="true"></svg>

@@ -26,8 +26,7 @@ import { injectLog } from "../../shared/log"
     <div
       uiCarousel
       aria-label="Featured"
-      (pageChangeComplete)="log('Rested on slide ' + $event)"
-    >
+      (pageChangeComplete)="log('Rested on slide ' + $event)">
       <div data-slot="row">
         <button uiCarouselPrevious aria-label="Previous slide">
           <svg lucideChevronLeft></svg>

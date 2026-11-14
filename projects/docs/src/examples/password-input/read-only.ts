@@ -30,14 +30,12 @@ import {
         uiPasswordInput
         readOnly
         defaultValue="7Hq2-vX9p-Lm4c"
-        autoComplete="off"
-      >
+        autoComplete="off">
         <input uiPasswordInputControl />
         <button
           uiPasswordInputToggle
           #toggle="uiPasswordInputToggle"
-          aria-label="Show recovery key"
-        >
+          aria-label="Show recovery key">
           @if (toggle.state().visible) {
             <svg lucideEyeOff aria-hidden="true"></svg>
           } @else {

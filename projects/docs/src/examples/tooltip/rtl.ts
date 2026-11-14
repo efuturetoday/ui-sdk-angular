@@ -20,8 +20,7 @@ import {
               side: item.side;
               align: 'start';
               sideOffset: 8
-            "
-          >
+            ">
             <div uiTooltipArrow></div>
             أضف إلى المكتبة
           </div>

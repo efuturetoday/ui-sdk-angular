@@ -33,8 +33,7 @@ const photo = `data:image/svg+xml,${encodeURIComponent(
       mode="frame"
       [aspectRatio]="1"
       shape="circle"
-      [maxZoom]="4"
-    >
+      [maxZoom]="4">
       <div uiImageCropperViewport>
         <img uiImageCropperImage alt="Mountains at sunset" />
         <div uiImageCropperSelection></div>
@@ -49,8 +48,7 @@ const photo = `data:image/svg+xml,${encodeURIComponent(
           <img
             data-slot="image-cropper-avatar"
             [src]="avatar()"
-            alt="Your new avatar"
-          />
+            alt="Your new avatar" />
         }
       </div>
     </div>

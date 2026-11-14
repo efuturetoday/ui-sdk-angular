@@ -40,8 +40,7 @@ const places = [
       uiDrawer
       [snapPoints]="[0.25, 0.5, 1]"
       [defaultSnapPoint]="0.5"
-      expandOnScroll
-    >
+      expandOnScroll>
       <button uiDrawerTrigger>Find a Place</button>
       <div *uiDrawerBackdrop></div>
       <div *uiDrawerContent>

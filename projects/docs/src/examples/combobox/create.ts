@@ -73,8 +73,7 @@ function saveLabel(name: string) {
                 {{ label }}
                 <button
                   uiComboboxChipRemove
-                  [attr.aria-label]="'Remove ' + label"
-                >
+                  [attr.aria-label]="'Remove ' + label">
                   <svg lucideX aria-hidden="true"></svg>
                 </button>
               </div>
@@ -98,8 +97,7 @@ function saveLabel(name: string) {
               <svg
                 lucideLoaderCircle
                 aria-hidden="true"
-                data-slot="spinner"
-              ></svg>
+                data-slot="spinner"></svg>
               Creating “{{ state().query }}”…
             } @else {
               <svg lucidePlus aria-hidden="true"></svg>

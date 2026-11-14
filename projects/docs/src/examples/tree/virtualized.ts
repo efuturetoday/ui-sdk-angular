@@ -35,8 +35,7 @@ const height = 288
     <div
       data-slot="scroll"
       #scroller
-      (scroll)="scrollTop.set(scroller.scrollTop)"
-    >
+      (scroll)="scrollTop.set(scroller.scrollTop)">
       <div
         uiTree
         aria-label="Archive"
@@ -44,14 +43,12 @@ const height = 288
         [expanded]="expanded()"
         (expandedChange)="expanded.set($event)"
         (highlight)="onHighlight($event.details, scroller)"
-        [style.height.px]="rows().length * row"
-      >
+        [style.height.px]="rows().length * row">
         @for (entry of visible(); track entry.item.value) {
           <div
             uiTreeItem
             [value]="entry.item.value"
-            [style.top.px]="entry.index * row"
-          >
+            [style.top.px]="entry.index * row">
             <span uiTreeItemLabel>
               @if (entry.item.children) {
                 <span uiTreeItemIndicator>

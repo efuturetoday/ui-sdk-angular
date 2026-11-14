@@ -34,8 +34,7 @@ import { injectLog } from "../../shared/log"
       checkStrategy="trunk"
       [defaultChecked]="['react', 'postgres']"
       [defaultExpanded]="['frontend', 'backend', 'databases']"
-      (checkedChange)="log('Checked ' + ($event.join(', ') || 'nothing'))"
-    >
+      (checkedChange)="log('Checked ' + ($event.join(', ') || 'nothing'))">
       <ng-template #level let-list>
         @for (item of asItems(list); track item.value) {
           <div uiTreeItem [value]="item.value">
@@ -52,8 +51,7 @@ import { injectLog } from "../../shared/log"
               <div *uiTreeGroup>
                 <ng-container
                   [ngTemplateOutlet]="level"
-                  [ngTemplateOutletContext]="{ $implicit: item.children }"
-                />
+                  [ngTemplateOutletContext]="{ $implicit: item.children }" />
               </div>
             }
           </div>
@@ -61,8 +59,7 @@ import { injectLog } from "../../shared/log"
       </ng-template>
       <ng-container
         [ngTemplateOutlet]="level"
-        [ngTemplateOutletContext]="{ $implicit: items }"
-      />
+        [ngTemplateOutletContext]="{ $implicit: items }" />
     </div>
   `,
 })

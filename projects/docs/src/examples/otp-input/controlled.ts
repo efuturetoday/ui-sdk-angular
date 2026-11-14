@@ -26,8 +26,7 @@ import { injectLog } from "../../shared/log"
         [(value)]="value"
         (beforeValueChange)="
           log(($event.value || 'Empty') + ' (' + $event.details.reason + ')')
-        "
-      >
+        ">
         <div uiOtpInputGroup>
           @for (index of [0, 1, 2, 3, 4, 5]; track index) {
             <div uiOtpInputSlot [index]="index" uiText></div>

@@ -55,13 +55,11 @@ function searchIssues(query: string, { signal }: { signal: AbortSignal }) {
       [filter]="false"
       [status]="issues.state().status"
       (queryChange)="issues.setQuery($event)"
-      (loadMore)="issues.loadMore()"
-    >
+      (loadMore)="issues.loadMore()">
       <input
         uiCommandInput
         aria-label="Search issues"
-        placeholder="Search issues…"
-      />
+        placeholder="Search issues…" />
       <div uiCommandStatus #status="uiCommandStatus">
         {{
           status.state().loading

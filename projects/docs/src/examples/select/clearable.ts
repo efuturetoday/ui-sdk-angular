@@ -38,8 +38,7 @@ import { injectLog } from "../../shared/log"
         uiSelect
         defaultValue="ines"
         placeholder="Unassigned"
-        (beforeValueChange)="onValueChange($event.value, $event.details)"
-      >
+        (beforeValueChange)="onValueChange($event.value, $event.details)">
         <div data-slot="row">
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>

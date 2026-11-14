@@ -31,8 +31,7 @@ import { injectLog } from "../../shared/log"
           #terms="uiCheckbox"
           name="terms"
           value="yes"
-          required
-        >
+          required>
           <span *uiCheckboxIndicator>
             <svg lucideCheck aria-hidden="true"></svg>
           </span>
@@ -51,8 +50,7 @@ import { injectLog } from "../../shared/log"
           #newsletter="uiCheckbox"
           name="newsletter"
           value="weekly"
-          defaultChecked
-        >
+          defaultChecked>
           <span *uiCheckboxIndicator>
             <svg lucideCheck aria-hidden="true"></svg>
           </span>

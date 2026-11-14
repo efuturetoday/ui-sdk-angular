@@ -56,8 +56,7 @@ import { injectLog } from "../../shared/log"
         [container]="container"
         (beforeOpenChange)="onOpenChange($event.open, $event.details)"
         (openChangeComplete)="onOpenChangeComplete($event)"
-        (beforeMonthChange)="onMonthChange($event.month, $event.details)"
-      >
+        (beforeMonthChange)="onMonthChange($event.month, $event.details)">
         <div #anchor data-slot="row">
           <input uiDatePickerInput aria-label="Due date" />
           <button uiDatePickerTrigger data-variant="ghost">
@@ -72,8 +71,7 @@ import { injectLog } from "../../shared/log"
             sideOffset: 6;
             collisionPadding: 16;
             keepMounted: true
-          "
-        >
+          ">
           <div data-slot="row">
             <button uiCalendarPrevious data-variant="ghost">
               <svg lucideChevronLeft aria-hidden="true"></svg>
@@ -91,8 +89,7 @@ import { injectLog } from "../../shared/log"
                     uiCalendarWeekday
                     scope="col"
                     [index]="$index"
-                    uiText
-                  ></th>
+                    uiText></th>
                 }
               </tr>
             </thead>

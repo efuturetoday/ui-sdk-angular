@@ -45,8 +45,7 @@ import { injectLog } from "../../shared/log"
         [itemToLabel]="countryLabel"
         (beforeValueChange)="changeValue($event.value, $event.details)"
         (beforeQueryChange)="changeQuery($event.query, $event.details)"
-        (beforeOpenChange)="changeOpen($event.open, $event.details)"
-      >
+        (beforeOpenChange)="changeOpen($event.open, $event.details)">
         <div data-slot="stack">
           <div uiComboboxLabel>Country</div>
           <div data-slot="row">
@@ -63,8 +62,7 @@ import { injectLog } from "../../shared/log"
               <div
                 uiComboboxItem
                 [value]="country.value"
-                [label]="country.label"
-              >
+                [label]="country.label">
                 {{ country.label }}
                 <span *uiComboboxItemIndicator>
                   <svg lucideCheck aria-hidden="true"></svg>

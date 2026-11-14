@@ -47,8 +47,7 @@ import {
                   uiPaginationLink
                   data-variant="ghost"
                   [page]="item"
-                  uiText
-                ></button>
+                  uiText></button>
               } @else {
                 <span uiPaginationEllipsis><svg lucideEllipsis></svg></span>
               }

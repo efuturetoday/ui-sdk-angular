@@ -26,8 +26,7 @@ import {
         uiSlider
         [defaultValue]="[20, 60]"
         locale="ar-EG"
-        aria-label="نطاق السعر"
-      >
+        aria-label="نطاق السعر">
         <div data-slot="row">
           <span data-slot="label">نطاق السعر</span>
           <output uiSliderValue uiText></output>

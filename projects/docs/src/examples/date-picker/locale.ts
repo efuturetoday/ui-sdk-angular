@@ -72,8 +72,7 @@ import {
                     uiCalendarWeekday
                     scope="col"
                     [index]="$index"
-                    uiText
-                  ></th>
+                    uiText></th>
                 }
               </tr>
             </thead>

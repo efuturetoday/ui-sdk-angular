@@ -25,8 +25,7 @@ import { injectLog } from "../../shared/log"
         <button
           type="button"
           [attr.aria-disabled]="uploaded() >= total"
-          (click)="uploadNext()"
-        >
+          (click)="uploadNext()">
           Upload Next
         </button>
         <button type="button" (click)="reset()">Reset</button>

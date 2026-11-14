@@ -36,8 +36,7 @@ import {
             [defaultValue]="field.disabled || field.readOnly ? 'fr' : null"
             placeholder="Select a country"
             [disabled]="field.disabled"
-            [readOnly]="field.readOnly"
-          >
+            [readOnly]="field.readOnly">
             <button uiSelectTrigger>
               <span uiSelectValue uiText></span>
               <svg lucideChevronDown aria-hidden="true"></svg>
@@ -47,8 +46,7 @@ import {
                 <div
                   uiSelectItem
                   [value]="country.value"
-                  [disabled]="country.value === 'dk'"
-                >
+                  [disabled]="country.value === 'dk'">
                   {{ country.label }}
                   <span *uiSelectItemIndicator>
                     <svg lucideCheck aria-hidden="true"></svg>

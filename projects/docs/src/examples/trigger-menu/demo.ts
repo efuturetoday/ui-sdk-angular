@@ -35,8 +35,7 @@ import {
         <input
           uiFieldControl
           uiTriggerMenuInput
-          placeholder="Type @ to mention someone…"
-        />
+          placeholder="Type @ to mention someone…" />
       </div>
       <div data-slot="visually-hidden">
         <div uiTriggerMenuStatus uiText></div>

@@ -29,8 +29,7 @@ const chat: TokenCodec = {
         [codec]="chat"
         copy="label"
         [defaultValue]="draft"
-        (beforeValueChange)="log(toText($event.value, chat))"
-      >
+        (beforeValueChange)="log(toText($event.value, chat))">
         <div uiTokenInputEditor></div>
       </ng-container>
     </div>

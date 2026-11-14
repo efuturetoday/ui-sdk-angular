@@ -47,16 +47,14 @@ import {
           <a
             #gallery
             href="https://example.com/gallery"
-            (blur)="nextFocused = false"
-          >
+            (blur)="nextFocused = false">
             See all photos
           </a>
         } @else {
           <button
             uiCarouselNext
             (focus)="nextFocused = true"
-            (blur)="nextFocused = false"
-          >
+            (blur)="nextFocused = false">
             Next
             <svg lucideChevronRight></svg>
           </button>

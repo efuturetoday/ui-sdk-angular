@@ -25,14 +25,12 @@ import {
       <div
         uiPasswordInput
         [(visible)]="visible"
-        (beforeVisibleChange)="onVisibleChange($event.visible, $event.details)"
-      >
+        (beforeVisibleChange)="onVisibleChange($event.visible, $event.details)">
         <input uiPasswordInputControl />
         <button
           uiPasswordInputToggle
           #toggle="uiPasswordInputToggle"
-          aria-label="Show password"
-        >
+          aria-label="Show password">
           @if (toggle.state().visible) {
             <svg lucideEyeOff aria-hidden="true"></svg>
           } @else {

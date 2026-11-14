@@ -47,8 +47,7 @@ type Align = "start" | "center" | "end"
           uiSelect
           [items]="sides"
           [value]="side()"
-          (valueChange)="setSide($event)"
-        >
+          (valueChange)="setSide($event)">
           <div uiSelectLabel>Side</div>
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
@@ -69,8 +68,7 @@ type Align = "start" | "center" | "end"
           uiSelect
           [items]="aligns"
           [value]="align()"
-          (valueChange)="setAlign($event)"
-        >
+          (valueChange)="setAlign($event)">
           <div uiSelectLabel>Align</div>
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
@@ -96,8 +94,7 @@ type Align = "start" | "center" | "end"
             side: side();
             align: align();
             sideOffset: 8
-          "
-        >
+          ">
           <h2 uiPopoverTitle>Delivery window</h2>
           <p uiPopoverDescription>Arrives Tuesday between 9 AM and noon.</p>
         </div>

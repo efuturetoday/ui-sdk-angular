@@ -98,8 +98,7 @@ function searchCountries(
         [status]="results.state().status"
         placeholder="Select a country"
         (queryChange)="results.setQuery($event)"
-        (loadMore)="results.loadMore()"
-      >
+        (loadMore)="results.loadMore()">
         <button uiSelectTrigger>
           <span uiSelectValue uiText></span>
           <svg lucideChevronDown aria-hidden="true"></svg>
@@ -108,8 +107,7 @@ function searchCountries(
           <input
             uiSelectInput
             aria-label="Search countries"
-            placeholder="Search countries…"
-          />
+            placeholder="Search countries…" />
           <div uiSelectEmpty #empty="uiSelectEmpty">
             @if (empty.state().empty && !empty.state().loading) {
               No countries match “{{ empty.state().query }}”.
@@ -121,8 +119,7 @@ function searchCountries(
                 uiSelectItem
                 [value]="item.value"
                 [label]="item.label"
-                [disabled]="item.disabled"
-              >
+                [disabled]="item.disabled">
                 {{ item.label }}
                 <span *uiSelectItemIndicator>
                   <svg lucideCheck aria-hidden="true"></svg>

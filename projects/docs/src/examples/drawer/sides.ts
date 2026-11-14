@@ -53,8 +53,7 @@ const sides = [
         <ng-container
           uiDrawer
           [side]="entry.side"
-          [preventEdgeSwipe]="entry.side === 'left' || entry.side === 'right'"
-        >
+          [preventEdgeSwipe]="entry.side === 'left' || entry.side === 'right'">
           <button uiDrawerTrigger>{{ entry.label }}</button>
           <div *uiDrawerBackdrop></div>
           <div *uiDrawerContent>

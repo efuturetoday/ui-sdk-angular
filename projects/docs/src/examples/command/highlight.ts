@@ -43,8 +43,7 @@ import {
         <input
           uiCommandInput
           aria-label="Search commands"
-          placeholder="Try “prf” or “emo”…"
-        />
+          placeholder="Try “prf” or “emo”…" />
       </div>
       <div uiCommandEmpty>No results found.</div>
       <div uiCommandList>

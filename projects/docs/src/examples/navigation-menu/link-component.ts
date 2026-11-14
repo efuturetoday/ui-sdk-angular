@@ -57,8 +57,7 @@ class RouterLink {
                     uiRouterLink
                     [to]="page.href"
                     [current]="route() === page.href"
-                    (navigate)="navigate($event)"
-                  >
+                    (navigate)="navigate($event)">
                     <span>{{ page.title }}</span>
                     <span data-slot="hint">{{ page.description }}</span>
                   </a>
@@ -72,8 +71,7 @@ class RouterLink {
             uiRouterLink
             to="#components"
             [current]="route() === '#components'"
-            (navigate)="navigate($event)"
-          >
+            (navigate)="navigate($event)">
             Components
           </a>
         </li>

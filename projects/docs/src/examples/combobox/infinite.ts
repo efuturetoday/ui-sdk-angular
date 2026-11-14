@@ -90,8 +90,7 @@ function searchMoviePages(
       [filter]="false"
       [status]="movies.state().status"
       (queryChange)="movies.setQuery($event)"
-      (loadMore)="movies.loadMore()"
-    >
+      (loadMore)="movies.loadMore()">
       <div data-slot="stack">
         <div uiComboboxLabel>Movie</div>
         <div data-slot="row">
@@ -113,8 +112,7 @@ function searchMoviePages(
               uiComboboxItem
               [value]="item.value"
               [label]="item.label"
-              [disabled]="item.disabled"
-            >
+              [disabled]="item.disabled">
               {{ item.label }}
               <span *uiComboboxItemIndicator>
                 <svg lucideCheck aria-hidden="true"></svg>

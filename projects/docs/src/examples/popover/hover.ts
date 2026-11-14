@@ -31,8 +31,7 @@ import { injectLog } from "../../shared/log"
             type="button"
             data-size="sm"
             data-variant="solid"
-            (click)="log('Followed @kofi')"
-          >
+            (click)="log('Followed @kofi')">
             Follow
           </button>
         </div>

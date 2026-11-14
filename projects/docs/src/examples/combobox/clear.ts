@@ -37,8 +37,7 @@ import { injectLog } from "../../shared/log"
       uiCombobox
       [(value)]="value"
       [itemToLabel]="frameworkLabel"
-      (beforeValueChange)="changeValue($event.value, $event.details)"
-    >
+      (beforeValueChange)="changeValue($event.value, $event.details)">
       <div data-slot="stack">
         <div uiComboboxLabel>Framework</div>
         <div data-slot="row">
@@ -58,8 +57,7 @@ import { injectLog } from "../../shared/log"
             <div
               uiComboboxItem
               [value]="framework.value"
-              [label]="framework.label"
-            >
+              [label]="framework.label">
               {{ framework.label }}
               <span *uiComboboxItemIndicator>
                 <svg lucideCheck aria-hidden="true"></svg>

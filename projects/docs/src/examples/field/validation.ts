@@ -11,7 +11,14 @@ import { injectLog } from "../../shared/log"
 
 @Component({
   selector: "app-example",
-  imports: [UiText, UiField, UiFieldDescription, UiFieldError, UiFieldLabel, UiInput],
+  imports: [
+    UiText,
+    UiField,
+    UiFieldDescription,
+    UiFieldError,
+    UiFieldLabel,
+    UiInput,
+  ],
   template: `
     <form data-slot="stack" (submit)="submit($event)">
       <div uiField name="email">

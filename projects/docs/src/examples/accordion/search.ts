@@ -95,8 +95,7 @@ function highlight(text: string, query: string) {
           aria-label="Search questions"
           placeholder="Search questions…"
           [value]="query()"
-          (input)="search($any($event.target).value)"
-        />
+          (input)="search($any($event.target).value)" />
       </div>
       <div uiAccordion [(value)]="value" multiple>
         @for (question of results(); track question.value) {

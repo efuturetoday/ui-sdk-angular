@@ -37,8 +37,7 @@ import { injectLog } from "../../shared/log"
             $event.details.reason +
             ')'
         )
-      "
-    >
+      ">
       <div data-slot="controls">
         <button uiCarouselPlayToggle #toggle="uiCarouselPlayToggle">
           {{ toggle.state().playing ? "Pause" : "Play" }}

@@ -48,8 +48,7 @@ import { injectLog } from "../../shared/log"
         "
         (beforeMonthChange)="
           log('Showing ' + $event.month + ' (' + $event.details.reason + ')')
-        "
-      >
+        ">
         <div data-slot="row">
           <button uiCalendarPrevious data-variant="ghost">
             <svg lucideChevronLeft aria-hidden="true"></svg>

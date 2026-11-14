@@ -24,8 +24,7 @@ import {
       aria-label="Label color"
       space="srgb"
       format="hex"
-      defaultValue="#0ea5e9"
-    >
+      defaultValue="#0ea5e9">
       <div uiColorPickerSwatches aria-label="Presets">
         @for (preset of presets; track preset) {
           <button uiColorPickerSwatchItem [value]="preset"></button>

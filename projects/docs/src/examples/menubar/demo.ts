@@ -91,8 +91,7 @@ import { injectLog } from "../../shared/log"
         (checkedChange)="
           log($event.details.value + ' ' + ($event.checked ? 'on' : 'off'))
         "
-        (valueChange)="log($event.value + ' appearance')"
-      >
+        (valueChange)="log($event.value + ' appearance')">
         <button uiMenuTrigger>View</button>
         <div *uiMenuContent="let state">
           <div uiMenuCheckboxItem value="Ruler">

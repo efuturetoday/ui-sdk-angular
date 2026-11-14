@@ -31,8 +31,7 @@ import { injectLog } from "../../shared/log"
         [defaultValue]="['left']"
         [deselectable]="false"
         aria-label="Alignment"
-        (valueChange)="log('Align ' + $event[0])"
-      >
+        (valueChange)="log('Align ' + $event[0])">
         <button uiToggle value="left" aria-label="Align left">
           <span uiToggleIcon><svg lucideAlignLeft></svg></span>
         </button>

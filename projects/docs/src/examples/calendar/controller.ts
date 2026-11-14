@@ -43,8 +43,7 @@ import {
         uiCalendar
         [controller]="calendar"
         defaultValue="2026-10-16"
-        defaultMonth="2026-10"
-      >
+        defaultMonth="2026-10">
         <div data-slot="row">
           <button uiCalendarPrevious data-variant="ghost">
             <svg lucideChevronLeft aria-hidden="true"></svg>

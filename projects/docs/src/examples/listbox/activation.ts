@@ -24,8 +24,7 @@ import { injectLog } from "../../shared/log"
             $event.details.reason +
             ')'
         )
-      "
-    >
+      ">
       @for (file of files; track file.value) {
         <div uiListboxItem [value]="file.value">
           <span uiListboxItemIcon>

@@ -25,24 +25,21 @@ import {
         <button
           uiSegmentedControlItem
           #top="uiSegmentedControlItem"
-          value="top"
-        >
+          value="top">
           Top
         </button>
         <input [uiSegmentedControlInput]="top" />
         <button
           uiSegmentedControlItem
           #middle="uiSegmentedControlItem"
-          value="middle"
-        >
+          value="middle">
           Middle
         </button>
         <input [uiSegmentedControlInput]="middle" />
         <button
           uiSegmentedControlItem
           #bottom="uiSegmentedControlItem"
-          value="bottom"
-        >
+          value="bottom">
           Bottom
         </button>
         <input [uiSegmentedControlInput]="bottom" />

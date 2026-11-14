@@ -30,15 +30,13 @@ import { injectLog } from "../../shared/log"
         <button
           type="button"
           (mousedown)="$event.preventDefault()"
-          (click)="mention()"
-        >
+          (click)="mention()">
           Mention
         </button>
         <button
           type="button"
           (mousedown)="$event.preventDefault()"
-          (click)="insertDate()"
-        >
+          (click)="insertDate()">
           Insert Date
         </button>
       </div>
@@ -48,8 +46,7 @@ import { injectLog } from "../../shared/log"
           <input
             uiFieldControl
             uiTriggerMenuInput
-            placeholder="Write a message…"
-          />
+            placeholder="Write a message…" />
         </div>
         <div *uiTriggerMenuContent="let state">
           <div uiTriggerMenuList #list="uiTriggerMenuList">

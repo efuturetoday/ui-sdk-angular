@@ -42,8 +42,7 @@ type Format = {
             [max]="slider.max"
             [step]="slider.step"
             [format]="slider.format"
-            [locale]="slider.locale"
-          >
+            [locale]="slider.locale">
             <div data-slot="row">
               <label uiFieldLabel>{{ slider.label }}</label>
               <output uiSliderValue uiText></output>

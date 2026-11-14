@@ -30,8 +30,7 @@ import { UiField, UiFieldControl, UiFieldLabel } from "@ngx-ui-sdk/core/field"
       [open]="open()"
       [dismissible]="!dirty()"
       (openChange)="$event ? open.set(true) : close()"
-      (dismissAttempt)="asking.set(true)"
-    >
+      (dismissAttempt)="asking.set(true)">
       <button uiDialogTrigger>Write a Post</button>
       <div *uiDialogBackdrop></div>
       <div *uiDialogContent>
@@ -44,8 +43,7 @@ import { UiField, UiFieldControl, UiFieldLabel } from "@ngx-ui-sdk/core/field"
           <textarea
             uiFieldControl
             placeholder="What's new?"
-            (input)="onInput($event)"
-          ></textarea>
+            (input)="onInput($event)"></textarea>
         </div>
         @if (asking()) {
           <div data-slot="row" role="alert">

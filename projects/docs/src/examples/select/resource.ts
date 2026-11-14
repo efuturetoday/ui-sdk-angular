@@ -67,8 +67,7 @@ const pause = (ms: number, signal: AbortSignal) =>
         [items]="options.items()"
         [status]="options.status()"
         [filter]="false"
-        placeholder="Select a country"
-      >
+        placeholder="Select a country">
         <button uiSelectTrigger>
           <span uiSelectValue uiText></span>
           <svg lucideChevronDown aria-hidden="true"></svg>
@@ -77,8 +76,7 @@ const pause = (ms: number, signal: AbortSignal) =>
           <input
             uiSelectInput
             aria-label="Search countries"
-            placeholder="Search countries…"
-          />
+            placeholder="Search countries…" />
           <div uiSelectEmpty>No countries found.</div>
           <div uiSelectList>
             @for (item of options.items(); track item.value) {

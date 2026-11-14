@@ -21,8 +21,7 @@ import { injectLog } from "../../shared/log"
       <div
         uiResizable
         [(layout)]="layout"
-        (beforeLayoutChange)="onLayoutChange($event.layout, $event.details)"
-      >
+        (beforeLayoutChange)="onLayoutChange($event.layout, $event.details)">
         <div uiResizablePanel [minSize]="20">
           <h3>Files</h3>
           <ul>

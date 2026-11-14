@@ -21,8 +21,7 @@ import { injectLog } from "../../shared/log"
       data-variant="card"
       (openChangeComplete)="
         log($event ? 'Finished opening' : 'Finished closing')
-      "
-    >
+      ">
       <button uiCollapsibleTrigger>
         <span data-slot="stack">
           <span>Release notes</span>

@@ -10,8 +10,7 @@ import { UiListbox, UiListboxItem } from "@ngx-ui-sdk/core/listbox"
         uiListbox
         orientation="horizontal"
         defaultValue="day"
-        aria-label="תצוגה"
-      >
+        aria-label="תצוגה">
         @for (view of views; track view.value) {
           <div uiListboxItem [value]="view.value">{{ view.label }}</div>
         }

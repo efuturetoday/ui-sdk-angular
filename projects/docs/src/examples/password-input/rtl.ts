@@ -32,8 +32,7 @@ import {
           <button
             uiPasswordInputToggle
             #toggle="uiPasswordInputToggle"
-            aria-label="إظهار كلمة المرور"
-          >
+            aria-label="إظهار كلمة المرور">
             @if (toggle.state().visible) {
               <svg lucideEyeOff aria-hidden="true"></svg>
             } @else {

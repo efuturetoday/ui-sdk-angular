@@ -44,13 +44,11 @@ import { injectLog } from "../../shared/log"
             $event.details.reason +
             ')'
         )
-      "
-    >
+      ">
       <input
         uiCommandInput
         aria-label="Search themes"
-        placeholder="Search themes…"
-      />
+        placeholder="Search themes…" />
       <div uiCommandList>
         <ng-container *uiCommandPage>
           <div uiCommandItem value="theme" page="theme">Change theme…</div>

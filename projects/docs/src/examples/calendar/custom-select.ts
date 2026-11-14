@@ -45,16 +45,14 @@ import {
       [(month)]="month"
       defaultValue="2026-10-16"
       min="2024-01-01"
-      max="2028-12-31"
-    >
+      max="2028-12-31">
       <div data-slot="row">
         <h2 uiCalendarHeading uiText></h2>
         <ng-container
           uiSelect
           [items]="months"
           [value]="monthOfYear()"
-          (valueChange)="setMonth($event)"
-        >
+          (valueChange)="setMonth($event)">
           <button uiSelectTrigger aria-label="Month">
             <span uiSelectValue uiText></span>
             <svg lucideChevronDown></svg>
@@ -72,8 +70,7 @@ import {
           uiSelect
           [items]="years"
           [value]="year()"
-          (valueChange)="setYear($event)"
-        >
+          (valueChange)="setYear($event)">
           <button uiSelectTrigger aria-label="Year">
             <span uiSelectValue uiText></span>
             <svg lucideChevronDown></svg>

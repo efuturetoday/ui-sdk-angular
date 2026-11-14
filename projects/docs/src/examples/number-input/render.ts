@@ -30,23 +30,20 @@ import {
         [defaultValue]="-2"
         [min]="-20"
         [max]="40"
-        [format]="{ style: 'unit', unit: 'celsius' }"
-      >
+        [format]="{ style: 'unit', unit: 'celsius' }">
         <div uiNumberInputGroup>
           <button
             uiNumberInputDecrement
             #colder="uiNumberInputDecrement"
             aria-label="Colder"
-            [title]="colder.state().atBound ? 'As cold as it goes' : 'Colder'"
-          >
+            [title]="colder.state().atBound ? 'As cold as it goes' : 'Colder'">
             <svg lucideMinus aria-hidden="true"></svg>
           </button>
           <input uiNumberInputControl />
           <button
             uiNumberInputIncrement
             #warmer="uiNumberInputIncrement"
-            aria-label="Warmer"
-          >
+            aria-label="Warmer">
             @if (warmer.state().atBound) {
               <span>Max</span>
             } @else {

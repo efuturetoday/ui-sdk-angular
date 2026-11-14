@@ -38,8 +38,7 @@ import {
               <div *uiTreeGroup>
                 <ng-container
                   [ngTemplateOutlet]="level"
-                  [ngTemplateOutletContext]="{ $implicit: item.children }"
-                />
+                  [ngTemplateOutletContext]="{ $implicit: item.children }" />
               </div>
             }
           </div>
@@ -47,8 +46,7 @@ import {
       </ng-template>
       <ng-container
         [ngTemplateOutlet]="level"
-        [ngTemplateOutletContext]="{ $implicit: items }"
-      />
+        [ngTemplateOutletContext]="{ $implicit: items }" />
     </div>
   `,
 })

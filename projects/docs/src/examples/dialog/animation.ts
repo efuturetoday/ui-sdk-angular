@@ -26,8 +26,7 @@ import { injectLog } from "../../shared/log"
       uiDialog
       (openChangeComplete)="
         log($event ? 'Finished opening' : 'Finished closing')
-      "
-    >
+      ">
       <button uiDialogTrigger>Slide In</button>
       <div *uiDialogBackdrop></div>
       <div *uiDialogContent="let state; keepMounted: true">

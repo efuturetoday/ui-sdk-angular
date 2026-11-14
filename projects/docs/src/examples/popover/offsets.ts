@@ -47,8 +47,7 @@ type Name = "sideOffset" | "alignOffset" | "collisionPadding"
             uiSelect
             [items]="choice.values"
             [value]="offsets()[choice.name]"
-            (valueChange)="setOffset(choice.name, $event)"
-          >
+            (valueChange)="setOffset(choice.name, $event)">
             <div uiSelectLabel>{{ choice.label }}</div>
             <button uiSelectTrigger>
               <span uiSelectValue uiText></span>
@@ -76,8 +75,7 @@ type Name = "sideOffset" | "alignOffset" | "collisionPadding"
             sideOffset: sideOffset();
             alignOffset: alignOffset();
             collisionPadding: collisionPadding()
-          "
-        >
+          ">
           <h2 uiPopoverTitle>Delivery window</h2>
           <p uiPopoverDescription>Arrives Tuesday between 9 AM and noon.</p>
         </div>

@@ -27,8 +27,7 @@ import {
       uiColorPicker
       aria-label="Accent"
       space="oklch"
-      defaultValue="oklch(0.62 0.19 259)"
-    >
+      defaultValue="oklch(0.62 0.19 259)">
       <div uiColorPickerArea>
         <canvas uiColorPickerAreaCanvas></canvas>
         <div uiColorPickerAreaThumb></div>

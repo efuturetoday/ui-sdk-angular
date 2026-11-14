@@ -30,30 +30,26 @@ import {
         [controller]="range"
         (beforeValueChange)="
           log('value: ' + $event.value + ' (' + $event.details.reason + ')')
-        "
-      >
+        ">
         <span uiSegmentedControlIndicator></span>
         <button
           uiSegmentedControlItem
           #day="uiSegmentedControlItem"
-          value="day"
-        >
+          value="day">
           Day
         </button>
         <input [uiSegmentedControlInput]="day" />
         <button
           uiSegmentedControlItem
           #week="uiSegmentedControlItem"
-          value="week"
-        >
+          value="week">
           Week
         </button>
         <input [uiSegmentedControlInput]="week" />
         <button
           uiSegmentedControlItem
           #month="uiSegmentedControlItem"
-          value="month"
-        >
+          value="month">
           Month
         </button>
         <input [uiSegmentedControlInput]="month" />

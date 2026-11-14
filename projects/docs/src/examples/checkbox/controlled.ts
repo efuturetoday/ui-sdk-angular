@@ -26,8 +26,7 @@ import { injectLog } from "../../shared/log"
           [controller]="updates"
           (beforeCheckedChange)="
             onCheckedChange($event.checked, $event.details)
-          "
-        >
+          ">
           <span *uiCheckboxIndicator>
             <svg lucideCheck aria-hidden="true"></svg>
           </span>

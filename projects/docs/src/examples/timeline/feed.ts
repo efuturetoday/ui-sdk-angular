@@ -27,8 +27,7 @@ import { injectLog } from "../../shared/log"
         <button
           type="button"
           [disabled]="busy() || count() >= updates.length"
-          (click)="loadMore()"
-        >
+          (click)="loadMore()">
           {{ busy() ? "Loading…" : "Load More" }}
         </button>
       </div>

@@ -35,8 +35,7 @@ import { injectLog } from "../../shared/log"
         (openChangeComplete)="
           log($event ? 'opened and settled' : 'closed and settled')
         "
-        (highlight)="$event.value && log('highlighted ' + $event.value)"
-      >
+        (highlight)="$event.value && log('highlighted ' + $event.value)">
         <div uiAutocompleteLabel>Fruit (12 characters at most)</div>
         <input uiAutocompleteInput />
         <div *uiAutocompleteContent>

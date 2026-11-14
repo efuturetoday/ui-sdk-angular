@@ -61,15 +61,13 @@ const loadFile = () => new Promise<void>((resolve) => setTimeout(resolve, 800))
         <div
           uiTokenInputEditor
           aria-label="Prompt"
-          placeholder="Ask anything. Type @ or /"
-        ></div>
+          placeholder="Ask anything. Type @ or /"></div>
         <div data-slot="row">
           <button
             type="button"
             data-size="sm"
             (mousedown)="$event.preventDefault()"
-            (click)="attachReadme()"
-          >
+            (click)="attachReadme()">
             Attach README
           </button>
           <button
@@ -79,8 +77,7 @@ const loadFile = () => new Promise<void>((resolve) => setTimeout(resolve, 800))
             data-shape="round"
             [attr.aria-label]="running() ? 'Running' : 'Send'"
             [disabled]="running()"
-            (click)="send(prompt.getValue())"
-          >
+            (click)="send(prompt.getValue())">
             @if (running()) {
               <svg lucideClock aria-hidden="true"></svg>
             } @else {
@@ -99,8 +96,7 @@ const loadFile = () => new Promise<void>((resolve) => setTimeout(resolve, 800))
                 uiTriggerMenuItem
                 [value]="item.value"
                 [label]="item.label"
-                [disabled]="item.disabled"
-              >
+                [disabled]="item.disabled">
                 {{ item.label }}
               </div>
             }

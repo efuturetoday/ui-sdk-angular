@@ -25,14 +25,12 @@ import { injectLog } from "../../shared/log"
         uiAutocomplete
         submitOnSelect
         name="q"
-        (valueSubmit)="log('Searched “' + $event.value + '”')"
-      >
+        (valueSubmit)="log('Searched “' + $event.value + '”')">
         <input
           uiAutocompleteInput
           type="search"
           aria-label="Search"
-          placeholder="Search…"
-        />
+          placeholder="Search…" />
         <div *uiAutocompleteContent>
           <div uiAutocompleteEmpty>No results.</div>
           <div uiAutocompleteList>

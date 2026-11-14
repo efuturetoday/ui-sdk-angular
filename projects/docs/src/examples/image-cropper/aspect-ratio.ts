@@ -31,8 +31,7 @@ const photo = `data:image/svg+xml,${encodeURIComponent(
           <button
             type="button"
             [attr.aria-pressed]="aspectRatio() === ratio.value"
-            (click)="aspectRatio.set(ratio.value)"
-          >
+            (click)="aspectRatio.set(ratio.value)">
             {{ ratio.label }}
           </button>
         }
@@ -43,8 +42,7 @@ const photo = `data:image/svg+xml,${encodeURIComponent(
         [src]="photo"
         [aspectRatio]="aspectRatio()"
         [minWidth]="64"
-        [minHeight]="64"
-      >
+        [minHeight]="64">
         <div uiImageCropperViewport>
           <img uiImageCropperImage alt="Mountains at sunset" />
           <div uiImageCropperSelection>

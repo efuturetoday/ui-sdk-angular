@@ -21,13 +21,11 @@ import {
       <ng-container
         uiTooltip
         [closeOnPress]="false"
-        (openChangeComplete)="!$event && copied.set(false)"
-      >
+        (openChangeComplete)="!$event && copied.set(false)">
         <button
           uiTooltipTrigger
           [attr.aria-label]="copied() ? 'Copied' : 'Copy'"
-          (click)="copy()"
-        >
+          (click)="copy()">
           @if (copied()) {
             <svg lucideCheck aria-hidden="true"></svg>
           } @else {

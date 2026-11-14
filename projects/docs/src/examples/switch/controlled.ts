@@ -29,8 +29,7 @@ import { injectLog } from "../../shared/log"
                 $event.details.reason +
                 ')'
             )
-          "
-        >
+          ">
           <span uiSwitchThumb></span>
         </button>
         <input [uiSwitchInput]="toggle" />

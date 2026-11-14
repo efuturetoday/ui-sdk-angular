@@ -20,8 +20,7 @@ import { injectLog } from "../../shared/log"
           [disabled]="!ready()"
           focusableWhenDisabled
           [attr.aria-describedby]="hint"
-          (click)="log('Published “' + title() + '”')"
-        >
+          (click)="log('Published “' + title() + '”')">
           Publish
         </button>
         <p [id]="hint" data-slot="hint">

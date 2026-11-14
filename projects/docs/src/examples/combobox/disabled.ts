@@ -35,8 +35,7 @@ import {
           [defaultValue]="field.variant === 'item' ? null : 'fr'"
           [itemToLabel]="countryLabel"
           [disabled]="field.variant === 'disabled'"
-          [readOnly]="field.variant === 'readOnly'"
-        >
+          [readOnly]="field.variant === 'readOnly'">
           <div data-slot="stack">
             <div uiComboboxLabel>{{ field.label }}</div>
             <div data-slot="row">
@@ -54,8 +53,7 @@ import {
                   uiComboboxItem
                   [value]="country.value"
                   [label]="country.label"
-                  [disabled]="country.value === 'dk'"
-                >
+                  [disabled]="country.value === 'dk'">
                   {{ country.label }}
                   <span *uiComboboxItemIndicator>
                     <svg lucideCheck aria-hidden="true"></svg>

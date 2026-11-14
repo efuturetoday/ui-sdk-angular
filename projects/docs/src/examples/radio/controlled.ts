@@ -32,8 +32,7 @@ import { injectLog } from "../../shared/log"
           uiRadioGroup
           [(value)]="value"
           [controller]="planGroup"
-          (beforeValueChange)="onValueChange($event.value, $event.details)"
-        >
+          (beforeValueChange)="onValueChange($event.value, $event.details)">
           @for (plan of plans; track plan.value) {
             <label data-slot="label">
               <button uiRadio #radio="uiRadio" [value]="plan.value">

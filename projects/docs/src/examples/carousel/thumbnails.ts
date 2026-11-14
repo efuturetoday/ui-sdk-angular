@@ -34,8 +34,7 @@ import {
         #strip
         aria-label="Thumbnails"
         dragFree
-        slidesPerPage="auto"
-      >
+        slidesPerPage="auto">
         <div uiCarouselViewport>
           <div uiCarouselContent>
             @for (photo of photos; track photo.name; let index = $index) {
@@ -43,8 +42,7 @@ import {
                 <button
                   type="button"
                   [attr.aria-pressed]="page() === index + 1"
-                  (click)="page.set(index + 1)"
-                >
+                  (click)="page.set(index + 1)">
                   {{ photo.name }}
                 </button>
               </div>

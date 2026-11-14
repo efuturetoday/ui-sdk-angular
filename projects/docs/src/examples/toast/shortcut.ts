@@ -27,8 +27,7 @@ import { injectLog } from "../../shared/log"
       #region="uiToastRegion"
       [toaster]="toast"
       shortcut="alt+t"
-      aria-label="Alerts"
-    >
+      aria-label="Alerts">
       <ol uiToastList>
         @for (item of region.state().toasts; track item.toast.id) {
           <li [uiToast]="item.toast">

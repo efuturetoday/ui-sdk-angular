@@ -13,8 +13,7 @@ import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
         uiDateInput
         #d="uiDateInput"
         granularity="minute"
-        defaultValue="2026-11-02T14:30"
-      >
+        defaultValue="2026-11-02T14:30">
         @for (segment of d.state().segments; track segment.key) {
           @if (segment.editable) {
             <input uiDateInputSegment [segment]="segment" />

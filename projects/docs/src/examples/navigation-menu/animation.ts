@@ -30,8 +30,7 @@ import { injectLog } from "../../shared/log"
       (valueChange)="log($event ? 'Showing ' + $event : 'Closing')"
       (openChangeComplete)="
         log($event ? 'Finished opening' : 'Finished closing')
-      "
-    >
+      ">
       <ul uiNavigationMenuList>
         <li uiNavigationMenuItem value="guides">
           <button uiNavigationMenuTrigger>
@@ -72,8 +71,7 @@ import { injectLog } from "../../shared/log"
       </ul>
       <div
         *uiNavigationMenuViewport="let state; sideOffset: 8"
-        data-variant="slide"
-      ></div>
+        data-variant="slide"></div>
     </nav>
   `,
 })

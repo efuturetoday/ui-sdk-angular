@@ -10,8 +10,7 @@ import { UiListbox, UiListboxItem } from "@ngx-ui-sdk/core/listbox"
       orientation="horizontal"
       [loop]="false"
       defaultValue="m"
-      aria-label="Size"
-    >
+      aria-label="Size">
       @for (size of sizes; track size.value) {
         <div uiListboxItem [value]="size.value" [disabled]="size.disabled">
           {{ size.label }}

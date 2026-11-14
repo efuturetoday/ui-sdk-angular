@@ -36,8 +36,7 @@ import {
         [format]="{ style: 'percent' }"
         [min]="0"
         [max]="1"
-        [step]="0.01"
-      >
+        [step]="0.01">
         <div data-slot="row">
           <label uiFieldLabel>Volume</label>
           <output uiSliderValue uiText></output>

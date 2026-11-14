@@ -36,8 +36,7 @@ import {
       uiWaterfall
       aria-label="Network requests"
       [items]="requests"
-      [getBarLabel]="getBarLabel"
-    >
+      [getBarLabel]="getBarLabel">
       <div uiWaterfallHeaderRow>
         <div uiWaterfallColumnHeader>Name</div>
         <div uiWaterfallColumnHeader>Size</div>

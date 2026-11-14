@@ -50,8 +50,7 @@ import {
       min="2026-10-05"
       max="2026-11-20"
       [unavailable]="unavailable"
-      defaultValue="2026-10-16"
-    >
+      defaultValue="2026-10-16">
       <div data-slot="row">
         <input uiDatePickerInput aria-label="Delivery date" />
         <button uiDatePickerTrigger data-variant="ghost">

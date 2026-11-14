@@ -35,8 +35,7 @@ import { injectLog } from "../../shared/log"
             <svg
               lucideLoaderCircle
               data-show="loading"
-              aria-hidden="true"
-            ></svg>
+              aria-hidden="true"></svg>
             <div *uiToastTitle uiText></div>
           </li>
         }

@@ -26,8 +26,7 @@ import {
           toast('تم إنشاء الحدث', {
             description: 'الأحد 3 ديسمبر الساعة 9:00 صباحًا',
           })
-        "
-      >
+        ">
         إظهار الإشعار
       </button>
       <section uiToastRegion #region="uiToastRegion" [toaster]="toast">

@@ -39,8 +39,7 @@ import {
         <input
           uiFieldControl
           uiTriggerMenuInput
-          placeholder="Type @ and a first name…"
-        />
+          placeholder="Type @ and a first name…" />
       </div>
       <div *uiTriggerMenuContent="let state">
         <div uiTriggerMenuList>
@@ -51,8 +50,7 @@ import {
                 uiTriggerMenuItem
                 [value]="person.value"
                 [label]="person.label"
-                [disabled]="person.disabled"
-              >
+                [disabled]="person.disabled">
                 {{ person.label }}
                 <span data-slot="hint">
                   {{ person.disabled ? "Deactivated" : "@" + person.value }}
@@ -66,8 +64,7 @@ import {
             value="here"
             label="here"
             [keywords]="['everyone', 'channel']"
-            [onSelect]="notifyHere"
-          >
+            [onSelect]="notifyHere">
             <span uiTriggerMenuItemIcon><svg lucideUsers></svg></span>
             Notify everyone here
           </div>

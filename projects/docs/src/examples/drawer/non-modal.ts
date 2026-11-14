@@ -38,8 +38,7 @@ const places = [
             <button
               type="button"
               [attr.aria-pressed]="destination() === place.name"
-              (click)="destination.set(place.name)"
-            >
+              (click)="destination.set(place.name)">
               {{ place.name }}
               <span data-slot="hint">{{ place.detail }}</span>
             </button>

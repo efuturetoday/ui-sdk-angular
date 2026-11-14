@@ -29,8 +29,7 @@ import { injectLog } from "../../shared/log"
       aria-label="Featured"
       (beforePageChange)="
         log('Page ' + $event.page + ' (' + $event.details.reason + ')')
-      "
-    >
+      ">
       <div data-slot="row">
         <button uiCarouselPrevious aria-label="Previous slide">
           <svg lucideChevronLeft></svg>

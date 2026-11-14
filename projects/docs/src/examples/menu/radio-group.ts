@@ -31,8 +31,7 @@ import { injectLog } from "../../shared/log"
           uiMenuRadioGroup
           name="position"
           defaultValue="bottom"
-          (valueChange)="log('Panel at the ' + $event)"
-        >
+          (valueChange)="log('Panel at the ' + $event)">
           <div uiMenuGroupLabel>Position</div>
           @for (option of positions; track option) {
             <div uiMenuRadioItem [value]="option.toLowerCase()">
@@ -45,8 +44,7 @@ import { injectLog } from "../../shared/log"
         <div
           uiMenuRadioGroup
           defaultValue="comfortable"
-          (valueChange)="log($event + ' density')"
-        >
+          (valueChange)="log($event + ' density')">
           <div uiMenuGroupLabel>Density</div>
           @for (option of densities; track option) {
             <div uiMenuRadioItem [value]="option.toLowerCase()">

@@ -18,7 +18,8 @@ import { injectLog } from "../../shared/log"
 
 @Component({
   selector: "app-example",
-  imports: [UiText, 
+  imports: [
+    UiText,
     UiAutocomplete,
     UiAutocompleteContent,
     UiAutocompleteEmpty,
@@ -39,8 +40,7 @@ import { injectLog } from "../../shared/log"
           name="fruit"
           form="order"
           required
-          defaultValue="Apple"
-        >
+          defaultValue="Apple">
           <input uiAutocompleteInput />
           <div *uiAutocompleteContent>
             <div uiAutocompleteEmpty>No fruits found.</div>

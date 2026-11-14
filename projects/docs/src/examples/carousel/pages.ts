@@ -48,14 +48,12 @@ import {
         <div
           uiCarouselIndicatorGroup
           #group="uiCarouselIndicatorGroup"
-          aria-label="Choose a page"
-        >
+          aria-label="Choose a page">
           @for (index of pages(group.state().pageCount); track index) {
             <button
               uiCarouselIndicator
               [page]="index"
-              [attr.aria-label]="'Page ' + index"
-            ></button>
+              [attr.aria-label]="'Page ' + index"></button>
           }
         </div>
       </div>

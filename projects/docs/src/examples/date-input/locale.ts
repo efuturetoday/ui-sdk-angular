@@ -14,8 +14,7 @@ import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
           uiDateInput
           #a="uiDateInput"
           locale="en-GB"
-          defaultValue="2026-11-02"
-        >
+          defaultValue="2026-11-02">
           @for (segment of a.state().segments; track segment.key) {
             @if (segment.editable) {
               <input uiDateInputSegment [segment]="segment" />
@@ -31,8 +30,7 @@ import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
           uiDateInput
           #b="uiDateInput"
           locale="de-DE"
-          defaultValue="2026-11-02"
-        >
+          defaultValue="2026-11-02">
           @for (segment of b.state().segments; track segment.key) {
             @if (segment.editable) {
               <input uiDateInputSegment [segment]="segment" />
@@ -48,8 +46,7 @@ import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
           uiDateInput
           #c="uiDateInput"
           locale="ja-JP"
-          defaultValue="2026-11-02"
-        >
+          defaultValue="2026-11-02">
           @for (segment of c.state().segments; track segment.key) {
             @if (segment.editable) {
               <input uiDateInputSegment [segment]="segment" />

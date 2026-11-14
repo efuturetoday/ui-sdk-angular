@@ -33,8 +33,7 @@ import { injectLog } from "../../shared/log"
         <input
           uiCommandInput
           aria-label="Search settings"
-          placeholder="Search settings…"
-        />
+          placeholder="Search settings…" />
         <div uiCommandList>
           <div uiCommandGroup>
             <div uiCommandGroupLabel>Settings</div>

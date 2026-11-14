@@ -55,8 +55,7 @@ import {
                 {{ value.state().labels[index] }}
                 <button
                   uiComboboxChipRemove
-                  [attr.aria-label]="'Remove ' + value.state().labels[index]"
-                >
+                  [attr.aria-label]="'Remove ' + value.state().labels[index]">
                   <svg lucideX aria-hidden="true"></svg>
                 </button>
               </div>

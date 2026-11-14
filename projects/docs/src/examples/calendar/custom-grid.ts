@@ -32,8 +32,7 @@ import {
           uiCalendarPrevious
           #previous="uiCalendarPrevious"
           data-variant="ghost"
-          [title]="'Show ' + previous.state().month"
-        >
+          [title]="'Show ' + previous.state().month">
           <svg lucideChevronLeft></svg>
         </button>
         <h2 uiCalendarHeading #heading="uiCalendarHeading">

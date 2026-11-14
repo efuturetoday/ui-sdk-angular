@@ -50,8 +50,7 @@ import {
           <input
             uiSelectInput
             aria-label="Search countries"
-            placeholder="Search countries…"
-          />
+            placeholder="Search countries…" />
           <div uiSelectEmpty>No countries found.</div>
           <div uiSelectList>
             @for (group of regions; track group.label) {

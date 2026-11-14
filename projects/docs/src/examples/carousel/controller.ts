@@ -28,8 +28,7 @@ import {
         <button
           uiCarouselPrevious
           [controller]="carousel"
-          aria-label="Previous slide"
-        >
+          aria-label="Previous slide">
           <svg lucideChevronLeft></svg>
         </button>
         <button uiCarouselNext [controller]="carousel" aria-label="Next slide">
@@ -43,8 +42,7 @@ import {
         uiCarousel
         aria-label="Featured"
         [controller]="carousel"
-        [drag]="false"
-      >
+        [drag]="false">
         <div uiCarouselViewport>
           <div uiCarouselContent>
             @for (slide of slides; track slide) {

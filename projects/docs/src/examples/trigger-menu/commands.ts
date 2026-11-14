@@ -29,8 +29,7 @@ import { injectLog } from "../../shared/log"
           <input
             uiFieldControl
             uiTriggerMenuInput
-            placeholder="Type / for commands…"
-          />
+            placeholder="Type / for commands…" />
         </div>
         <span uiTriggerMenuHint uiText></span>
       </ng-container>

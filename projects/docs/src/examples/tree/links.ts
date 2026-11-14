@@ -29,8 +29,7 @@ import {
       [items]="pages"
       mode="none"
       [current]="current()"
-      [onAction]="onAction"
-    >
+      [onAction]="onAction">
       <ng-template #level let-list>
         @for (item of asItems(list); track item.value) {
           <div uiTreeItem [value]="item.value">
@@ -57,8 +56,7 @@ import {
               <div *uiTreeGroup>
                 <ng-container
                   [ngTemplateOutlet]="level"
-                  [ngTemplateOutletContext]="{ $implicit: item.children }"
-                />
+                  [ngTemplateOutletContext]="{ $implicit: item.children }" />
               </div>
             }
           </div>
@@ -66,8 +64,7 @@ import {
       </ng-template>
       <ng-container
         [ngTemplateOutlet]="level"
-        [ngTemplateOutletContext]="{ $implicit: pages }"
-      />
+        [ngTemplateOutletContext]="{ $implicit: pages }" />
     </div>
   `,
 })

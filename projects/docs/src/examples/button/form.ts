@@ -15,8 +15,7 @@ import { injectLog } from "../../shared/log"
           uiInput
           name="email"
           type="email"
-          defaultValue="ada@example.com"
-        />
+          defaultValue="ada@example.com" />
       </div>
       <div data-slot="row">
         <button uiButton type="submit">Subscribe</button>

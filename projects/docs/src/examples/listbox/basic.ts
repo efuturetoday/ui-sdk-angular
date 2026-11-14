@@ -29,8 +29,7 @@ import {
         uiListbox
         multiple
         activation="automatic"
-        [defaultValue]="['mentions']"
-      >
+        [defaultValue]="['mentions']">
         @for (topic of topics; track topic.value) {
           <div uiListboxItem [value]="topic.value">
             {{ topic.label }}

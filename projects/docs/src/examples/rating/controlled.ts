@@ -25,8 +25,7 @@ import { injectLog } from "../../shared/log"
         [controller]="rating"
         (beforeValueChange)="
           log('value: ' + $event.value + ' (' + $event.details.reason + ')')
-        "
-      >
+        ">
         @for (index of stars.items(); track index) {
           <span uiRatingItem [index]="index">
             <svg lucideStar aria-hidden="true"></svg>

@@ -23,24 +23,21 @@ import {
         uiTooltipTrigger
         [controller]="tooltip"
         payload="Bold"
-        aria-label="Bold"
-      >
+        aria-label="Bold">
         <svg lucideBold aria-hidden="true"></svg>
       </button>
       <button
         uiTooltipTrigger
         [controller]="tooltip"
         payload="Italic"
-        aria-label="Italic"
-      >
+        aria-label="Italic">
         <svg lucideItalic aria-hidden="true"></svg>
       </button>
       <button
         uiTooltipTrigger
         [controller]="tooltip"
         payload="Underline"
-        aria-label="Underline"
-      >
+        aria-label="Underline">
         <svg lucideUnderline aria-hidden="true"></svg>
       </button>
       <ng-container uiTooltip [controller]="tooltip">

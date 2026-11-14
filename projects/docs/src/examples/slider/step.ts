@@ -32,8 +32,7 @@ import {
           [min]="1990"
           [max]="2030"
           [step]="5"
-          [format]="{ useGrouping: false }"
-        >
+          [format]="{ useGrouping: false }">
           <div data-slot="row">
             <label uiFieldLabel>Year</label>
             <output uiSliderValue uiText></output>

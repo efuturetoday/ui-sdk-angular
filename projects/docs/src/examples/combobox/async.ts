@@ -82,8 +82,7 @@ function searchMovies(query: string, { signal }: { signal: AbortSignal }) {
       defaultQuery="the"
       [filter]="false"
       [status]="movies.state().status"
-      (queryChange)="movies.setQuery($event)"
-    >
+      (queryChange)="movies.setQuery($event)">
       <div data-slot="stack">
         <div uiComboboxLabel>Movie</div>
         <div data-slot="row">
@@ -116,8 +115,7 @@ function searchMovies(query: string, { signal }: { signal: AbortSignal }) {
               uiComboboxItem
               [value]="item.value"
               [label]="item.label"
-              [disabled]="item.disabled"
-            >
+              [disabled]="item.disabled">
               {{ item.label }}
               <span *uiComboboxItemIndicator>
                 <svg lucideCheck aria-hidden="true"></svg>

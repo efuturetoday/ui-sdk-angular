@@ -48,8 +48,7 @@ import {
       mode="range"
       [months]="2"
       monthFormat="short"
-      [defaultValue]="['2026-10-12', '2026-10-16']"
-    >
+      [defaultValue]="['2026-10-12', '2026-10-16']">
       <div #field data-slot="row">
         <input uiDatePickerInput aria-label="Check in" placeholder="Check in" />
         <span data-slot="hint">–</span>
@@ -57,8 +56,7 @@ import {
           uiDatePickerInput
           end
           aria-label="Check out"
-          placeholder="Check out"
-        />
+          placeholder="Check out" />
         <button uiDatePickerTrigger data-variant="ghost">
           <svg lucideCalendar aria-hidden="true"></svg>
         </button>
@@ -82,8 +80,7 @@ import {
                     uiCalendarWeekday
                     scope="col"
                     [index]="$index"
-                    uiText
-                  ></th>
+                    uiText></th>
                 }
               </tr>
             </thead>
@@ -109,8 +106,7 @@ import {
                     uiCalendarWeekday
                     scope="col"
                     [index]="$index"
-                    uiText
-                  ></th>
+                    uiText></th>
                 }
               </tr>
             </thead>

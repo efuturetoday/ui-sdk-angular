@@ -24,8 +24,7 @@ import {
       [value]="720"
       [min]="300"
       [max]="850"
-      [format]="{ style: 'decimal' }"
-    >
+      [format]="{ style: 'decimal' }">
       <span uiMeterLabel>Credit score</span>
       <span uiMeterValue uiText></span>
       <div uiMeterTrack><div uiMeterIndicator></div></div>

@@ -31,8 +31,7 @@ import {
         [min]="25"
         [max]="400"
         [largeStep]="25"
-        [format]="{ style: 'unit', unit: 'percent' }"
-      >
+        [format]="{ style: 'unit', unit: 'percent' }">
         <div data-slot="row">
           <label uiFieldLabel>Zoom</label>
           <output uiSliderValue uiText></output>

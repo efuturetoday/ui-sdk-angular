@@ -21,15 +21,13 @@ const view = createPreference({
           <button
             uiButton
             [attr.aria-pressed]="state().value === 'list'"
-            (click)="choose('list', $event)"
-          >
+            (click)="choose('list', $event)">
             List
           </button>
           <button
             uiButton
             [attr.aria-pressed]="state().value === 'grid'"
-            (click)="choose('grid', $event)"
-          >
+            (click)="choose('grid', $event)">
             Grid
           </button>
         </div>

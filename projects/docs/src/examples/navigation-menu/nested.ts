@@ -63,8 +63,7 @@ import {
                         let state;
                         sideOffset: 9;
                         alignOffset: -5
-                      "
-                    >
+                      ">
                       <ul>
                         @for (link of group.links; track link.title) {
                           <li>

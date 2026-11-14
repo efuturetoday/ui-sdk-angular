@@ -43,8 +43,7 @@ type Member = { name: string; role: string }
               [disabled]="member.role === 'Owner'"
               data-size="sm"
               data-variant="ghost"
-              [attr.aria-label]="'Edit ' + member.name"
-            >
+              [attr.aria-label]="'Edit ' + member.name">
               Edit
             </button>
           </li>
@@ -53,16 +52,14 @@ type Member = { name: string; role: string }
       <ng-container
         uiPopover
         [controller]="popover"
-        (payloadChange)="onPayloadChange($event.payload)"
-      >
+        (payloadChange)="onPayloadChange($event.payload)">
         <div *uiPopoverContent="let state; align: 'end'; sideOffset: 8">
           <h2 uiPopoverTitle>{{ memberOf(state().payload)?.name }}</h2>
           <p uiPopoverDescription>Roles decide what they can change.</p>
           <form
             data-slot="stack"
             method="dialog"
-            (submit)="save($event, memberOf(state().payload))"
-          >
+            (submit)="save($event, memberOf(state().payload))">
             @for (member of [memberOf(state().payload)]; track member?.name) {
               <div uiField>
                 <label uiFieldLabel>Role</label>

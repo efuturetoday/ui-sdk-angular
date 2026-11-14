@@ -43,8 +43,7 @@ import { injectLog } from "../../shared/log"
                 $event.details.reason +
                 ')'
             )
-          "
-        >
+          ">
           <div data-slot="row">
             <label uiFieldLabel>Temperature</label>
             <output uiSliderValue uiText></output>
@@ -55,13 +54,11 @@ import { injectLog } from "../../shared/log"
               <div
                 uiSliderThumb
                 [index]="0"
-                aria-label="Minimum temperature"
-              ></div>
+                aria-label="Minimum temperature"></div>
               <div
                 uiSliderThumb
                 [index]="1"
-                aria-label="Maximum temperature"
-              ></div>
+                aria-label="Maximum temperature"></div>
             </div>
           </div>
         </div>

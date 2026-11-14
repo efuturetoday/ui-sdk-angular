@@ -21,8 +21,7 @@ import { UiToggle, UiToggleGroup, UiToggleIcon } from "@ngx-ui-sdk/core/toggle"
       uiToggleGroup
       [defaultValue]="['start']"
       [deselectable]="false"
-      aria-label="Text alignment"
-    >
+      aria-label="Text alignment">
       @for (item of alignments; track item.value) {
         <button uiToggle [value]="item.value" [attr.aria-label]="item.label">
           <span uiToggleIcon [mirror]="item.mirror">

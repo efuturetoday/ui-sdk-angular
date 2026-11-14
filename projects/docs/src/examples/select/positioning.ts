@@ -45,8 +45,7 @@ type Align = "start" | "center" | "end"
           uiSelect
           [items]="sides"
           [value]="side()"
-          (valueChange)="setSide($event)"
-        >
+          (valueChange)="setSide($event)">
           <div uiSelectLabel>Side</div>
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
@@ -67,8 +66,7 @@ type Align = "start" | "center" | "end"
           uiSelect
           [items]="aligns"
           [value]="align()"
-          (valueChange)="setAlign($event)"
-        >
+          (valueChange)="setAlign($event)">
           <div uiSelectLabel>Align</div>
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
@@ -90,8 +88,7 @@ type Align = "start" | "center" | "end"
             uiCheckbox
             #box="uiCheckbox"
             [checked]="anchored()"
-            (checkedChange)="anchored.set($event === true)"
-          >
+            (checkedChange)="anchored.set($event === true)">
             <span *uiCheckboxIndicator>
               <svg lucideCheck aria-hidden="true"></svg>
             </span>
@@ -115,8 +112,7 @@ type Align = "start" | "center" | "end"
               alignOffset: 0;
               collisionPadding: 16;
               anchor: anchored() ? card : null
-            "
-          >
+            ">
             <div uiSelectArrow></div>
             @for (font of fonts; track font.value) {
               <div uiSelectItem [value]="font.value">

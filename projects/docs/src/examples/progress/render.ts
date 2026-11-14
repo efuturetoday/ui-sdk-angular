@@ -32,8 +32,7 @@ import {
           #indicator="uiProgressIndicator"
           [attr.data-variant]="
             (indicator.state().percent ?? 0) < 20 ? 'destructive' : undefined
-          "
-        ></div>
+          "></div>
       </span>
     </div>
   `,

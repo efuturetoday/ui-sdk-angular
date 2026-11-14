@@ -17,8 +17,9 @@ import {
           <ng-container
             uiTooltip
             type="label"
-            (beforeOpenChange)="onOpenChange($event.open, $event.details, name)"
-          >
+            (beforeOpenChange)="
+              onOpenChange($event.open, $event.details, name)
+            ">
             <button uiTooltipTrigger>
               <svg lucideFile aria-hidden="true"></svg>
               <span #name>{{ file }}</span>

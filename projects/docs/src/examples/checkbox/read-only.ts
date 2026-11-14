@@ -29,8 +29,7 @@ import {
         #twoFactor="uiCheckbox"
         name="two-factor"
         defaultChecked
-        readOnly
-      >
+        readOnly>
         <span *uiCheckboxIndicator>
           <svg lucideCheck aria-hidden="true"></svg>
         </span>

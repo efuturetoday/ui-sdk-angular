@@ -40,8 +40,7 @@ import {
         uiAutocompleteInput
         type="search"
         aria-label="Search mail"
-        placeholder="Search mail…"
-      />
+        placeholder="Search mail…" />
       <div *uiAutocompleteContent>
         <div uiAutocompleteEmpty>No searches found.</div>
         <div uiAutocompleteList>

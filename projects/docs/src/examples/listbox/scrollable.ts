@@ -15,8 +15,7 @@ import { injectLog } from "../../shared/log"
       uiListbox
       defaultValue="utc9"
       aria-label="Time zone"
-      (highlight)="onHighlight($event.value, $event.details)"
-    >
+      (highlight)="onHighlight($event.value, $event.details)">
       @for (zone of timezones; track zone.value; let index = $index) {
         <div uiListboxItem [value]="zone.value" [index]="index">
           {{ zone.label }}

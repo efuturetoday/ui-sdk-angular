@@ -21,8 +21,7 @@ import { injectLog } from "../../shared/log"
         </button>
         <button
           type="button"
-          (click)="editor.resize('controller-sidebar', '240px')"
-        >
+          (click)="editor.resize('controller-sidebar', '240px')">
           240px
         </button>
         <button type="button" (click)="read()">Read</button>
@@ -33,8 +32,7 @@ import { injectLog } from "../../shared/log"
           id="controller-sidebar"
           [defaultSize]="30"
           [minSize]="20"
-          collapsible
-        >
+          collapsible>
           <h3>Files</h3>
           <ul>
             <li>page.tsx</li>

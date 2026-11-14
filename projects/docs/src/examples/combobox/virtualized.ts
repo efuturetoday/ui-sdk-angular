@@ -46,8 +46,7 @@ type Item = { value: string; label: string }
             *uiVirtualFor="let item of matches(state().items); rowHeight: 32"
             uiComboboxItem
             [value]="item.value"
-            [label]="item.label"
-          >
+            [label]="item.label">
             {{ item.label }}
           </div>
         </div>

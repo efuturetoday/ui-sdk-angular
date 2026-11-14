@@ -25,8 +25,7 @@ import { injectLog } from "../../shared/log"
         uiOtpInput
         (valueCommit)="
           log('Checking ' + $event.value + ' (' + $event.details.reason + ')')
-        "
-      >
+        ">
         <div uiOtpInputGroup>
           @for (index of [0, 1, 2, 3, 4, 5]; track index) {
             <div uiOtpInputSlot [index]="index" uiText></div>

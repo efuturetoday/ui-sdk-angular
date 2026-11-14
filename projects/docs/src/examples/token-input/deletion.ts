@@ -62,8 +62,7 @@ import { injectLog } from "../../shared/log"
           uiSelect
           [items]="modes"
           [value]="deletion()"
-          (valueChange)="setDeletion($event)"
-        >
+          (valueChange)="setDeletion($event)">
           <div uiSelectLabel>Backspace</div>
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
@@ -87,8 +86,7 @@ import { injectLog } from "../../shared/log"
           uiTokenInput
           [tokenDeletion]="deletion()"
           [defaultValue]="draft"
-          (beforeValueChange)="onValueChange($event.details)"
-        >
+          (beforeValueChange)="onValueChange($event.details)">
           <div uiTokenInputEditor></div>
           <ng-container uiTriggerMenu [triggers]="triggers">
             <div *uiTriggerMenuContent="let state">
@@ -97,8 +95,7 @@ import { injectLog } from "../../shared/log"
                   <div
                     uiTriggerMenuItem
                     [value]="item.value"
-                    [label]="item.label"
-                  >
+                    [label]="item.label">
                     {{ item.label }}
                   </div>
                 }

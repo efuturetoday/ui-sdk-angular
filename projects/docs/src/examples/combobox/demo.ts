@@ -45,8 +45,7 @@ import {
             <div
               uiComboboxItem
               [value]="framework.value"
-              [label]="framework.label"
-            >
+              [label]="framework.label">
               {{ framework.label }}
               <span *uiComboboxItemIndicator>
                 <svg lucideCheck aria-hidden="true"></svg>

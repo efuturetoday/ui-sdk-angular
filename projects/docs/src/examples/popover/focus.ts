@@ -60,8 +60,7 @@ import {
             let state;
             initialFocus: 'none';
             finalFocus: 'none'
-          "
-        >
+          ">
           <h2 uiPopoverTitle>All systems normal</h2>
           <p uiPopoverDescription>Focus stays on the trigger.</p>
         </div>

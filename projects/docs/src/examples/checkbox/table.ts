@@ -24,8 +24,7 @@ import { injectLog } from "../../shared/log"
       [(value)]="selected"
       aria-label="Team members"
       [allValues]="ids"
-      (valueChange)="log($event.length + ' of ' + people.length + ' selected')"
-    >
+      (valueChange)="log($event.length + ' of ' + people.length + ' selected')">
       <table>
         <caption data-slot="visually-hidden">Team members</caption>
         <thead>
@@ -35,8 +34,7 @@ import { injectLog } from "../../shared/log"
                 uiCheckbox
                 #box="uiCheckbox"
                 aria-label="Select all"
-                parent
-              >
+                parent>
                 <span *uiCheckboxIndicator>
                   <svg lucideCheck aria-hidden="true"></svg>
                   <svg lucideMinus aria-hidden="true"></svg>
@@ -57,8 +55,7 @@ import { injectLog } from "../../shared/log"
                   uiCheckbox
                   #box2="uiCheckbox"
                   [value]="person.id"
-                  [attr.aria-label]="'Select ' + person.name"
-                >
+                  [attr.aria-label]="'Select ' + person.name">
                   <span *uiCheckboxIndicator>
                     <svg lucideCheck aria-hidden="true"></svg>
                   </span>

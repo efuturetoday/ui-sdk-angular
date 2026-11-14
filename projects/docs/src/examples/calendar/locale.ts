@@ -35,8 +35,7 @@ import {
       locale="de-DE"
       [weekStartsOn]="1"
       weekdayFormat="narrow"
-      defaultValue="2026-10-16"
-    >
+      defaultValue="2026-10-16">
       <div data-slot="row">
         <button uiCalendarPrevious data-variant="ghost">
           <svg lucideChevronLeft aria-hidden="true"></svg>

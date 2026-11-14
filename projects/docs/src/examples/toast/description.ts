@@ -26,8 +26,7 @@ import {
           title: 'Event has been created',
           description: 'Monday, January 3rd at 6:00pm',
         })
-      "
-    >
+      ">
       Show toast
     </button>
     <section uiToastRegion #region="uiToastRegion" [toaster]="toast">

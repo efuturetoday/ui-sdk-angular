@@ -51,8 +51,7 @@ import {
         <input
           uiCommandInput
           aria-label="Search commands"
-          placeholder="Type a command or search…"
-        />
+          placeholder="Type a command or search…" />
       </div>
       <div uiCommandEmpty>No results found.</div>
       <div uiCommandList>

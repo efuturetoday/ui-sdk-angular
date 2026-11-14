@@ -36,8 +36,7 @@ import {
       pageBy="page"
       defaultValue="2026-10-16"
       weekdayFormat="narrow"
-      monthFormat="short"
-    >
+      monthFormat="short">
       <div data-slot="row">
         <button uiCalendarPrevious data-variant="ghost">
           <svg lucideChevronLeft aria-hidden="true"></svg>

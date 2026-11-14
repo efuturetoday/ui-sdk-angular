@@ -33,8 +33,7 @@ import {
         <input
           uiFieldControl
           uiTriggerMenuInput
-          placeholder="Type # to link a channel…"
-        />
+          placeholder="Type # to link a channel…" />
       </div>
       <div *uiTriggerMenuContent="let state">
         <div uiTriggerMenuStatus #status="uiTriggerMenuStatus">

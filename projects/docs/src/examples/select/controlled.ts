@@ -44,8 +44,7 @@ import { injectLog } from "../../shared/log"
           (beforeValueChange)="changeValue($event.value, $event.details)"
           (beforeOpenChange)="
             log('open: ' + $event.open + ' (' + $event.details.reason + ')')
-          "
-        >
+          ">
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
             <svg lucideChevronDown aria-hidden="true"></svg>

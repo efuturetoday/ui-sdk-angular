@@ -33,8 +33,7 @@ import {
           style: 'currency',
           currency: 'USD',
           maximumFractionDigits: 0,
-        }"
-      >
+        }">
         <div data-slot="row">
           <label uiFieldLabel>Price</label>
           <output uiSliderValue uiText></output>

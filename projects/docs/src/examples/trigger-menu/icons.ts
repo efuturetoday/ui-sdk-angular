@@ -42,8 +42,7 @@ import {
         <input
           uiFieldControl
           uiTriggerMenuInput
-          placeholder="Type / for commands…"
-        />
+          placeholder="Type / for commands…" />
       </div>
       <div *uiTriggerMenuContent="let state">
         <div uiTriggerMenuList>

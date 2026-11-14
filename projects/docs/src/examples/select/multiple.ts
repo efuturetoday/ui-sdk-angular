@@ -33,8 +33,7 @@ import { injectLog } from "../../shared/log"
         multiple
         [defaultValue]="['en', 'ja']"
         placeholder="Select languages"
-        (valueChange)="log('value: ' + json($event))"
-      >
+        (valueChange)="log('value: ' + json($event))">
         <button uiSelectTrigger>
           <span uiSelectValue #current="uiSelectValue">
             {{

@@ -28,8 +28,7 @@ import { injectLog } from "../../shared/log"
   template: `
     <ng-container
       uiDialog
-      (beforeOpenChange)="onOpenChange($event.open, $event.details)"
-    >
+      (beforeOpenChange)="onOpenChange($event.open, $event.details)">
       <button uiDialogTrigger>New Article</button>
       <div *uiDialogBackdrop></div>
       <div *uiDialogContent>
@@ -43,8 +42,7 @@ import { injectLog } from "../../shared/log"
             <input
               uiInput
               required
-              defaultValue="Shipping updates for spring"
-            />
+              defaultValue="Shipping updates for spring" />
           </div>
           <div data-slot="row">
             <button type="submit" value="draft">Save Draft</button>

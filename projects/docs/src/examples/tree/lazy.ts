@@ -54,8 +54,7 @@ async function fetchChildren(value: string, signal: AbortSignal) {
       uiTree
       aria-label="Database"
       [loadChildren]="loadChildren"
-      [announcement]="announcement"
-    >
+      [announcement]="announcement">
       <ng-template #level let-list>
         @for (item of asNodes(list); track item.value) {
           <div uiTreeItem [value]="item.value" [branch]="item.branch">
@@ -79,8 +78,7 @@ async function fetchChildren(value: string, signal: AbortSignal) {
                   [ngTemplateOutlet]="level"
                   [ngTemplateOutletContext]="{
                     $implicit: loaded()[item.value],
-                  }"
-                />
+                  }" />
               </div>
             }
           </div>
@@ -88,8 +86,7 @@ async function fetchChildren(value: string, signal: AbortSignal) {
       </ng-template>
       <ng-container
         [ngTemplateOutlet]="level"
-        [ngTemplateOutletContext]="{ $implicit: top }"
-      />
+        [ngTemplateOutletContext]="{ $implicit: top }" />
     </div>
   `,
 })

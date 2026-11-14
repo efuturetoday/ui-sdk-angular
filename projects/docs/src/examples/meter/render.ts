@@ -28,8 +28,7 @@ import {
           #indicator="uiMeterIndicator"
           [attr.data-variant]="
             indicator.state().percent >= 90 ? 'destructive' : undefined
-          "
-        ></div>
+          "></div>
       </span>
     </div>
   `,

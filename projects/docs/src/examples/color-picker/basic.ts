@@ -42,8 +42,7 @@ const formats: { label: string; value: ColorFormat }[] = [
       uiColorPicker
       [(value)]="value"
       aria-label="Brand color"
-      [format]="format()"
-    >
+      [format]="format()">
       <div uiColorPickerArea>
         <div uiColorPickerAreaThumb></div>
       </div>
@@ -65,8 +64,7 @@ const formats: { label: string; value: ColorFormat }[] = [
         <select
           aria-label="Format"
           [value]="format()"
-          (change)="changeFormat($event)"
-        >
+          (change)="changeFormat($event)">
           @for (option of formats; track option.value) {
             <option [value]="option.value">{{ option.label }}</option>
           }

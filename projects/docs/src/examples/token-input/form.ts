@@ -34,8 +34,7 @@ import { uniqueId } from "../../shared/id"
             uiCheckbox
             #disabledBox="uiCheckbox"
             [checked]="disabled()"
-            (checkedChange)="disabled.set($event === true)"
-          >
+            (checkedChange)="disabled.set($event === true)">
             <span *uiCheckboxIndicator>
               <svg lucideCheck aria-hidden="true"></svg>
             </span>
@@ -48,8 +47,7 @@ import { uniqueId } from "../../shared/id"
             uiCheckbox
             #readOnlyBox="uiCheckbox"
             [checked]="readOnly()"
-            (checkedChange)="readOnly.set($event === true)"
-          >
+            (checkedChange)="readOnly.set($event === true)">
             <span *uiCheckboxIndicator>
               <svg lucideCheck aria-hidden="true"></svg>
             </span>
@@ -67,8 +65,7 @@ import { uniqueId } from "../../shared/id"
             name="prompt"
             required
             [defaultValue]="draft"
-            [readOnly]="readOnly()"
-          >
+            [readOnly]="readOnly()">
             <div uiTokenInputEditor></div>
           </ng-container>
         </div>

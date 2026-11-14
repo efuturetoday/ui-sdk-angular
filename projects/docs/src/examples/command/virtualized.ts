@@ -23,15 +23,13 @@ type Row = { value: string; label: string }
       <input
         uiCommandInput
         aria-label="Search 10,000 commands"
-        placeholder="Search 10,000 commands…"
-      />
+        placeholder="Search 10,000 commands…" />
       <div uiCommandList #list="uiCommandList">
         <div
           *uiVirtualFor="let item of rows(list.state().items); rowHeight: 32"
           uiCommandItem
           [value]="item.value"
-          [label]="item.label"
-        >
+          [label]="item.label">
           {{ item.label }}
         </div>
       </div>

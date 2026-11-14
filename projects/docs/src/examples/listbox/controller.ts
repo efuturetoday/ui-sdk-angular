@@ -32,8 +32,7 @@ import { injectLog } from "../../shared/log"
               $event.details.reason +
               ')'
           )
-        "
-      >
+        ">
         @for (topping of toppings; track topping.value) {
           <div uiListboxItem [value]="topping.value">
             {{ topping.label }}

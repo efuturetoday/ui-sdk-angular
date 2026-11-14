@@ -28,8 +28,7 @@ import { uniqueId } from "../../shared/id"
           name="shipping"
           [form]="id + '-checkout'"
           required
-          defaultValue="standard"
-        >
+          defaultValue="standard">
           @for (speed of speeds; track speed.value) {
             <label data-slot="label">
               <button uiRadio #radio="uiRadio" [value]="speed.value">

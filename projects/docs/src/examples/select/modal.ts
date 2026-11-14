@@ -34,8 +34,7 @@ import { injectLog } from "../../shared/log"
           <button
             type="button"
             [attr.aria-pressed]="modal() === mode.value"
-            (click)="modal.set(mode.value)"
-          >
+            (click)="modal.set(mode.value)">
             {{ mode.label }}
           </button>
         }

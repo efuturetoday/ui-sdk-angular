@@ -55,8 +55,7 @@ type Align = "start" | "center" | "end"
           uiSelect
           [items]="alignments"
           [value]="align()"
-          (valueChange)="setAlign($event)"
-        >
+          (valueChange)="setAlign($event)">
           <div uiSelectLabel>Align</div>
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>

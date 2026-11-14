@@ -29,8 +29,7 @@ import { injectLog } from "../../shared/log"
           uiTooltipTrigger
           data-variant="solid"
           [attr.aria-disabled]="blocked() || undefined"
-          (click)="publish()"
-        >
+          (click)="publish()">
           Publish
         </button>
         <div *uiTooltipContent="let state; side: 'right'">

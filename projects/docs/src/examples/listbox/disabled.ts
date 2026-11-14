@@ -21,14 +21,12 @@ import {
         multiple
         [disabled]="disabled()"
         [defaultValue]="['basil']"
-        aria-label="Toppings"
-      >
+        aria-label="Toppings">
         @for (topping of toppings; track topping.value) {
           <div
             uiListboxItem
             [value]="topping.value"
-            [disabled]="topping.value === 'olive'"
-          >
+            [disabled]="topping.value === 'olive'">
             {{ topping.label }}
             <span *uiListboxItemIndicator>
               <svg lucideCheck aria-hidden="true"></svg>

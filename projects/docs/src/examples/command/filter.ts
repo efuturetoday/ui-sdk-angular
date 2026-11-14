@@ -46,8 +46,7 @@ type Mode = "fuzzy" | "contains" | "startsWith" | "words"
           uiSelect
           [items]="modes"
           [value]="mode()"
-          (valueChange)="setMode($event)"
-        >
+          (valueChange)="setMode($event)">
           <div uiSelectLabel>Filter</div>
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
@@ -67,16 +66,14 @@ type Mode = "fuzzy" | "contains" | "startsWith" | "words"
         <input
           uiCommandInput
           aria-label="Search commands"
-          placeholder="Try “nf”, “zo in” or “smiley”"
-        />
+          placeholder="Try “nf”, “zo in” or “smiley”" />
         <div uiCommandEmpty>No results found.</div>
         <div uiCommandList>
           @for (command of commands; track command.label) {
             <div
               uiCommandItem
               [value]="command.label"
-              [keywords]="command.keywords"
-            >
+              [keywords]="command.keywords">
               {{ command.label }}
             </div>
           }

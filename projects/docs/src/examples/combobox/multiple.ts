@@ -41,8 +41,7 @@ import {
       uiCombobox
       multiple
       [defaultValue]="['next', 'astro']"
-      [itemToLabel]="frameworkLabel"
-    >
+      [itemToLabel]="frameworkLabel">
       <div data-slot="stack">
         <div uiComboboxLabel>Frameworks</div>
         <div data-slot="row">
@@ -57,8 +56,7 @@ import {
                   {{ value.state().labels[index] }}
                   <button
                     uiComboboxChipRemove
-                    [attr.aria-label]="'Remove ' + value.state().labels[index]"
-                  >
+                    [attr.aria-label]="'Remove ' + value.state().labels[index]">
                     <svg lucideX aria-hidden="true"></svg>
                   </button>
                 </div>
@@ -78,8 +76,7 @@ import {
             <div
               uiComboboxItem
               [value]="framework.value"
-              [label]="framework.label"
-            >
+              [label]="framework.label">
               {{ framework.label }}
               <span *uiComboboxItemIndicator>
                 <svg lucideCheck aria-hidden="true"></svg>

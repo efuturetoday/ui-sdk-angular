@@ -34,8 +34,7 @@ import {
             [value]="item.value"
             (beforeOpenChange)="
               confirmClose(item.value, $event.open, $event.details)
-            "
-          >
+            ">
             <h3 uiAccordionHeader>
               <button uiAccordionTrigger>
                 {{ item.label }}

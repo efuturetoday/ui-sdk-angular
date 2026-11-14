@@ -18,8 +18,7 @@ import { injectLog } from "../../shared/log"
       aria-label="Framework"
       (beforeValueChange)="
         log(($event.value ?? 'Nothing') + ' (' + $event.details.reason + ')')
-      "
-    >
+      ">
       @for (framework of frameworks; track framework.value) {
         <div uiListboxItem [value]="framework.value">
           {{ framework.label }}

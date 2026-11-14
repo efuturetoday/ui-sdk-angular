@@ -55,8 +55,7 @@ import { injectLog } from "../../shared/log"
         aria-label="Pagination"
         [total]="total"
         [pageSize]="pageSize()"
-        (beforePageChange)="log('Page ' + $event.page)"
-      >
+        (beforePageChange)="log('Page ' + $event.page)">
         <ul uiPaginationList #list="uiPaginationList">
           <li uiPaginationItem>
             <button uiPaginationPrevious data-variant="ghost">
@@ -71,8 +70,7 @@ import { injectLog } from "../../shared/log"
                   uiPaginationLink
                   data-variant="ghost"
                   [page]="item"
-                  uiText
-                ></button>
+                  uiText></button>
               } @else {
                 <span uiPaginationEllipsis><svg lucideEllipsis></svg></span>
               }

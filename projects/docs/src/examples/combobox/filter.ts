@@ -70,8 +70,7 @@ type Mode = keyof typeof filters
           uiSelect
           [items]="modes"
           [value]="mode()"
-          (valueChange)="setMode($event)"
-        >
+          (valueChange)="setMode($event)">
           <div uiSelectLabel>Filter</div>
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
@@ -95,8 +94,7 @@ type Mode = keyof typeof filters
           <div data-slot="row">
             <input
               uiComboboxInput
-              placeholder="Try “an”, “swd” or “deutschland”"
-            />
+              placeholder="Try “an”, “swd” or “deutschland”" />
             <button uiComboboxTrigger aria-label="Show countries">
               <svg lucideChevronDown aria-hidden="true"></svg>
             </button>
@@ -110,8 +108,7 @@ type Mode = keyof typeof filters
                 uiComboboxItem
                 [value]="country.value"
                 [label]="country.label"
-                [keywords]="country.keywords"
-              >
+                [keywords]="country.keywords">
                 {{ country.label }}
                 <span *uiComboboxItemIndicator>
                   <svg lucideCheck aria-hidden="true"></svg>

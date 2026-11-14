@@ -27,8 +27,7 @@ import {
           [value]="m.value"
           [max]="m.max"
           [format]="m.format"
-          [locale]="m.locale"
-        >
+          [locale]="m.locale">
           <span uiMeterLabel>{{ m.label }}</span>
           <span uiMeterValue uiText></span>
           <div uiMeterTrack><div uiMeterIndicator></div></div>

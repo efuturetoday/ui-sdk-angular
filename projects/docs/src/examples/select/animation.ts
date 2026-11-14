@@ -35,8 +35,7 @@ import { injectLog } from "../../shared/log"
         defaultValue="editor"
         (openChangeComplete)="
           log($event ? 'Finished opening' : 'Finished closing')
-        "
-      >
+        ">
         <button uiSelectTrigger>
           <span uiSelectValue uiText></span>
           <svg lucideChevronDown aria-hidden="true"></svg>

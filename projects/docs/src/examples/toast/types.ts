@@ -47,14 +47,12 @@ import {
             <svg
               lucideTriangleAlert
               data-show="warning"
-              aria-hidden="true"
-            ></svg>
+              aria-hidden="true"></svg>
             <svg lucideOctagonX data-show="error" aria-hidden="true"></svg>
             <svg
               lucideLoaderCircle
               data-show="loading"
-              aria-hidden="true"
-            ></svg>
+              aria-hidden="true"></svg>
             <div *uiToastTitle uiText></div>
           </li>
         }

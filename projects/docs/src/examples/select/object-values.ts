@@ -40,8 +40,7 @@ type Member = { id: number; name: string; email: string }
         [itemToLabel]="itemToLabel"
         [isItemEqualToValue]="isEqual"
         placeholder="Unassigned"
-        (valueChange)="onValueChange($event)"
-      >
+        (valueChange)="onValueChange($event)">
         <button uiSelectTrigger>
           <span uiSelectValue uiText></span>
           <svg lucideChevronDown aria-hidden="true"></svg>

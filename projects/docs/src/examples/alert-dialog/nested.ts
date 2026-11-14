@@ -36,8 +36,9 @@ import {
           <button uiAlertDialogClose>Cancel</button>
           <ng-container
             uiAlertDialog
-            (beforeOpenChange)="onNestedOpenChange($event.open, $event.details)"
-          >
+            (beforeOpenChange)="
+              onNestedOpenChange($event.open, $event.details)
+            ">
             <button uiAlertDialogTrigger data-variant="solid">Delete</button>
             <div *uiAlertDialogBackdrop></div>
             <div *uiAlertDialogContent>

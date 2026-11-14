@@ -21,24 +21,21 @@ import {
         <button
           uiSegmentedControlItem
           #light="uiSegmentedControlItem"
-          value="light"
-        >
+          value="light">
           Light
         </button>
         <input [uiSegmentedControlInput]="light" />
         <button
           uiSegmentedControlItem
           #dark="uiSegmentedControlItem"
-          value="dark"
-        >
+          value="dark">
           Dark
         </button>
         <input [uiSegmentedControlInput]="dark" />
         <button
           uiSegmentedControlItem
           #system="uiSegmentedControlItem"
-          value="system"
-        >
+          value="system">
           System
         </button>
         <input [uiSegmentedControlInput]="system" />
@@ -46,22 +43,19 @@ import {
       <div
         uiSegmentedControl
         aria-label="Billing period"
-        defaultValue="monthly"
-      >
+        defaultValue="monthly">
         <span uiSegmentedControlIndicator></span>
         <button
           uiSegmentedControlItem
           #monthly="uiSegmentedControlItem"
-          value="monthly"
-        >
+          value="monthly">
           Monthly
         </button>
         <input [uiSegmentedControlInput]="monthly" />
         <button
           uiSegmentedControlItem
           #yearly="uiSegmentedControlItem"
-          value="yearly"
-        >
+          value="yearly">
           Yearly
         </button>
         <input [uiSegmentedControlInput]="yearly" />
@@ -69,8 +63,7 @@ import {
           uiSegmentedControlItem
           #lifetime="uiSegmentedControlItem"
           value="lifetime"
-          disabled
-        >
+          disabled>
           Lifetime
         </button>
         <input [uiSegmentedControlInput]="lifetime" />

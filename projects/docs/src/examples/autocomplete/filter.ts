@@ -34,8 +34,7 @@ import {
               uiAutocompleteItem
               [value]="tag.value"
               [label]="tag.label"
-              [keywords]="tag.keywords"
-            >
+              [keywords]="tag.keywords">
               {{ tag.label }}
               <span data-slot="hint">{{ tag.keywords[0] }}</span>
             </div>

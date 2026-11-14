@@ -35,8 +35,7 @@ import {
       defaultValue="jp"
       [itemToLabel]="countryLabel"
       (openChange)="clearQuery($event)"
-      (openChangeComplete)="!$event && trigger.focus()"
-    >
+      (openChangeComplete)="!$event && trigger.focus()">
       <button uiComboboxTrigger #trigger aria-label="Country">
         <span>
           <ng-container uiComboboxValue #current="uiComboboxValue">
@@ -52,8 +51,7 @@ import {
             uiComboboxInput
             autofocus
             aria-label="Search countries"
-            placeholder="Search…"
-          />
+            placeholder="Search…" />
         </div>
         <div uiComboboxEmpty>No countries found.</div>
         <div uiComboboxList>

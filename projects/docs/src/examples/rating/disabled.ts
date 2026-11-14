@@ -11,8 +11,7 @@ import { UiRating, UiRatingItem } from "@ngx-ui-sdk/core/rating"
       #stars="uiRating"
       aria-label="Rating"
       [defaultValue]="2"
-      disabled
-    >
+      disabled>
       @for (index of stars.items(); track index) {
         <span uiRatingItem [index]="index">
           <svg lucideStar aria-hidden="true"></svg>

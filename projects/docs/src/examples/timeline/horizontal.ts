@@ -23,8 +23,7 @@ import {
       uiTimeline
       orientation="horizontal"
       [loop]="false"
-      aria-label="Roadmap"
-    >
+      aria-label="Roadmap">
       @for (milestone of milestones; track milestone.title) {
         <div uiTimelineItem>
           <div uiTimelineMarker></div>

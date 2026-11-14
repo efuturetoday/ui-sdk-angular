@@ -44,8 +44,7 @@ import { injectLog } from "../../shared/log"
           [controller]="volume"
           (beforeValueChange)="
             log('Volume ' + $event.value + ' (' + $event.details.reason + ')')
-          "
-        >
+          ">
           <div data-slot="row">
             <label uiFieldLabel>Volume</label>
             <output uiSliderValue uiText></output>

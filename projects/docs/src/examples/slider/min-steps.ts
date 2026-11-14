@@ -32,8 +32,7 @@ import {
         [max]="1440"
         [step]="15"
         [minStepsBetweenThumbs]="16"
-        [format]="time"
-      >
+        [format]="time">
         <div data-slot="row">
           <label uiFieldLabel>Opening hours</label>
           <output uiSliderValue uiText></output>

@@ -44,8 +44,7 @@ type Recent = { type: "group"; label: string; items: Country[] }
       uiCombobox
       [items]="countries"
       [emptyItems]="recentCountries"
-      [announcement]="announcement"
-    >
+      [announcement]="announcement">
       <div data-slot="stack">
         <div uiComboboxLabel>Country</div>
         <div data-slot="row">
@@ -66,8 +65,7 @@ type Recent = { type: "group"; label: string; items: Country[] }
                   <div
                     uiComboboxItem
                     [value]="country.value"
-                    [label]="country.label"
-                  >
+                    [label]="country.label">
                     <span uiComboboxItemText uiText></span>
                     <span *uiComboboxItemIndicator>
                       <svg lucideCheck aria-hidden="true"></svg>

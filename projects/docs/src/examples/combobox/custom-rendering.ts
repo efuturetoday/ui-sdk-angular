@@ -44,8 +44,7 @@ import {
           <button
             uiComboboxTrigger
             #trigger="uiComboboxTrigger"
-            aria-label="Show people"
-          >
+            aria-label="Show people">
             @if (trigger.state().open) {
               <svg lucideChevronUp aria-hidden="true"></svg>
             } @else {
@@ -63,8 +62,7 @@ import {
               #entry="uiComboboxItem"
               [value]="user.username"
               [label]="user.name"
-              [keywords]="[user.username]"
-            >
+              [keywords]="[user.username]">
               <span data-slot="badge">{{ user.name.slice(0, 1) }}</span>
               <span data-slot="stack">
                 {{ user.name }}

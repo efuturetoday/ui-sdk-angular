@@ -46,8 +46,7 @@ import {
               <option
                 [value]="option.value"
                 [disabled]="option.disabled"
-                [selected]="option.value === monthSelect.state().value"
-              >
+                [selected]="option.value === monthSelect.state().value">
                 {{ option.label }}
               </option>
             }
@@ -57,8 +56,7 @@ import {
               <option
                 [value]="option.value"
                 [disabled]="option.disabled"
-                [selected]="option.value === yearSelect.state().value"
-              >
+                [selected]="option.value === yearSelect.state().value">
                 {{ option.label }}
               </option>
             }

@@ -30,8 +30,7 @@ import { injectLog } from "../../shared/log"
       [open]="open()"
       [dismissible]="note() === ''"
       (openChange)="$event ? open.set(true) : close()"
-      (dismissAttempt)="onDismissAttempt($event)"
-    >
+      (dismissAttempt)="onDismissAttempt($event)">
       <button uiPopoverTrigger>Add Note</button>
       <div *uiPopoverContent>
         <h2 uiPopoverTitle>Add a note</h2>
@@ -43,8 +42,7 @@ import { injectLog } from "../../shared/log"
             uiFieldControl
             placeholder="Call the printer about the proofs."
             [value]="note()"
-            (input)="note.set(field.value)"
-          ></textarea>
+            (input)="note.set(field.value)"></textarea>
           @if (asking()) {
             <div data-slot="row" role="alert">
               Discard your note?
@@ -52,16 +50,14 @@ import { injectLog } from "../../shared/log"
                 <button
                   type="button"
                   data-size="sm"
-                  (click)="asking.set(false); field.focus()"
-                >
+                  (click)="asking.set(false); field.focus()">
                   Keep Editing
                 </button>
                 <button
                   type="button"
                   data-size="sm"
                   data-variant="solid"
-                  (click)="discard()"
-                >
+                  (click)="discard()">
                   Discard
                 </button>
               </div>

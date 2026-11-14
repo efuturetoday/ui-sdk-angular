@@ -50,8 +50,7 @@ import { injectLog } from "../../shared/log"
           name="recovery"
           form="verify-sign-in"
           [maxLength]="8"
-          pattern="alphanumeric"
-        >
+          pattern="alphanumeric">
           <div uiOtpInputGroup>
             @for (index of [0, 1, 2, 3, 4, 5, 6, 7]; track index) {
               <div uiOtpInputSlot [index]="index" uiText></div>

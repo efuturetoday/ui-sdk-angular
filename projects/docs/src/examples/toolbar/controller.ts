@@ -21,8 +21,7 @@ import { injectLog } from "../../shared/log"
           <button
             uiToolbarButton
             [attr.aria-label]="action.label"
-            (click)="log(action.label)"
-          >
+            (click)="log(action.label)">
             @switch (action.icon) {
               @case ("bold") {
                 <svg lucideBold aria-hidden="true"></svg>
@@ -39,8 +38,7 @@ import { injectLog } from "../../shared/log"
       </div>
       <textarea
         aria-label="Notes"
-        placeholder="Type, then press Alt+F10"
-      ></textarea>
+        placeholder="Type, then press Alt+F10"></textarea>
     </div>
   `,
 })

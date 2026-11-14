@@ -32,8 +32,7 @@ import { UiInput } from "@ngx-ui-sdk/core/input"
           uiInput
           name="card-name"
           autocomplete="cc-name"
-          placeholder="ليلى حسن"
-        />
+          placeholder="ليلى حسن" />
       </div>
       <div uiField>
         <label uiFieldLabel>رقم البطاقة</label>
@@ -42,8 +41,7 @@ import { UiInput } from "@ngx-ui-sdk/core/input"
           name="card-number"
           inputmode="numeric"
           autocomplete="cc-number"
-          placeholder="1234 5678 9012 3456"
-        />
+          placeholder="1234 5678 9012 3456" />
         <p uiFieldDescription>أدخل الرقم المكون من 16 خانة.</p>
       </div>
       <div uiField>

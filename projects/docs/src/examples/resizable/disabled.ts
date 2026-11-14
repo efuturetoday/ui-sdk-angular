@@ -30,8 +30,7 @@ import {
             uiCheckbox
             #lock="uiCheckbox"
             [checked]="locked()"
-            (checkedChange)="locked.set($event === true)"
-          >
+            (checkedChange)="locked.set($event === true)">
             <span *uiCheckboxIndicator>
               <svg lucideCheck aria-hidden="true"></svg>
             </span>

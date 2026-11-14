@@ -34,8 +34,7 @@ import {
       uiCommand
       [(pages)]="pages"
       [controller]="command"
-      [onAction]="onAction"
-    >
+      [onAction]="onAction">
       <div data-slot="row">
         @for (page of pages(); track page) {
           <span data-slot="badge">{{ page }}</span>
@@ -48,8 +47,7 @@ import {
           pages().length
             ? 'Search… (Backspace to go back)'
             : 'What do you need?'
-        "
-      />
+        " />
       <div uiCommandEmpty>No results found.</div>
       <div uiCommandList>
         <ng-container *uiCommandPage>

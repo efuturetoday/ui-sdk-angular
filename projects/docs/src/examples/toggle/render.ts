@@ -10,8 +10,7 @@ import { UiToggle, UiToggleIcon } from "@ngx-ui-sdk/core/toggle"
       <span uiToggleIcon>
         <svg
           lucideHeart
-          [attr.fill]="heart.state().pressed ? 'currentColor' : 'none'"
-        ></svg>
+          [attr.fill]="heart.state().pressed ? 'currentColor' : 'none'"></svg>
       </span>
     </button>
   `,

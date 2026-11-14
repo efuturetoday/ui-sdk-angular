@@ -34,8 +34,7 @@ import {
               uiAutocompleteItem
               [value]="page.title"
               [label]="page.title"
-              [href]="page.href"
-            >
+              [href]="page.href">
               {{ page.title }}
               <span data-slot="hint">{{ page.section }}</span>
             </a>

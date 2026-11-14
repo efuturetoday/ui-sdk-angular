@@ -32,8 +32,7 @@ import { injectLog } from "../../shared/log"
         <button
           uiToggle
           [attr.aria-label]="style.label"
-          (pressedChange)="log(style.label + ' ' + ($event ? 'on' : 'off'))"
-        >
+          (pressedChange)="log(style.label + ' ' + ($event ? 'on' : 'off'))">
           <span uiToggleIcon>
             @switch (style.icon) {
               @case ("bold") {
@@ -53,8 +52,7 @@ import { injectLog } from "../../shared/log"
       <button
         uiToolbarButton
         aria-label="Insert link"
-        (click)="log('Insert link')"
-      >
+        (click)="log('Insert link')">
         <svg lucideLink aria-hidden="true"></svg>
       </button>
     </div>

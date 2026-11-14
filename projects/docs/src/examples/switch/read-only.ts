@@ -27,8 +27,7 @@ import { UiSwitch, UiSwitchInput, UiSwitchThumb } from "@ngx-ui-sdk/core/switch"
         #encrypt="uiSwitch"
         name="encrypt"
         defaultChecked
-        readOnly
-      >
+        readOnly>
         <span uiSwitchThumb></span>
       </button>
       <input [uiSwitchInput]="encrypt" />

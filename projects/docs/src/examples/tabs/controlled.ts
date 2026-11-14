@@ -25,8 +25,7 @@ import {
         [controller]="tabs"
         (beforeValueChange)="
           log('value: ' + $event.value + ' (' + $event.details.reason + ')')
-        "
-      >
+        ">
         <div uiTabsList aria-label="Mail">
           <button uiTabsTab value="inbox">Inbox</button>
           <button uiTabsTab value="drafts">Drafts</button>

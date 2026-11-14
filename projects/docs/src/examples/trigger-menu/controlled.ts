@@ -31,8 +31,7 @@ import { injectLog } from "../../shared/log"
         )
       "
       (openChangeComplete)="log($event ? 'Open' : 'Closed')"
-      (queryChange)="onQuery($event.query, $event.details)"
-    >
+      (queryChange)="onQuery($event.query, $event.details)">
       <div uiField>
         <label uiFieldLabel>Message</label>
         <input uiFieldControl uiTriggerMenuInput placeholder="Type @ or /…" />

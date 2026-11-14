@@ -44,8 +44,7 @@ import {
         [items]="trace"
         [range]="range()"
         [defaultExpanded]="['render']"
-        defaultValue="metrics"
-      >
+        defaultValue="metrics">
         <div uiWaterfallHeaderRow>
           <div uiWaterfallColumnHeader>Span</div>
           <div uiWaterfallColumnHeader aria-label="Timeline">

@@ -42,8 +42,7 @@ const goal = { initial: 350, min: 200, max: 400, step: 10 }
             type="button"
             aria-label="Decrease"
             [disabled]="calories() <= goal.min"
-            (click)="calories.set(calories() - goal.step)"
-          >
+            (click)="calories.set(calories() - goal.step)">
             <svg lucideMinus aria-hidden="true"></svg>
           </button>
           <div data-slot="stack">
@@ -54,8 +53,7 @@ const goal = { initial: 350, min: 200, max: 400, step: 10 }
             type="button"
             aria-label="Increase"
             [disabled]="calories() >= goal.max"
-            (click)="calories.set(calories() + goal.step)"
-          >
+            (click)="calories.set(calories() + goal.step)">
             <svg lucidePlus aria-hidden="true"></svg>
           </button>
         </div>

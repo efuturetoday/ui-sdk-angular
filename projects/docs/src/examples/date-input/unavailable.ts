@@ -26,8 +26,7 @@ import {
         uiDateInput
         #d="uiDateInput"
         defaultValue="2026-11-02"
-        [unavailable]="{ weekday: [0, 6] }"
-      >
+        [unavailable]="{ weekday: [0, 6] }">
         @for (segment of d.state().segments; track segment.key) {
           @if (segment.editable) {
             <input uiDateInputSegment [segment]="segment" />

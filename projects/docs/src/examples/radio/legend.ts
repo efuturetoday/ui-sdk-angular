@@ -33,8 +33,7 @@ import { uniqueId } from "../../shared/id"
         uiRadioGroup
         defaultValue="monthly"
         [attr.aria-labelledby]="id + '-legend'"
-        [attr.aria-describedby]="id + '-description'"
-      >
+        [attr.aria-describedby]="id + '-description'">
         @for (period of periods; track period.value) {
           <label data-slot="label">
             <button uiRadio #radio="uiRadio" [value]="period.value">

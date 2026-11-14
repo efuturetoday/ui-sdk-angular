@@ -40,8 +40,7 @@ import { injectLog } from "../../shared/log"
             uiCheckbox
             #box="uiCheckbox"
             [checked]="open()"
-            (checkedChange)="open.set($event === true)"
-          >
+            (checkedChange)="open.set($event === true)">
             <span *uiCheckboxIndicator>
               <svg lucideCheck aria-hidden="true"></svg>
             </span>
@@ -56,8 +55,7 @@ import { injectLog } from "../../shared/log"
         (beforeOpenChange)="onOpenChange($event.open, $event.details)"
         (openChangeComplete)="
           log($event ? 'Finished opening' : 'Finished closing')
-        "
-      >
+        ">
         <button uiDialogTrigger>Notification Settings</button>
         <div *uiDialogBackdrop></div>
         <div *uiDialogContent>
@@ -71,8 +69,7 @@ import { injectLog } from "../../shared/log"
                 <button
                   uiCheckbox
                   #box2="uiCheckbox"
-                  [defaultChecked]="topic.checked"
-                >
+                  [defaultChecked]="topic.checked">
                   <span *uiCheckboxIndicator>
                     <svg lucideCheck aria-hidden="true"></svg>
                   </span>

@@ -49,8 +49,7 @@ import {
                 uiRadio
                 #radio2="uiRadio"
                 [value]="backup.value"
-                [disabled]="backup.disabled"
-              >
+                [disabled]="backup.disabled">
                 <span *uiRadioIndicator></span>
               </button>
               <input [uiRadioInput]="radio2" />

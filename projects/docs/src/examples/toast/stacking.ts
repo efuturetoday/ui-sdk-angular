@@ -37,8 +37,7 @@ import {
             uiCheckbox
             #box="uiCheckbox"
             [checked]="expanded()"
-            (checkedChange)="expanded.set($event === true)"
-          >
+            (checkedChange)="expanded.set($event === true)">
             <span *uiCheckboxIndicator>
               <svg lucideCheck aria-hidden="true"></svg>
             </span>
@@ -53,8 +52,7 @@ import {
         #region="uiToastRegion"
         [toaster]="toast"
         [maxVisible]="4"
-        [expanded]="expanded()"
-      >
+        [expanded]="expanded()">
         <ol uiToastList>
           @for (item of region.state().toasts; track item.toast.id) {
             <li [uiToast]="item.toast">

@@ -42,8 +42,7 @@ import { injectLog } from "../../shared/log"
       <ng-container
         uiCombobox
         [controller]="country"
-        [itemToLabel]="countryLabel"
-      >
+        [itemToLabel]="countryLabel">
         <div data-slot="stack">
           <div uiComboboxLabel>Country</div>
           <div data-slot="row">

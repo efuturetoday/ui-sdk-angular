@@ -18,8 +18,7 @@ import { injectLog } from "../../shared/log"
           uiDateInput
           #d="uiDateInput"
           [(value)]="value"
-          (beforeValueChange)="log('Due date ' + ($event.value ?? 'empty'))"
-        >
+          (beforeValueChange)="log('Due date ' + ($event.value ?? 'empty'))">
           @for (segment of d.state().segments; track segment.key) {
             @if (segment.editable) {
               <input uiDateInputSegment [segment]="segment" />

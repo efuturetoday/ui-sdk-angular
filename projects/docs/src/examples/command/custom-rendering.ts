@@ -23,16 +23,14 @@ import {
       <input
         uiCommandInput
         aria-label="Search docs"
-        placeholder="Search docs…"
-      />
+        placeholder="Search docs…" />
       <div uiCommandList>
         @for (page of pages; track page) {
           <a
             uiCommandItem
             #item="uiCommandItem"
             [value]="page"
-            [href]="'#' + page.toLowerCase()"
-          >
+            [href]="'#' + page.toLowerCase()">
             <span uiCommandItemText #text="uiCommandItemText">
               @for (segment of text.state().segments; track $index) {
                 @if (segment.match) {

@@ -29,8 +29,7 @@ import { uniqueId } from "../../shared/id"
             uiNumberInput
             [defaultValue]="field.defaultValue"
             [min]="field.min"
-            (valueCommit)="log(field.label + ' ' + ($event.value ?? 'empty'))"
-          >
+            (valueCommit)="log(field.label + ' ' + ($event.value ?? 'empty'))">
             <div uiNumberInputGroup>
               <span uiNumberInputScrubArea [pixelsPerStep]="1">
                 <span aria-hidden="true">{{ field.handle }}</span>

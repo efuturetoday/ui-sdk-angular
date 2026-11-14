@@ -38,8 +38,7 @@ import { injectLog } from "../../shared/log"
         [(value)]="value"
         [history]="{ limit: 50, groupDelay: 1000 }"
         [getTokenDescription]="describe"
-        (beforeValueChange)="onValueChange($event.value, $event.details)"
-      >
+        (beforeValueChange)="onValueChange($event.value, $event.details)">
         <div uiTokenInputEditor></div>
         <ng-container uiTriggerMenu [triggers]="triggers">
           <div *uiTriggerMenuContent="let state">
@@ -48,8 +47,7 @@ import { injectLog } from "../../shared/log"
                 <div
                   uiTriggerMenuItem
                   [value]="item.value"
-                  [label]="item.label"
-                >
+                  [label]="item.label">
                   {{ item.label }}
                 </div>
               }

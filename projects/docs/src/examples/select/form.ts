@@ -37,8 +37,7 @@ import { injectLog } from "../../shared/log"
             name="country"
             autoComplete="country"
             required
-            placeholder="Select a country"
-          >
+            placeholder="Select a country">
             <button uiSelectTrigger>
               <span uiSelectValue uiText></span>
               <svg lucideChevronDown aria-hidden="true"></svg>
@@ -61,8 +60,7 @@ import { injectLog } from "../../shared/log"
             uiSelect
             name="topics"
             multiple
-            [defaultValue]="['Design']"
-          >
+            [defaultValue]="['Design']">
             <button uiSelectTrigger>
               <span uiSelectValue uiText></span>
               <svg lucideChevronDown aria-hidden="true"></svg>
@@ -86,8 +84,7 @@ import { injectLog } from "../../shared/log"
           uiSelect
           name="frequency"
           form="select-newsletter"
-          defaultValue="Weekly"
-        >
+          defaultValue="Weekly">
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
             <svg lucideChevronDown aria-hidden="true"></svg>

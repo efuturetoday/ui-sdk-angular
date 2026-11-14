@@ -54,8 +54,7 @@ import { UiInput } from "@ngx-ui-sdk/core/input"
               name="email"
               type="email"
               required
-              placeholder="kofi@example.com"
-            />
+              placeholder="kofi@example.com" />
           </div>
           <div data-slot="row">
             <button uiDialogClose>Cancel</button>

@@ -37,8 +37,7 @@ import {
         [max]="24"
         [step]="0.25"
         [largeStep]="1"
-        [smallStep]="0.05"
-      >
+        [smallStep]="0.05">
         <div uiNumberInputGroup>
           <button uiNumberInputDecrement aria-label="Decrease">
             <svg lucideMinus aria-hidden="true"></svg>

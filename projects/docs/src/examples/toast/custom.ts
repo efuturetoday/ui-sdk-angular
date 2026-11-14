@@ -32,8 +32,7 @@ import { injectLog } from "../../shared/log"
       uiToastRegion
       #region="uiToastRegion"
       [toaster]="toast"
-      aria-label="Messages"
-    >
+      aria-label="Messages">
       <ol uiToastList>
         @for (item of region.state().toasts; track item.toast.id) {
           <li
@@ -44,8 +43,7 @@ import { injectLog } from "../../shared/log"
               (!entry.state().expanded && entry.state().index > 0)
                 ? ''
                 : null
-            "
-          >
+            ">
             <span data-slot="media">{{ initials(item.toast.data) }}</span>
             <div data-slot="stack">
               <div *uiToastTitle uiText></div>

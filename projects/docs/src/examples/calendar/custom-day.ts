@@ -48,16 +48,14 @@ import {
                 uiCalendarWeekday
                 #wd="uiCalendarWeekday"
                 scope="col"
-                [index]="$index"
-              >
+                [index]="$index">
                 <abbr
                   [title]="wd.state().name"
                   [attr.data-weekend]="
                     wd.state().weekday === 0 ||
                     wd.state().weekday === 6 ||
                     undefined
-                  "
-                >
+                  ">
                   {{ wd.state().label }}
                 </abbr>
               </th>

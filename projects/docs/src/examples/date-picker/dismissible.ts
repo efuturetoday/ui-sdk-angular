@@ -52,8 +52,7 @@ import {
       [dismissible]="value() !== null"
       (valueChange)="asking.set(false)"
       (openChange)="onOpen($event)"
-      (dismissAttempt)="asking.set(true)"
-    >
+      (dismissAttempt)="asking.set(true)">
       <div data-slot="row">
         <input uiDatePickerInput aria-label="Check in" placeholder="Check in" />
         <span data-slot="hint">–</span>
@@ -61,8 +60,7 @@ import {
           uiDatePickerInput
           end
           aria-label="Check out"
-          placeholder="Check out"
-        />
+          placeholder="Check out" />
         <button uiDatePickerTrigger data-variant="ghost">
           <svg lucideCalendar aria-hidden="true"></svg>
         </button>

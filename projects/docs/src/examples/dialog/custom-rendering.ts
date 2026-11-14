@@ -47,8 +47,7 @@ import {
           <a
             uiDialogClose
             data-variant="solid"
-            href="https://example.com/details"
-          >
+            href="https://example.com/details">
             Open the Full Page
           </a>
         </div>

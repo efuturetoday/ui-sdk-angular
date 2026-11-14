@@ -36,8 +36,7 @@ import {
         uiCalendar
         mode="multiple"
         [value]="dates()"
-        (valueChange)="onValueChange($event)"
-      >
+        (valueChange)="onValueChange($event)">
         <div data-slot="row">
           <button uiCalendarPrevious data-variant="ghost">
             <svg lucideChevronLeft aria-hidden="true"></svg>

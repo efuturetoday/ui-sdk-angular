@@ -50,8 +50,7 @@ const files: File[] = [
               [payload]="file"
               [attr.aria-label]="'Actions for ' + file.name"
               data-variant="ghost"
-              data-size="sm"
-            >
+              data-size="sm">
               <svg lucideEllipsis aria-hidden="true"></svg>
             </button>
           </li>

@@ -63,8 +63,7 @@ import { injectLog } from "../../shared/log"
                 <div
                   uiComboboxItem
                   [value]="country.value"
-                  [label]="country.label"
-                >
+                  [label]="country.label">
                   {{ country.label }}
                   <span *uiComboboxItemIndicator>
                     <svg lucideCheck aria-hidden="true"></svg>
@@ -91,8 +90,7 @@ import { injectLog } from "../../shared/log"
                   {{ item }}
                   <button
                     uiComboboxChipRemove
-                    [attr.aria-label]="'Remove ' + item"
-                  >
+                    [attr.aria-label]="'Remove ' + item">
                     <svg lucideX aria-hidden="true"></svg>
                   </button>
                 </div>

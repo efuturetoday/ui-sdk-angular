@@ -48,8 +48,7 @@ type Align = "start" | "center" | "end"
           uiSelect
           [items]="sides"
           [value]="side()"
-          (valueChange)="setSide($event)"
-        >
+          (valueChange)="setSide($event)">
           <div uiSelectLabel>Side</div>
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
@@ -70,8 +69,7 @@ type Align = "start" | "center" | "end"
           uiSelect
           [items]="aligns"
           [value]="align()"
-          (valueChange)="setAlign($event)"
-        >
+          (valueChange)="setAlign($event)">
           <div uiSelectLabel>Align</div>
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
@@ -92,8 +90,7 @@ type Align = "start" | "center" | "end"
       <button
         (click)="
           toast('Event created', { description: 'Friday, June 12 at 10:00 AM' })
-        "
-      >
+        ">
         Create Event
       </button>
       <section
@@ -101,8 +98,7 @@ type Align = "start" | "center" | "end"
         #region="uiToastRegion"
         [toaster]="toast"
         [side]="side()"
-        [align]="align()"
-      >
+        [align]="align()">
         <ol uiToastList>
           @for (item of region.state().toasts; track item.toast.id) {
             <li [uiToast]="item.toast">

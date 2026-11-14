@@ -13,8 +13,7 @@ import { injectLog } from "../../shared/log"
         uiToolbarButton
         disabled
         [focusableWhenDisabled]="false"
-        (click)="log('Delete')"
-      >
+        (click)="log('Delete')">
         Delete
       </button>
     </div>

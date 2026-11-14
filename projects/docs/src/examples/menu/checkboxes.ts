@@ -30,8 +30,7 @@ import { injectLog } from "../../shared/log"
       uiMenu
       (checkedChange)="
         log($event.details.value + ' ' + ($event.checked ? 'on' : 'off'))
-      "
-    >
+      ">
       <button uiMenuTrigger>View</button>
       <div *uiMenuContent="let state">
         <div uiMenuGroup>

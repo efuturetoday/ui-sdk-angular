@@ -37,8 +37,7 @@ import {
               previous.state().disabled
                 ? undefined
                 : 'Go to page ' + previous.state().page
-            "
-          >
+            ">
             <svg lucideArrowLeft aria-hidden="true"></svg>
             @if (!previous.state().disabled) {
               <span aria-hidden="true">{{ previous.state().page }}</span>
@@ -69,8 +68,7 @@ import {
               next.state().disabled
                 ? undefined
                 : 'Go to page ' + next.state().page
-            "
-          >
+            ">
             @if (!next.state().disabled) {
               <span aria-hidden="true">{{ next.state().page }}</span>
             }

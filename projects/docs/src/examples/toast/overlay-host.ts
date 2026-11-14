@@ -47,8 +47,7 @@ import { createToaster, UiToast, UiToastTitle } from "@ngx-ui-sdk/core/toast"
         <button
           #reset
           type="button"
-          (click)="projects.set(['Acme', 'Globex', 'Initech'])"
-        >
+          (click)="projects.set(['Acme', 'Globex', 'Initech'])">
           Reset Projects
         </button>
       </div>
@@ -60,8 +59,7 @@ import { createToaster, UiToast, UiToastTitle } from "@ngx-ui-sdk/core/toast"
               type="button"
               data-size="sm"
               [attr.aria-label]="'Delete ' + name"
-              (click)="remove(name, $any($event.currentTarget))"
-            >
+              (click)="remove(name, $any($event.currentTarget))">
               Delete
             </button>
           </li>

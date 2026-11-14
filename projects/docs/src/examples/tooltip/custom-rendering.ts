@@ -13,8 +13,7 @@ import {
       <a
         uiTooltipTrigger
         data-variant="link"
-        href="https://example.com/changelog"
-      >
+        href="https://example.com/changelog">
         Changelog
       </a>
       <div *uiTooltipContent>See what's new in 2.0</div>

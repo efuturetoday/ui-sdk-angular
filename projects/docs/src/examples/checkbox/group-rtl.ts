@@ -22,8 +22,7 @@ import {
       <div
         uiCheckboxGroup
         aria-labelledby="rtl-toppings"
-        [defaultValue]="['cheese']"
-      >
+        [defaultValue]="['cheese']">
         @for (topping of toppings; track topping.value) {
           <label data-slot="label">
             <button uiCheckbox #box="uiCheckbox" [value]="topping.value">

@@ -15,8 +15,7 @@ import {
         #files="uiResizablePanel"
         [defaultSize]="35"
         [minSize]="20"
-        collapsible
-      >
+        collapsible>
         <h3>Files</h3>
         <span data-slot="hint">
           {{

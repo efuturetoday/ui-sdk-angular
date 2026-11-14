@@ -47,8 +47,7 @@ type Invoice = {
               [controller]="reminder"
               [payload]="invoice"
               [disabled]="invoice.status === 'Paid'"
-              [attr.aria-label]="'Remind ' + invoice.customer"
-            >
+              [attr.aria-label]="'Remind ' + invoice.customer">
               Remind
             </button>
           </li>
@@ -57,8 +56,7 @@ type Invoice = {
       <ng-container
         uiDialog
         [controller]="reminder"
-        (beforeOpenChange)="onOpenChange($event.open, $event.details)"
-      >
+        (beforeOpenChange)="onOpenChange($event.open, $event.details)">
         <div *uiDialogBackdrop></div>
         <div *uiDialogContent="let state">
           <div data-slot="stack">

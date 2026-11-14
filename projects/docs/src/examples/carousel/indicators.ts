@@ -34,8 +34,7 @@ import {
           <button
             uiCarouselIndicator
             [page]="index + 1"
-            [attr.aria-label]="photo.name"
-          ></button>
+            [attr.aria-label]="photo.name"></button>
         }
       </div>
     </div>

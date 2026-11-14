@@ -34,8 +34,7 @@ import {
               anchor: field;
               side: 'bottom';
               align: 'start'
-            "
-          >
+            ">
             We send a POST request here for every new order.
           </div>
         </ng-container>

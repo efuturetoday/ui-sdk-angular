@@ -31,8 +31,7 @@ import { injectLog } from "../../shared/log"
       [defaultValue]="['updates', 'website']"
       [expandOnPress]="false"
       [defaultExpanded]="['inbox', 'projects']"
-      (valueChange)="onValue($event)"
-    >
+      (valueChange)="onValue($event)">
       <ng-template #level let-list>
         @for (item of asItems(list); track item.value) {
           <div uiTreeItem [value]="item.value">
@@ -48,8 +47,7 @@ import { injectLog } from "../../shared/log"
               <div *uiTreeGroup>
                 <ng-container
                   [ngTemplateOutlet]="level"
-                  [ngTemplateOutletContext]="{ $implicit: item.children }"
-                />
+                  [ngTemplateOutletContext]="{ $implicit: item.children }" />
               </div>
             }
           </div>
@@ -57,8 +55,7 @@ import { injectLog } from "../../shared/log"
       </ng-template>
       <ng-container
         [ngTemplateOutlet]="level"
-        [ngTemplateOutletContext]="{ $implicit: items }"
-      />
+        [ngTemplateOutletContext]="{ $implicit: items }" />
     </div>
   `,
 })

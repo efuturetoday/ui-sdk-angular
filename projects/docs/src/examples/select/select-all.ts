@@ -38,15 +38,13 @@ import {
         uiSelect
         multiple
         [defaultValue]="['us-east', 'europe', 'asia-pacific']"
-        placeholder="Select regions"
-      >
+        placeholder="Select regions">
         <button uiSelectTrigger>
           <span
             uiSelectValue
             [maxLabels]="2"
             [getMoreLabel]="moreLabel"
-            uiText
-          ></span>
+            uiText></span>
           <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent>

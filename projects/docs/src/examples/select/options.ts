@@ -38,8 +38,7 @@ import {
         uiSelect
         [items]="sizeGroups"
         name="size"
-        defaultValue="Medium"
-      >
+        defaultValue="Medium">
         <button uiSelectTrigger>
           <span uiSelectValue uiText></span>
           <svg lucideChevronDown aria-hidden="true"></svg>

@@ -37,8 +37,7 @@ import { injectLog } from "../../shared/log"
         [deselectable]="false"
         orientation="vertical"
         aria-label="Tool"
-        (valueChange)="onTool($event[0])"
-      >
+        (valueChange)="onTool($event[0])">
         <button uiToggle value="select" aria-label="Select">
           <span uiToggleIcon><svg lucideMousePointer2></svg></span>
         </button>
@@ -56,8 +55,7 @@ import { injectLog } from "../../shared/log"
       <button
         uiToolbarButton
         aria-label="Delete"
-        (click)="log('Deleted selection')"
-      >
+        (click)="log('Deleted selection')">
         <svg lucideTrash2 aria-hidden="true"></svg>
       </button>
     </div>

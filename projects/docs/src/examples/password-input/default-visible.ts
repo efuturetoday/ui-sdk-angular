@@ -30,14 +30,12 @@ import {
         uiPasswordInput
         defaultVisible
         defaultValue="maple-orbit-42"
-        autoComplete="new-password"
-      >
+        autoComplete="new-password">
         <input uiPasswordInputControl />
         <button
           uiPasswordInputToggle
           #toggle="uiPasswordInputToggle"
-          aria-label="Show password"
-        >
+          aria-label="Show password">
           @if (toggle.state().visible) {
             <svg lucideEyeOff aria-hidden="true"></svg>
           } @else {

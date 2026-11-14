@@ -37,8 +37,7 @@ import {
             collisionPadding: 8;
             anchor: box;
             keepMounted: true
-          "
-        >
+          ">
           <div uiAutocompleteEmpty>No fruits found.</div>
           <div uiAutocompleteList>
             @for (fruit of fruits; track fruit) {

@@ -58,8 +58,7 @@ type Mode = "true" | "trap-focus" | "false"
           uiSelect
           [items]="modes"
           [value]="mode()"
-          (valueChange)="setMode($event)"
-        >
+          (valueChange)="setMode($event)">
           <div uiSelectLabel>Modal</div>
           <button uiSelectTrigger>
             <span uiSelectValue uiText></span>
@@ -81,8 +80,7 @@ type Mode = "true" | "trap-focus" | "false"
             uiCheckbox
             #box="uiCheckbox"
             [checked]="outside()"
-            (checkedChange)="outside.set($event === true)"
-          >
+            (checkedChange)="outside.set($event === true)">
             <span *uiCheckboxIndicator>
               <svg lucideCheck aria-hidden="true"></svg>
             </span>
@@ -94,8 +92,7 @@ type Mode = "true" | "trap-focus" | "false"
       <ng-container
         uiDialog
         [modal]="modal()"
-        [closeOnOutsidePress]="outside()"
-      >
+        [closeOnOutsidePress]="outside()">
         <button uiDialogTrigger>Open Notes</button>
         @if (modal() === true) {
           <div *uiDialogBackdrop></div>

@@ -23,8 +23,7 @@ import {
         [defaultSize]="30"
         [minSize]="25"
         collapsible
-        collapsedSize="48px"
-      >
+        collapsedSize="48px">
         <ul>
           <li data-slot="row">
             <svg lucideFolder aria-hidden="true"></svg>

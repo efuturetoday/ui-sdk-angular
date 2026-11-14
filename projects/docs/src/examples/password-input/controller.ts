@@ -34,14 +34,12 @@ import {
         <div
           uiPasswordInput
           [controller]="password"
-          autoComplete="new-password"
-        >
+          autoComplete="new-password">
           <input uiPasswordInputControl />
           <button
             uiPasswordInputToggle
             #toggle="uiPasswordInputToggle"
-            aria-label="Show password"
-          >
+            aria-label="Show password">
             @if (toggle.state().visible) {
               <svg lucideEyeOff aria-hidden="true"></svg>
             } @else {

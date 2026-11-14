@@ -15,8 +15,7 @@ import { UiCheckbox, UiCheckboxInput } from "@ngx-ui-sdk/core/checkbox"
             #box="uiCheckbox"
             name="topics"
             [value]="topic.value"
-            [defaultChecked]="topic.checked"
-          >
+            [defaultChecked]="topic.checked">
             @if (box.state().checked) {
               <svg lucideCheck></svg>
             } @else {

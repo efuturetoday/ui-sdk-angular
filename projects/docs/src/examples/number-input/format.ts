@@ -32,8 +32,7 @@ import {
             [defaultValue]="field.defaultValue"
             [step]="field.step"
             [format]="field.format"
-            [min]="0"
-          >
+            [min]="0">
             <div uiNumberInputGroup>
               <button uiNumberInputDecrement aria-label="Decrease">
                 <svg lucideMinus aria-hidden="true"></svg>

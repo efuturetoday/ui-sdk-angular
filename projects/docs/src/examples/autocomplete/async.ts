@@ -66,8 +66,7 @@ function searchCities(query: string, { signal }: { signal: AbortSignal }) {
       [filter]="false"
       [status]="results.state().status"
       (valueChange)="results.setQuery($event)"
-      (loadMore)="results.loadMore()"
-    >
+      (loadMore)="results.loadMore()">
       <div data-slot="stack">
         <div uiAutocompleteLabel>City</div>
         <input uiAutocompleteInput placeholder="e.g. Paris" />

@@ -38,8 +38,7 @@ import { injectLog } from "../../shared/log"
       [pageCount]="10"
       (beforePageChange)="
         log('Page ' + $event.page + ' (' + $event.details.reason + ')')
-      "
-    >
+      ">
       <ul uiPaginationList #list="uiPaginationList">
         <li uiPaginationItem>
           <button uiPaginationPrevious data-variant="ghost">
@@ -54,8 +53,7 @@ import { injectLog } from "../../shared/log"
                 uiPaginationLink
                 data-variant="ghost"
                 [page]="item"
-                uiText
-              ></button>
+                uiText></button>
             } @else {
               <span uiPaginationEllipsis><svg lucideEllipsis></svg></span>
             }

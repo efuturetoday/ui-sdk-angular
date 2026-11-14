@@ -34,8 +34,7 @@ import { uniqueId } from "../../shared/id"
             name="price"
             [defaultValue]="[200, 800]"
             [max]="1000"
-            [step]="10"
-          >
+            [step]="10">
             <div data-slot="row">
               <label uiFieldLabel>Price</label>
               <output uiSliderValue uiText></output>
@@ -72,8 +71,7 @@ import { uniqueId } from "../../shared/id"
           [defaultValue]="25"
           [max]="100"
           [step]="5"
-          [format]="{ style: 'unit', unit: 'kilometer' }"
-        >
+          [format]="{ style: 'unit', unit: 'kilometer' }">
           <div data-slot="row">
             <label uiFieldLabel>Distance</label>
             <output uiSliderValue uiText></output>

@@ -35,14 +35,12 @@ type Recent = { type: "group"; label: string; items: string[] }
       [items]="topics"
       [emptyItems]="recentSearches"
       openOnFocus
-      [announcement]="announcement"
-    >
+      [announcement]="announcement">
       <input
         uiAutocompleteInput
         type="search"
         aria-label="Search docs"
-        placeholder="Search docs…"
-      />
+        placeholder="Search docs…" />
       <div *uiAutocompleteContent>
         <div uiAutocompleteEmpty>No topics found.</div>
         <div uiAutocompleteList #list="uiAutocompleteList">

@@ -40,8 +40,7 @@ import {
       uiCombobox
       multiple
       [defaultValue]="['fr', 'jp', 'se', 'de', 'ch']"
-      [itemToLabel]="countryLabel"
-    >
+      [itemToLabel]="countryLabel">
       <div data-slot="stack">
         <div uiComboboxLabel>Countries</div>
         <div uiComboboxChips>
@@ -55,8 +54,7 @@ import {
                 {{ value.state().labels[index] }}
                 <button
                   uiComboboxChipRemove
-                  [attr.aria-label]="'Remove ' + value.state().labels[index]"
-                >
+                  [attr.aria-label]="'Remove ' + value.state().labels[index]">
                   <svg lucideX aria-hidden="true"></svg>
                 </button>
               </div>
@@ -66,8 +64,7 @@ import {
             uiComboboxChipsOverflow
             #overflow="uiComboboxChipsOverflow"
             [title]="overflow.state().labels.join(', ')"
-            data-slot="hint"
-          >
+            data-slot="hint">
             +{{ overflow.state().count }}
           </span>
           <input uiComboboxInput placeholder="Add…" />
@@ -77,8 +74,7 @@ import {
             uiComboboxValue
             #summary="uiComboboxValue"
             [maxLabels]="2"
-            [getMoreLabel]="moreLabel"
-          >
+            [getMoreLabel]="moreLabel">
             {{ summary.state().label }}
           </ng-container>
         </p>

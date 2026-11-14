@@ -21,8 +21,7 @@ type Plan = { id: string; price: number }
       [itemToValue]="itemToValue"
       [isItemEqualToValue]="isItemEqualToValue"
       aria-label="Plan"
-      (beforeValueChange)="onValueChange($any($event.value))"
-    >
+      (beforeValueChange)="onValueChange($any($event.value))">
       @for (plan of plans; track plan.value.id) {
         <div uiListboxItem [value]="plan.value" [disabled]="plan.disabled">
           {{ plan.label }}

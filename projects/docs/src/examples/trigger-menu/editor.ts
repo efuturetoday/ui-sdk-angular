@@ -35,8 +35,7 @@ import {
         <textarea
           #notes
           uiFieldControl
-          placeholder="Type @ to mention someone…"
-        ></textarea>
+          placeholder="Type @ to mention someone…"></textarea>
       </div>
       <div *uiTriggerMenuContent="let state">
         <div uiTriggerMenuList #list="uiTriggerMenuList">

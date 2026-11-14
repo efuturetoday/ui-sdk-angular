@@ -36,8 +36,7 @@ type Node = { value: string; label: string; children?: Node[] }
       uiTree
       aria-label="Files"
       [defaultExpanded]="['app']"
-      defaultValue="app/page.tsx"
-    >
+      defaultValue="app/page.tsx">
       <ng-template #level let-list>
         @for (node of asNodes(list); track node.value) {
           <div uiTreeItem [value]="node.value">
@@ -57,8 +56,7 @@ type Node = { value: string; label: string; children?: Node[] }
               <div *uiTreeGroup>
                 <ng-container
                   [ngTemplateOutlet]="level"
-                  [ngTemplateOutletContext]="{ $implicit: node.children }"
-                />
+                  [ngTemplateOutletContext]="{ $implicit: node.children }" />
               </div>
             }
           </div>
@@ -66,8 +64,7 @@ type Node = { value: string; label: string; children?: Node[] }
       </ng-template>
       <ng-container
         [ngTemplateOutlet]="level"
-        [ngTemplateOutletContext]="{ $implicit: files }"
-      />
+        [ngTemplateOutletContext]="{ $implicit: files }" />
     </div>
   `,
 })

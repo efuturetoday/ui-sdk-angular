@@ -25,24 +25,21 @@ import {
         <button
           uiSegmentedControlItem
           #list="uiSegmentedControlItem"
-          value="list"
-        >
+          value="list">
           List
         </button>
         <input [uiSegmentedControlInput]="list" />
         <button
           uiSegmentedControlItem
           #grid="uiSegmentedControlItem"
-          value="grid"
-        >
+          value="grid">
           Grid
         </button>
         <input [uiSegmentedControlInput]="grid" />
         <button
           uiSegmentedControlItem
           #board="uiSegmentedControlItem"
-          value="board"
-        >
+          value="board">
           Board
         </button>
         <input [uiSegmentedControlInput]="board" />

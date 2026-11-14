@@ -14,8 +14,7 @@
         uiTooltipTrigger
         class="reset"
         aria-label="Reset"
-        (click)="reset()"
-      >
+        (click)="reset()">
         <svg lucideRotateCcw aria-hidden="true"></svg>
       </button>
       <div *uiTooltipContent class="tooltip">Reset</div>
@@ -24,8 +23,7 @@
   <div
     *uiTabsPanel="'preview'; keepMounted: true"
     class="preview"
-    [attr.data-example]="name()"
-  >
+    [attr.data-example]="name()">
     @for (current of [run()]; track current) {
       @if (component.value(); as example) {
         <ng-container *ngComponentOutlet="example; injector: injector" />

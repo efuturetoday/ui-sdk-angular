@@ -43,8 +43,7 @@ import {
               <div
                 uiAutocompleteItem
                 [value]="fruit"
-                [disabled]="index % 3 === 0"
-              >
+                [disabled]="index % 3 === 0">
                 {{ fruit }}
               </div>
             }

@@ -14,8 +14,7 @@ import { injectLog } from "../../shared/log"
     <ng-container
       uiTooltip
       (openChange)="log($event ? 'Opening' : 'Closing')"
-      (openChangeComplete)="log($event ? 'Open' : 'Closed')"
-    >
+      (openChangeComplete)="log($event ? 'Open' : 'Closed')">
       <button uiTooltipTrigger aria-label="Archive">
         <svg lucideArchive aria-hidden="true"></svg>
       </button>

@@ -27,8 +27,7 @@ import {
         #d="uiDateInput"
         min="2026-01-01"
         max="2026-12-31"
-        defaultValue="2026-06-15"
-      >
+        defaultValue="2026-06-15">
         @for (segment of d.state().segments; track segment.key) {
           @if (segment.editable) {
             <input uiDateInputSegment [segment]="segment" />

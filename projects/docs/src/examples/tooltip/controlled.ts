@@ -40,8 +40,9 @@ import { injectLog } from "../../shared/log"
       <ng-container
         uiTooltip
         [(open)]="open"
-        (beforeOpenChange)="onOpenChange($event.open, $event.details, controls)"
-      >
+        (beforeOpenChange)="
+          onOpenChange($event.open, $event.details, controls)
+        ">
         <button uiTooltipTrigger>Export</button>
         <div *uiTooltipContent>Download as CSV</div>
       </ng-container>

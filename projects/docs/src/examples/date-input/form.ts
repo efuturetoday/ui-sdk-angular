@@ -26,8 +26,7 @@ import { injectLog } from "../../shared/log"
           #d="uiDateInput"
           name="date"
           defaultValue="2026-11-02"
-          required
-        >
+          required>
           @for (segment of d.state().segments; track segment.key) {
             @if (segment.editable) {
               <input uiDateInputSegment [segment]="segment" />
@@ -45,8 +44,7 @@ import { injectLog } from "../../shared/log"
           #t="uiTimeInput"
           name="time"
           defaultValue="09:30"
-          required
-        >
+          required>
           @for (segment of t.state().segments; track segment.key) {
             @if (segment.editable) {
               <input uiTimeInputSegment [segment]="segment" />

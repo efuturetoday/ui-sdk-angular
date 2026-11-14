@@ -57,8 +57,7 @@ import { injectLog } from "../../shared/log"
                 $event.details.reason +
                 ')'
             )
-          "
-        >
+          ">
           <div uiNumberInputGroup>
             <button uiNumberInputDecrement aria-label="Decrease">
               <svg lucideMinus aria-hidden="true"></svg>

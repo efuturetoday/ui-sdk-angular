@@ -13,8 +13,7 @@ import { injectLog } from "../../shared/log"
   template: `
     <div
       uiResizable
-      (layoutCommit)="onLayoutCommit($event.layout, $event.details)"
-    >
+      (layoutCommit)="onLayoutCommit($event.layout, $event.details)">
       <div uiResizablePanel [defaultSize]="40" [minSize]="20">
         <h3>Files</h3>
         <ul>

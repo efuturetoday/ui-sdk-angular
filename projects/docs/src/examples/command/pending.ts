@@ -26,37 +26,32 @@ const wait = (ms: number) =>
         <input
           uiCommandInput
           aria-label="Search actions"
-          placeholder="Search actions…"
-        />
+          placeholder="Search actions…" />
         <div uiCommandList>
           <div
             uiCommandItem
             #deployItem="uiCommandItem"
             value="deploy"
-            [onSelect]="deploy"
-          >
+            [onSelect]="deploy">
             Deploy to production
             @if (deployItem.state().pending) {
               <svg
                 lucideLoaderCircle
                 data-slot="spinner"
-                aria-hidden="true"
-              ></svg>
+                aria-hidden="true"></svg>
             }
           </div>
           <div
             uiCommandItem
             #syncItem="uiCommandItem"
             value="sync"
-            [onSelect]="sync"
-          >
+            [onSelect]="sync">
             Sync with server
             @if (syncItem.state().pending) {
               <svg
                 lucideLoaderCircle
                 data-slot="spinner"
-                aria-hidden="true"
-              ></svg>
+                aria-hidden="true"></svg>
             } @else if (syncItem.state().error !== undefined) {
               <span data-slot="hint">Failed, try again</span>
             }

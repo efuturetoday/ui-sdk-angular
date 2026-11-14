@@ -19,8 +19,7 @@ import { injectLog } from "../../shared/log"
         form="pizza-order"
         required
         [defaultValue]="['cheese']"
-        aria-label="Toppings"
-      >
+        aria-label="Toppings">
         @for (topping of toppings; track topping.value) {
           <div uiListboxItem [value]="topping.value">
             {{ topping.label }}

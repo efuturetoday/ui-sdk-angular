@@ -31,8 +31,7 @@ import { injectLog } from "../../shared/log"
             #digest="uiSwitch"
             name="digest"
             value="weekly"
-            defaultChecked
-          >
+            defaultChecked>
             <span uiSwitchThumb></span>
           </button>
           <input [uiSwitchInput]="digest" />

@@ -44,8 +44,7 @@ import {
               #entry="uiSelectItem"
               [value]="member.value"
               [label]="member.name"
-              [disabled]="member.value === 'wren'"
-            >
+              [disabled]="member.value === 'wren'">
               <span data-slot="badge">{{ member.name.slice(0, 1) }}</span>
               <span data-slot="stack">
                 {{ member.name }}

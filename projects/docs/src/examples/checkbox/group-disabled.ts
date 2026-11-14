@@ -26,8 +26,7 @@ import {
           uiCheckboxGroup
           aria-labelledby="disabled-backups"
           [defaultValue]="['photos', 'documents']"
-          disabled
-        >
+          disabled>
           @for (item of backups; track item.value) {
             <label data-slot="label">
               <button uiCheckbox #box="uiCheckbox" [value]="item.value">
@@ -47,8 +46,7 @@ import {
           uiCheckboxGroup
           aria-labelledby="disabled-folders"
           [defaultValue]="['desktop']"
-          [allValues]="folderValues"
-        >
+          [allValues]="folderValues">
           <label data-slot="label">
             <button uiCheckbox #box2="uiCheckbox" parent>
               <span *uiCheckboxIndicator>
@@ -66,8 +64,7 @@ import {
                   uiCheckbox
                   #box3="uiCheckbox"
                   [value]="item.value"
-                  [disabled]="item.disabled"
-                >
+                  [disabled]="item.disabled">
                   <span *uiCheckboxIndicator>
                     <svg lucideCheck aria-hidden="true"></svg>
                   </span>
