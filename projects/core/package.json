@@ -1,6 +1,6 @@
 {
   "name": "@ngx-ui-sdk/core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "UI SDK behaviors for Angular, as directives on your own elements.",
   "license": "Apache-2.0",
   "repository": {
