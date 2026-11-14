@@ -57,6 +57,19 @@ import { Component } from "@angular/core"
       </p>
     </section>
 
+    <section id="agents" data-title="Agents">
+      <h3>Agents</h3>
+      <p>
+        AI agents can read and use your components. Import
+        <code>createAgent</code>
+        from
+        <code>@ngx-ui-sdk/core/agent</code>
+        . The
+        <a href="https://ui-sdk.dev/docs/agents">ui-sdk documentation</a>
+        explains how it works.
+      </p>
+    </section>
+
     <section id="tested" data-title="Tested">
       <h3>Tested</h3>
       <p>

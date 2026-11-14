@@ -163,7 +163,20 @@ To load less CSS, import `tokens.css`, `base.css` and only the components you us
 | Tree              |    ✅     |
 | Trigger Menu      |    ✅     |
 | Waterfall         |    ✅     |
-| Agent tools       |    ❌     |
+| Agent tools       |    ✅     |
+
+## Agents
+
+AI agents can read and use your components through ui-sdk's agent bridge. Import it from `@ngx-ui-sdk/core/agent`:
+
+```ts
+import { createAgent } from "@ngx-ui-sdk/core/agent"
+
+const agent = createAgent()
+agent.snapshot() // the components on the page, their state and actions
+```
+
+See [Built for Agents](https://ui-sdk.dev/docs/agents) in the ui-sdk documentation.
 
 ## Testing
 
