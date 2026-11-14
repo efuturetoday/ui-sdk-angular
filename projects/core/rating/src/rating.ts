@@ -12,7 +12,6 @@ import {
   Renderer2,
   signal,
   untracked,
-  type OnInit,
 } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -49,7 +48,7 @@ type RatingValueChangeDetails = ChangeDetails<RatingValueChangeReason>
   exportAs: "uiRating",
   providers: [provideRoot(rating, () => UiRating)],
 })
-class UiRating implements OnInit {
+class UiRating {
   /** The score, or null for none. Bind it, or `[(value)]`, to control it. */
   readonly value = input<number | null>()
   /** The score at first, when uncontrolled, and after a form reset. */
@@ -126,18 +125,15 @@ class UiRating implements OnInit {
       },
     })
   )
-  readonly #part = injectPart(this.handle, "root", undefined, this.#field?.join)
+  readonly #part = injectPart(this.handle, "root", undefined, {
+    join: this.#field?.join,
+  })
   /** The rating's state. */
   readonly state = this.#part.state
   /** The stars' indexes, from 1 to `max`, to repeat a `uiRatingItem` for. */
   readonly items = computed(() =>
     Array.from({ length: this.max() }, (_, at) => at + 1)
   )
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -148,7 +144,7 @@ class UiRating implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiRatingItem]", exportAs: "uiRatingItem" })
-class UiRatingItem implements OnInit {
+class UiRatingItem {
   /** Which star it is, from 1. */
   readonly index = input.required<number>()
   readonly #root = inject(UiRating)
@@ -158,8 +154,6 @@ class UiRatingItem implements OnInit {
   }))
   /** The star's state, with how full it is. */
   readonly state = this.#part.state
-  // Its radios are made once Angular has set its index.
-  readonly #ready = signal(false)
 
   constructor() {
     const host = inject(ElementRef).nativeElement as HTMLElement
@@ -185,7 +179,7 @@ class UiRatingItem implements OnInit {
     }
     // Its scores follow its index and the rating's step.
     effect(() => {
-      if (!browser || !this.#ready()) {
+      if (!browser) {
         return
       }
       const next = new Set(
@@ -211,11 +205,6 @@ class UiRatingItem implements OnInit {
       })
     })
     inject(DestroyRef).onDestroy(() => made.forEach((stop) => stop()))
-  }
-
-  ngOnInit() {
-    this.#part.init()
-    this.#ready.set(true)
   }
 }
 

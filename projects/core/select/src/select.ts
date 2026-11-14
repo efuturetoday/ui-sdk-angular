@@ -10,7 +10,6 @@ import {
   output,
   signal,
   type InputSignal,
-  type OnInit,
   type Signal,
 } from "@angular/core"
 import type {
@@ -44,7 +43,6 @@ import {
   type SelectValueState,
 } from "@ui-sdk/core/select"
 import {
-  ɵinjectContentOwner as injectContentOwner,
   ɵFieldContextToken as FieldContextToken,
   injectFieldControl,
   ɵinjectFormInputs as injectFormInputs,
@@ -67,6 +65,9 @@ import {
   ɵUiIds as UiIds,
   injectPresentPart,
   type PresentPartContext,
+  TextSource,
+  showMarked,
+  showText,
 } from "@ngx-ui-sdk/core"
 
 /**
@@ -110,7 +111,7 @@ const SelectTarget = new InjectionToken<
     },
   ],
 })
-class UiSelect implements OnInit {
+class UiSelect {
   /** The selected value, or values with `multiple`. Bind it, or `[(value)]`, to control it. */
   readonly value = input<unknown>(undefined)
   /** The value at first, when uncontrolled. */
@@ -321,11 +322,6 @@ class UiSelect implements OnInit {
     this.touch.emit()
     this.#form?.touch()
   }
-
-  ngOnInit() {
-    this.handle.init()
-    this.#inputs.init()
-  }
 }
 
 /**
@@ -334,14 +330,10 @@ class UiSelect implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectLabel]", exportAs: "uiSelectLabel" })
-class UiSelectLabel implements OnInit {
+class UiSelectLabel {
   readonly #part = injectPart(injectHandle(select), "label")
   /** The label's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -360,7 +352,7 @@ class UiSelectLabel implements OnInit {
     },
   ],
 })
-class UiSelectTrigger implements OnInit {
+class UiSelectTrigger {
   /** Stops the trigger from opening the list. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -389,7 +381,7 @@ class UiSelectTrigger implements OnInit {
           placeholder: true,
         }) as never,
     },
-    this.#field?.join
+    { join: this.#field?.join }
   )
   /** The select this trigger opens, once it's on the page. */
   readonly target = this.#part.target
@@ -400,10 +392,6 @@ class UiSelectTrigger implements OnInit {
     if (leaves(event) && !this.target()?.state().open) {
       this.#root?.touched()
     }
-  }
-
-  ngOnInit() {
-    this.#part.init()
   }
 }
 
@@ -416,11 +404,15 @@ const unselected: SelectValueState = {
 }
 
 /**
- * The selected item's label, or the placeholder. Left empty, it shows them.
+ * The selected item's label, or the placeholder. With `uiText`, it shows them.
  * @experimental
  */
-@Directive({ selector: "[uiSelectValue]", exportAs: "uiSelectValue" })
-class UiSelectValue implements OnInit {
+@Directive({
+  providers: [{ provide: TextSource, useExisting: UiSelectValue }],
+  selector: "[uiSelectValue]",
+  exportAs: "uiSelectValue",
+})
+class UiSelectValue implements TextSource {
   /** What it shows while nothing is selected, instead of the select's `placeholder`. */
   readonly placeholder = input<string>()
   /** How many labels it lists with `multiple` before it sums the rest up. */
@@ -430,7 +422,6 @@ class UiSelectValue implements OnInit {
   readonly #nearest = inject(tokenOf(select), { optional: true })?.handle
   readonly #target =
     inject(SelectTarget, { optional: true }) ?? computed(() => this.#nearest)
-  readonly #content = injectContentOwner()
   readonly #part = injectTargetPart(
     this.#target,
     "value",
@@ -438,17 +429,17 @@ class UiSelectValue implements OnInit {
       placeholder: this.placeholder(),
       maxLabels: this.maxLabels(),
       getMoreLabel: this.getMoreLabel(),
-      text: this.#content.core(),
     }),
     { attrs: () => ({}), state: () => unselected }
   )
   /** The value's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#content.decide()
-    this.#part.init()
-  }
+  /** Shows the part's text where `uiText` is. */
+  readonly attach = showText(() =>
+    this.state().placeholder
+      ? (this.placeholder() ?? this.#target()?.state().placeholder ?? "")
+      : this.state().label
+  )
 }
 
 /**
@@ -458,7 +449,7 @@ class UiSelectValue implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectContent]" })
-class UiSelectContent implements OnInit {
+class UiSelectContent {
   /** Which side of the trigger it opens on: `*uiSelectContent="let state; side: 'top'"`. */
   readonly side = input<Side>(undefined, { alias: "uiSelectContentSide" })
   /** How it lines up with the trigger along that side. */
@@ -527,10 +518,6 @@ class UiSelectContent implements OnInit {
   ): _context is PresentPartContext<SelectContentState> {
     return true
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -538,14 +525,10 @@ class UiSelectContent implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectList]", exportAs: "uiSelectList" })
-class UiSelectList implements OnInit {
+class UiSelectList {
   readonly #part = injectPart(injectHandle(select), "list")
   /** The list's state, with the `items` that match the search. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -554,14 +537,10 @@ class UiSelectList implements OnInit {
  * @experimental
  */
 @Directive({ selector: "input[uiSelectInput]", exportAs: "uiSelectInput" })
-class UiSelectInput implements OnInit {
+class UiSelectInput {
   readonly #part = injectPart(injectHandle(select), "input")
   /** The search field's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -570,16 +549,12 @@ class UiSelectInput implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectEmpty]", exportAs: "uiSelectEmpty" })
-class UiSelectEmpty implements OnInit {
+class UiSelectEmpty {
   readonly #part = injectPart(injectHandle(select), "empty", () => ({
     stash: true,
   }))
   /** The empty message's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -587,14 +562,10 @@ class UiSelectEmpty implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectStatus]", exportAs: "uiSelectStatus" })
-class UiSelectStatus implements OnInit {
+class UiSelectStatus {
   readonly #part = injectPart(injectHandle(select), "status")
   /** The status's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -603,7 +574,7 @@ class UiSelectStatus implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectGroup]", exportAs: "uiSelectGroup" })
-class UiSelectGroup implements OnInit {
+class UiSelectGroup {
   /** @internal The group's id, which its items and label name. */
   readonly id = inject(UiIds).next()
   readonly #part = injectPart(injectHandle(select), "group", () => ({
@@ -611,10 +582,6 @@ class UiSelectGroup implements OnInit {
   }))
   /** The group's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -625,7 +592,7 @@ class UiSelectGroup implements OnInit {
   selector: "[uiSelectGroupLabel]",
   exportAs: "uiSelectGroupLabel",
 })
-class UiSelectGroupLabel implements OnInit {
+class UiSelectGroupLabel {
   readonly #group = inject(UiSelectGroup)
   readonly #part = injectPart(injectHandle(select), "group-label", () => ({
     id: this.#group.id,
@@ -633,10 +600,6 @@ class UiSelectGroupLabel implements OnInit {
   }))
   /** The label's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -644,7 +607,7 @@ class UiSelectGroupLabel implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectItem]", exportAs: "uiSelectItem" })
-class UiSelectItem implements OnInit {
+class UiSelectItem {
   /** The value it selects. */
   readonly value = input.required<unknown>()
   /** Its label, if its text isn't. */
@@ -666,23 +629,24 @@ class UiSelectItem implements OnInit {
   }))
   /** The item's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
- * The item's text. Written empty, it shows the item's label with the part the
+ * The item's text. With `uiText`, it shows the item's label with the part the
  * search matched in `<mark>`. With content of its own, the content is yours:
  * render `state().segments` to mark the match, and give the item a `label`.
  * @experimental
  */
-@Directive({ selector: "[uiSelectItemText]", exportAs: "uiSelectItemText" })
-class UiSelectItemText implements OnInit {
+@Directive({
+  providers: [{ provide: TextSource, useExisting: UiSelectItemText }],
+  selector: "[uiSelectItemText]",
+  exportAs: "uiSelectItemText",
+})
+class UiSelectItemText implements TextSource {
   readonly #item = inject(UiSelectItem)
   readonly #handle = injectHandle(select)
-  readonly #content = injectContentOwner()
+  /** Shows the part's text where `uiText` is, with its matches marked. */
+  readonly attach = showMarked(() => this.state().segments)
   // Its text is the item's label as core knows it, which typeahead and the
   // trigger show too: its `label`, or its text. It follows core's changes.
   readonly #part = injectPart(this.#handle, "item-text", () => {
@@ -695,16 +659,10 @@ class UiSelectItemText implements OnInit {
         this.#item.label() ??
         internal.listbox.labelOf(internal.keyOf(value)) ??
         String(value),
-      write: this.#content.core(),
     }
   })
   /** The text's state, with the search's match. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#content.decide()
-    this.#part.init()
-  }
 }
 
 /**
@@ -714,7 +672,7 @@ class UiSelectItemText implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectItemIndicator]" })
-class UiSelectItemIndicator implements OnInit {
+class UiSelectItemIndicator {
   /** Keeps it in the page while unselected: `*uiSelectItemIndicator="let state; keepMounted: true"`. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiSelectItemIndicatorKeepMounted",
@@ -738,10 +696,6 @@ class UiSelectItemIndicator implements OnInit {
   ): _context is PresentPartContext<SelectItemIndicatorState> {
     return true
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -750,19 +704,19 @@ class UiSelectItemIndicator implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectSelectAll]", exportAs: "uiSelectSelectAll" })
-class UiSelectSelectAll implements OnInit {
+class UiSelectSelectAll {
   readonly #group = inject(UiSelectGroup, { optional: true })
   readonly #handle = injectHandle(select)
-  readonly #part = injectPart(this.#handle, "select-all", () => ({
-    id: selectAllKey(this.#group?.id),
-  }))
+  readonly #part = injectPart(
+    this.#handle,
+    "select-all",
+    () => ({
+      id: selectAllKey(this.#group?.id),
+    }),
+    { uses: selectSelectAll }
+  )
   /** The option's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#handle.instance.use(selectSelectAll)
-    this.#part.init()
-  }
 }
 
 /**
@@ -772,7 +726,7 @@ class UiSelectSelectAll implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectItemIcon]", exportAs: "uiSelectItemIcon" })
-class UiSelectItemIcon implements OnInit {
+class UiSelectItemIcon {
   /** Flips it in right-to-left text, for icons that point a way. */
   readonly mirror = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -780,18 +734,18 @@ class UiSelectItemIcon implements OnInit {
   readonly #item = inject(UiSelectItem)
   readonly #id = inject(UiIds).next()
   readonly #handle = injectHandle(select)
-  readonly #part = injectPart(this.#handle, "item-icon", () => ({
-    id: this.#id,
-    mirror: this.mirror(),
-    item: this.#item.value() as string,
-  }))
+  readonly #part = injectPart(
+    this.#handle,
+    "item-icon",
+    () => ({
+      id: this.#id,
+      mirror: this.mirror(),
+      item: this.#item.value() as string,
+    }),
+    { uses: selectItemIcons }
+  )
   /** The icon's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#handle.instance.use(selectItemIcons)
-    this.#part.init()
-  }
 }
 
 /**
@@ -800,19 +754,17 @@ class UiSelectItemIcon implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectValueIcon]", exportAs: "uiSelectValueIcon" })
-class UiSelectValueIcon implements OnInit {
+class UiSelectValueIcon {
   readonly #nearest = inject(tokenOf(select), { optional: true })?.handle
   readonly #target =
     inject(SelectTarget, { optional: true }) ?? computed(() => this.#nearest)
-  readonly #part = injectTargetPart(this.#target, "value-icon", () => ({}), {
-    attrs: () => ({}),
-    state: () => ({}) as never,
-  })
-
-  ngOnInit() {
-    this.#target()?.instance.use(selectItemIcons)
-    this.#part.init()
-  }
+  readonly #part = injectTargetPart(
+    this.#target,
+    "value-icon",
+    () => ({}),
+    { attrs: () => ({}), state: () => ({}) as never },
+    { uses: selectItemIcons }
+  )
 }
 
 /**
@@ -820,12 +772,8 @@ class UiSelectValueIcon implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectSeparator]", exportAs: "uiSelectSeparator" })
-class UiSelectSeparator implements OnInit {
+class UiSelectSeparator {
   readonly #part = injectPart(injectHandle(select), "separator")
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -835,7 +783,7 @@ class UiSelectSeparator implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectClear]" })
-class UiSelectClear implements OnInit {
+class UiSelectClear {
   /** Keeps it in the page while nothing is selected. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiSelectClearKeepMounted",
@@ -846,10 +794,6 @@ class UiSelectClear implements OnInit {
     "clear",
     computed(() => ({ keepMounted: this.keepMounted() }))
   )
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -857,14 +801,10 @@ class UiSelectClear implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSelectArrow]", exportAs: "uiSelectArrow" })
-class UiSelectArrow implements OnInit {
+class UiSelectArrow {
   readonly #part = injectPart(injectHandle(select), "arrow")
   /** The arrow's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**

@@ -1,4 +1,4 @@
-import { Directive, input, output, type OnInit } from "@angular/core"
+import { Directive, input, output } from "@angular/core"
 import type { ChangeDetails, CommitDetails } from "@ui-sdk/core"
 import {
   otpInput,
@@ -9,7 +9,6 @@ import {
   type OtpInputPrimitive,
 } from "@ui-sdk/core/otp-input"
 import {
-  ɵinjectDefaultText as injectDefaultText,
   injectFieldControl,
   ɵinjectInputInside as injectInputInside,
   optionalBoolean,
@@ -19,6 +18,8 @@ import {
   injectPrimitive,
   type PrimitiveHandle,
   provideRoot,
+  TextSource,
+  showText,
 } from "@ngx-ui-sdk/core"
 
 /**
@@ -48,7 +49,7 @@ const inputAttributes = [
   exportAs: "uiOtpInput",
   providers: [provideRoot(otpInput, () => UiOtpInput)],
 })
-class UiOtpInput implements OnInit {
+class UiOtpInput {
   /** The code. Bind it, or `[(value)]`, to control it. */
   readonly value = input<string>()
   /** The code at first, when uncontrolled, and after a form reset. */
@@ -138,12 +139,6 @@ class UiOtpInput implements OnInit {
     undefined,
     this.#field?.join
   )
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-    this.#control.init()
-  }
 }
 
 /**
@@ -151,14 +146,10 @@ class UiOtpInput implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiOtpInputGroup]", exportAs: "uiOtpInputGroup" })
-class UiOtpInputGroup implements OnInit {
+class UiOtpInputGroup {
   readonly #part = injectPart(injectHandle(otpInput), "group")
   /** The group's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -169,21 +160,21 @@ class UiOtpInputGroup implements OnInit {
   selector: "[uiOtpInputSeparator]",
   exportAs: "uiOtpInputSeparator",
 })
-class UiOtpInputSeparator implements OnInit {
+class UiOtpInputSeparator {
   readonly #part = injectPart(injectHandle(otpInput), "separator")
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
- * One character of the code. Written empty, it shows the character; with
+ * One character of the code. With `uiText`, it shows the character; with
  * content of its own, the content.
  * @experimental
  */
-@Directive({ selector: "[uiOtpInputSlot]", exportAs: "uiOtpInputSlot" })
-class UiOtpInputSlot implements OnInit {
+@Directive({
+  providers: [{ provide: TextSource, useExisting: UiOtpInputSlot }],
+  selector: "[uiOtpInputSlot]",
+  exportAs: "uiOtpInputSlot",
+})
+class UiOtpInputSlot implements TextSource {
   /** Which character it shows, from 0. */
   readonly index = input.required<number>()
   readonly #part = injectPart(injectHandle(otpInput), "slot", () => ({
@@ -192,12 +183,8 @@ class UiOtpInputSlot implements OnInit {
   }))
   /** The slot's state, with its `char`. */
   readonly state = this.#part.state
-  readonly #content = injectDefaultText(() => this.state().char ?? "")
-
-  ngOnInit() {
-    this.#content.decide()
-    this.#part.init()
-  }
+  /** Shows the part's text where `uiText` is. */
+  readonly attach = showText(() => this.state().char ?? "")
 }
 
 export { createOTPInputController } from "@ui-sdk/core/otp-input"

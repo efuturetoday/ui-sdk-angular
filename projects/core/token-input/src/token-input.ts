@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from "@angular/common"
 import {
+  contentChild,
   DestroyRef,
   Directive,
   effect,
@@ -16,7 +17,6 @@ import {
   untracked,
   ViewContainerRef,
   type EmbeddedViewRef,
-  type OnInit,
 } from "@angular/core"
 import type { SlotName } from "@ui-sdk/core"
 import {
@@ -67,7 +67,7 @@ const TokenScope = new InjectionToken<string>("token-input-token")
     },
   ],
 })
-class UiTokenInput implements OnInit {
+class UiTokenInput {
   /** The tokens and text. Bind it, or `[(value)]`, to control it. */
   readonly value = input<TokenInputValue>()
   /** The tokens and text at first, when uncontrolled, and after a form reset. */
@@ -147,9 +147,19 @@ class UiTokenInput implements OnInit {
       },
     })
   )
+  // A tokens template has core make the places it renders each token into,
+  // as Vue's `token` slot does.
+  private readonly tokens = contentChild(UiTokenInputTokens)
   /** The token input's state. */
   readonly state = this.handle.state
   readonly #formInput = this.#makeFormInput()
+
+  constructor() {
+    effect(() => {
+      const custom = !!this.tokens()
+      untracked(() => this.handle.api.internal.setCustom(custom))
+    })
+  }
 
   // The hidden field a form submits, which it makes after itself while it
   // has a name: infrastructure, as in Vue.
@@ -183,11 +193,6 @@ class UiTokenInput implements OnInit {
       }
     )
   }
-
-  ngOnInit() {
-    this.handle.init()
-    this.#formInput.init()
-  }
 }
 
 /**
@@ -200,7 +205,7 @@ class UiTokenInput implements OnInit {
   selector: "[uiTokenInputEditor]",
   exportAs: "uiTokenInputEditor",
 })
-class UiTokenInputEditor implements OnInit {
+class UiTokenInputEditor {
   /** What it says while empty, for `data-empty` styles and screen readers. */
   readonly placeholder = input<string>()
   // The editor is the field's control, on its own element.
@@ -209,14 +214,10 @@ class UiTokenInputEditor implements OnInit {
     injectHandle(tokenInput),
     "editor",
     () => ({ placeholder: this.placeholder() }),
-    this.#field?.join
+    { join: this.#field?.join }
   )
   /** The editor's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -227,7 +228,7 @@ class UiTokenInputEditor implements OnInit {
  * @experimental
  */
 @Directive({ selector: "ng-template[uiTokenInputTokens]" })
-class UiTokenInputTokens implements OnInit {
+class UiTokenInputTokens {
   readonly #handle = injectHandle(tokenInput)
   readonly #template = inject<TemplateRef<{ $implicit: Token }>>(TemplateRef)
   readonly #container = inject(ViewContainerRef)
@@ -276,9 +277,6 @@ class UiTokenInputTokens implements OnInit {
         }
       })
     })
-    inject(DestroyRef).onDestroy(() =>
-      this.#handle.api.internal.setCustom(false)
-    )
   }
 
   static ngTemplateContextGuard(
@@ -286,10 +284,6 @@ class UiTokenInputTokens implements OnInit {
     _context: unknown
   ): _context is { $implicit: Token } {
     return true
-  }
-
-  ngOnInit() {
-    this.#handle.api.internal.setCustom(true)
   }
 }
 
@@ -307,7 +301,7 @@ function injectToken(part: string) {
  * @experimental
  */
 @Directive({ selector: "[uiTokenInputToken]", exportAs: "uiTokenInputToken" })
-class UiTokenInputToken implements OnInit {
+class UiTokenInputToken {
   readonly #id = injectToken("uiTokenInputToken")
   readonly #part = injectPart(injectHandle(tokenInput), "token", () => ({
     id: this.#id,
@@ -315,10 +309,6 @@ class UiTokenInputToken implements OnInit {
   }))
   /** The token's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -330,16 +320,12 @@ class UiTokenInputToken implements OnInit {
   selector: "[uiTokenInputTokenRemove]",
   exportAs: "uiTokenInputTokenRemove",
 })
-class UiTokenInputTokenRemove implements OnInit {
+class UiTokenInputTokenRemove {
   readonly #id = injectToken("uiTokenInputTokenRemove")
   readonly #part = injectPart(injectHandle(tokenInput), "token-remove", () => ({
     id: this.#id,
     token: this.#id,
   }))
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export {

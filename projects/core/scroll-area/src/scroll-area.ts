@@ -1,4 +1,4 @@
-import { computed, Directive, inject, input, type OnInit } from "@angular/core"
+import { computed, Directive, inject, input } from "@angular/core"
 import {
   scrollArea,
   type ScrollAreaController,
@@ -24,7 +24,7 @@ import {
   exportAs: "uiScrollArea",
   providers: [provideRoot(scrollArea, () => UiScrollArea)],
 })
-class UiScrollArea implements OnInit {
+class UiScrollArea {
   /** When the scrollbars show: `"hover"`, `"scroll"`, `"auto"` or `"always"`. */
   readonly type = input<ScrollAreaType>()
   /** How long the scrollbars stay after scrolling or hovering stops, in milliseconds. */
@@ -47,11 +47,6 @@ class UiScrollArea implements OnInit {
   readonly #part = injectPart(this.handle, "root")
   /** The area's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -63,14 +58,10 @@ class UiScrollArea implements OnInit {
   selector: "[uiScrollAreaViewport]",
   exportAs: "uiScrollAreaViewport",
 })
-class UiScrollAreaViewport implements OnInit {
+class UiScrollAreaViewport {
   readonly #part = injectPart(injectHandle(scrollArea), "viewport")
   /** The viewport's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -81,14 +72,10 @@ class UiScrollAreaViewport implements OnInit {
   selector: "[uiScrollAreaContent]",
   exportAs: "uiScrollAreaContent",
 })
-class UiScrollAreaContent implements OnInit {
+class UiScrollAreaContent {
   readonly #part = injectPart(injectHandle(scrollArea), "content")
   /** The content's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -99,7 +86,7 @@ class UiScrollAreaContent implements OnInit {
   selector: "[uiScrollAreaScrollbar]",
   exportAs: "uiScrollAreaScrollbar",
 })
-class UiScrollAreaScrollbar implements OnInit {
+class UiScrollAreaScrollbar {
   /** The axis the scrollbar scrolls. */
   readonly orientation = input<"vertical" | "horizontal">("vertical")
   readonly #part = injectPart(
@@ -112,10 +99,6 @@ class UiScrollAreaScrollbar implements OnInit {
   )
   /** The scrollbar's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -126,7 +109,7 @@ class UiScrollAreaScrollbar implements OnInit {
   selector: "[uiScrollAreaThumb]",
   exportAs: "uiScrollAreaThumb",
 })
-class UiScrollAreaThumb implements OnInit {
+class UiScrollAreaThumb {
   readonly #scrollbar = inject(UiScrollAreaScrollbar)
   readonly #part = injectPart(
     injectHandle(scrollArea),
@@ -138,10 +121,6 @@ class UiScrollAreaThumb implements OnInit {
   )
   /** The thumb's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -152,14 +131,10 @@ class UiScrollAreaThumb implements OnInit {
   selector: "[uiScrollAreaCorner]",
   exportAs: "uiScrollAreaCorner",
 })
-class UiScrollAreaCorner implements OnInit {
+class UiScrollAreaCorner {
   readonly #part = injectPart(injectHandle(scrollArea), "corner")
   /** The corner's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -170,14 +145,10 @@ class UiScrollAreaCorner implements OnInit {
   selector: "[uiScrollAreaScrollToEnd]",
   exportAs: "uiScrollAreaScrollToEnd",
 })
-class UiScrollAreaScrollToEnd implements OnInit {
+class UiScrollAreaScrollToEnd {
   readonly #part = injectPart(injectHandle(scrollArea), "scroll-to-end")
   /** The button's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export { createScrollAreaController } from "@ui-sdk/core/scroll-area"

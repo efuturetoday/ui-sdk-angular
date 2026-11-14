@@ -5,7 +5,6 @@ import {
   input,
   output,
   type InputSignal,
-  type OnInit,
   type Signal,
 } from "@angular/core"
 import type { ChangeDetails, TypesOf } from "@ui-sdk/core"
@@ -50,7 +49,7 @@ import {
   exportAs: "uiDialog",
   providers: [provideRoot(dialog, () => UiDialog)],
 })
-class UiDialog implements OnInit {
+class UiDialog {
   /** Whether the dialog is open. Bind it, or `[(open)]`, to control the dialog. */
   readonly open = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -129,10 +128,6 @@ class UiDialog implements OnInit {
   )
   /** The dialog's state. */
   readonly state: Signal<TypesOf<DialogPrimitive>["state"]> = this.handle.state
-
-  ngOnInit() {
-    this.handle.init()
-  }
 }
 
 /**
@@ -144,7 +139,7 @@ class UiDialog implements OnInit {
   exportAs: "uiDialogTrigger",
   providers: [provideTrigger(dialog, () => UiDialogTrigger)],
 })
-class UiDialogTrigger implements OnInit, TriggerContext<typeof dialog> {
+class UiDialogTrigger implements TriggerContext<typeof dialog> {
   /** What the dialog gets as its payload when this trigger opens it. */
   readonly payload = input<unknown>()
   /** Stops the trigger from opening the dialog. */
@@ -178,10 +173,6 @@ class UiDialogTrigger implements OnInit, TriggerContext<typeof dialog> {
   readonly target = this.#part.target
   /** The trigger's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -190,16 +181,12 @@ class UiDialogTrigger implements OnInit, TriggerContext<typeof dialog> {
  * @experimental
  */
 @Directive({ selector: "[uiDialogShortcut]", exportAs: "uiDialogShortcut" })
-class UiDialogShortcut implements OnInit {
+class UiDialogShortcut {
   /** The keys to show. Inside a trigger, its shortcut. */
   readonly shortcut = input<string>()
   readonly #part = injectShortcutPart(dialog, this.shortcut)
   /** The shortcut's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -208,7 +195,7 @@ class UiDialogShortcut implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiDialogBackdrop]" })
-class UiDialogBackdrop implements OnInit {
+class UiDialogBackdrop {
   readonly #root = inject(UiDialog)
   readonly #part = injectPopupPart(
     injectHandle(dialog),
@@ -225,10 +212,6 @@ class UiDialogBackdrop implements OnInit {
   ): _context is PresentPartContext<DialogBackdropState> {
     return true
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -239,7 +222,7 @@ class UiDialogBackdrop implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiDialogContent]" })
-class UiDialogContent implements OnInit {
+class UiDialogContent {
   /** Where focus goes when the dialog opens: `*uiDialogContent="let state; initialFocus: 'content'"`. */
   readonly initialFocus = input<DialogInitialFocus>(undefined, {
     alias: "uiDialogContentInitialFocus",
@@ -282,10 +265,6 @@ class UiDialogContent implements OnInit {
   ): _context is PresentPartContext<DialogContentState> {
     return true
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -293,14 +272,10 @@ class UiDialogContent implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiDialogTitle]", exportAs: "uiDialogTitle" })
-class UiDialogTitle implements OnInit {
+class UiDialogTitle {
   readonly #part = injectPart(injectHandle(dialog), "title")
   /** The title's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -311,14 +286,10 @@ class UiDialogTitle implements OnInit {
   selector: "[uiDialogDescription]",
   exportAs: "uiDialogDescription",
 })
-class UiDialogDescription implements OnInit {
+class UiDialogDescription {
   readonly #part = injectPart(injectHandle(dialog), "description")
   /** The description's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -327,7 +298,7 @@ class UiDialogDescription implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiDialogClose]", exportAs: "uiDialogClose" })
-class UiDialogClose implements OnInit {
+class UiDialogClose {
   /** Reported as the dialog's `returnValue` when this closes it. */
   readonly value = input<string>()
   /** Runs before the dialog closes. A returned Promise keeps it open and pending until it settles. */
@@ -347,10 +318,6 @@ class UiDialogClose implements OnInit {
   }))
   /** The close button's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export { createDialogController } from "@ui-sdk/core/dialog"

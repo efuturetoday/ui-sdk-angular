@@ -4,7 +4,6 @@ import {
   inject,
   InjectionToken,
   input,
-  type OnInit,
   type Provider,
   Renderer2,
 } from "@angular/core"
@@ -18,7 +17,6 @@ import {
   type ToastRegionPrimitive,
 } from "@ui-sdk/core/toast"
 import {
-  ɵinjectShownText as injectShownText,
   optionalBoolean,
   injectPart,
   injectPresentPart,
@@ -26,6 +24,8 @@ import {
   type PrimitiveHandle,
   provideRoot,
   ɵUiIds as UiIds,
+  showText,
+  TextSource,
 } from "@ngx-ui-sdk/core"
 
 /**
@@ -58,7 +58,7 @@ function provideToaster(toaster: Toaster<any>) {
   exportAs: "uiToastRegion",
   providers: [provideRoot(toastRegion, () => UiToastRegion)],
 })
-class UiToastRegion implements OnInit {
+class UiToastRegion {
   /** The toaster whose toasts it shows; the one `TOASTER` gives by default. */
   readonly toaster = input<Toaster<any>>()
   /** The edge it sits on. */
@@ -109,11 +109,6 @@ class UiToastRegion implements OnInit {
   constructor() {
     inject(Renderer2).removeAttribute(this.#el, "aria-label")
   }
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -121,12 +116,8 @@ class UiToastRegion implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiToastList]", exportAs: "uiToastList" })
-class UiToastList implements OnInit {
+class UiToastList {
   readonly #part = injectPart(inject(UiToastRegion).handle, "list")
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -136,7 +127,7 @@ class UiToastList implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiToast]", exportAs: "uiToast" })
-class UiToast implements OnInit {
+class UiToast {
   /** The toast it shows, from the region's `state().toasts`. */
   readonly toast = input.required<Toast<any>>({ alias: "uiToast" })
   /** @internal The region it's in. */
@@ -146,63 +137,65 @@ class UiToast implements OnInit {
   }))
   /** The toast's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
-// A toast's title or description, while the toast has one: written empty,
-// it shows that text; with content of its own, the content.
+// A toast's title or description, while the toast has one.
 function injectToastText(slot: "title" | "description") {
   const toast = inject(UiToast)
-  const part = injectPresentPart(
+  return injectPresentPart(
     () => (toast.toast()[slot] != null ? toast.region.handle : undefined),
     slot,
     () => ({ id: toast.toast().id })
   )
-  injectShownText(part.element, () => String(toast.toast()[slot] ?? ""))
-  return part
 }
 
 /**
  * The toast's title, on the element it's written on: `<div *uiToastTitle>`.
- * Rendered while the toast has a `title`; written empty, it shows it.
+ * Rendered while the toast has a `title`; with `uiText`, it shows it.
  * @experimental
  */
-@Directive({ selector: "[uiToastTitle]" })
-class UiToastTitle implements OnInit {
+@Directive({
+  selector: "[uiToastTitle]",
+  providers: [{ provide: TextSource, useExisting: UiToastTitle }],
+})
+class UiToastTitle implements TextSource {
+  readonly #toast = inject(UiToast)
   readonly #part = injectToastText("title")
-
-  ngOnInit() {
-    this.#part.init()
-  }
+  /** Shows the toast's title where `uiText` is. */
+  readonly attach = showText(() => String(this.#toast.toast().title ?? ""))
 }
 
 /**
  * The toast's description, on the element it's written on:
  * `<div *uiToastDescription>`. Rendered while the toast has a `description`;
- * written empty, it shows it.
+ * with `uiText`, it shows it.
  * @experimental
  */
-@Directive({ selector: "[uiToastDescription]" })
-class UiToastDescription implements OnInit {
+@Directive({
+  selector: "[uiToastDescription]",
+  providers: [{ provide: TextSource, useExisting: UiToastDescription }],
+})
+class UiToastDescription implements TextSource {
+  readonly #toast = inject(UiToast)
   readonly #part = injectToastText("description")
-
-  ngOnInit() {
-    this.#part.init()
-  }
+  /** Shows the toast's description where `uiText` is. */
+  readonly attach = showText(() =>
+    String(this.#toast.toast().description ?? "")
+  )
 }
 
 /**
  * The toast's action, like Undo, on the element it's written on:
  * `<button *uiToastAction>`. Rendered while the toast has an `action`, or
- * with its own `onAction`; written empty, it shows the action's label. A
+ * with its own `onAction`; with `uiText`, it shows the action's label. A
  * Promise from the handler keeps the toast open and the button pending.
  * @experimental
  */
-@Directive({ selector: "[uiToastAction]" })
-class UiToastAction implements OnInit {
+@Directive({
+  selector: "[uiToastAction]",
+  providers: [{ provide: TextSource, useExisting: UiToastAction }],
+})
+class UiToastAction implements TextSource {
   /** Runs instead of the toast's own `action.onAction`: `*uiToastAction="let state; onAction: undo"`. */
   readonly onAction = input<ToastActionProps["onAction"]>(undefined, {
     alias: "uiToastActionOnAction",
@@ -228,15 +221,10 @@ class UiToastAction implements OnInit {
     })
   )
 
-  constructor() {
-    injectShownText(this.#part.element, () =>
-      String(this.#toast.toast().action?.label ?? "")
-    )
-  }
-
-  ngOnInit() {
-    this.#part.init()
-  }
+  /** Shows the action's label where `uiText` is. */
+  readonly attach = showText(() =>
+    String(this.#toast.toast().action?.label ?? "")
+  )
 }
 
 /**
@@ -245,7 +233,7 @@ class UiToastAction implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiToastClose]", exportAs: "uiToastClose" })
-class UiToastClose implements OnInit {
+class UiToastClose {
   /** Runs before the toast closes. A returned Promise keeps it open and pending until it settles. */
   readonly action = input<ToastCloseProps["action"]>()
   readonly #toast = inject(UiToast)
@@ -257,10 +245,6 @@ class UiToastClose implements OnInit {
   }))
   /** The button's state, with `pending` while its action runs. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export { createToaster, toast } from "@ui-sdk/core/toast"

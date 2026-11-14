@@ -58,7 +58,7 @@ export class EditProfile {
 }
 ```
 
-No providers or configuration needed. The [ui-sdk documentation](https://ui-sdk.dev/docs) describes every component, its parts and options. The names are the same here: `DialogTrigger` is `uiDialogTrigger`.
+No providers or configuration needed. Parts with text of their own, like a select's value, show it when you add `uiText`: `<span uiSelectValue uiText></span>`. The [ui-sdk documentation](https://ui-sdk.dev/docs) describes every component, its parts and options. The names are the same here: `DialogTrigger` is `uiDialogTrigger`.
 
 ## Styling
 

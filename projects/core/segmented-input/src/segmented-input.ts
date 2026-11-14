@@ -1,11 +1,11 @@
 import {
+  computed,
   Directive,
   ElementRef,
   inject,
   InjectionToken,
   input,
   output,
-  type OnInit,
 } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import type {
@@ -16,7 +16,6 @@ import type {
   HourCycle,
 } from "@ui-sdk/core/date-input"
 import {
-  ɵinjectDefaultText as injectDefaultText,
   injectFieldControl,
   ɵinjectInputInside as injectInputInside,
   injectFormValue,
@@ -26,6 +25,7 @@ import {
   injectHandle,
   injectPrimitive,
   type PrimitiveHandle,
+  showText,
 } from "@ngx-ui-sdk/core"
 
 // Time Input's primitive has the same slots and state.
@@ -40,7 +40,7 @@ type SegmentedValueChangeDetails = ChangeDetails<DateInputValueChangeReason>
 // form submits, which it makes at its end, and a segment, which is an input
 // you type in or the text between inputs.
 @Directive()
-abstract class SegmentedInput implements OnInit {
+abstract class SegmentedInput {
   /** The date or time, as an ISO string, or null while empty or partly filled. Bind it, or `[(value)]`, to control it. */
   readonly value = input<string | null>()
   /** The value at first, when uncontrolled. */
@@ -124,7 +124,9 @@ abstract class SegmentedInput implements OnInit {
         }
       },
     }))
-    this.#part = injectPart(this.handle, "root", undefined, this.#field?.join)
+    this.#part = injectPart(this.handle, "root", undefined, {
+      join: this.#field?.join,
+    })
     this.#hidden = bindPart(
       () => this.handle,
       "hidden-input",
@@ -137,24 +139,14 @@ abstract class SegmentedInput implements OnInit {
   get state() {
     return this.#part.state
   }
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-    this.#hidden.init()
-  }
 }
 
 // A segment's key, and so whether it's typed in, never changes.
 @Directive()
-abstract class SegmentedInputSegment implements OnInit {
+abstract class SegmentedInputSegment {
   /** One of the root's `state().segments`. */
   readonly segment = input.required<DateInputSegmentData>()
-  readonly #editable =
-    inject<ElementRef<HTMLElement>>(ElementRef).nativeElement instanceof
-    HTMLInputElement
   readonly #part
-  readonly #content
 
   constructor() {
     const primitive = inject(SegmentedPrimitive)
@@ -162,7 +154,6 @@ abstract class SegmentedInputSegment implements OnInit {
       segment: this.segment(),
       id: this.segment().key,
     }))
-    this.#content = injectDefaultText(() => this.#part.state().text)
   }
 
   /** The segment's state, with its `text`. */
@@ -170,12 +161,8 @@ abstract class SegmentedInputSegment implements OnInit {
     return this.#part.state
   }
 
-  ngOnInit() {
-    if (!this.#editable) {
-      this.#content.decide()
-    }
-    this.#part.init()
-  }
+  /** Shows the part's text where `uiText` is. */
+  readonly attach = showText(() => this.#part.state().text)
 }
 
 export {

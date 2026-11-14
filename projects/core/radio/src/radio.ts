@@ -4,7 +4,6 @@ import {
   inject,
   input,
   output,
-  type OnInit,
   type Signal,
 } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
@@ -46,7 +45,7 @@ import {
   host: { "(focusout)": "focusOut($event)" },
   providers: [provideRoot(radioGroup, () => UiRadioGroup)],
 })
-class UiRadioGroup implements OnInit {
+class UiRadioGroup {
   /** The checked radio's value. Bind it, or `[(value)]`, to control the group. */
   readonly value = input<string | null>()
   /** The checked radio's value at first, when uncontrolled, and after a form reset. */
@@ -112,12 +111,9 @@ class UiRadioGroup implements OnInit {
       },
     })
   )
-  readonly #part = injectPart(
-    this.handle,
-    "group",
-    undefined,
-    this.#field?.join
-  )
+  readonly #part = injectPart(this.handle, "group", undefined, {
+    join: this.#field?.join,
+  })
   /** The group's state. */
   readonly state = this.#part.state
 
@@ -127,11 +123,6 @@ class UiRadioGroup implements OnInit {
       this.#form?.touch()
     }
   }
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -140,7 +131,7 @@ class UiRadioGroup implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiRadio]", exportAs: "uiRadio" })
-class UiRadio implements OnInit {
+class UiRadio {
   /** What the group's value becomes when this radio is checked. */
   readonly value = input.required<string>()
   /** Skips the radio: arrow keys pass it and it can't be focused or checked. */
@@ -160,20 +151,13 @@ class UiRadio implements OnInit {
     value: this.value(),
     disabled: this.disabled() || this.#field?.disabled(),
   }))
-  readonly #part = injectPart(
-    this.handle,
-    "root",
-    this.props,
-    this.#field?.join
-  )
+  readonly #part = injectPart(this.handle, "root", this.props, {
+    join: this.#field?.join,
+  })
   /** The radio's state. */
   readonly state = this.#part.state
 
   readonly #check = checkHiddenInput(this, "uiRadio")
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -183,7 +167,7 @@ class UiRadio implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiRadioIndicator]" })
-class UiRadioIndicator implements OnInit {
+class UiRadioIndicator {
   /** Keeps it in the page while unchecked: `*uiRadioIndicator="let state; keepMounted: true"`. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiRadioIndicatorKeepMounted",
@@ -206,10 +190,6 @@ class UiRadioIndicator implements OnInit {
     _context: unknown
   ): _context is PresentPartContext<RadioIndicatorState> {
     return true
-  }
-
-  ngOnInit() {
-    this.#part.init()
   }
 }
 
@@ -237,7 +217,7 @@ class UiRadioGroupValueAccessor extends UiValueAccessor<string | null> {
  * @experimental
  */
 @Directive({ selector: "input[uiRadioInput]" })
-class UiRadioInput implements OnInit {
+class UiRadioInput {
   /** The radio it's the input of. */
   readonly radio = input.required<UiRadio>({ alias: "uiRadioInput" })
   readonly #part = injectTargetPart(
@@ -246,9 +226,8 @@ class UiRadioInput implements OnInit {
     () => this.radio().props()
   )
 
-  ngOnInit() {
-    linkHiddenInput(this.radio())
-    this.#part.init()
+  constructor() {
+    linkHiddenInput(() => this.radio())
   }
 }
 

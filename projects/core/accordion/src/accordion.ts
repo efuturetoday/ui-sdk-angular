@@ -1,11 +1,4 @@
-import {
-  computed,
-  Directive,
-  inject,
-  input,
-  output,
-  type OnInit,
-} from "@angular/core"
+import { computed, Directive, inject, input, output } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   accordion,
@@ -36,7 +29,7 @@ import {
   exportAs: "uiAccordion",
   providers: [provideRoot(accordion, () => UiAccordion)],
 })
-class UiAccordion implements OnInit {
+class UiAccordion {
   /** The open items' values. Bind it, or `[(value)]`, to control the accordion. */
   readonly value = input<string[]>()
   /** The items open at first, when uncontrolled. */
@@ -92,11 +85,6 @@ class UiAccordion implements OnInit {
   readonly #part = injectPart(this.handle, "root")
   /** The accordion's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -104,7 +92,7 @@ class UiAccordion implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiAccordionItem]", exportAs: "uiAccordionItem" })
-class UiAccordionItem implements OnInit {
+class UiAccordionItem {
   /** Identifies the item. The accordion's value lists the open items' values. Defaults to a generated id. */
   readonly value = input<string>()
   /** Stops the item from opening or closing. Its trigger stays focusable. */
@@ -139,10 +127,6 @@ class UiAccordionItem implements OnInit {
   }))
   /** The item's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -151,17 +135,13 @@ class UiAccordionItem implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiAccordionHeader]", exportAs: "uiAccordionHeader" })
-class UiAccordionHeader implements OnInit {
+class UiAccordionHeader {
   readonly #item = inject(UiAccordionItem)
   readonly #part = injectPart(injectHandle(accordion), "header", () => ({
     value: this.#item.key(),
   }))
   /** The header's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -173,7 +153,7 @@ class UiAccordionHeader implements OnInit {
   selector: "[uiAccordionTrigger]",
   exportAs: "uiAccordionTrigger",
 })
-class UiAccordionTrigger implements OnInit {
+class UiAccordionTrigger {
   /** Stops this trigger from opening or closing the item. It stays focusable. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -185,10 +165,6 @@ class UiAccordionTrigger implements OnInit {
   }))
   /** The trigger's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -198,7 +174,7 @@ class UiAccordionTrigger implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiAccordionPanel]" })
-class UiAccordionPanel implements OnInit {
+class UiAccordionPanel {
   /** Keeps the panel in the page, hidden, while closed: `*uiAccordionPanel="let state; keepMounted: true"`. Overrides the accordion's. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiAccordionPanelKeepMounted",
@@ -225,10 +201,6 @@ class UiAccordionPanel implements OnInit {
     _context: unknown
   ): _context is PresentPartContext<AccordionPanelState> {
     return true
-  }
-
-  ngOnInit() {
-    this.#part.init()
   }
 }
 

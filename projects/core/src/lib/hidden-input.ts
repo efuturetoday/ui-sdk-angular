@@ -1,5 +1,11 @@
 import { isPlatformBrowser } from "@angular/common"
-import { afterNextRender, inject, isDevMode, PLATFORM_ID } from "@angular/core"
+import {
+  afterNextRender,
+  effect,
+  inject,
+  isDevMode,
+  PLATFORM_ID,
+} from "@angular/core"
 import { FormField } from "@angular/forms/signals"
 import { injectFormValue } from "./forms"
 
@@ -7,12 +13,14 @@ import { injectFormValue } from "./forms"
 const linked = new WeakSet<object>()
 
 /**
- * Called by a control's hidden input with its control, so the control knows
- * it has one.
+ * Tells the control `control` gives that it has its hidden input. Call it
+ * where Angular allows `inject`, in the hidden input's directive.
  * @experimental
  */
-function linkHiddenInput(control: object) {
-  linked.add(control)
+function linkHiddenInput(control: () => object) {
+  effect(() => {
+    linked.add(control())
+  })
 }
 
 /**

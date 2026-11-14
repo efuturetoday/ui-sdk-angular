@@ -1,11 +1,4 @@
-import {
-  computed,
-  Directive,
-  inject,
-  input,
-  output,
-  type OnInit,
-} from "@angular/core"
+import { computed, Directive, inject, input, output } from "@angular/core"
 import type { CommitDetails, SlotName } from "@ui-sdk/core"
 import {
   fileInput,
@@ -45,7 +38,7 @@ import {
   exportAs: "uiFileInput",
   providers: [provideRoot(fileInput, () => UiFileInput)],
 })
-class UiFileInput implements OnInit {
+class UiFileInput {
   /** The files. Bind it, or `[(value)]`, to control it. */
   readonly value = input<File[]>()
   /** The files at first, when uncontrolled. */
@@ -144,12 +137,6 @@ class UiFileInput implements OnInit {
     () => ({}) as never,
     injectInputInside()
   )
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-    this.#hidden.init()
-  }
 }
 
 const unconnected: FileInputState = {
@@ -168,7 +155,7 @@ const unconnected: FileInputState = {
   selector: "[uiFileInputTrigger]",
   exportAs: "uiFileInputTrigger",
 })
-class UiFileInputTrigger implements OnInit {
+class UiFileInputTrigger {
   /** Connects a trigger outside the file input to the one with this controller. */
   readonly controller = input<FileInputController>()
   readonly #field = injectFieldControl()
@@ -178,14 +165,10 @@ class UiFileInputTrigger implements OnInit {
     "trigger",
     () => ({}),
     { attrs: () => ({ type: "button" }), state: () => unconnected },
-    this.#field?.join
+    { join: this.#field?.join }
   )
   /** The trigger's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -196,7 +179,7 @@ class UiFileInputTrigger implements OnInit {
   selector: "[uiFileInputDropzone]",
   exportAs: "uiFileInputDropzone",
 })
-class UiFileInputDropzone implements OnInit {
+class UiFileInputDropzone {
   /** Where it takes drops. `"document"` takes files dropped anywhere on the page. */
   readonly target = input<FileInputDropzoneTarget>()
   /** Somewhere else to take pasted files from: `"document"`, an element, a CSS selector, or a function that returns an element. */
@@ -209,10 +192,6 @@ class UiFileInputDropzone implements OnInit {
   }))
   /** The zone's state, with whether files are `dragging` over it. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -220,14 +199,10 @@ class UiFileInputDropzone implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiFileInputList]", exportAs: "uiFileInputList" })
-class UiFileInputList implements OnInit {
+class UiFileInputList {
   readonly #part = injectPart(injectHandle(fileInput), "list")
   /** The list's state, with the `value` to render. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -235,7 +210,7 @@ class UiFileInputList implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiFileInputItem]", exportAs: "uiFileInputItem" })
-class UiFileInputItem implements OnInit {
+class UiFileInputItem {
   /** The file this item shows. */
   readonly file = input.required<File>()
   readonly #part = injectPart(injectHandle(fileInput), "item", () => ({
@@ -244,10 +219,6 @@ class UiFileInputItem implements OnInit {
   }))
   /** The item's state, with its `file`. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -258,7 +229,7 @@ class UiFileInputItem implements OnInit {
   selector: "[uiFileInputItemRemove]",
   exportAs: "uiFileInputItemRemove",
 })
-class UiFileInputItemRemove implements OnInit {
+class UiFileInputItemRemove {
   /** The file to remove, when the button isn't inside its item. */
   readonly file = input<File>()
   readonly #item = inject(UiFileInputItem, { optional: true })
@@ -277,10 +248,6 @@ class UiFileInputItemRemove implements OnInit {
   }))
   /** The button's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export {

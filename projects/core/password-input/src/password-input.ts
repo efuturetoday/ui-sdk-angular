@@ -6,7 +6,6 @@ import {
   inject,
   input,
   output,
-  type OnInit,
 } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -38,7 +37,7 @@ import {
   exportAs: "uiPasswordInput",
   providers: [provideRoot(passwordInput, () => UiPasswordInput)],
 })
-class UiPasswordInput implements OnInit {
+class UiPasswordInput {
   /** The password. Bind it, or `[(value)]`, to control it. */
   readonly value = input<string>()
   /** The password at first, when uncontrolled, and after a form reset. */
@@ -135,11 +134,6 @@ class UiPasswordInput implements OnInit {
   readonly #part = injectPart(this.handle, "root")
   /** The password input's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -151,7 +145,7 @@ class UiPasswordInput implements OnInit {
   exportAs: "uiPasswordInputControl",
   host: { "[attr.value]": "defaultAttr()" },
 })
-class UiPasswordInputControl implements OnInit {
+class UiPasswordInputControl {
   /** The input's id. Inside a field, the field's when left out. */
   readonly id = input<string>()
   readonly #root = inject(UiPasswordInput)
@@ -165,7 +159,7 @@ class UiPasswordInputControl implements OnInit {
     injectHandle(passwordInput),
     "control",
     () => ({ id: this.id() }),
-    this.#field?.join
+    { join: this.#field?.join }
   )
   /** The control's state. */
   readonly state = this.#part.state
@@ -178,10 +172,6 @@ class UiPasswordInputControl implements OnInit {
       }
     })
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -193,14 +183,10 @@ class UiPasswordInputControl implements OnInit {
   selector: "[uiPasswordInputToggle]",
   exportAs: "uiPasswordInputToggle",
 })
-class UiPasswordInputToggle implements OnInit {
+class UiPasswordInputToggle {
   readonly #part = injectPart(injectHandle(passwordInput), "toggle")
   /** The toggle's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export { createPasswordInputController } from "@ui-sdk/core/password-input"

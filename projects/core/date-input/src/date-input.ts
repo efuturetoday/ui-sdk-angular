@@ -8,6 +8,7 @@ import {
   provideValueAccessor,
   UiValueAccessor,
   provideRoot,
+  TextSource,
 } from "@ngx-ui-sdk/core"
 import {
   ɵSegmentedInput as SegmentedInput,
@@ -42,12 +43,13 @@ class UiDateInput extends SegmentedInput {
 
 /**
  * One segment of a date input: an `<input>` you type in, or a `<span>` for
- * the text between inputs. Written empty, a span shows its text.
+ * the text between inputs. With `uiText`, a span shows its text.
  * @experimental
  */
 @Directive({
   selector: "[uiDateInputSegment]",
   exportAs: "uiDateInputSegment",
+  providers: [{ provide: TextSource, useExisting: UiDateInputSegment }],
 })
 class UiDateInputSegment extends SegmentedInputSegment {}
 

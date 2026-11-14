@@ -6,7 +6,6 @@ import {
   input,
   output,
   signal,
-  type OnInit,
 } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import type { AsyncOptionsStatus } from "@ui-sdk/core/async-options"
@@ -23,8 +22,6 @@ import {
   type SearchFilter,
 } from "@ui-sdk/core/command"
 import {
-  ɵinjectContentOwner as injectContentOwner,
-  ɵinjectDefaultText as injectDefaultText,
   optionalBoolean,
   injectPart,
   injectHandle,
@@ -35,6 +32,9 @@ import {
   injectPresentPart,
   ListHighlight,
   VirtualIndex,
+  TextSource,
+  showMarked,
+  showText,
 } from "@ngx-ui-sdk/core"
 
 /**
@@ -65,7 +65,7 @@ type CommandPagesChangeDetails = ChangeDetails<CommandPagesChangeReason>
     },
   ],
 })
-class UiCommand implements OnInit {
+class UiCommand {
   /** The highlighted command's value. Bind it, or `[(value)]`, to control it. */
   readonly value = input<string | null>()
   /** The highlighted command at first, when uncontrolled. */
@@ -182,11 +182,6 @@ class UiCommand implements OnInit {
   readonly #part = injectPart(this.handle, "root")
   /** The command's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -195,14 +190,10 @@ class UiCommand implements OnInit {
  * @experimental
  */
 @Directive({ selector: "input[uiCommandInput]", exportAs: "uiCommandInput" })
-class UiCommandInput implements OnInit {
+class UiCommandInput {
   readonly #part = injectPart(injectHandle(command), "input")
   /** The input's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -211,14 +202,10 @@ class UiCommandInput implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiCommandList]", exportAs: "uiCommandList" })
-class UiCommandList implements OnInit {
+class UiCommandList {
   readonly #part = injectPart(injectHandle(command), "list")
   /** The list's state, with the ranked `items` for data commands. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -227,7 +214,7 @@ class UiCommandList implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiCommandPage]" })
-class UiCommandPage implements OnInit {
+class UiCommandPage {
   /** The page's value, which `pages` names while it's open. */
   readonly value = input<string | undefined, string | "">(undefined, {
     alias: "uiCommandPage",
@@ -240,10 +227,6 @@ class UiCommandPage implements OnInit {
     undefined,
     { bare: true }
   )
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -252,7 +235,7 @@ class UiCommandPage implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiCommandGroup]", exportAs: "uiCommandGroup" })
-class UiCommandGroup implements OnInit {
+class UiCommandGroup {
   /** @internal The group's id, which its commands and label name. */
   readonly id = inject(UiIds).next()
   readonly #part = injectPart(injectHandle(command), "group", () => ({
@@ -260,10 +243,6 @@ class UiCommandGroup implements OnInit {
   }))
   /** The group's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -274,7 +253,7 @@ class UiCommandGroup implements OnInit {
   selector: "[uiCommandGroupLabel]",
   exportAs: "uiCommandGroupLabel",
 })
-class UiCommandGroupLabel implements OnInit {
+class UiCommandGroupLabel {
   readonly #group = inject(UiCommandGroup)
   readonly #part = injectPart(injectHandle(command), "group-label", () => ({
     id: this.#group.id,
@@ -282,10 +261,6 @@ class UiCommandGroupLabel implements OnInit {
   }))
   /** The label's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -294,7 +269,7 @@ class UiCommandGroupLabel implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiCommandItem]", exportAs: "uiCommandItem" })
-class UiCommandItem implements OnInit {
+class UiCommandItem {
   /** The value `onAction` gets. Without one, it has an id of its own. */
   readonly value = input<string>()
   /** Its label, if its text isn't, for the search and screen readers. */
@@ -335,46 +310,44 @@ class UiCommandItem implements OnInit {
   }))
   /** The command's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
- * The command's text. Written empty, it shows its label with the part the
+ * The command's text. With `uiText`, it shows its label with the part the
  * search matched in `<mark>`. With content of its own, the content is yours.
  * @experimental
  */
-@Directive({ selector: "[uiCommandItemText]", exportAs: "uiCommandItemText" })
-class UiCommandItemText implements OnInit {
+@Directive({
+  providers: [{ provide: TextSource, useExisting: UiCommandItemText }],
+  selector: "[uiCommandItemText]",
+  exportAs: "uiCommandItemText",
+})
+class UiCommandItemText implements TextSource {
   readonly #item = inject(UiCommandItem)
   readonly #el = inject(ElementRef).nativeElement as HTMLElement
-  readonly #content = injectContentOwner()
+  /** Shows the part's text where `uiText` is, with its matches marked. */
+  readonly attach = showMarked(() => this.state().segments)
   // Its text is the command's label, or its own text, which the search reads.
   readonly #part = injectPart(injectHandle(command), "item-text", () => ({
     id: this.#item.key(),
     text:
-      this.#item.label() ??
-      (this.#content.core() ? this.#item.key() : this.#el.textContent.trim()),
-    write: this.#content.core(),
+      this.#item.label() ?? (this.#el.textContent.trim() || this.#item.key()),
   }))
   /** The text's state, with the search's match. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#content.decide()
-    this.#part.init()
-  }
 }
 
 /**
- * The keys of a command's shortcut, formatted for the platform. Written
- * empty, it shows its command's `shortcut`, or its own.
+ * The keys of a command's shortcut, formatted for the platform. With
+ * `uiText`, it shows its command's `shortcut`, or its own.
  * @experimental
  */
-@Directive({ selector: "[uiCommandShortcut]", exportAs: "uiCommandShortcut" })
-class UiCommandShortcut implements OnInit {
+@Directive({
+  providers: [{ provide: TextSource, useExisting: UiCommandShortcut }],
+  selector: "[uiCommandShortcut]",
+  exportAs: "uiCommandShortcut",
+})
+class UiCommandShortcut implements TextSource {
   /** The keys, if not its command's `shortcut`. */
   readonly shortcut = input<string>()
   readonly #item = inject(UiCommandItem, { optional: true })
@@ -383,12 +356,8 @@ class UiCommandShortcut implements OnInit {
   }))
   /** The shortcut's state, with its `text`. */
   readonly state = this.#part.state
-  readonly #content = injectDefaultText(() => this.state().text)
-
-  ngOnInit() {
-    this.#content.decide()
-    this.#part.init()
-  }
+  /** Shows the part's text where `uiText` is. */
+  readonly attach = showText(() => this.state().text)
 }
 
 /**
@@ -397,7 +366,7 @@ class UiCommandShortcut implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiCommandItemIcon]", exportAs: "uiCommandItemIcon" })
-class UiCommandItemIcon implements OnInit {
+class UiCommandItemIcon {
   /** Flips it in right-to-left text, for icons that point a way. */
   readonly mirror = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -411,10 +380,6 @@ class UiCommandItemIcon implements OnInit {
   }))
   /** The icon's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -423,12 +388,8 @@ class UiCommandItemIcon implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiCommandSeparator]", exportAs: "uiCommandSeparator" })
-class UiCommandSeparator implements OnInit {
+class UiCommandSeparator {
   readonly #part = injectPart(injectHandle(command), "separator")
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -437,16 +398,12 @@ class UiCommandSeparator implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiCommandEmpty]", exportAs: "uiCommandEmpty" })
-class UiCommandEmpty implements OnInit {
+class UiCommandEmpty {
   readonly #part = injectPart(injectHandle(command), "empty", () => ({
     stash: true,
   }))
   /** The empty message's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -454,14 +411,10 @@ class UiCommandEmpty implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiCommandStatus]", exportAs: "uiCommandStatus" })
-class UiCommandStatus implements OnInit {
+class UiCommandStatus {
   readonly #part = injectPart(injectHandle(command), "status")
   /** The status's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export { createCommandController } from "@ui-sdk/core/command"

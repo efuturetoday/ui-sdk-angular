@@ -4,6 +4,7 @@ import {
   provideValueAccessor,
   UiValueAccessor,
   provideRoot,
+  TextSource,
 } from "@ngx-ui-sdk/core"
 import {
   ɵSegmentedInput as SegmentedInput,
@@ -40,12 +41,13 @@ class UiTimeInput extends SegmentedInput {
 
 /**
  * One segment of a time input: an `<input>` you type in, or a `<span>` for
- * the text between inputs. Written empty, a span shows its text.
+ * the text between inputs. With `uiText`, a span shows its text.
  * @experimental
  */
 @Directive({
   selector: "[uiTimeInputSegment]",
   exportAs: "uiTimeInputSegment",
+  providers: [{ provide: TextSource, useExisting: UiTimeInputSegment }],
 })
 class UiTimeInputSegment extends SegmentedInputSegment {}
 

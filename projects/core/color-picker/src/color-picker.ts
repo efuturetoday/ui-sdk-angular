@@ -1,4 +1,4 @@
-import { Directive, inject, input, output, type OnInit } from "@angular/core"
+import { Directive, inject, input, output } from "@angular/core"
 import type { SlotName } from "@ui-sdk/core"
 import {
   colorPicker,
@@ -34,7 +34,7 @@ import {
   exportAs: "uiColorPicker",
   providers: [provideRoot(colorPicker, () => UiColorPicker)],
 })
-class UiColorPicker implements OnInit {
+class UiColorPicker {
   /** The color, as a CSS color. Bind it, or `[(value)]`, to control it. */
   readonly value = input<string>()
   /** The color at first, when uncontrolled, and after a form reset. */
@@ -108,7 +108,9 @@ class UiColorPicker implements OnInit {
         this.valueCommit.emit({ value, details }),
     })
   )
-  readonly #part = injectPart(this.handle, "root", undefined, this.#field?.join)
+  readonly #part = injectPart(this.handle, "root", undefined, {
+    join: this.#field?.join,
+  })
   /** The picker's state. */
   readonly state = this.#part.state
   readonly #hidden = bindPart(
@@ -117,12 +119,6 @@ class UiColorPicker implements OnInit {
     () => ({}) as never,
     injectInputInside()
   )
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-    this.#hidden.init()
-  }
 }
 
 /**
@@ -130,7 +126,7 @@ class UiColorPicker implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiColorPickerArea]", exportAs: "uiColorPickerArea" })
-class UiColorPickerArea implements OnInit {
+class UiColorPickerArea {
   /** The channel along its width. */
   readonly x = input<ColorChannel>()
   /** The channel along its height. */
@@ -141,10 +137,6 @@ class UiColorPickerArea implements OnInit {
   }))
   /** The picker's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -155,7 +147,7 @@ class UiColorPickerArea implements OnInit {
   selector: "[uiColorPickerAreaThumb]",
   exportAs: "uiColorPickerAreaThumb",
 })
-class UiColorPickerAreaThumb implements OnInit {
+class UiColorPickerAreaThumb {
   readonly #area = inject(UiColorPickerArea)
   readonly #part = injectPart(injectHandle(colorPicker), "area-thumb", () => ({
     x: this.#area.x(),
@@ -163,10 +155,6 @@ class UiColorPickerAreaThumb implements OnInit {
   }))
   /** The picker's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -177,16 +165,12 @@ class UiColorPickerAreaThumb implements OnInit {
   selector: "canvas[uiColorPickerAreaCanvas]",
   exportAs: "uiColorPickerAreaCanvas",
 })
-class UiColorPickerAreaCanvas implements OnInit {
+class UiColorPickerAreaCanvas {
   readonly #area = inject(UiColorPickerArea)
   readonly #part = injectPart(injectHandle(colorPicker), "area-canvas", () => ({
     x: this.#area.x(),
     y: this.#area.y(),
   }))
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -197,7 +181,7 @@ class UiColorPickerAreaCanvas implements OnInit {
   selector: "[uiColorPickerSlider]",
   exportAs: "uiColorPickerSlider",
 })
-class UiColorPickerSlider implements OnInit {
+class UiColorPickerSlider {
   /** The channel it moves. */
   readonly channel = input<ColorChannel>()
   /** Which way it runs. */
@@ -211,10 +195,6 @@ class UiColorPickerSlider implements OnInit {
   }))
   /** The slider's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -225,7 +205,7 @@ class UiColorPickerSlider implements OnInit {
   selector: "[uiColorPickerSliderThumb]",
   exportAs: "uiColorPickerSliderThumb",
 })
-class UiColorPickerSliderThumb implements OnInit {
+class UiColorPickerSliderThumb {
   readonly #slider = inject(UiColorPickerSlider)
   readonly #part = injectPart(
     injectHandle(colorPicker),
@@ -238,10 +218,6 @@ class UiColorPickerSliderThumb implements OnInit {
   )
   /** The slider's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -252,14 +228,10 @@ class UiColorPickerSliderThumb implements OnInit {
   selector: "input[uiColorPickerInput]",
   exportAs: "uiColorPickerInput",
 })
-class UiColorPickerInput implements OnInit {
+class UiColorPickerInput {
   readonly #part = injectPart(injectHandle(colorPicker), "input")
   /** The picker's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -270,7 +242,7 @@ class UiColorPickerInput implements OnInit {
   selector: "input[uiColorPickerChannelInput]",
   exportAs: "uiColorPickerChannelInput",
 })
-class UiColorPickerChannelInput implements OnInit {
+class UiColorPickerChannelInput {
   /** The channel it shows and sets. */
   readonly channel = input<ColorChannel>()
   readonly #id = inject(UiIds).next()
@@ -281,10 +253,6 @@ class UiColorPickerChannelInput implements OnInit {
   )
   /** The picker's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -295,14 +263,10 @@ class UiColorPickerChannelInput implements OnInit {
   selector: "[uiColorPickerSwatch]",
   exportAs: "uiColorPickerSwatch",
 })
-class UiColorPickerSwatch implements OnInit {
+class UiColorPickerSwatch {
   readonly #part = injectPart(injectHandle(colorPicker), "swatch")
   /** The picker's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -313,14 +277,10 @@ class UiColorPickerSwatch implements OnInit {
   selector: "[uiColorPickerEyeDropper]",
   exportAs: "uiColorPickerEyeDropper",
 })
-class UiColorPickerEyeDropper implements OnInit {
+class UiColorPickerEyeDropper {
   readonly #part = injectPart(injectHandle(colorPicker), "eye-dropper")
   /** The picker's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -331,14 +291,10 @@ class UiColorPickerEyeDropper implements OnInit {
   selector: "[uiColorPickerSwatches]",
   exportAs: "uiColorPickerSwatches",
 })
-class UiColorPickerSwatches implements OnInit {
+class UiColorPickerSwatches {
   readonly #part = injectPart(injectHandle(colorPicker), "swatches")
   /** The picker's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -349,7 +305,7 @@ class UiColorPickerSwatches implements OnInit {
   selector: "[uiColorPickerSwatchItem]",
   exportAs: "uiColorPickerSwatchItem",
 })
-class UiColorPickerSwatchItem implements OnInit {
+class UiColorPickerSwatchItem {
   /** The color it picks, as a CSS color. */
   readonly value = input.required<string>()
   readonly #part = injectPart(injectHandle(colorPicker), "swatch-item", () => ({
@@ -357,10 +313,6 @@ class UiColorPickerSwatchItem implements OnInit {
   }))
   /** The item's state, with whether it's `selected`. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export { createColorPickerController } from "@ui-sdk/core/color-picker"

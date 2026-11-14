@@ -1,4 +1,4 @@
-import { Directive, input, type OnInit, type Signal } from "@angular/core"
+import { Directive, input, type Signal } from "@angular/core"
 import {
   progress,
   type GaugeLabelDetails,
@@ -7,12 +7,13 @@ import {
   type ProgressValueState,
 } from "@ui-sdk/core/progress"
 import {
-  ɵinjectDefaultText as injectDefaultText,
   injectPart,
   injectHandle,
   injectPrimitive,
   type PrimitiveHandle,
   provideRoot,
+  TextSource,
+  showText,
 } from "@ngx-ui-sdk/core"
 
 /**
@@ -25,7 +26,7 @@ import {
   exportAs: "uiProgress",
   providers: [provideRoot(progress, () => UiProgress)],
 })
-class UiProgress implements OnInit {
+class UiProgress {
   /** How far the task has come, between `min` and `max`. Null, or left out, means how far is unknown. */
   readonly value = input<number | null>()
   /** The lowest value. */
@@ -53,11 +54,6 @@ class UiProgress implements OnInit {
   readonly #part = injectPart(this.handle, "root")
   /** The bar's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -65,14 +61,10 @@ class UiProgress implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiProgressTrack]", exportAs: "uiProgressTrack" })
-class UiProgressTrack implements OnInit {
+class UiProgressTrack {
   readonly #part = injectPart(injectHandle(progress), "track")
   /** The track's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -83,14 +75,10 @@ class UiProgressTrack implements OnInit {
   selector: "[uiProgressIndicator]",
   exportAs: "uiProgressIndicator",
 })
-class UiProgressIndicator implements OnInit {
+class UiProgressIndicator {
   readonly #part = injectPart(injectHandle(progress), "indicator")
   /** The indicator's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -98,32 +86,28 @@ class UiProgressIndicator implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiProgressLabel]", exportAs: "uiProgressLabel" })
-class UiProgressLabel implements OnInit {
+class UiProgressLabel {
   readonly #part = injectPart(injectHandle(progress), "label")
   /** The label's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
- * The formatted value, like "40%", empty while indeterminate. Written empty, it shows the value; with
+ * The formatted value, like "40%", empty while indeterminate. With `uiText`, it shows the value; with
  * content of its own, that is shown instead.
  * @experimental
  */
-@Directive({ selector: "[uiProgressValue]", exportAs: "uiProgressValue" })
-class UiProgressValue implements OnInit {
+@Directive({
+  providers: [{ provide: TextSource, useExisting: UiProgressValue }],
+  selector: "[uiProgressValue]",
+  exportAs: "uiProgressValue",
+})
+class UiProgressValue implements TextSource {
   readonly #part = injectPart(injectHandle(progress), "value")
   /** The value's state, with its formatted `text`. */
   readonly state: Signal<ProgressValueState> = this.#part.state
-  readonly #text = injectDefaultText(() => this.state().text)
-
-  ngOnInit() {
-    this.#text.decide()
-    this.#part.init()
-  }
+  /** Shows the part's text where `uiText` is. */
+  readonly attach = showText(() => this.state().text)
 }
 
 export type {

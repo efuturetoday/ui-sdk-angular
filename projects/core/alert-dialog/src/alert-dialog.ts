@@ -5,7 +5,6 @@ import {
   input,
   output,
   type InputSignal,
-  type OnInit,
   type Signal,
 } from "@angular/core"
 import type { ChangeDetails, TypesOf } from "@ui-sdk/core"
@@ -54,7 +53,7 @@ import {
   exportAs: "uiAlertDialog",
   providers: [provideRoot(alertDialog, () => UiAlertDialog)],
 })
-class UiAlertDialog implements OnInit {
+class UiAlertDialog {
   /** Whether the alert dialog is open. Bind it, or `[(open)]`, to control it. */
   readonly open = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -118,10 +117,6 @@ class UiAlertDialog implements OnInit {
   /** The alert dialog's state. */
   readonly state: Signal<TypesOf<AlertDialogPrimitive>["state"]> =
     this.handle.state
-
-  ngOnInit() {
-    this.handle.init()
-  }
 }
 
 /**
@@ -133,9 +128,7 @@ class UiAlertDialog implements OnInit {
   exportAs: "uiAlertDialogTrigger",
   providers: [provideTrigger(alertDialog, () => UiAlertDialogTrigger)],
 })
-class UiAlertDialogTrigger
-  implements OnInit, TriggerContext<typeof alertDialog>
-{
+class UiAlertDialogTrigger implements TriggerContext<typeof alertDialog> {
   /** What the alert dialog gets as its payload when this trigger opens it. */
   readonly payload = input<unknown>()
   /** Stops the trigger from opening the alert dialog. */
@@ -169,10 +162,6 @@ class UiAlertDialogTrigger
   readonly target = this.#part.target
   /** The trigger's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -184,16 +173,12 @@ class UiAlertDialogTrigger
   selector: "[uiAlertDialogShortcut]",
   exportAs: "uiAlertDialogShortcut",
 })
-class UiAlertDialogShortcut implements OnInit {
+class UiAlertDialogShortcut {
   /** The keys to show. Inside a trigger, its shortcut. */
   readonly shortcut = input<string>()
   readonly #part = injectShortcutPart(alertDialog, this.shortcut)
   /** The shortcut's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -201,7 +186,7 @@ class UiAlertDialogShortcut implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiAlertDialogBackdrop]" })
-class UiAlertDialogBackdrop implements OnInit {
+class UiAlertDialogBackdrop {
   readonly #root = inject(UiAlertDialog)
   readonly #part = injectPopupPart(
     injectHandle(alertDialog),
@@ -218,10 +203,6 @@ class UiAlertDialogBackdrop implements OnInit {
   ): _context is PresentPartContext<AlertDialogBackdropState> {
     return true
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -230,7 +211,7 @@ class UiAlertDialogBackdrop implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiAlertDialogContent]" })
-class UiAlertDialogContent implements OnInit {
+class UiAlertDialogContent {
   /** Where focus goes when the dialog opens: `*uiAlertDialogContent="let state; initialFocus: 'content'"`. */
   readonly initialFocus = input<DialogInitialFocus>(undefined, {
     alias: "uiAlertDialogContentInitialFocus",
@@ -272,10 +253,6 @@ class UiAlertDialogContent implements OnInit {
   ): _context is PresentPartContext<AlertDialogContentState> {
     return true
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -286,14 +263,10 @@ class UiAlertDialogContent implements OnInit {
   selector: "[uiAlertDialogTitle]",
   exportAs: "uiAlertDialogTitle",
 })
-class UiAlertDialogTitle implements OnInit {
+class UiAlertDialogTitle {
   readonly #part = injectPart(injectHandle(alertDialog), "title")
   /** The title's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -304,14 +277,10 @@ class UiAlertDialogTitle implements OnInit {
   selector: "[uiAlertDialogDescription]",
   exportAs: "uiAlertDialogDescription",
 })
-class UiAlertDialogDescription implements OnInit {
+class UiAlertDialogDescription {
   readonly #part = injectPart(injectHandle(alertDialog), "description")
   /** The description's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -322,7 +291,7 @@ class UiAlertDialogDescription implements OnInit {
   selector: "[uiAlertDialogClose]",
   exportAs: "uiAlertDialogClose",
 })
-class UiAlertDialogClose implements OnInit {
+class UiAlertDialogClose {
   /** Reported as the alert dialog's `returnValue` when this closes it. */
   readonly value = input<string>()
   /** Runs before it closes. A returned Promise keeps it open and pending until it settles. */
@@ -342,10 +311,6 @@ class UiAlertDialogClose implements OnInit {
   }))
   /** The close button's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export {

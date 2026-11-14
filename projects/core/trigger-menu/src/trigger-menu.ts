@@ -6,7 +6,6 @@ import {
   input,
   output,
   signal,
-  type OnInit,
   type Signal,
 } from "@angular/core"
 import type {
@@ -32,7 +31,6 @@ import {
   type TriggerMenuSelectDetails,
 } from "@ui-sdk/core/trigger-menu"
 import {
-  ɵinjectContentOwner as injectContentOwner,
   optionalBoolean,
   injectPart,
   injectPopupPart,
@@ -46,6 +44,8 @@ import {
   EditorToken,
   ListHighlight,
   VirtualIndex,
+  TextSource,
+  letCoreWrite,
 } from "@ngx-ui-sdk/core"
 
 /**
@@ -83,7 +83,7 @@ type TriggerMenuQueryChangeDetails =
     },
   ],
 })
-class UiTriggerMenu implements OnInit {
+class UiTriggerMenu {
   /** The triggers, like `@` for people, and the items each suggests. */
   readonly triggers = input.required<TriggerDefinition<any>[]>()
   /** The text editor it suggests into, if not the token input around it or its own input. */
@@ -182,10 +182,6 @@ class UiTriggerMenu implements OnInit {
   /** The menu's state. */
   readonly state: Signal<TypesOf<TriggerMenuPrimitive>["state"]> =
     this.handle.state
-
-  ngOnInit() {
-    this.handle.init()
-  }
 }
 
 /**
@@ -196,14 +192,10 @@ class UiTriggerMenu implements OnInit {
   selector: "textarea[uiTriggerMenuInput], input[uiTriggerMenuInput]",
   exportAs: "uiTriggerMenuInput",
 })
-class UiTriggerMenuInput implements OnInit {
+class UiTriggerMenuInput {
   readonly #part = injectPart(injectHandle(triggerMenu), "input")
   /** The input's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -212,7 +204,7 @@ class UiTriggerMenuInput implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiTriggerMenuContent]" })
-class UiTriggerMenuContent implements OnInit {
+class UiTriggerMenuContent {
   /** Which side of the caret it opens on. */
   readonly side = input<Side>(undefined, {
     alias: "uiTriggerMenuContentSide",
@@ -273,10 +265,6 @@ class UiTriggerMenuContent implements OnInit {
   ): _context is PresentPartContext<TriggerMenuContentState> {
     return true
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -284,14 +272,10 @@ class UiTriggerMenuContent implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiTriggerMenuList]", exportAs: "uiTriggerMenuList" })
-class UiTriggerMenuList implements OnInit {
+class UiTriggerMenuList {
   readonly #part = injectPart(injectHandle(triggerMenu), "list")
   /** The list's state, with the matching `items`. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -300,7 +284,7 @@ class UiTriggerMenuList implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiTriggerMenuGroup]", exportAs: "uiTriggerMenuGroup" })
-class UiTriggerMenuGroup implements OnInit {
+class UiTriggerMenuGroup {
   /** @internal The group's id, which its items and label name. */
   readonly id = inject(UiIds).next()
   readonly #part = injectPart(injectHandle(triggerMenu), "group", () => ({
@@ -308,10 +292,6 @@ class UiTriggerMenuGroup implements OnInit {
   }))
   /** The group's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -322,7 +302,7 @@ class UiTriggerMenuGroup implements OnInit {
   selector: "[uiTriggerMenuGroupLabel]",
   exportAs: "uiTriggerMenuGroupLabel",
 })
-class UiTriggerMenuGroupLabel implements OnInit {
+class UiTriggerMenuGroupLabel {
   readonly #group = inject(UiTriggerMenuGroup)
   readonly #part = injectPart(injectHandle(triggerMenu), "group-label", () => ({
     id: this.#group.id,
@@ -330,10 +310,6 @@ class UiTriggerMenuGroupLabel implements OnInit {
   }))
   /** The label's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -341,7 +317,7 @@ class UiTriggerMenuGroupLabel implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiTriggerMenuItem]", exportAs: "uiTriggerMenuItem" })
-class UiTriggerMenuItem implements OnInit {
+class UiTriggerMenuItem {
   /** The value it inserts. */
   readonly value = input.required<unknown>()
   /** Its label, if its text isn't, for matching and the token. */
@@ -373,10 +349,6 @@ class UiTriggerMenuItem implements OnInit {
   }))
   /** The item's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -388,7 +360,7 @@ class UiTriggerMenuItem implements OnInit {
   selector: "[uiTriggerMenuItemIcon]",
   exportAs: "uiTriggerMenuItemIcon",
 })
-class UiTriggerMenuItemIcon implements OnInit {
+class UiTriggerMenuItemIcon {
   /** Flips it in right-to-left text, for icons that point a way. */
   readonly mirror = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -402,10 +374,6 @@ class UiTriggerMenuItemIcon implements OnInit {
   }))
   /** The icon's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -416,12 +384,8 @@ class UiTriggerMenuItemIcon implements OnInit {
   selector: "[uiTriggerMenuSeparator]",
   exportAs: "uiTriggerMenuSeparator",
 })
-class UiTriggerMenuSeparator implements OnInit {
+class UiTriggerMenuSeparator {
   readonly #part = injectPart(injectHandle(triggerMenu), "separator")
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -429,59 +393,54 @@ class UiTriggerMenuSeparator implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiTriggerMenuEmpty]", exportAs: "uiTriggerMenuEmpty" })
-class UiTriggerMenuEmpty implements OnInit {
+class UiTriggerMenuEmpty {
   readonly #part = injectPart(injectHandle(triggerMenu), "empty", () => ({
     stash: true,
   }))
   /** The empty message's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
- * A polite live region for loading and result counts. Written empty, core
+ * A polite live region for loading and result counts. With `uiText`, core
  * writes its text; with content of its own, the content.
  * @experimental
  */
 @Directive({
+  providers: [{ provide: TextSource, useExisting: UiTriggerMenuStatus }],
   selector: "[uiTriggerMenuStatus]",
   exportAs: "uiTriggerMenuStatus",
 })
-class UiTriggerMenuStatus implements OnInit {
-  readonly #content = injectContentOwner()
+class UiTriggerMenuStatus implements TextSource {
+  readonly #coreWrites = signal(false)
+  /** Has core write the part's text where `uiText` is. */
+  readonly attach = letCoreWrite(this.#coreWrites)
   readonly #part = injectPart(injectHandle(triggerMenu), "status", () => ({
-    text: this.#content.core(),
+    text: this.#coreWrites(),
   }))
   /** The status's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#content.decide()
-    this.#part.init()
-  }
 }
 
 /**
- * Tells how to use the menu while it's open, like "↑↓ to navigate". Written
- * empty, core writes its text; with content of its own, the content.
+ * Tells how to use the menu while it's open, like "↑↓ to navigate". With
+ * `uiText`, core writes its text; with content of its own, the content.
  * @experimental
  */
-@Directive({ selector: "[uiTriggerMenuHint]", exportAs: "uiTriggerMenuHint" })
-class UiTriggerMenuHint implements OnInit {
-  readonly #content = injectContentOwner()
+@Directive({
+  providers: [{ provide: TextSource, useExisting: UiTriggerMenuHint }],
+  selector: "[uiTriggerMenuHint]",
+  exportAs: "uiTriggerMenuHint",
+})
+class UiTriggerMenuHint implements TextSource {
+  readonly #coreWrites = signal(false)
+  /** Has core write the part's text where `uiText` is. */
+  readonly attach = letCoreWrite(this.#coreWrites)
   readonly #part = injectPart(injectHandle(triggerMenu), "hint", () => ({
-    text: this.#content.core(),
+    text: this.#coreWrites(),
   }))
   /** The hint's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#content.decide()
-    this.#part.init()
-  }
 }
 
 export {

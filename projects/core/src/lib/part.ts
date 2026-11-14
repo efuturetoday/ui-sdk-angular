@@ -39,6 +39,20 @@ type Unbound<State> = {
   state: () => State
 }
 
+// One of core's optional features of a primitive, like a combobox's chips.
+type Feature<P extends Primitive> = Parameters<ReturnType<P>["use"]>[0]
+
+/**
+ * What a part may also take: `join` makes its element a part of another
+ * instance too, like a field's control, and `uses` adds the optional feature
+ * of core's it belongs to, like `comboboxChips`.
+ * @experimental
+ */
+type PartOptions<P extends Primitive> = {
+  join?: JoinedPart
+  uses?: Feature<P>
+}
+
 // A part bound to whichever instance `target` gives, again whenever that
 // changes, and to none while it gives none.
 function bindPart<P extends Primitive, S extends SlotName<P>>(
@@ -48,9 +62,16 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
   element: PartElement<StateOf<P, S>>,
   unbound?: Unbound<StateOf<P, S>> & { el: HTMLElement },
   join?: JoinedPart,
-  claims?: HTMLElement
+  claims?: HTMLElement,
+  uses?: Feature<P>
 ) {
   const browser = isPlatformBrowser(inject(PLATFORM_ID))
+  // A part of an optional feature asks its instance for it at once, before
+  // anything reads its state, and again of the next instance it's part of.
+  if (uses) {
+    untracked(target)?.use(uses)
+    effect(() => target()?.use(uses))
+  }
   const firstRender = inject(FirstRender)
   let started = false
   let rendered = false
@@ -181,15 +202,15 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
 /**
  * Makes this directive's element one part of a primitive, for a part that's
  * always present. Call it in a field initializer; it starts once Angular has
- * set the inputs. `state` is the part's state. `join` makes the element a part of
- * another instance too, like a field's control.
+ * set the inputs. `state` is the part's state. `options` may `join` it to
+ * another instance or name the feature it `uses`.
  * @experimental
  */
 function injectPart<P extends Primitive, S extends SlotName<P>>(
   handle: PrimitiveHandle<P>,
   slot: S,
   props = () => ({}) as PropsOf<P, S>,
-  join?: JoinedPart
+  { join, uses }: PartOptions<P> = {}
 ) {
   const el = inject(ElementRef).nativeElement as HTMLElement
   return bindPart(
@@ -199,7 +220,8 @@ function injectPart<P extends Primitive, S extends SlotName<P>>(
     { show: () => el, hide: () => {}, at: el },
     undefined,
     join,
-    el
+    el,
+    uses
   )
 }
 
@@ -246,7 +268,7 @@ function injectTargetPart<P extends Primitive, S extends SlotName<P>>(
   slot: S,
   props = () => ({}) as PropsOf<P, S>,
   unbound?: Unbound<StateOf<P, S>>,
-  join?: JoinedPart
+  { join, uses }: PartOptions<P> = {}
 ) {
   const el = inject(ElementRef).nativeElement as HTMLElement
   return bindPart(
@@ -256,7 +278,8 @@ function injectTargetPart<P extends Primitive, S extends SlotName<P>>(
     { show: () => el, hide: () => {}, at: el },
     unbound && { ...unbound, el },
     join,
-    el
+    el,
+    uses
   )
 }
 
@@ -274,17 +297,27 @@ function injectConnectedPart<P extends Primitive, S extends SlotName<P>>(
   slot: S,
   props: () => PropsOf<P, S>,
   unbound: Unbound<StateOf<P, S>>,
-  join?: JoinedPart
+  options: PartOptions<P> = {}
+) {
+  const target = injectConnectedTarget(primitive, controller)
+  return { ...injectTargetPart(target, slot, props, unbound, options), target }
+}
+
+// The instance `controller` is attached to, from anywhere on the page, or
+// else the root this directive sits in.
+function injectConnectedTarget<P extends Primitive>(
+  primitive: P,
+  controller: () => object | undefined
 ) {
   const nearest = inject(tokenOf(primitive), { optional: true })?.handle
-  const target = computed(() => {
+  return computed(() => {
     const current = controller()
     return (current && controlledBy<P>(current)()) ?? nearest
   })
-  return { ...injectTargetPart(target, slot, props, unbound, join), target }
 }
 
 export {
+  type PartOptions,
   bindPart,
   injectConnectedPart,
   injectPart,

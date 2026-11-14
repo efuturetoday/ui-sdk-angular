@@ -5,7 +5,6 @@ import {
   inject,
   input,
   output,
-  type OnInit,
 } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -64,7 +63,7 @@ type TreeCheckedChangeDetails = ChangeDetails<TreeCheckedChangeReason>
   exportAs: "uiTree",
   providers: [provideRoot(tree, () => UiTree)],
 })
-class UiTree implements OnInit {
+class UiTree {
   /** The items as data, which `uiTreeItem`s render. */
   readonly items = input<TreeItemData[]>()
   /** Paths like `"src/app/main.ts"` that make the items. */
@@ -225,11 +224,6 @@ class UiTree implements OnInit {
     this.handle.version()
     return this.handle.api.internal.items()
   })
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -237,7 +231,7 @@ class UiTree implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiTreeItem]", exportAs: "uiTreeItem" })
-class UiTreeItem implements OnInit {
+class UiTreeItem {
   /** The item's value. */
   readonly value = input.required<string>()
   /** Whether it's a branch, which has children to expand. A `uiTreeGroup` inside makes it one. */
@@ -262,10 +256,6 @@ class UiTreeItem implements OnInit {
   }))
   /** The item's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -274,17 +264,13 @@ class UiTreeItem implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiTreeItemLabel]", exportAs: "uiTreeItemLabel" })
-class UiTreeItemLabel implements OnInit {
+class UiTreeItemLabel {
   readonly #item = inject(UiTreeItem)
   readonly #part = injectPart(injectHandle(tree), "label", () => ({
     value: this.#item.value(),
   }))
   /** The item's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -295,17 +281,13 @@ class UiTreeItemLabel implements OnInit {
   selector: "[uiTreeItemIndicator]",
   exportAs: "uiTreeItemIndicator",
 })
-class UiTreeItemIndicator implements OnInit {
+class UiTreeItemIndicator {
   readonly #item = inject(UiTreeItem)
   readonly #part = injectPart(injectHandle(tree), "indicator", () => ({
     value: this.#item.value(),
   }))
   /** The item's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -313,17 +295,13 @@ class UiTreeItemIndicator implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiTreeItemCheckbox]", exportAs: "uiTreeItemCheckbox" })
-class UiTreeItemCheckbox implements OnInit {
+class UiTreeItemCheckbox {
   readonly #item = inject(UiTreeItem)
   readonly #part = injectPart(injectHandle(tree), "checkbox", () => ({
     value: this.#item.value(),
   }))
   /** The item's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -333,7 +311,7 @@ class UiTreeItemCheckbox implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiTreeGroup]" })
-class UiTreeGroup implements OnInit {
+class UiTreeGroup {
   /** Keeps it in the page while collapsed: `*uiTreeGroup="let state; keepMounted: true"`. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiTreeGroupKeepMounted",
@@ -356,10 +334,6 @@ class UiTreeGroup implements OnInit {
     _context: unknown
   ): _context is PresentPartContext<TreeGroupState> {
     return true
-  }
-
-  ngOnInit() {
-    this.#part.init()
   }
 }
 

@@ -11,7 +11,6 @@ import {
   Renderer2,
   signal,
   untracked,
-  type OnInit,
 } from "@angular/core"
 import { preferencesScript, type PreferenceLike } from "@ui-sdk/core"
 
@@ -29,7 +28,7 @@ import { preferencesScript, type PreferenceLike } from "@ui-sdk/core"
   exportAs: "uiPreferences",
   host: { "data-slot": "preferences", style: "display: contents" },
 })
-class UiPreferences implements OnInit {
+class UiPreferences {
   /** The preferences to show, from `createPreference` or `createColorScheme`. */
   readonly preferences = input.required<readonly PreferenceLike[]>({
     alias: "uiPreferences",
@@ -43,6 +42,41 @@ class UiPreferences implements OnInit {
   readonly #mounted = signal(false)
 
   constructor() {
+    // Until the saved values load, the server's on the element, and on the
+    // server a script that applies the saved ones before the page paints.
+    let script: unknown
+    effect(() => {
+      const list = this.preferences()
+      const nonce = this.nonce()
+      untracked(() => {
+        for (const preference of list) {
+          if (!preference.global) {
+            this.#renderer.setAttribute(
+              this.#el,
+              preference.attribute,
+              preference.initialState.value
+            )
+          }
+        }
+        if (!this.#server) {
+          return
+        }
+        if (script) {
+          this.#renderer.removeChild(this.#el, script)
+        }
+        script = this.#renderer.createElement("script")
+        this.#renderer.setAttribute(script, "data-preferences", "")
+        if (nonce) {
+          this.#renderer.setAttribute(script, "nonce", nonce)
+        }
+        this.#renderer.setProperty(
+          script,
+          "textContent",
+          preferencesScript(list)
+        )
+        this.#renderer.insertBefore(this.#el, script, this.#el.firstChild)
+      })
+    })
     afterNextRender(() => {
       this.#el.querySelector(":scope > script[data-preferences]")?.remove()
       this.#mounted.set(true)
@@ -64,32 +98,6 @@ class UiPreferences implements OnInit {
       read()
       onCleanup(() => stops.forEach((each) => each()))
     })
-  }
-
-  ngOnInit() {
-    for (const preference of this.preferences()) {
-      if (!preference.global) {
-        this.#renderer.setAttribute(
-          this.#el,
-          preference.attribute,
-          preference.initialState.value
-        )
-      }
-    }
-    if (this.#server) {
-      const script = this.#renderer.createElement("script")
-      this.#renderer.setAttribute(script, "data-preferences", "")
-      const nonce = untracked(this.nonce)
-      if (nonce) {
-        this.#renderer.setAttribute(script, "nonce", nonce)
-      }
-      this.#renderer.setProperty(
-        script,
-        "textContent",
-        preferencesScript(this.preferences())
-      )
-      this.#renderer.insertBefore(this.#el, script, this.#el.firstChild)
-    }
   }
 }
 

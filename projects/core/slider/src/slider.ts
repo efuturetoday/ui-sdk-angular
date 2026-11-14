@@ -5,7 +5,6 @@ import {
   InjectionToken,
   input,
   output,
-  type OnInit,
 } from "@angular/core"
 import type { SlotName } from "@ui-sdk/core"
 import { fieldControlId } from "@ui-sdk/core/renderer"
@@ -19,7 +18,6 @@ import {
 } from "@ui-sdk/core/slider"
 import {
   type ɵJoinedPart as JoinedPart,
-  ɵinjectDefaultText as injectDefaultText,
   ɵFieldContextToken as FieldContextToken,
   injectFieldControl,
   ɵinjectInputInside as injectInputInside,
@@ -30,6 +28,8 @@ import {
   injectPrimitive,
   type PrimitiveHandle,
   provideRoot,
+  TextSource,
+  showText,
 } from "@ngx-ui-sdk/core"
 
 type Value = number | number[]
@@ -59,7 +59,7 @@ const ThumbField = new InjectionToken<() => JoinedPart | undefined>(
     },
   ],
 })
-class UiSlider implements OnInit {
+class UiSlider {
   /** The value: a number for one thumb, or one per thumb for a range. Bind it, or `[(value)]`, to control it. */
   readonly value = input<Value>()
   /** The value at first, when uncontrolled, and after a form reset. */
@@ -156,10 +156,12 @@ class UiSlider implements OnInit {
     return Array.isArray(shape) && shape.length > 1
   })
   readonly #part = injectPart(this.handle, "root", undefined, {
-    part: (own) => (this.isRange() ? this.field?.join.part(own) : undefined),
-    merge: (own, joined) =>
-      this.isRange() && this.field ? this.field.join.merge(own, joined) : own,
-  } as JoinedPart)
+    join: {
+      part: (own) => (this.isRange() ? this.field?.join.part(own) : undefined),
+      merge: (own, joined) =>
+        this.isRange() && this.field ? this.field.join.merge(own, joined) : own,
+    },
+  })
   /** The slider's state. */
   readonly state = this.#part.state
   readonly #input = bindPart(
@@ -168,12 +170,6 @@ class UiSlider implements OnInit {
     () => ({}) as never,
     injectInputInside()
   )
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-    this.#input.init()
-  }
 }
 
 /**
@@ -181,14 +177,10 @@ class UiSlider implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSliderControl]", exportAs: "uiSliderControl" })
-class UiSliderControl implements OnInit {
+class UiSliderControl {
   readonly #part = injectPart(injectHandle(slider), "control")
   /** The control's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -196,14 +188,10 @@ class UiSliderControl implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSliderTrack]", exportAs: "uiSliderTrack" })
-class UiSliderTrack implements OnInit {
+class UiSliderTrack {
   readonly #part = injectPart(injectHandle(slider), "track")
   /** The track's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -211,14 +199,10 @@ class UiSliderTrack implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiSliderIndicator]", exportAs: "uiSliderIndicator" })
-class UiSliderIndicator implements OnInit {
+class UiSliderIndicator {
   readonly #part = injectPart(injectHandle(slider), "indicator")
   /** The indicator's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 // The thumb's attributes that name and describe it, which belong to its input.
@@ -231,7 +215,7 @@ const inputAttributes = ["aria-label", "aria-labelledby", "aria-describedby"]
  * @experimental
  */
 @Directive({ selector: "[uiSliderThumb]", exportAs: "uiSliderThumb" })
-class UiSliderThumb implements OnInit {
+class UiSliderThumb {
   /** Which thumb it is, from 0, for a range. */
   readonly index = input<number>(0)
   readonly #handle = injectHandle(slider)
@@ -253,29 +237,24 @@ class UiSliderThumb implements OnInit {
       merge: (own, joined) => this.#field()?.merge(own, joined) ?? own,
     } as JoinedPart
   )
-
-  ngOnInit() {
-    this.#part.init()
-    this.#input.init()
-  }
 }
 
 /**
- * The formatted value, a range joined with an en dash. Written empty, it
+ * The formatted value, a range joined with an en dash. With `uiText`, it
  * shows it; with content of its own, the content.
  * @experimental
  */
-@Directive({ selector: "[uiSliderValue]", exportAs: "uiSliderValue" })
-class UiSliderValue implements OnInit {
+@Directive({
+  providers: [{ provide: TextSource, useExisting: UiSliderValue }],
+  selector: "[uiSliderValue]",
+  exportAs: "uiSliderValue",
+})
+class UiSliderValue implements TextSource {
   readonly #part = injectPart(injectHandle(slider), "value")
   /** The value's state, with its `text`. */
   readonly state = this.#part.state
-  readonly #content = injectDefaultText(() => this.state().text)
-
-  ngOnInit() {
-    this.#content.decide()
-    this.#part.init()
-  }
+  /** Shows the part's text where `uiText` is. */
+  readonly attach = showText(() => this.state().text)
 }
 
 export { createSliderController } from "@ui-sdk/core/slider"

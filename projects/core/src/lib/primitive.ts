@@ -49,6 +49,8 @@ type PrimitiveHandle<P extends Primitive> = {
   version: Signal<number>
   /** Makes the instance with the inputs Angular has set. It runs on its own; call it from `ngOnInit` to make it sooner. */
   init: () => ReturnType<P>
+  /** Adds one of core's optional features, like a combobox's chips, to every instance it makes. Parts ask for it with `uses`. */
+  use: (feature: Parameters<ReturnType<P>["use"]>[0]) => void
 }
 
 /**
@@ -133,6 +135,8 @@ function injectPrimitive<P extends Primitive>(
   // Every instance made, of which the one kept at `init()` stays.
   const made = new Set<ReturnType<P>>()
   let kept: ReturnType<P> | undefined
+  // The optional features its parts asked for, in every instance it makes.
+  const features = new Set<Parameters<ReturnType<P>["use"]>[0]>()
 
   // Options like `defaultOpen` count only when it's made, so until `init()`
   // it derives from the options so far, made anew as they change, then it's
@@ -144,6 +148,7 @@ function injectPrimitive<P extends Primitive>(
     const start = snapshot({ ...options(), id })
     return untracked(() => {
       const next = unwatched(() => primitive(start)) as ReturnType<P>
+      features.forEach((feature) => next.use(feature))
       made.add(next)
       return next
     })
@@ -210,6 +215,11 @@ function injectPrimitive<P extends Primitive>(
   const handle: PrimitiveHandle<P> = {
     primitive,
     init,
+    use: (feature) => {
+      features.add(feature)
+      kept?.use(feature)
+      made.forEach((each) => each.use(feature))
+    },
     get instance() {
       return instance()
     },

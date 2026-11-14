@@ -1,4 +1,4 @@
-import { Directive, input, type OnInit, type Signal } from "@angular/core"
+import { Directive, input, type Signal } from "@angular/core"
 import {
   meter,
   type MeterLabelDetails,
@@ -7,12 +7,13 @@ import {
   type NumberFormat,
 } from "@ui-sdk/core/meter"
 import {
-  ɵinjectDefaultText as injectDefaultText,
   injectPart,
   injectHandle,
   injectPrimitive,
   type PrimitiveHandle,
   provideRoot,
+  TextSource,
+  showText,
 } from "@ngx-ui-sdk/core"
 
 /**
@@ -25,7 +26,7 @@ import {
   exportAs: "uiMeter",
   providers: [provideRoot(meter, () => UiMeter)],
 })
-class UiMeter implements OnInit {
+class UiMeter {
   /** The reading, between `min` and `max`. Outside them, the fill is clamped. Left out, it's `min`. */
   readonly value = input<number>()
   /** The lowest value. */
@@ -53,11 +54,6 @@ class UiMeter implements OnInit {
   readonly #part = injectPart(this.handle, "root")
   /** The meter's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -65,14 +61,10 @@ class UiMeter implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiMeterTrack]", exportAs: "uiMeterTrack" })
-class UiMeterTrack implements OnInit {
+class UiMeterTrack {
   readonly #part = injectPart(injectHandle(meter), "track")
   /** The track's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -80,14 +72,10 @@ class UiMeterTrack implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiMeterIndicator]", exportAs: "uiMeterIndicator" })
-class UiMeterIndicator implements OnInit {
+class UiMeterIndicator {
   readonly #part = injectPart(injectHandle(meter), "indicator")
   /** The indicator's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -95,32 +83,28 @@ class UiMeterIndicator implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiMeterLabel]", exportAs: "uiMeterLabel" })
-class UiMeterLabel implements OnInit {
+class UiMeterLabel {
   readonly #part = injectPart(injectHandle(meter), "label")
   /** The label's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
- * The formatted value, like "40%". Written empty, it shows the value; with
+ * The formatted value, like "40%". With `uiText`, it shows the value; with
  * content of its own, that is shown instead.
  * @experimental
  */
-@Directive({ selector: "[uiMeterValue]", exportAs: "uiMeterValue" })
-class UiMeterValue implements OnInit {
+@Directive({
+  providers: [{ provide: TextSource, useExisting: UiMeterValue }],
+  selector: "[uiMeterValue]",
+  exportAs: "uiMeterValue",
+})
+class UiMeterValue implements TextSource {
   readonly #part = injectPart(injectHandle(meter), "value")
   /** The value's state, with its formatted `text`. */
   readonly state: Signal<MeterValueState> = this.#part.state
-  readonly #text = injectDefaultText(() => this.state().text)
-
-  ngOnInit() {
-    this.#text.decide()
-    this.#part.init()
-  }
+  /** Shows the part's text where `uiText` is. */
+  readonly attach = showText(() => this.state().text)
 }
 
 export type {

@@ -6,6 +6,7 @@ import {
   contentChild,
   DestroyRef,
   Directive,
+  effect,
   forwardRef,
   inject,
   InjectionToken,
@@ -13,7 +14,7 @@ import {
   input,
   signal,
   TemplateRef,
-  type OnInit,
+  untracked,
   type Provider,
   type Signal,
   type Type,
@@ -284,7 +285,7 @@ function provideOverlayRenderer(type: string, component: Type<unknown>) {
   `,
   styles: ":host { display: contents }",
 })
-class UiOverlayHost implements OnInit, OverlayHostContext {
+class UiOverlayHost implements OverlayHostContext {
   /** The registry it renders; the shared one `toast()` and `confirm()` open into by default. */
   readonly overlays = input<Overlays>()
   /** Options for its toast regions, like `side` and `class`. */
@@ -296,19 +297,17 @@ class UiOverlayHost implements OnInit, OverlayHostContext {
   readonly #destroyRef = inject(DestroyRef)
 
   constructor() {
+    // It renders the entries of its registry, the one its input names.
+    effect((onCleanup) => {
+      const registry = this.#registry()
+      untracked(() => this.#entries.set(registry.entries()))
+      onCleanup(registry.subscribe(() => this.#entries.set(registry.entries())))
+    })
     // Counted only in the browser, once rendered.
     afterNextRender(() => {
       const release = this.#registry().attachHost()
       this.#destroyRef.onDestroy(release)
     })
-  }
-
-  ngOnInit() {
-    const registry = this.#registry()
-    this.#entries.set(registry.entries())
-    this.#destroyRef.onDestroy(
-      registry.subscribe(() => this.#entries.set(registry.entries()))
-    )
   }
 
   #registry() {

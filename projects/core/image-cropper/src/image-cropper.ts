@@ -1,4 +1,4 @@
-import { Directive, inject, input, output, type OnInit } from "@angular/core"
+import { Directive, inject, input, output } from "@angular/core"
 import {
   imageCropper,
   type ImageCrop,
@@ -31,7 +31,7 @@ import {
   exportAs: "uiImageCropper",
   providers: [provideRoot(imageCropper, () => UiImageCropper)],
 })
-class UiImageCropper implements OnInit {
+class UiImageCropper {
   /** The image to crop. */
   readonly src = input<string>()
   /** The crop, in pixels of the image. Bind it, or `[(crop)]`, to control it. */
@@ -105,11 +105,6 @@ class UiImageCropper implements OnInit {
   readonly #part = injectPart(this.handle, "root")
   /** The cropper's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -120,14 +115,10 @@ class UiImageCropper implements OnInit {
   selector: "[uiImageCropperViewport]",
   exportAs: "uiImageCropperViewport",
 })
-class UiImageCropperViewport implements OnInit {
+class UiImageCropperViewport {
   readonly #part = injectPart(injectHandle(imageCropper), "viewport")
   /** The part's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -138,14 +129,10 @@ class UiImageCropperViewport implements OnInit {
   selector: "img[uiImageCropperImage]",
   exportAs: "uiImageCropperImage",
 })
-class UiImageCropperImage implements OnInit {
+class UiImageCropperImage {
   readonly #part = injectPart(injectHandle(imageCropper), "image")
   /** The part's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -156,14 +143,10 @@ class UiImageCropperImage implements OnInit {
   selector: "[uiImageCropperSelection]",
   exportAs: "uiImageCropperSelection",
 })
-class UiImageCropperSelection implements OnInit {
+class UiImageCropperSelection {
   readonly #part = injectPart(injectHandle(imageCropper), "selection")
   /** The part's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -174,14 +157,10 @@ class UiImageCropperSelection implements OnInit {
   selector: "[uiImageCropperGrid]",
   exportAs: "uiImageCropperGrid",
 })
-class UiImageCropperGrid implements OnInit {
+class UiImageCropperGrid {
   readonly #part = injectPart(injectHandle(imageCropper), "grid")
   /** The part's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -192,14 +171,10 @@ class UiImageCropperGrid implements OnInit {
   selector: "input[uiImageCropperZoom]",
   exportAs: "uiImageCropperZoom",
 })
-class UiImageCropperZoom implements OnInit {
+class UiImageCropperZoom {
   readonly #part = injectPart(injectHandle(imageCropper), "zoom")
   /** The part's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -210,14 +185,10 @@ class UiImageCropperZoom implements OnInit {
   selector: "[uiImageCropperRotate]",
   exportAs: "uiImageCropperRotate",
 })
-class UiImageCropperRotate implements OnInit {
+class UiImageCropperRotate {
   readonly #part = injectPart(injectHandle(imageCropper), "rotate")
   /** The part's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -228,7 +199,7 @@ class UiImageCropperRotate implements OnInit {
   selector: "[uiImageCropperHandle]",
   exportAs: "uiImageCropperHandle",
 })
-class UiImageCropperHandle implements OnInit {
+class UiImageCropperHandle {
   /** Which edge or corner it is. */
   readonly position = input.required<ImageCropperHandlePosition>()
   readonly #id = inject(UiIds).next()
@@ -238,10 +209,6 @@ class UiImageCropperHandle implements OnInit {
   }))
   /** The handle's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -250,7 +217,7 @@ class UiImageCropperHandle implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiImageCropperFlip]", exportAs: "uiImageCropperFlip" })
-class UiImageCropperFlip implements OnInit {
+class UiImageCropperFlip {
   /** Which way it mirrors the image. */
   readonly direction = input<ImageCropperFlipDirection>()
   readonly #part = injectPart(injectHandle(imageCropper), "flip", () => ({
@@ -258,10 +225,6 @@ class UiImageCropperFlip implements OnInit {
   }))
   /** The flip's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export { createImageCropperController } from "@ui-sdk/core/image-cropper"

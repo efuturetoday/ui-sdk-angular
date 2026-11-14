@@ -1,11 +1,4 @@
-import {
-  computed,
-  Directive,
-  input,
-  output,
-  type OnInit,
-  type Signal,
-} from "@angular/core"
+import { computed, Directive, input, output, type Signal } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   segmentedControl,
@@ -43,7 +36,7 @@ import {
   host: { "(focusout)": "focusOut($event)" },
   providers: [provideRoot(segmentedControl, () => UiSegmentedControl)],
 })
-class UiSegmentedControl implements OnInit {
+class UiSegmentedControl {
   /** The selected item's value. Bind it, or `[(value)]`, to control it. */
   readonly value = input<string | null>()
   /** The selected item's value at first, when uncontrolled, and after a form reset. */
@@ -115,7 +108,9 @@ class UiSegmentedControl implements OnInit {
       },
     })
   )
-  readonly #part = injectPart(this.handle, "root", undefined, this.#field?.join)
+  readonly #part = injectPart(this.handle, "root", undefined, {
+    join: this.#field?.join,
+  })
   /** The control's state. */
   readonly state = this.#part.state
 
@@ -124,11 +119,6 @@ class UiSegmentedControl implements OnInit {
       this.touch.emit()
       this.#form?.touch()
     }
-  }
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
   }
 }
 
@@ -141,7 +131,7 @@ class UiSegmentedControl implements OnInit {
   selector: "[uiSegmentedControlItem]",
   exportAs: "uiSegmentedControlItem",
 })
-class UiSegmentedControlItem implements OnInit {
+class UiSegmentedControlItem {
   /** What the control's value becomes when this item is selected. */
   readonly value = input.required<string>()
   /** Skips the item: arrow keys pass it and it can't be selected. */
@@ -161,10 +151,6 @@ class UiSegmentedControlItem implements OnInit {
   readonly state = this.#part.state
 
   readonly #check = checkHiddenInput(this, "uiSegmentedControlItem")
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -176,14 +162,10 @@ class UiSegmentedControlItem implements OnInit {
   selector: "[uiSegmentedControlIndicator]",
   exportAs: "uiSegmentedControlIndicator",
 })
-class UiSegmentedControlIndicator implements OnInit {
+class UiSegmentedControlIndicator {
   readonly #part = injectPart(injectHandle(segmentedControl), "indicator")
   /** The indicator's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -210,7 +192,7 @@ class UiSegmentedControlValueAccessor extends UiValueAccessor<string | null> {
  * @experimental
  */
 @Directive({ selector: "input[uiSegmentedControlInput]" })
-class UiSegmentedControlInput implements OnInit {
+class UiSegmentedControlInput {
   /** The item it's the input of. */
   readonly item = input.required<UiSegmentedControlItem>({
     alias: "uiSegmentedControlInput",
@@ -221,9 +203,8 @@ class UiSegmentedControlInput implements OnInit {
     () => this.item().props()
   )
 
-  ngOnInit() {
-    linkHiddenInput(this.item())
-    this.#part.init()
+  constructor() {
+    linkHiddenInput(() => this.item())
   }
 }
 

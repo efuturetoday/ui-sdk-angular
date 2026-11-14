@@ -1,4 +1,4 @@
-import { computed, Directive, input, output, type OnInit } from "@angular/core"
+import { computed, Directive, input, output } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   avatar,
@@ -26,7 +26,7 @@ import {
   exportAs: "uiAvatar",
   providers: [provideRoot(avatar, () => UiAvatar)],
 })
-class UiAvatar implements OnInit {
+class UiAvatar {
   /** Emits when the image's loading status changes. `details.reason` says why. */
   readonly loadingStatusChange = output<{
     status: AvatarLoadingStatus
@@ -42,11 +42,6 @@ class UiAvatar implements OnInit {
   readonly #part = injectPart(this.handle, "root")
   /** The avatar's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -58,14 +53,10 @@ class UiAvatar implements OnInit {
   selector: "img[uiAvatarImage]",
   exportAs: "uiAvatarImage",
 })
-class UiAvatarImage implements OnInit {
+class UiAvatarImage {
   readonly #part = injectPart(injectHandle(avatar), "image")
   /** The image's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -74,7 +65,7 @@ class UiAvatarImage implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiAvatarFallback]" })
-class UiAvatarFallback implements OnInit {
+class UiAvatarFallback {
   /** How long to wait, in milliseconds, before showing the fallback: `*uiAvatarFallback="let state; delay: 600"`. */
   readonly delay = input<number>(undefined, {
     alias: "uiAvatarFallbackDelay",
@@ -90,10 +81,6 @@ class UiAvatarFallback implements OnInit {
     _context: unknown
   ): _context is PresentPartContext<AvatarState> {
     return true
-  }
-
-  ngOnInit() {
-    this.#part.init()
   }
 }
 

@@ -1,4 +1,4 @@
-import { Directive, inject, input, output, type OnInit } from "@angular/core"
+import { Directive, inject, input, output } from "@angular/core"
 import {
   resizable,
   type ResizableController,
@@ -30,7 +30,7 @@ import {
   exportAs: "uiResizable",
   providers: [provideRoot(resizable, () => UiResizable)],
 })
-class UiResizable implements OnInit {
+class UiResizable {
   /** Each panel's size in percent, in order. Bind it, or `[(layout)]`, to control the group. */
   readonly layout = input<number[]>()
   /** The layout at first, when uncontrolled. A panel's own `defaultSize` is what a server renders. */
@@ -98,11 +98,6 @@ class UiResizable implements OnInit {
   readonly #part = injectPart(this.handle, "root")
   /** The group's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -111,7 +106,7 @@ class UiResizable implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiResizablePanel]", exportAs: "uiResizablePanel" })
-class UiResizablePanel implements OnInit {
+class UiResizablePanel {
   /** Identifies the panel for the controller, `aria-controls` and saved layouts. Generated when left out. */
   readonly id = input<ResizablePanelProps["id"]>()
   /** Where the panel starts, in percent or with a unit, like `30` or `"240px"`. */
@@ -137,10 +132,6 @@ class UiResizablePanel implements OnInit {
   }))
   /** The panel's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -149,7 +140,7 @@ class UiResizablePanel implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiResizableHandle]", exportAs: "uiResizableHandle" })
-class UiResizableHandle implements OnInit {
+class UiResizableHandle {
   /** Stops this handle: no drags and no keys, and it leaves the tab order. */
   readonly disabled = input<ResizableHandleProps["disabled"], unknown>(
     undefined,
@@ -162,10 +153,6 @@ class UiResizableHandle implements OnInit {
   }))
   /** The handle's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export {

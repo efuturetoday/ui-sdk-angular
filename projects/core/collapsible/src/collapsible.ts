@@ -1,4 +1,4 @@
-import { computed, Directive, input, output, type OnInit } from "@angular/core"
+import { computed, Directive, input, output } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   collapsible,
@@ -28,7 +28,7 @@ import {
   exportAs: "uiCollapsible",
   providers: [provideRoot(collapsible, () => UiCollapsible)],
 })
-class UiCollapsible implements OnInit {
+class UiCollapsible {
   /** Whether the panel is open. Bind it, or `[(open)]`, to control the collapsible. */
   readonly open = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -71,11 +71,6 @@ class UiCollapsible implements OnInit {
   readonly #part = injectPart(this.handle, "root")
   /** The collapsible's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -86,14 +81,10 @@ class UiCollapsible implements OnInit {
   selector: "[uiCollapsibleTrigger]",
   exportAs: "uiCollapsibleTrigger",
 })
-class UiCollapsibleTrigger implements OnInit {
+class UiCollapsibleTrigger {
   readonly #part = injectPart(injectHandle(collapsible), "trigger")
   /** The trigger's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -103,7 +94,7 @@ class UiCollapsibleTrigger implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiCollapsiblePanel]" })
-class UiCollapsiblePanel implements OnInit {
+class UiCollapsiblePanel {
   /** Keeps the panel in the page, hidden, while closed: `*uiCollapsiblePanel="let state; keepMounted: true"`. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiCollapsiblePanelKeepMounted",
@@ -128,10 +119,6 @@ class UiCollapsiblePanel implements OnInit {
     _context: unknown
   ): _context is PresentPartContext<CollapsiblePanelState> {
     return true
-  }
-
-  ngOnInit() {
-    this.#part.init()
   }
 }
 

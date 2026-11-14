@@ -4,7 +4,6 @@ import {
   effect,
   inject,
   input,
-  type OnInit,
   Renderer2,
 } from "@angular/core"
 import {
@@ -39,7 +38,7 @@ import { UiTextControl } from "./text-control"
   exportAs: "uiInput",
   host: { "[attr.value]": "defaultAttr()" },
 })
-class UiInput extends UiTextControl implements OnInit {
+class UiInput extends UiTextControl {
   readonly handle: PrimitiveHandle<InputPrimitive> = injectPrimitive(
     inputPrimitive,
     () => this.textOptions()
@@ -48,19 +47,11 @@ class UiInput extends UiTextControl implements OnInit {
   protected readonly defaultAttr = computed(() =>
     this.value() === undefined ? this.defaultValue() : undefined
   )
-  readonly #part = injectPart(
-    this.handle,
-    "root",
-    () => this.controlProps(),
-    this.field?.join
-  )
+  readonly #part = injectPart(this.handle, "root", () => this.controlProps(), {
+    join: this.field?.join,
+  })
   /** The input's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -69,7 +60,7 @@ class UiInput extends UiTextControl implements OnInit {
  * @experimental
  */
 @Directive({ selector: "textarea[uiTextarea]", exportAs: "uiTextarea" })
-class UiTextarea extends UiTextControl implements OnInit {
+class UiTextarea extends UiTextControl {
   /** Grows and shrinks with the text, between its CSS `min-height` and `max-height`. */
   readonly autoResize = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -87,12 +78,9 @@ class UiTextarea extends UiTextControl implements OnInit {
       onSubmit: this.onSubmit(),
     })
   )
-  readonly #part = injectPart(
-    this.handle,
-    "root",
-    () => this.controlProps(),
-    this.field?.join
-  )
+  readonly #part = injectPart(this.handle, "root", () => this.controlProps(), {
+    join: this.field?.join,
+  })
   /** The textarea's state. */
   readonly state = this.#part.state
 
@@ -107,11 +95,6 @@ class UiTextarea extends UiTextControl implements OnInit {
       }
     })
   }
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -124,7 +107,7 @@ class UiTextarea extends UiTextControl implements OnInit {
   exportAs: "uiInputGroup",
   providers: [provideRoot(inputGroup, () => UiInputGroup)],
 })
-class UiInputGroup implements OnInit {
+class UiInputGroup {
   /** Logs every state change with its reason to the console, in development builds. */
   readonly debug = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -136,11 +119,6 @@ class UiInputGroup implements OnInit {
   readonly #part = injectPart(this.handle, "group")
   /** The group's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -149,7 +127,7 @@ class UiInputGroup implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiInputClear]" })
-class UiInputClear implements OnInit {
+class UiInputClear {
   readonly #part = injectPresentPart(injectHandle(inputGroup), "clear")
 
   static ngTemplateContextGuard(
@@ -157,10 +135,6 @@ class UiInputClear implements OnInit {
     _context: unknown
   ): _context is PresentPartContext<InputGroupState> {
     return true
-  }
-
-  ngOnInit() {
-    this.#part.init()
   }
 }
 

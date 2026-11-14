@@ -8,7 +8,7 @@ import {
   type Provider,
   type Signal,
 } from "@angular/core"
-import { bindPart } from "./part"
+import { bindPart, type PartOptions } from "./part"
 import type { PrimitiveHandle } from "./primitive"
 
 /**
@@ -38,7 +38,8 @@ type Placement = {
  * also depends on the app, like a toast's title on its data: it returns the
  * instance while the part may be present. A part that renders no element of
  * its own, like a command's page, passes `bare`: its presence only decides
- * whether the template shows. Call it in a field initializer; it starts once
+ * whether the template shows. `uses` adds the optional feature of core's it
+ * belongs to. Call it in a field initializer; it starts once
  * Angular has set the inputs.
  * @experimental
  */
@@ -47,7 +48,7 @@ function injectPresentPart<P extends Primitive, S extends SlotName<P>>(
   slot: S,
   props = () => ({}) as PropsOf<P, S>,
   placement?: Placement,
-  { bare = false }: { bare?: boolean } = {}
+  { bare = false, uses }: { bare?: boolean } & Pick<PartOptions<P>, "uses"> = {}
 ) {
   const target = typeof handle === "function" ? handle : () => handle
   const template =
@@ -64,31 +65,40 @@ function injectPresentPart<P extends Primitive, S extends SlotName<P>>(
     view?.rootNodes.find((node: Node) => node.nodeType === 1) as
       HTMLElement | undefined
 
-  return bindPart(target, slot, props, {
-    show: (state) => {
-      if (!view) {
-        view = viewContainer.createEmbeddedView(
-          template,
-          { $implicit: state },
-          { injector }
-        )
-        const el = element()
-        if (el) {
-          placement?.place(el)
+  return bindPart(
+    target,
+    slot,
+    props,
+    {
+      show: (state) => {
+        if (!view) {
+          view = viewContainer.createEmbeddedView(
+            template,
+            { $implicit: state },
+            { injector }
+          )
+          const el = element()
+          if (el) {
+            placement?.place(el)
+          }
+          // Core binds the part and moves focus into it as it appears, so its
+          // view renders now, with the parts inside it, as React and Vue do.
+          view.detectChanges()
         }
-        // Core binds the part and moves focus into it as it appears, so its
-        // view renders now, with the parts inside it, as React and Vue do.
-        view.detectChanges()
-      }
-      return bare ? undefined : element()
+        return bare ? undefined : element()
+      },
+      hide: () => {
+        placement?.forget()
+        view?.destroy()
+        view = undefined
+      },
+      at: viewContainer.element.nativeElement as Node,
     },
-    hide: () => {
-      placement?.forget()
-      view?.destroy()
-      view = undefined
-    },
-    at: viewContainer.element.nativeElement as Node,
-  })
+    undefined,
+    undefined,
+    undefined,
+    uses
+  )
 }
 
 export { injectPresentPart, type Placement, type PresentPartContext }

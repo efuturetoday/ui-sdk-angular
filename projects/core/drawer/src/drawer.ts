@@ -5,7 +5,6 @@ import {
   input,
   output,
   type InputSignal,
-  type OnInit,
   type Signal,
 } from "@angular/core"
 import type { ChangeDetails, TypesOf } from "@ui-sdk/core"
@@ -68,7 +67,7 @@ type DrawerOpenChangeDetails = ChangeDetails<DrawerOpenChangeReason> & {
   exportAs: "uiDrawer",
   providers: [provideRoot(drawer, () => UiDrawer)],
 })
-class UiDrawer implements OnInit {
+class UiDrawer {
   /** Whether the drawer is open. Bind it, or `[(open)]`, to control the drawer. */
   readonly open = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -200,10 +199,6 @@ class UiDrawer implements OnInit {
   )
   /** The drawer's state. */
   readonly state: Signal<TypesOf<DrawerPrimitive>["state"]> = this.handle.state
-
-  ngOnInit() {
-    this.handle.init()
-  }
 }
 
 /**
@@ -216,7 +211,7 @@ class UiDrawer implements OnInit {
   exportAs: "uiDrawerTrigger",
   providers: [provideTrigger(drawer, () => UiDrawerTrigger)],
 })
-class UiDrawerTrigger implements OnInit, TriggerContext<typeof drawer> {
+class UiDrawerTrigger implements TriggerContext<typeof drawer> {
   /** What the drawer gets as its payload when this trigger opens it. */
   readonly payload = input<unknown>()
   /** Stops the trigger from opening the drawer. */
@@ -250,10 +245,6 @@ class UiDrawerTrigger implements OnInit, TriggerContext<typeof drawer> {
   readonly target = this.#part.target
   /** The trigger's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -262,16 +253,12 @@ class UiDrawerTrigger implements OnInit, TriggerContext<typeof drawer> {
  * @experimental
  */
 @Directive({ selector: "[uiDrawerShortcut]", exportAs: "uiDrawerShortcut" })
-class UiDrawerShortcut implements OnInit {
+class UiDrawerShortcut {
   /** The keys to show. Inside a trigger, its shortcut. */
   readonly shortcut = input<string>()
   readonly #part = injectShortcutPart(drawer, this.shortcut)
   /** The shortcut's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -280,7 +267,7 @@ class UiDrawerShortcut implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiDrawerBackdrop]" })
-class UiDrawerBackdrop implements OnInit {
+class UiDrawerBackdrop {
   readonly #root = inject(UiDrawer)
   readonly #part = injectPopupPart(
     injectHandle(drawer),
@@ -297,10 +284,6 @@ class UiDrawerBackdrop implements OnInit {
   ): _context is PresentPartContext<DrawerBackdropState> {
     return true
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -310,7 +293,7 @@ class UiDrawerBackdrop implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiDrawerContent]" })
-class UiDrawerContent implements OnInit {
+class UiDrawerContent {
   /** Where focus goes when the drawer opens: `*uiDrawerContent="let state; initialFocus: 'content'"`. */
   readonly initialFocus = input<DialogInitialFocus>(undefined, {
     alias: "uiDrawerContentInitialFocus",
@@ -352,10 +335,6 @@ class UiDrawerContent implements OnInit {
   ): _context is PresentPartContext<DrawerContentState> {
     return true
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -364,14 +343,10 @@ class UiDrawerContent implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiDrawerHandle]", exportAs: "uiDrawerHandle" })
-class UiDrawerHandle implements OnInit {
+class UiDrawerHandle {
   readonly #part = injectPart(injectHandle(drawer), "handle")
   /** The handle's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -379,14 +354,10 @@ class UiDrawerHandle implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiDrawerTitle]", exportAs: "uiDrawerTitle" })
-class UiDrawerTitle implements OnInit {
+class UiDrawerTitle {
   readonly #part = injectPart(injectHandle(drawer), "title")
   /** The title's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -397,14 +368,10 @@ class UiDrawerTitle implements OnInit {
   selector: "[uiDrawerDescription]",
   exportAs: "uiDrawerDescription",
 })
-class UiDrawerDescription implements OnInit {
+class UiDrawerDescription {
   readonly #part = injectPart(injectHandle(drawer), "description")
   /** The description's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -413,7 +380,7 @@ class UiDrawerDescription implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiDrawerClose]", exportAs: "uiDrawerClose" })
-class UiDrawerClose implements OnInit {
+class UiDrawerClose {
   /** Reported as `returnValue` when this closes the drawer. */
   readonly value = input<string>()
   /** Runs before the drawer closes. A returned Promise keeps it open and pending until it settles. */
@@ -433,10 +400,6 @@ class UiDrawerClose implements OnInit {
   }))
   /** The close button's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -445,7 +408,7 @@ class UiDrawerClose implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiDrawerOutlet]", exportAs: "uiDrawerOutlet" })
-class UiDrawerOutlet implements OnInit {
+class UiDrawerOutlet {
   /** Keyframes it plays as the drawer expands, like `{ scale: [1, 0.94] }`. */
   readonly keyframes = input<DrawerKeyframes>()
   /** Connects an outlet outside the drawer to the one with this controller. */
@@ -460,10 +423,6 @@ class UiDrawerOutlet implements OnInit {
   )
   /** The outlet's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 export { createDrawerController, sheetPhysics } from "@ui-sdk/core/drawer"

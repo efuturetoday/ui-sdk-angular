@@ -6,7 +6,6 @@ import {
   input,
   output,
   signal,
-  type OnInit,
 } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -60,7 +59,7 @@ type ListboxValueChangeDetails = ChangeDetails<ListboxValueChangeReason>
     },
   ],
 })
-class UiListbox implements OnInit {
+class UiListbox {
   /** The selected value, or values with `multiple`. Bind it, or `[(value)]`, to control it. */
   readonly value = input<unknown>(undefined)
   /** The value at first, when uncontrolled. */
@@ -169,7 +168,9 @@ class UiListbox implements OnInit {
       },
     })
   )
-  readonly #part = injectPart(this.handle, "root", undefined, this.#field?.join)
+  readonly #part = injectPart(this.handle, "root", undefined, {
+    join: this.#field?.join,
+  })
   /** The listbox's state. */
   readonly state = this.#part.state
   readonly #inputs = injectFormInputs(this.handle, () =>
@@ -177,12 +178,6 @@ class UiListbox implements OnInit {
       ? (this.handle.api.internal.serialized() as string[])
       : []
   )
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-    this.#inputs.init()
-  }
 }
 
 /**
@@ -190,7 +185,7 @@ class UiListbox implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiListboxGroup]", exportAs: "uiListboxGroup" })
-class UiListboxGroup implements OnInit {
+class UiListboxGroup {
   /** @internal The group's id, which its items and label name. */
   readonly id = inject(UiIds).next()
   readonly #part = injectPart(injectHandle(listbox), "group", () => ({
@@ -198,10 +193,6 @@ class UiListboxGroup implements OnInit {
   }))
   /** The group's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -212,7 +203,7 @@ class UiListboxGroup implements OnInit {
   selector: "[uiListboxGroupLabel]",
   exportAs: "uiListboxGroupLabel",
 })
-class UiListboxGroupLabel implements OnInit {
+class UiListboxGroupLabel {
   readonly #group = inject(UiListboxGroup)
   readonly #part = injectPart(injectHandle(listbox), "group-label", () => ({
     id: this.#group.id,
@@ -220,10 +211,6 @@ class UiListboxGroupLabel implements OnInit {
   }))
   /** The label's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -231,7 +218,7 @@ class UiListboxGroupLabel implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiListboxItem]", exportAs: "uiListboxItem" })
-class UiListboxItem implements OnInit {
+class UiListboxItem {
   /** The value it selects. */
   readonly value = input.required<unknown>()
   /** Its label, if its text isn't, for typeahead and screen readers. */
@@ -253,10 +240,6 @@ class UiListboxItem implements OnInit {
   }))
   /** The item's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -266,7 +249,7 @@ class UiListboxItem implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiListboxItemIndicator]" })
-class UiListboxItemIndicator implements OnInit {
+class UiListboxItemIndicator {
   /** Keeps it in the page while unselected: `*uiListboxItemIndicator="let state; keepMounted: true"`. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiListboxItemIndicatorKeepMounted",
@@ -290,10 +273,6 @@ class UiListboxItemIndicator implements OnInit {
   ): _context is PresentPartContext<ListboxItemIndicatorState> {
     return true
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -302,7 +281,7 @@ class UiListboxItemIndicator implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiListboxItemIcon]", exportAs: "uiListboxItemIcon" })
-class UiListboxItemIcon implements OnInit {
+class UiListboxItemIcon {
   /** Flips it in right-to-left text, for icons that point a way. */
   readonly mirror = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -316,10 +295,6 @@ class UiListboxItemIcon implements OnInit {
   }))
   /** The icon's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -327,12 +302,8 @@ class UiListboxItemIcon implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiListboxSeparator]", exportAs: "uiListboxSeparator" })
-class UiListboxSeparator implements OnInit {
+class UiListboxSeparator {
   readonly #part = injectPart(injectHandle(listbox), "separator")
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**

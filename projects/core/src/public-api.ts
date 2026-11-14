@@ -11,6 +11,7 @@ export {
   injectPart,
   injectTargetPart,
   type JoinedPart,
+  type PartOptions,
   type Unbound,
 } from "./lib/part"
 
@@ -69,6 +70,14 @@ export { injectFieldControl, type FieldContext } from "./lib/field-context"
 
 export { MenubarToken } from "./lib/menubar-context"
 
+export {
+  letCoreWrite,
+  showMarked,
+  showText,
+  TextSource,
+  UiText,
+} from "./lib/text"
+
 export { EditorToken } from "./lib/editor-context"
 
 // Shared with the entry points, not public API.
@@ -83,12 +92,6 @@ export {
   bindPart as ɵbindPart,
   injectStatePart as ɵinjectStatePart,
 } from "./lib/part"
-
-export {
-  injectContentOwner as ɵinjectContentOwner,
-  injectDefaultText as ɵinjectDefaultText,
-  injectShownText as ɵinjectShownText,
-} from "./lib/content"
 
 export { leaves as ɵleaves } from "./lib/forms"
 

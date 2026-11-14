@@ -1,4 +1,4 @@
-import { Directive, input, type OnInit } from "@angular/core"
+import { Directive, input } from "@angular/core"
 import {
   separator,
   type SeparatorOrientation,
@@ -16,7 +16,7 @@ import {
  * @experimental
  */
 @Directive({ selector: "[uiSeparator]", exportAs: "uiSeparator" })
-class UiSeparator implements OnInit {
+class UiSeparator {
   /** Which way the line runs, `"horizontal"` by default. */
   readonly orientation = input<SeparatorOrientation>()
   /** Hides it from assistive technology, for a line that's only visual. */
@@ -33,11 +33,6 @@ class UiSeparator implements OnInit {
   readonly #part = injectPart(this.handle, "root")
   /** The separator's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 export type {

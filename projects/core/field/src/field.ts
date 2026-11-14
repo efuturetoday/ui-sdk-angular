@@ -13,7 +13,6 @@ import {
   TemplateRef,
   untracked,
   ViewContainerRef,
-  type OnInit,
   type Signal,
 } from "@angular/core"
 import { isPlatformBrowser } from "@angular/common"
@@ -48,6 +47,8 @@ import {
   type PrimitiveHandle,
   provideRoot,
   ɵUiIds as UiIds,
+  showText,
+  TextSource,
 } from "@ngx-ui-sdk/core"
 
 // What a description describes: the nearest field, or a field set when no
@@ -82,7 +83,7 @@ function injectOutside(slot: FieldOutsideSlot) {
     { provide: DescribedToken, useExisting: forwardRef(() => UiField) },
   ],
 })
-class UiField implements OnInit, FieldContext {
+class UiField implements FieldContext {
   /** The name the control submits under, when the control doesn't set its own. */
   readonly name = input<string>()
   /** Disables the control, and marks every part. */
@@ -107,11 +108,6 @@ class UiField implements OnInit, FieldContext {
   readonly #part = injectPart(this.handle, "root")
   /** The field's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -120,15 +116,11 @@ class UiField implements OnInit, FieldContext {
  * @experimental
  */
 @Directive({ selector: "[uiFieldLabel]", exportAs: "uiFieldLabel" })
-class UiFieldLabel implements OnInit {
+class UiFieldLabel {
   readonly #field = inject(FieldContextToken, { optional: true })
   readonly #part = this.#field
     ? injectPart(this.#field.handle, "label")
     : injectOutside("label")
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -137,7 +129,7 @@ class UiFieldLabel implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiFieldDescription]", exportAs: "uiFieldDescription" })
-class UiFieldDescription implements OnInit {
+class UiFieldDescription {
   readonly #described = inject(DescribedToken, { optional: true })
   readonly #inside = this.#described
     ? injectPart(this.#described.handle, "description")
@@ -149,21 +141,20 @@ class UiFieldDescription implements OnInit {
    * field, it has none.
    */
   readonly state = this.#inside?.state ?? computed(() => undefined)
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
  * Shows while the field shows as invalid, on the element it's written on:
  * `<div *uiFieldError>`. `match` says which problem it shows for:
- * `*uiFieldError="{ match: 'valueMissing' }"`. Without content, it shows the
+ * `*uiFieldError="{ match: 'valueMissing' }"`. With `uiText`, it shows the
  * browser's message for the current problem.
  * @experimental
  */
-@Directive({ selector: "[uiFieldError]" })
-class UiFieldError implements OnInit {
+@Directive({
+  selector: "[uiFieldError]",
+  providers: [{ provide: TextSource, useExisting: UiFieldError }],
+})
+class UiFieldError implements TextSource {
   /**
    * Which problem it shows for, like `*uiFieldError="let state; match: 'valueMissing'"`.
    * `true` shows it always and `false` never. Without it, any problem shows it.
@@ -190,31 +181,14 @@ class UiFieldError implements OnInit {
       )
     : injectOutsideError(this.#props)
 
-  constructor() {
-    let own: boolean | undefined
-    effect(() => {
-      const el = this.#part.element()
-      const { message } = this.#part.state()
-      if (!el) {
-        own = undefined
-        return
-      }
-      own ??= el.childNodes.length > 0
-      if (!own && el.textContent !== message) {
-        el.textContent = message
-      }
-    })
-  }
+  /** Shows the browser's message where `uiText` is. */
+  readonly attach = showText(() => this.#part.state().message)
 
   static ngTemplateContextGuard(
     _directive: UiFieldError,
     _context: unknown
   ): _context is PresentPartContext<FieldErrorState> {
     return true
-  }
-
-  ngOnInit() {
-    this.#part.init()
   }
 }
 
@@ -255,7 +229,7 @@ function injectOutsideError(props: () => FieldErrorProps) {
  * @experimental
  */
 @Directive({ selector: "[uiFieldControl]", exportAs: "uiFieldControl" })
-class UiFieldControl implements OnInit {
+class UiFieldControl {
   readonly #el = inject(ElementRef).nativeElement as HTMLElement
   readonly #field = inject(FieldContextToken, { optional: true })
   readonly #part = this.#field
@@ -283,10 +257,6 @@ class UiFieldControl implements OnInit {
       }
     })
   }
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -301,7 +271,7 @@ class UiFieldControl implements OnInit {
     { provide: DescribedToken, useExisting: forwardRef(() => UiFieldSet) },
   ],
 })
-class UiFieldSet implements OnInit {
+class UiFieldSet {
   /** Disables every control inside it. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -313,11 +283,6 @@ class UiFieldSet implements OnInit {
   readonly #part = injectPart(this.handle, "set")
   /** The field set's state. */
   readonly state = this.#part.state
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 /**
@@ -325,12 +290,8 @@ class UiFieldSet implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiFieldLegend]", exportAs: "uiFieldLegend" })
-class UiFieldLegend implements OnInit {
+class UiFieldLegend {
   readonly #part = injectPart(injectHandle(fieldSet), "legend")
-
-  ngOnInit() {
-    this.#part.init()
-  }
 }
 
 /**
@@ -338,17 +299,12 @@ class UiFieldLegend implements OnInit {
  * @experimental
  */
 @Directive({ selector: "[uiFieldGroup]", exportAs: "uiFieldGroup" })
-class UiFieldGroup implements OnInit {
+class UiFieldGroup {
   readonly handle: PrimitiveHandle<FieldGroupPrimitive> = injectPrimitive(
     fieldGroup,
     () => ({})
   )
   readonly #part = injectPart(this.handle, "group")
-
-  ngOnInit() {
-    this.handle.init()
-    this.#part.init()
-  }
 }
 
 export type {
