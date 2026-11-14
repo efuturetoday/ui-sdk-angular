@@ -22,7 +22,7 @@ import {
             <p>الطلب #4189</p>
             <p data-slot="hint">تم الطلب في ٣ مارس</p>
           </div>
-          <span data-slot="row"> تم الشحن </span>
+          <span data-slot="row">تم الشحن</span>
         </div>
         <div>
           <button uiCollapsibleTrigger data-variant="ghost">

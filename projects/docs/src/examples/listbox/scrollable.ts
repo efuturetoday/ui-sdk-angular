@@ -20,9 +20,9 @@ import { injectLog } from "../../shared/log"
       @for (zone of timezones; track zone.value; let index = $index) {
         <div uiListboxItem [value]="zone.value" [index]="index">
           {{ zone.label }}
-          <span *uiListboxItemIndicator
-            ><svg lucideCheck aria-hidden="true"></svg
-          ></span>
+          <span *uiListboxItemIndicator>
+            <svg lucideCheck aria-hidden="true"></svg>
+          </span>
         </div>
       }
     </div>

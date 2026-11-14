@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   UiAutocomplete,
@@ -17,7 +18,7 @@ import { injectLog } from "../../shared/log"
 
 @Component({
   selector: "app-example",
-  imports: [
+  imports: [UiText, 
     UiAutocomplete,
     UiAutocompleteContent,
     UiAutocompleteEmpty,
@@ -29,34 +30,36 @@ import { injectLog } from "../../shared/log"
     UiFieldError,
     UiFieldLabel,
   ],
-  template: `<form id="order" data-slot="stack" (submit)="submit($event)">
-    <div uiField>
-      <label uiFieldLabel>Fruit</label>
-      <ng-container
-        uiAutocomplete
-        name="fruit"
-        form="order"
-        required
-        defaultValue="Apple"
-      >
-        <input uiAutocompleteInput />
-        <div *uiAutocompleteContent>
-          <div uiAutocompleteEmpty>No fruits found.</div>
-          <div uiAutocompleteList>
-            @for (fruit of fruits; track fruit) {
-              <div uiAutocompleteItem [value]="fruit">{{ fruit }}</div>
-            }
+  template: `
+    <form id="order" data-slot="stack" (submit)="submit($event)">
+      <div uiField>
+        <label uiFieldLabel>Fruit</label>
+        <ng-container
+          uiAutocomplete
+          name="fruit"
+          form="order"
+          required
+          defaultValue="Apple"
+        >
+          <input uiAutocompleteInput />
+          <div *uiAutocompleteContent>
+            <div uiAutocompleteEmpty>No fruits found.</div>
+            <div uiAutocompleteList>
+              @for (fruit of fruits; track fruit) {
+                <div uiAutocompleteItem [value]="fruit">{{ fruit }}</div>
+              }
+            </div>
           </div>
-        </div>
-      </ng-container>
-      <p uiFieldDescription>Any fruit, listed or not.</p>
-      <div><div *uiFieldError></div></div>
-    </div>
-    <div data-slot="row">
-      <button type="submit" data-variant="solid">Submit</button>
-      <button type="reset">Reset</button>
-    </div>
-  </form>`,
+        </ng-container>
+        <p uiFieldDescription>Any fruit, listed or not.</p>
+        <div><div *uiFieldError uiText></div></div>
+      </div>
+      <div data-slot="row">
+        <button type="submit" data-variant="solid">Submit</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+  `,
 })
 class Example {
   protected readonly fruits = [

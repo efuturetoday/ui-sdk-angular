@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideChevronLeft, LucideChevronRight } from "@lucide/angular"
 import {
@@ -15,6 +16,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideChevronLeft,
     LucideChevronRight,
     UiCalendar,
@@ -33,7 +35,7 @@ import {
         <button uiCalendarPrevious data-variant="ghost">
           <svg lucideChevronLeft aria-hidden="true"></svg>
         </button>
-        <h2 uiCalendarHeading></h2>
+        <h2 uiCalendarHeading uiText></h2>
         <button uiCalendarNext data-variant="ghost">
           <svg lucideChevronRight aria-hidden="true"></svg>
         </button>
@@ -73,9 +75,9 @@ import {
                     <span data-slot="stack">
                       <span>{{ day.state().label }}</span>
                       @if (!day.state().outside && !day.state().disabled) {
-                        <span data-slot="hint"
-                          >\${{ priceOf(day.state().date) }}</span
-                        >
+                        <span data-slot="hint">
+                          \${{ priceOf(day.state().date) }}
+                        </span>
                       }
                     </span>
                   </td>

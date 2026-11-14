@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import { UiField, UiFieldError, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
@@ -9,6 +10,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiField,
     UiFieldError,
     UiFieldLabel,
@@ -22,7 +24,7 @@ import {
       <div uiOtpInput defaultValue="482913" (valueChange)="invalid.set(false)">
         <div uiOtpInputGroup>
           @for (index of [0, 1, 2, 3, 4, 5]; track index) {
-            <div uiOtpInputSlot [index]="index"></div>
+            <div uiOtpInputSlot [index]="index" uiText></div>
           }
         </div>
       </div>

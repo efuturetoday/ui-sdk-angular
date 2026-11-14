@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import {
   LucideCheck,
@@ -28,6 +29,7 @@ type Align = "start" | "center" | "end"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     LucideChevronLeft,
@@ -57,7 +59,7 @@ type Align = "start" | "center" | "end"
         >
           <div uiSelectLabel>Align</div>
           <button uiSelectTrigger>
-            <span uiSelectValue></span>
+            <span uiSelectValue uiText></span>
             <svg lucideChevronDown></svg>
           </button>
           <div *uiSelectContent>

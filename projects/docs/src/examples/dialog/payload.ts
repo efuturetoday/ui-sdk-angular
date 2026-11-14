@@ -39,9 +39,9 @@ type Invoice = {
         @for (invoice of invoices; track invoice.id) {
           <li data-slot="row">
             {{ invoice.customer }}
-            <span data-slot="hint"
-              >{{ invoice.amount }} · {{ invoice.status }}</span
-            >
+            <span data-slot="hint">
+              {{ invoice.amount }} · {{ invoice.status }}
+            </span>
             <button
               uiDialogTrigger
               [controller]="reminder"

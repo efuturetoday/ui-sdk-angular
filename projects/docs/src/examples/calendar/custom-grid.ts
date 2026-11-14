@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideChevronLeft, LucideChevronRight } from "@lucide/angular"
 import {
@@ -13,6 +14,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideChevronLeft,
     LucideChevronRight,
     UiCalendar,
@@ -50,7 +52,7 @@ import {
               track weekday;
               let index = $index
             ) {
-              <th uiCalendarWeekday scope="col" [index]="index"></th>
+              <th uiCalendarWeekday scope="col" [index]="index" uiText></th>
             }
           </tr>
         </thead>
@@ -62,7 +64,7 @@ import {
                 @if (cell.hidden) {
                   <td></td>
                 } @else {
-                  <td uiCalendarDay [value]="cell.date"></td>
+                  <td uiCalendarDay [value]="cell.date" uiText></td>
                 }
               }
             </tr>

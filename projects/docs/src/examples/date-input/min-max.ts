@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { UiDateInput, UiDateInputSegment } from "@ngx-ui-sdk/core/date-input"
 import {
@@ -10,6 +11,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiDateInput,
     UiDateInputSegment,
     UiField,
@@ -31,12 +33,12 @@ import {
           @if (segment.editable) {
             <input uiDateInputSegment [segment]="segment" />
           } @else {
-            <span uiDateInputSegment [segment]="segment"></span>
+            <span uiDateInputSegment [segment]="segment" uiText></span>
           }
         }
       </div>
       <p uiFieldDescription>Any day in 2026.</p>
-      <div *uiFieldError></div>
+      <div *uiFieldError uiText></div>
     </div>
   `,
 })

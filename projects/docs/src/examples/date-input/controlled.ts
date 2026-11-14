@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import { UiDateInput, UiDateInputSegment } from "@ngx-ui-sdk/core/date-input"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -5,7 +6,7 @@ import { injectLog } from "../../shared/log"
 
 @Component({
   selector: "app-example",
-  imports: [UiDateInput, UiDateInputSegment, UiField, UiFieldLabel],
+  imports: [UiText, UiDateInput, UiDateInputSegment, UiField, UiFieldLabel],
   template: `
     <div data-slot="stack">
       <div data-slot="controls">
@@ -23,7 +24,7 @@ import { injectLog } from "../../shared/log"
             @if (segment.editable) {
               <input uiDateInputSegment [segment]="segment" />
             } @else {
-              <span uiDateInputSegment [segment]="segment"></span>
+              <span uiDateInputSegment [segment]="segment" uiText></span>
             }
           }
         </div>

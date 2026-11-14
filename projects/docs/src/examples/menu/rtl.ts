@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import {
   LucideChevronRight,
@@ -22,6 +23,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideChevronRight,
     LucideFile,
     LucideFolder,
@@ -46,12 +48,12 @@ import {
           <div uiMenuItem value="new" shortcut="mod+n">
             <svg lucideFile></svg>
             جديد
-            <span uiMenuShortcut></span>
+            <span uiMenuShortcut uiText></span>
           </div>
           <div uiMenuItem value="open" shortcut="mod+o">
             <svg lucideFolder></svg>
             فتح…
-            <span uiMenuShortcut></span>
+            <span uiMenuShortcut uiText></span>
           </div>
           <div uiMenuSeparator></div>
           <ng-container uiMenuSub>
@@ -78,9 +80,9 @@ import {
           </div>
         </div>
       </ng-container>
-      <output data-slot="output">{{
-        action() ? "نُفّذ: " + action() : "اختر عنصرًا"
-      }}</output>
+      <output data-slot="output">
+        {{ action() ? "نُفّذ: " + action() : "اختر عنصرًا" }}
+      </output>
     </div>
   `,
 })

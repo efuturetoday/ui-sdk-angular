@@ -38,9 +38,9 @@ import { injectLog } from "../../shared/log"
             <div uiTimelineMarker></div>
             <div uiTimelineConnector></div>
             <div uiTimelineTitle>{{ update.author }}</div>
-            <time uiTimelineTime [attr.datetime]="update.date">{{
-              update.time
-            }}</time>
+            <time uiTimelineTime [attr.datetime]="update.date">
+              {{ update.time }}
+            </time>
             <div uiTimelineDescription>{{ update.text }}</div>
           </div>
         }

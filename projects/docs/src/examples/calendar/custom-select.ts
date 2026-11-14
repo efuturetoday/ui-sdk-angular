@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, computed, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
@@ -21,6 +22,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiCalendar,
@@ -46,7 +48,7 @@ import {
       max="2028-12-31"
     >
       <div data-slot="row">
-        <h2 uiCalendarHeading></h2>
+        <h2 uiCalendarHeading uiText></h2>
         <ng-container
           uiSelect
           [items]="months"
@@ -54,7 +56,7 @@ import {
           (valueChange)="setMonth($event)"
         >
           <button uiSelectTrigger aria-label="Month">
-            <span uiSelectValue></span>
+            <span uiSelectValue uiText></span>
             <svg lucideChevronDown></svg>
           </button>
           <div *uiSelectContent>
@@ -73,7 +75,7 @@ import {
           (valueChange)="setYear($event)"
         >
           <button uiSelectTrigger aria-label="Year">
-            <span uiSelectValue></span>
+            <span uiSelectValue uiText></span>
             <svg lucideChevronDown></svg>
           </button>
           <div *uiSelectContent>
@@ -90,7 +92,7 @@ import {
         <thead>
           <tr uiCalendarWeekdays>
             @for (weekday of grid.state().weekdays; track $index) {
-              <th uiCalendarWeekday scope="col" [index]="$index"></th>
+              <th uiCalendarWeekday scope="col" [index]="$index" uiText></th>
             }
           </tr>
         </thead>
@@ -101,7 +103,7 @@ import {
                 @if (cell.hidden) {
                   <td></td>
                 } @else {
-                  <td uiCalendarDay [value]="cell.date"></td>
+                  <td uiCalendarDay [value]="cell.date" uiText></td>
                 }
               }
             </tr>

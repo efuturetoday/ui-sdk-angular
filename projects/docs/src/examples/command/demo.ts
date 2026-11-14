@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   LucideCalculator,
@@ -24,6 +25,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCalculator,
     LucideCalendar,
     LucideCreditCard,
@@ -75,17 +77,17 @@ import {
           <div uiCommandItem value="profile" shortcut="mod+p">
             <span uiCommandItemIcon><svg lucideUser></svg></span>
             <span>Profile</span>
-            <span uiCommandShortcut></span>
+            <span uiCommandShortcut uiText></span>
           </div>
           <div uiCommandItem value="billing" shortcut="mod+b">
             <span uiCommandItemIcon><svg lucideCreditCard></svg></span>
             <span>Billing</span>
-            <span uiCommandShortcut></span>
+            <span uiCommandShortcut uiText></span>
           </div>
           <div uiCommandItem value="settings" shortcut="mod+s">
             <span uiCommandItemIcon><svg lucideSettings></svg></span>
             <span>Settings</span>
-            <span uiCommandShortcut></span>
+            <span uiCommandShortcut uiText></span>
           </div>
         </div>
       </div>

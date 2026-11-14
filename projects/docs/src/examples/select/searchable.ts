@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -23,6 +24,7 @@ type Popular = { type: "group"; label: string; items: Country[] }
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -42,17 +44,18 @@ type Popular = { type: "group"; label: string; items: Country[] }
   ],
   template: `
     <div uiField>
-      <label uiFieldLabel>Country</label
-      ><ng-container
+      <label uiFieldLabel>Country</label>
+      <ng-container
         uiSelect
         [items]="countries"
         [emptyItems]="popularCountries"
         placeholder="Select a country"
         filter="contains"
         [announcement]="announce"
-        ><button uiSelectTrigger>
-          <span uiSelectValue></span
-          ><svg lucideChevronDown aria-hidden="true"></svg>
+      >
+        <button uiSelectTrigger>
+          <span uiSelectValue uiText></span>
+          <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent>
           <input
@@ -72,24 +75,25 @@ type Popular = { type: "group"; label: string; items: Country[] }
                       [value]="country.value"
                       [label]="country.label"
                     >
-                      <span uiSelectItemText></span
-                      ><span *uiSelectItemIndicator
-                        ><svg lucideCheck aria-hidden="true"></svg
-                      ></span>
+                      <span uiSelectItemText uiText></span>
+                      <span *uiSelectItemIndicator>
+                        <svg lucideCheck aria-hidden="true"></svg>
+                      </span>
                     </div>
                   }
                 </div>
               } @else {
                 <div uiSelectItem [value]="entry.value" [label]="entry.label">
-                  <span uiSelectItemText></span
-                  ><span *uiSelectItemIndicator
-                    ><svg lucideCheck aria-hidden="true"></svg
-                  ></span>
+                  <span uiSelectItemText uiText></span>
+                  <span *uiSelectItemIndicator>
+                    <svg lucideCheck aria-hidden="true"></svg>
+                  </span>
                 </div>
               }
             }
-          </div></div
-      ></ng-container>
+          </div>
+        </div>
+      </ng-container>
     </div>
   `,
 })

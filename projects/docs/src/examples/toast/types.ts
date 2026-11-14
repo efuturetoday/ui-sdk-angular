@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, DestroyRef, inject } from "@angular/core"
 import {
   LucideCircleCheck,
@@ -17,6 +18,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCircleCheck,
     LucideInfo,
     LucideLoaderCircle,
@@ -53,7 +55,7 @@ import {
               data-show="loading"
               aria-hidden="true"
             ></svg>
-            <div *uiToastTitle></div>
+            <div *uiToastTitle uiText></div>
           </li>
         }
       </ol>

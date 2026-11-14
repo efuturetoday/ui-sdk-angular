@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
@@ -8,14 +9,21 @@ import {
 
 @Component({
   selector: "app-example",
-  imports: [UiField, UiFieldLabel, UiOtpInput, UiOtpInputGroup, UiOtpInputSlot],
+  imports: [
+    UiText,
+    UiField,
+    UiFieldLabel,
+    UiOtpInput,
+    UiOtpInputGroup,
+    UiOtpInputSlot,
+  ],
   template: `
     <div uiField>
       <label uiFieldLabel>PIN</label>
       <div uiOtpInput [maxLength]="4" textAlign="center">
         <div uiOtpInputGroup>
           @for (index of [0, 1, 2, 3]; track index) {
-            <div uiOtpInputSlot [index]="index"></div>
+            <div uiOtpInputSlot [index]="index" uiText></div>
           }
         </div>
       </div>

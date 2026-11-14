@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   UiMenu,
@@ -12,6 +13,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiMenu,
     UiMenuContent,
     UiMenuItem,
@@ -24,24 +26,30 @@ import { injectLog } from "../../shared/log"
       <button uiMenuTrigger>File</button>
       <div *uiMenuContent="let state">
         <div uiMenuItem value="new-tab" shortcut="mod+t">
-          New tab<span uiMenuShortcut></span>
+          New tab
+          <span uiMenuShortcut uiText></span>
         </div>
         <div uiMenuItem value="new-window" shortcut="mod+n">
-          New window<span uiMenuShortcut></span>
+          New window
+          <span uiMenuShortcut uiText></span>
         </div>
         <div uiMenuItem value="open" shortcut="mod+o">
-          Open…<span uiMenuShortcut></span>
+          Open…
+          <span uiMenuShortcut uiText></span>
         </div>
         <div uiMenuSeparator></div>
         <div uiMenuItem value="save" shortcut="mod+s">
-          Save<span uiMenuShortcut></span>
+          Save
+          <span uiMenuShortcut uiText></span>
         </div>
         <div uiMenuItem value="save-as" shortcut="mod+shift+s">
-          Save as…<span uiMenuShortcut></span>
+          Save as…
+          <span uiMenuShortcut uiText></span>
         </div>
         <div uiMenuSeparator></div>
         <div uiMenuItem value="print" shortcut="mod+p">
-          Print…<span uiMenuShortcut></span>
+          Print…
+          <span uiMenuShortcut uiText></span>
         </div>
       </div>
     </ng-container>

@@ -40,61 +40,67 @@ import {
     UiComboboxSelectAll,
     UiComboboxValue,
   ],
-  template: `<ng-container uiCombobox multiple [defaultValue]="['Europe/Paris']"
-    ><div data-slot="stack">
-      <div uiComboboxLabel>Timezones</div>
-      <div uiComboboxChips>
-        <ng-container uiComboboxValue #value="uiComboboxValue">
-          @for (
-            item of valuesOf(value.state().value);
-            track item;
-            let index = $index
-          ) {
-            <div uiComboboxChip [value]="item">
-              {{ value.state().labels[index]
-              }}<button
-                uiComboboxChipRemove
-                [attr.aria-label]="'Remove ' + value.state().labels[index]"
-              >
-                <svg lucideX aria-hidden="true"></svg>
-              </button>
-            </div>
-          }</ng-container
-        ><input uiComboboxInput placeholder="Add timezones…" />
-      </div>
-    </div>
-    <div *uiComboboxContent>
-      <div uiComboboxEmpty>No timezones found.</div>
-      <div uiComboboxList>
-        <div uiComboboxSelectAll>
-          <span
-            ><svg lucideCheck aria-hidden="true"></svg
-            ><svg lucideMinus aria-hidden="true"></svg></span
-          >Select all
-        </div>
-        @for (group of timezones; track group.label) {
-          <div uiComboboxGroup>
-            <div uiComboboxGroupLabel>{{ group.label }}</div>
-            <div uiComboboxSelectAll #all="uiComboboxSelectAll">
-              {{
-                all.state().checked
-                  ? "Clear " + group.label
-                  : "Select all in " + group.label
-              }}
-            </div>
-            @for (zone of group.items; track zone.value) {
-              <div uiComboboxItem [value]="zone.value" [label]="zone.label">
-                <span
-                  ><span *uiComboboxItemIndicator
-                    ><svg lucideCheck aria-hidden="true"></svg></span></span
-                >{{ zone.label }}
+  template: `
+    <ng-container uiCombobox multiple [defaultValue]="['Europe/Paris']">
+      <div data-slot="stack">
+        <div uiComboboxLabel>Timezones</div>
+        <div uiComboboxChips>
+          <ng-container uiComboboxValue #value="uiComboboxValue">
+            @for (
+              item of valuesOf(value.state().value);
+              track item;
+              let index = $index
+            ) {
+              <div uiComboboxChip [value]="item">
+                {{ value.state().labels[index] }}
+                <button
+                  uiComboboxChipRemove
+                  [attr.aria-label]="'Remove ' + value.state().labels[index]"
+                >
+                  <svg lucideX aria-hidden="true"></svg>
+                </button>
               </div>
             }
-          </div>
-        }
+          </ng-container>
+          <input uiComboboxInput placeholder="Add timezones…" />
+        </div>
       </div>
-    </div></ng-container
-  >`,
+      <div *uiComboboxContent>
+        <div uiComboboxEmpty>No timezones found.</div>
+        <div uiComboboxList>
+          <div uiComboboxSelectAll>
+            <span>
+              <svg lucideCheck aria-hidden="true"></svg
+              ><svg lucideMinus aria-hidden="true"></svg>
+            </span>
+            Select all
+          </div>
+          @for (group of timezones; track group.label) {
+            <div uiComboboxGroup>
+              <div uiComboboxGroupLabel>{{ group.label }}</div>
+              <div uiComboboxSelectAll #all="uiComboboxSelectAll">
+                {{
+                  all.state().checked
+                    ? "Clear " + group.label
+                    : "Select all in " + group.label
+                }}
+              </div>
+              @for (zone of group.items; track zone.value) {
+                <div uiComboboxItem [value]="zone.value" [label]="zone.label">
+                  <span>
+                    <span *uiComboboxItemIndicator>
+                      <svg lucideCheck aria-hidden="true"></svg>
+                    </span>
+                  </span>
+                  {{ zone.label }}
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly timezones = [

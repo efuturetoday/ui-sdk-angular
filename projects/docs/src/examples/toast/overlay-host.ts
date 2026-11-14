@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import {
   Component,
   DestroyRef,
@@ -27,6 +28,7 @@ import { createToaster, UiToast, UiToastTitle } from "@ngx-ui-sdk/core/toast"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCircleCheck,
     UiAlertDialog,
     UiAlertDialogBackdrop,
@@ -72,7 +74,7 @@ import { createToaster, UiToast, UiToastTitle } from "@ngx-ui-sdk/core/toast"
         <ng-template uiOverlayToast let-toast>
           <li [uiToast]="toast">
             <svg lucideCircleCheck data-show="success" aria-hidden="true"></svg>
-            <div *uiToastTitle></div>
+            <div *uiToastTitle uiText></div>
           </li>
         </ng-template>
       </ui-overlay-host>

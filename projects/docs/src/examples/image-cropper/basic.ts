@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, DestroyRef, computed, inject, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import { cropImage } from "@ngx-ui-sdk/core/image"
@@ -26,6 +27,7 @@ const photo = `data:image/svg+xml,${encodeURIComponent(
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiImageCropper,
@@ -46,7 +48,7 @@ const photo = `data:image/svg+xml,${encodeURIComponent(
       <div data-slot="controls">
         <ng-container uiSelect [(value)]="ratio">
           <button uiSelectTrigger aria-label="Aspect ratio">
-            <span uiSelectValue></span>
+            <span uiSelectValue uiText></span>
             <svg lucideChevronDown></svg>
           </button>
           <div *uiSelectContent>

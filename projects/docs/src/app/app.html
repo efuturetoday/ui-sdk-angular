@@ -5,8 +5,9 @@
       <a
         [href]="'?doc=' + guide.slug"
         [attr.aria-current]="isCurrent('doc', guide.slug) ? 'page' : null"
-        >{{ guide.title }}</a
       >
+        {{ guide.title }}
+      </a>
     }
   }
   <p class="group">Components</p>
@@ -14,8 +15,9 @@
     <a
       [href]="'?component=' + component"
       [attr.aria-current]="isCurrent('component', component) ? 'page' : null"
-      >{{ titleOf(component) }}</a
     >
+      {{ titleOf(component) }}
+    </a>
   }
 </ng-template>
 
@@ -88,6 +90,17 @@
     }
   } @else {
     <h2>{{ titleOf(page().name) }}</h2>
+    <p class="lead">
+      Its options, parts and keys are on
+      <a [href]="'https://ui-sdk.dev/docs/vue/components/' + page().name">
+        ui-sdk.dev
+      </a>
+      , with the names as here:
+      <code>DialogTrigger</code>
+      is
+      <code>uiDialogTrigger</code>
+      .
+    </p>
     @for (name of names(); track name) {
       <section
         class="example"
@@ -108,7 +121,8 @@
     <a
       [href]="'#' + section.id"
       [attr.aria-current]="section.id === activeSection() ? 'location' : null"
-      >{{ section.title }}</a
     >
+      {{ section.title }}
+    </a>
   }
 </nav>

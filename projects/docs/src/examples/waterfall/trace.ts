@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, computed, signal } from "@angular/core"
 import { LucideChevronRight } from "@lucide/angular"
 import {
@@ -19,6 +20,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideChevronRight,
     UiWaterfall,
     UiWaterfallAxis,
@@ -53,7 +55,7 @@ import { injectLog } from "../../shared/log"
           <div uiWaterfallColumnHeader aria-label="Timeline">
             <div uiWaterfallAxis #axis="uiWaterfallAxis">
               @for (tick of axis.state().ticks; track tick.time) {
-                <span uiWaterfallTick [time]="tick.time"></span>
+                <span uiWaterfallTick [time]="tick.time" uiText></span>
               }
             </div>
           </div>

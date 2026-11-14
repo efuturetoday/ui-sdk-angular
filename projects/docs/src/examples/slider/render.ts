@@ -26,9 +26,9 @@ import {
       <div uiSlider [defaultValue]="60">
         <div data-slot="row">
           <label uiFieldLabel>Brightness</label>
-          <output uiSliderValue #value="uiSliderValue"
-            >{{ value.state().text }}%</output
-          >
+          <output uiSliderValue #value="uiSliderValue">
+            {{ value.state().text }}%
+          </output>
         </div>
         <div uiSliderControl>
           <div uiSliderTrack>

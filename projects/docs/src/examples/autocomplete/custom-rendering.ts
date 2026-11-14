@@ -20,28 +20,30 @@ import {
     UiAutocompleteLabel,
     UiAutocompleteList,
   ],
-  template: `<ng-container uiAutocomplete>
-    <div data-slot="stack">
-      <div uiAutocompleteLabel>Jump to</div>
-      <input uiAutocompleteInput placeholder="e.g. Styling" />
-    </div>
-    <div *uiAutocompleteContent>
-      <div uiAutocompleteEmpty>No sections found.</div>
-      <div uiAutocompleteList>
-        @for (page of pages; track page.href) {
-          <a
-            uiAutocompleteItem
-            [value]="page.title"
-            [label]="page.title"
-            [href]="page.href"
-          >
-            {{ page.title }}
-            <span data-slot="hint">{{ page.section }}</span>
-          </a>
-        }
+  template: `
+    <ng-container uiAutocomplete>
+      <div data-slot="stack">
+        <div uiAutocompleteLabel>Jump to</div>
+        <input uiAutocompleteInput placeholder="e.g. Styling" />
       </div>
-    </div>
-  </ng-container>`,
+      <div *uiAutocompleteContent>
+        <div uiAutocompleteEmpty>No sections found.</div>
+        <div uiAutocompleteList>
+          @for (page of pages; track page.href) {
+            <a
+              uiAutocompleteItem
+              [value]="page.title"
+              [label]="page.title"
+              [href]="page.href"
+            >
+              {{ page.title }}
+              <span data-slot="hint">{{ page.section }}</span>
+            </a>
+          }
+        </div>
+      </div>
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly pages = [

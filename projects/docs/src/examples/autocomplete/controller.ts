@@ -21,32 +21,36 @@ import {
     UiAutocompleteLabel,
     UiAutocompleteList,
   ],
-  template: `<div data-slot="stack">
-    <div data-slot="controls">
-      <button type="button" data-size="sm" (click)="fruit.open()">Open</button>
-      <button type="button" data-size="sm" (click)="fruit.setValue('Pea')">
-        Type “Pea”
-      </button>
-      <button type="button" data-size="sm" (click)="fruit.clear()">
-        Clear
-      </button>
-      <button type="button" data-size="sm" (click)="fruit.focus()">
-        Focus
-      </button>
-    </div>
-    <ng-container uiAutocomplete [controller]="fruit">
-      <div uiAutocompleteLabel>Fruit</div>
-      <input uiAutocompleteInput />
-      <div *uiAutocompleteContent>
-        <div uiAutocompleteEmpty>No fruits found.</div>
-        <div uiAutocompleteList>
-          @for (item of fruits; track item) {
-            <div uiAutocompleteItem [value]="item">{{ item }}</div>
-          }
-        </div>
+  template: `
+    <div data-slot="stack">
+      <div data-slot="controls">
+        <button type="button" data-size="sm" (click)="fruit.open()">
+          Open
+        </button>
+        <button type="button" data-size="sm" (click)="fruit.setValue('Pea')">
+          Type “Pea”
+        </button>
+        <button type="button" data-size="sm" (click)="fruit.clear()">
+          Clear
+        </button>
+        <button type="button" data-size="sm" (click)="fruit.focus()">
+          Focus
+        </button>
       </div>
-    </ng-container>
-  </div>`,
+      <ng-container uiAutocomplete [controller]="fruit">
+        <div uiAutocompleteLabel>Fruit</div>
+        <input uiAutocompleteInput />
+        <div *uiAutocompleteContent>
+          <div uiAutocompleteEmpty>No fruits found.</div>
+          <div uiAutocompleteList>
+            @for (item of fruits; track item) {
+              <div uiAutocompleteItem [value]="item">{{ item }}</div>
+            }
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  `,
 })
 class Example {
   protected readonly fruits = [

@@ -50,9 +50,9 @@ import { UiMenubar } from "@ngx-ui-sdk/core/menubar"
           </div>
         </ng-container>
       </div>
-      <output data-slot="output"
-        >Status bar {{ statusBar() ? "shown" : "hidden" }}</output
-      >
+      <output data-slot="output">
+        Status bar {{ statusBar() ? "shown" : "hidden" }}
+      </output>
     </div>
   `,
 })

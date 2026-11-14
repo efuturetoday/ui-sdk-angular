@@ -1,6 +1,6 @@
 import { Component, resource, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
-import { asyncOptions } from "@ngx-ui-sdk/core"
+import { asyncOptions, UiText } from "@ngx-ui-sdk/core"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiSelect,
@@ -43,6 +43,7 @@ const pause = (ms: number, signal: AbortSignal) =>
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -69,7 +70,7 @@ const pause = (ms: number, signal: AbortSignal) =>
         placeholder="Select a country"
       >
         <button uiSelectTrigger>
-          <span uiSelectValue></span>
+          <span uiSelectValue uiText></span>
           <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent="let state">

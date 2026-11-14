@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   UiField,
@@ -10,7 +11,7 @@ import { injectLog } from "../../shared/log"
 
 @Component({
   selector: "app-example",
-  imports: [UiField, UiFieldDescription, UiFieldError, UiFieldLabel, UiInput],
+  imports: [UiText, UiField, UiFieldDescription, UiFieldError, UiFieldLabel, UiInput],
   template: `
     <form data-slot="stack" (submit)="submit($event)">
       <div uiField name="email">
@@ -33,7 +34,7 @@ import { injectLog } from "../../shared/log"
       <div uiField name="website">
         <label uiFieldLabel>Website</label>
         <input uiInput type="url" required placeholder="https://example.com" />
-        <div *uiFieldError></div>
+        <div *uiFieldError uiText></div>
       </div>
       <button type="submit" data-variant="solid">Subscribe</button>
     </form>

@@ -28,37 +28,41 @@ import { injectLog } from "../../shared/log"
     UiComboboxList,
     UiComboboxTrigger,
   ],
-  template: `<ng-container
-    uiCombobox
-    (openChangeComplete)="log($event ? 'Finished opening' : 'Finished closing')"
-    ><div data-slot="stack">
-      <div uiComboboxLabel>Framework</div>
-      <div data-slot="row">
-        <input uiComboboxInput placeholder="Select a framework" /><button
-          uiComboboxTrigger
-          aria-label="Show frameworks"
-        >
-          <svg lucideChevronDown aria-hidden="true"></svg>
-        </button>
+  template: `
+    <ng-container
+      uiCombobox
+      (openChangeComplete)="
+        log($event ? 'Finished opening' : 'Finished closing')
+      "
+    >
+      <div data-slot="stack">
+        <div uiComboboxLabel>Framework</div>
+        <div data-slot="row">
+          <input uiComboboxInput placeholder="Select a framework" />
+          <button uiComboboxTrigger aria-label="Show frameworks">
+            <svg lucideChevronDown aria-hidden="true"></svg>
+          </button>
+        </div>
       </div>
-    </div>
-    <div *uiComboboxContent>
-      <div uiComboboxEmpty>No frameworks found.</div>
-      <div uiComboboxList>
-        @for (framework of frameworks; track framework.value) {
-          <div
-            uiComboboxItem
-            [value]="framework.value"
-            [label]="framework.label"
-          >
-            {{ framework.label
-            }}<span *uiComboboxItemIndicator="let state; keepMounted: true"
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
-          </div>
-        }
-      </div></div
-  ></ng-container>`,
+      <div *uiComboboxContent>
+        <div uiComboboxEmpty>No frameworks found.</div>
+        <div uiComboboxList>
+          @for (framework of frameworks; track framework.value) {
+            <div
+              uiComboboxItem
+              [value]="framework.value"
+              [label]="framework.label"
+            >
+              {{ framework.label }}
+              <span *uiComboboxItemIndicator="let state; keepMounted: true">
+                <svg lucideCheck aria-hidden="true"></svg>
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly frameworks = [

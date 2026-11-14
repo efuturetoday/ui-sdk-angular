@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
@@ -18,6 +19,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiCheckbox,
@@ -35,36 +37,39 @@ import {
   template: `
     <div data-slot="stack">
       <div data-slot="controls">
-        <label data-slot="label"
-          ><button
+        <label data-slot="label">
+          <button
             uiCheckbox
             #box="uiCheckbox"
             [checked]="aligned()"
             (checkedChange)="aligned.set($event === true)"
           >
-            <span *uiCheckboxIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span></button
-          ><input [uiCheckboxInput]="box" />Align item with trigger</label
-        >
+            <span *uiCheckboxIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
+          </button>
+          <input [uiCheckboxInput]="box" />
+          Align item with trigger
+        </label>
       </div>
       <div uiField>
-        <label uiFieldLabel>Priority</label
-        ><ng-container uiSelect defaultValue="medium"
-          ><button uiSelectTrigger>
-            <span uiSelectValue></span
-            ><svg lucideChevronDown aria-hidden="true"></svg>
+        <label uiFieldLabel>Priority</label>
+        <ng-container uiSelect defaultValue="medium">
+          <button uiSelectTrigger>
+            <span uiSelectValue uiText></span>
+            <svg lucideChevronDown aria-hidden="true"></svg>
           </button>
           <div *uiSelectContent="let state; alignItemWithTrigger: aligned()">
             @for (priority of priorities; track priority.value) {
               <div uiSelectItem [value]="priority.value">
                 {{ priority.label }}
-                <span *uiSelectItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
+                <span *uiSelectItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
               </div>
-            }</div
-        ></ng-container>
+            }
+          </div>
+        </ng-container>
       </div>
     </div>
   `,

@@ -19,33 +19,31 @@ import { injectLog } from "../../shared/log"
     UiAutocompleteItem,
     UiAutocompleteList,
   ],
-  template: `<form
-    role="search"
-    data-slot="stack"
-    (submit)="$event.preventDefault()"
-  >
-    <ng-container
-      uiAutocomplete
-      submitOnSelect
-      name="q"
-      (valueSubmit)="log('Searched “' + $event.value + '”')"
-    >
-      <input
-        uiAutocompleteInput
-        type="search"
-        aria-label="Search"
-        placeholder="Search…"
-      />
-      <div *uiAutocompleteContent>
-        <div uiAutocompleteEmpty>No results.</div>
-        <div uiAutocompleteList>
-          @for (search of recent; track search) {
-            <div uiAutocompleteItem [value]="search">{{ search }}</div>
-          }
+  template: `
+    <form role="search" data-slot="stack" (submit)="$event.preventDefault()">
+      <ng-container
+        uiAutocomplete
+        submitOnSelect
+        name="q"
+        (valueSubmit)="log('Searched “' + $event.value + '”')"
+      >
+        <input
+          uiAutocompleteInput
+          type="search"
+          aria-label="Search"
+          placeholder="Search…"
+        />
+        <div *uiAutocompleteContent>
+          <div uiAutocompleteEmpty>No results.</div>
+          <div uiAutocompleteList>
+            @for (search of recent; track search) {
+              <div uiAutocompleteItem [value]="search">{{ search }}</div>
+            }
+          </div>
         </div>
-      </div>
-    </ng-container>
-  </form>`,
+      </ng-container>
+    </form>
+  `,
 })
 class Example {
   protected readonly recent = [

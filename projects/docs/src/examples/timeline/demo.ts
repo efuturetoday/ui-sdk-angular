@@ -27,9 +27,9 @@ import {
           <div uiTimelineMarker></div>
           <div uiTimelineConnector></div>
           <div uiTimelineTitle>{{ event.title }}</div>
-          <time uiTimelineTime [attr.datetime]="event.dateTime">{{
-            event.time
-          }}</time>
+          <time uiTimelineTime [attr.datetime]="event.dateTime">
+            {{ event.time }}
+          </time>
           <div uiTimelineDescription>{{ event.description }}</div>
         </div>
       }

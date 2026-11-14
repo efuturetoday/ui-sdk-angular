@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideMinus } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -11,6 +12,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideMinus,
     UiField,
     UiFieldLabel,
@@ -25,7 +27,7 @@ import {
       <div uiOtpInput [maxLength]="8" pattern="alphanumeric">
         <div uiOtpInputGroup>
           @for (index of [0, 1, 2, 3]; track index) {
-            <div uiOtpInputSlot [index]="index"></div>
+            <div uiOtpInputSlot [index]="index" uiText></div>
           }
         </div>
         <div uiOtpInputSeparator>
@@ -33,7 +35,7 @@ import {
         </div>
         <div uiOtpInputGroup>
           @for (index of [4, 5, 6, 7]; track index) {
-            <div uiOtpInputSlot [index]="index"></div>
+            <div uiOtpInputSlot [index]="index" uiText></div>
           }
         </div>
       </div>

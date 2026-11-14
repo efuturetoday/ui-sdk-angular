@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   createToaster,
@@ -11,6 +12,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiToast,
     UiToastDescription,
     UiToastList,
@@ -33,8 +35,8 @@ import {
           @for (item of region.state().toasts; track item.toast.id) {
             <li [uiToast]="item.toast">
               <div data-slot="stack">
-                <div *uiToastTitle></div>
-                <div *uiToastDescription></div>
+                <div *uiToastTitle uiText></div>
+                <div *uiToastDescription uiText></div>
               </div>
             </li>
           }

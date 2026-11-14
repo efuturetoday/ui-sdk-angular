@@ -38,9 +38,9 @@ import { injectLog } from "../../shared/log"
           <div uiTreeItem [value]="item.value">
             <span uiTreeItemLabel>
               @if (item.children) {
-                <span uiTreeItemIndicator
-                  ><svg lucideChevronRight aria-hidden="true"></svg
-                ></span>
+                <span uiTreeItemIndicator>
+                  <svg lucideChevronRight aria-hidden="true"></svg>
+                </span>
               }
               {{ item.label }}
             </span>

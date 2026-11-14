@@ -1,10 +1,11 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import { UiTimeInput, UiTimeInputSegment } from "@ngx-ui-sdk/core/time-input"
 
 @Component({
   selector: "app-example",
-  imports: [UiField, UiFieldLabel, UiTimeInput, UiTimeInputSegment],
+  imports: [UiText, UiField, UiFieldLabel, UiTimeInput, UiTimeInputSegment],
   template: `
     <div uiField>
       <label uiFieldLabel>Meeting time</label>
@@ -13,7 +14,7 @@ import { UiTimeInput, UiTimeInputSegment } from "@ngx-ui-sdk/core/time-input"
           @if (segment.editable) {
             <input uiTimeInputSegment [segment]="segment" />
           } @else {
-            <span uiTimeInputSegment [segment]="segment"></span>
+            <span uiTimeInputSegment [segment]="segment" uiText></span>
           }
         }
       </div>

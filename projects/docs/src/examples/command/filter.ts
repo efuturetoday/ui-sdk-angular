@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, computed, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
@@ -22,6 +23,7 @@ type Mode = "fuzzy" | "contains" | "startsWith" | "words"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiCommand,
@@ -48,7 +50,7 @@ type Mode = "fuzzy" | "contains" | "startsWith" | "words"
         >
           <div uiSelectLabel>Filter</div>
           <button uiSelectTrigger>
-            <span uiSelectValue></span>
+            <span uiSelectValue uiText></span>
             <svg lucideChevronDown aria-hidden="true"></svg>
           </button>
           <div *uiSelectContent>

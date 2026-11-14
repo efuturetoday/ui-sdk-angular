@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { UiLabel } from "@ngx-ui-sdk/core/label"
 import {
@@ -12,6 +13,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiLabel,
     UiSlider,
     UiSliderControl,
@@ -24,7 +26,7 @@ import {
     <div uiSlider id="volume" [defaultValue]="75">
       <div data-slot="row">
         <label uiLabel for="volume">Volume</label>
-        <output uiSliderValue></output>
+        <output uiSliderValue uiText></output>
       </div>
       <div uiSliderControl>
         <div uiSliderTrack>

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
@@ -12,6 +13,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiField,
     UiFieldLabel,
     UiSlider,
@@ -33,7 +35,7 @@ import {
       >
         <div data-slot="row">
           <label uiFieldLabel>Zoom</label>
-          <output uiSliderValue></output>
+          <output uiSliderValue uiText></output>
         </div>
         <div uiSliderControl>
           <div uiSliderTrack>

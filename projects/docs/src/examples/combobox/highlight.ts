@@ -29,43 +29,45 @@ import {
     UiComboboxList,
     UiComboboxTrigger,
   ],
-  template: `<ng-container uiCombobox
-    ><div data-slot="stack">
-      <div uiComboboxLabel>Country</div>
-      <div data-slot="row">
-        <input uiComboboxInput placeholder="Search countries…" /><button
-          uiComboboxTrigger
-          aria-label="Show countries"
-        >
-          <svg lucideChevronDown aria-hidden="true"></svg>
-        </button>
+  template: `
+    <ng-container uiCombobox>
+      <div data-slot="stack">
+        <div uiComboboxLabel>Country</div>
+        <div data-slot="row">
+          <input uiComboboxInput placeholder="Search countries…" />
+          <button uiComboboxTrigger aria-label="Show countries">
+            <svg lucideChevronDown aria-hidden="true"></svg>
+          </button>
+        </div>
       </div>
-    </div>
-    <div *uiComboboxContent>
-      <div uiComboboxEmpty>No countries found.</div>
-      <div uiComboboxList>
-        @for (country of countries; track country.value) {
-          <div
-            uiComboboxItem
-            [value]="country.value"
-            [label]="country.label"
-            [keywords]="country.keywords"
-          >
-            <span uiComboboxItemText #text="uiComboboxItemText">
-              @for (segment of text.state().segments; track $index) {
-                @if (segment.match) {
-                  <mark>{{ segment.text }}</mark>
-                } @else {
-                  <span>{{ segment.text }}</span>
+      <div *uiComboboxContent>
+        <div uiComboboxEmpty>No countries found.</div>
+        <div uiComboboxList>
+          @for (country of countries; track country.value) {
+            <div
+              uiComboboxItem
+              [value]="country.value"
+              [label]="country.label"
+              [keywords]="country.keywords"
+            >
+              <span uiComboboxItemText #text="uiComboboxItemText">
+                @for (segment of text.state().segments; track $index) {
+                  @if (segment.match) {
+                    <mark>{{ segment.text }}</mark>
+                  } @else {
+                    <span>{{ segment.text }}</span>
+                  }
                 }
-              }</span
-            ><span *uiComboboxItemIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
-          </div>
-        }
-      </div></div
-  ></ng-container>`,
+              </span>
+              <span *uiComboboxItemIndicator>
+                <svg lucideCheck aria-hidden="true"></svg>
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly countries: {

@@ -26,9 +26,9 @@ type Plan = { id: string; price: number }
       @for (plan of plans; track plan.value.id) {
         <div uiListboxItem [value]="plan.value" [disabled]="plan.disabled">
           {{ plan.label }}
-          <span *uiListboxItemIndicator
-            ><svg lucideCheck aria-hidden="true"></svg
-          ></span>
+          <span *uiListboxItemIndicator>
+            <svg lucideCheck aria-hidden="true"></svg>
+          </span>
         </div>
       }
     </div>

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, DestroyRef, inject } from "@angular/core"
 import {
   createToaster,
@@ -10,7 +11,14 @@ import {
 
 @Component({
   selector: "app-example",
-  imports: [UiToast, UiToastClose, UiToastList, UiToastRegion, UiToastTitle],
+  imports: [
+    UiText,
+    UiToast,
+    UiToastClose,
+    UiToastList,
+    UiToastRegion,
+    UiToastTitle,
+  ],
   template: `
     <div data-slot="row">
       <button (click)="toast('Link copied', { duration: 1000 })">
@@ -23,7 +31,7 @@ import {
       <ol uiToastList>
         @for (item of region.state().toasts; track item.toast.id) {
           <li [uiToast]="item.toast">
-            <div *uiToastTitle></div>
+            <div *uiToastTitle uiText></div>
             @if (item.toast.cancel; as cancel) {
               <button
                 uiToastClose

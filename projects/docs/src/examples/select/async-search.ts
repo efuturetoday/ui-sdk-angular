@@ -1,6 +1,6 @@
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
-import { injectAsyncOptions } from "@ngx-ui-sdk/core"
+import { injectAsyncOptions, UiText } from "@ngx-ui-sdk/core"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiSelect,
@@ -71,6 +71,7 @@ function searchCountries(
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -100,7 +101,7 @@ function searchCountries(
         (loadMore)="results.loadMore()"
       >
         <button uiSelectTrigger>
-          <span uiSelectValue></span>
+          <span uiSelectValue uiText></span>
           <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent>

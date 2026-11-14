@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -19,6 +20,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -38,11 +40,11 @@ import {
   ],
   template: `
     <div uiField>
-      <label uiFieldLabel>Country</label
-      ><ng-container uiSelect placeholder="Select a country"
-        ><button uiSelectTrigger>
-          <span uiSelectValue></span
-          ><svg lucideChevronDown aria-hidden="true"></svg>
+      <label uiFieldLabel>Country</label>
+      <ng-container uiSelect placeholder="Select a country">
+        <button uiSelectTrigger>
+          <span uiSelectValue uiText></span>
+          <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent>
           <input
@@ -64,16 +66,18 @@ import {
                         } @else {
                           <span>{{ segment.text }}</span>
                         }
-                      }</span
-                    ><span *uiSelectItemIndicator
-                      ><svg lucideCheck aria-hidden="true"></svg
-                    ></span>
+                      }
+                    </span>
+                    <span *uiSelectItemIndicator>
+                      <svg lucideCheck aria-hidden="true"></svg>
+                    </span>
                   </div>
                 }
               </div>
             }
-          </div></div
-      ></ng-container>
+          </div>
+        </div>
+      </ng-container>
     </div>
   `,
 })

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   UiAutocomplete,
@@ -17,6 +18,7 @@ type Recent = { type: "group"; label: string; items: string[] }
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiAutocomplete,
     UiAutocompleteContent,
     UiAutocompleteEmpty,
@@ -27,41 +29,43 @@ type Recent = { type: "group"; label: string; items: string[] }
     UiAutocompleteItemText,
     UiAutocompleteList,
   ],
-  template: `<ng-container
-    uiAutocomplete
-    [items]="topics"
-    [emptyItems]="recentSearches"
-    openOnFocus
-    [announcement]="announcement"
-  >
-    <input
-      uiAutocompleteInput
-      type="search"
-      aria-label="Search docs"
-      placeholder="Search docs…"
-    />
-    <div *uiAutocompleteContent>
-      <div uiAutocompleteEmpty>No topics found.</div>
-      <div uiAutocompleteList #list="uiAutocompleteList">
-        @for (entry of entriesOf(list.state().items); track key(entry)) {
-          @if (typeof entry === "string") {
-            <div uiAutocompleteItem [value]="entry" [label]="entry">
-              <span uiAutocompleteItemText></span>
-            </div>
-          } @else {
-            <div uiAutocompleteGroup>
-              <div uiAutocompleteGroupLabel>{{ asGroup(entry).label }}</div>
-              @for (topic of asGroup(entry).items; track topic) {
-                <div uiAutocompleteItem [value]="topic" [label]="topic">
-                  <span uiAutocompleteItemText></span>
-                </div>
-              }
-            </div>
+  template: `
+    <ng-container
+      uiAutocomplete
+      [items]="topics"
+      [emptyItems]="recentSearches"
+      openOnFocus
+      [announcement]="announcement"
+    >
+      <input
+        uiAutocompleteInput
+        type="search"
+        aria-label="Search docs"
+        placeholder="Search docs…"
+      />
+      <div *uiAutocompleteContent>
+        <div uiAutocompleteEmpty>No topics found.</div>
+        <div uiAutocompleteList #list="uiAutocompleteList">
+          @for (entry of entriesOf(list.state().items); track key(entry)) {
+            @if (typeof entry === "string") {
+              <div uiAutocompleteItem [value]="entry" [label]="entry">
+                <span uiAutocompleteItemText uiText></span>
+              </div>
+            } @else {
+              <div uiAutocompleteGroup>
+                <div uiAutocompleteGroupLabel>{{ asGroup(entry).label }}</div>
+                @for (topic of asGroup(entry).items; track topic) {
+                  <div uiAutocompleteItem [value]="topic" [label]="topic">
+                    <span uiAutocompleteItemText uiText></span>
+                  </div>
+                }
+              </div>
+            }
           }
-        }
+        </div>
       </div>
-    </div>
-  </ng-container>`,
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly recent = [

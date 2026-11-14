@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { addDays, endOfMonth, startOfMonth } from "@ui-sdk/core/date"
 import { LucideChevronLeft, LucideChevronRight } from "@lucide/angular"
@@ -19,6 +20,7 @@ const today = "2026-10-16"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideChevronLeft,
     LucideChevronRight,
     UiCalendar,
@@ -51,7 +53,7 @@ const today = "2026-10-16"
           <button uiCalendarPrevious data-variant="ghost">
             <svg lucideChevronLeft aria-hidden="true"></svg>
           </button>
-          <h2 uiCalendarHeading></h2>
+          <h2 uiCalendarHeading uiText></h2>
           <button uiCalendarNext data-variant="ghost">
             <svg lucideChevronRight aria-hidden="true"></svg>
           </button>
@@ -60,7 +62,7 @@ const today = "2026-10-16"
           <thead>
             <tr uiCalendarWeekdays>
               @for (weekday of grid.state().weekdays; track $index) {
-                <th uiCalendarWeekday scope="col" [index]="$index"></th>
+                <th uiCalendarWeekday scope="col" [index]="$index" uiText></th>
               }
             </tr>
           </thead>
@@ -71,7 +73,7 @@ const today = "2026-10-16"
                   @if (cell.hidden) {
                     <td></td>
                   } @else {
-                    <td uiCalendarDay [value]="cell.date"></td>
+                    <td uiCalendarDay [value]="cell.date" uiText></td>
                   }
                 }
               </tr>

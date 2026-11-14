@@ -20,20 +20,22 @@ import {
     UiAutocompleteLabel,
     UiAutocompleteList,
   ],
-  template: `<ng-container uiAutocomplete autoHighlight [loop]="false">
-    <div data-slot="stack">
-      <div uiAutocompleteLabel>Fruit</div>
-      <input uiAutocompleteInput placeholder="Type, then Enter" />
-    </div>
-    <div *uiAutocompleteContent>
-      <div uiAutocompleteEmpty>No fruits found.</div>
-      <div uiAutocompleteList>
-        @for (fruit of fruits; track fruit) {
-          <div uiAutocompleteItem [value]="fruit">{{ fruit }}</div>
-        }
+  template: `
+    <ng-container uiAutocomplete autoHighlight [loop]="false">
+      <div data-slot="stack">
+        <div uiAutocompleteLabel>Fruit</div>
+        <input uiAutocompleteInput placeholder="Type, then Enter" />
       </div>
-    </div>
-  </ng-container>`,
+      <div *uiAutocompleteContent>
+        <div uiAutocompleteEmpty>No fruits found.</div>
+        <div uiAutocompleteList>
+          @for (fruit of fruits; track fruit) {
+            <div uiAutocompleteItem [value]="fruit">{{ fruit }}</div>
+          }
+        </div>
+      </div>
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly fruits = [

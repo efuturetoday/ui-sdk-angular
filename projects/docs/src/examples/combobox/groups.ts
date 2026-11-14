@@ -33,39 +33,40 @@ import {
     UiComboboxSeparator,
     UiComboboxTrigger,
   ],
-  template: `<ng-container uiCombobox
-    ><div data-slot="stack">
-      <div uiComboboxLabel>Timezone</div>
-      <div data-slot="row">
-        <input uiComboboxInput placeholder="Search cities…" /><button
-          uiComboboxTrigger
-          aria-label="Show timezones"
-        >
-          <svg lucideChevronDown aria-hidden="true"></svg>
-        </button>
+  template: `
+    <ng-container uiCombobox>
+      <div data-slot="stack">
+        <div uiComboboxLabel>Timezone</div>
+        <div data-slot="row">
+          <input uiComboboxInput placeholder="Search cities…" />
+          <button uiComboboxTrigger aria-label="Show timezones">
+            <svg lucideChevronDown aria-hidden="true"></svg>
+          </button>
+        </div>
       </div>
-    </div>
-    <div *uiComboboxContent>
-      <div uiComboboxEmpty>No cities found.</div>
-      <div uiComboboxList>
-        @for (group of timezones; track group.label; let index = $index) {
-          @if (index > 0) {
-            <div uiComboboxSeparator></div>
-          }
-          <div uiComboboxGroup>
-            <div uiComboboxGroupLabel>{{ group.label }}</div>
-            @for (item of group.items; track item.value) {
-              <div uiComboboxItem [value]="item.value" [label]="item.label">
-                {{ item.label
-                }}<span *uiComboboxItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
-              </div>
+      <div *uiComboboxContent>
+        <div uiComboboxEmpty>No cities found.</div>
+        <div uiComboboxList>
+          @for (group of timezones; track group.label; let index = $index) {
+            @if (index > 0) {
+              <div uiComboboxSeparator></div>
             }
-          </div>
-        }
-      </div></div
-  ></ng-container>`,
+            <div uiComboboxGroup>
+              <div uiComboboxGroupLabel>{{ group.label }}</div>
+              @for (item of group.items; track item.value) {
+                <div uiComboboxItem [value]="item.value" [label]="item.label">
+                  {{ item.label }}
+                  <span *uiComboboxItemIndicator>
+                    <svg lucideCheck aria-hidden="true"></svg>
+                  </span>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly timezones = [

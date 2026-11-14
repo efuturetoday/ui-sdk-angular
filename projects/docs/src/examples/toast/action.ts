@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, DestroyRef, inject } from "@angular/core"
 import {
   createToaster,
@@ -13,6 +14,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiToast,
     UiToastAction,
     UiToastClose,
@@ -26,13 +28,13 @@ import { injectLog } from "../../shared/log"
       <ol uiToastList>
         @for (item of region.state().toasts; track item.toast.id) {
           <li [uiToast]="item.toast">
-            <div *uiToastTitle></div>
+            <div *uiToastTitle uiText></div>
             @if (item.toast.cancel; as cancel) {
               <button uiToastClose [action]="cancel.onCancel">
                 {{ cancel.label }}
               </button>
             }
-            <button *uiToastAction data-variant="solid"></button>
+            <button *uiToastAction data-variant="solid" uiText></button>
           </li>
         }
       </ol>

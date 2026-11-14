@@ -41,23 +41,23 @@ import { injectLog } from "../../shared/log"
             <div uiCommandItem value="profile" shortcut="mod+p">
               <span uiCommandItemIcon><svg lucideUser></svg></span>
               <span>Profile</span>
-              <span uiCommandShortcut #profile="uiCommandShortcut">{{
-                profile.state().text
-              }}</span>
+              <span uiCommandShortcut #profile="uiCommandShortcut">
+                {{ profile.state().text }}
+              </span>
             </div>
             <div uiCommandItem value="billing" shortcut="mod+b">
               <span uiCommandItemIcon><svg lucideCreditCard></svg></span>
               <span>Billing</span>
-              <span uiCommandShortcut #billing="uiCommandShortcut">{{
-                billing.state().text
-              }}</span>
+              <span uiCommandShortcut #billing="uiCommandShortcut">
+                {{ billing.state().text }}
+              </span>
             </div>
             <div uiCommandItem value="settings" shortcut="mod+s">
               <span uiCommandItemIcon><svg lucideSettings></svg></span>
               <span>Settings</span>
-              <span uiCommandShortcut #prefs="uiCommandShortcut">{{
-                prefs.state().text
-              }}</span>
+              <span uiCommandShortcut #prefs="uiCommandShortcut">
+                {{ prefs.state().text }}
+              </span>
             </div>
           </div>
         </div>

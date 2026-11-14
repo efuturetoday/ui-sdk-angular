@@ -27,28 +27,30 @@ import {
     UiAutocompleteList,
     UiAutocompleteTrigger,
   ],
-  template: `<ng-container uiAutocomplete defaultValue="Mango">
-    <div data-slot="stack">
-      <div uiAutocompleteLabel>Fruit</div>
-      <div data-slot="row">
-        <input uiAutocompleteInput />
-        <button *uiAutocompleteClear aria-label="Clear">
-          <svg lucideX aria-hidden="true"></svg>
-        </button>
-        <button uiAutocompleteTrigger aria-label="Show fruits">
-          <svg lucideChevronDown aria-hidden="true"></svg>
-        </button>
+  template: `
+    <ng-container uiAutocomplete defaultValue="Mango">
+      <div data-slot="stack">
+        <div uiAutocompleteLabel>Fruit</div>
+        <div data-slot="row">
+          <input uiAutocompleteInput />
+          <button *uiAutocompleteClear aria-label="Clear">
+            <svg lucideX aria-hidden="true"></svg>
+          </button>
+          <button uiAutocompleteTrigger aria-label="Show fruits">
+            <svg lucideChevronDown aria-hidden="true"></svg>
+          </button>
+        </div>
       </div>
-    </div>
-    <div *uiAutocompleteContent>
-      <div uiAutocompleteEmpty>No fruits found.</div>
-      <div uiAutocompleteList>
-        @for (fruit of fruits; track fruit) {
-          <div uiAutocompleteItem [value]="fruit">{{ fruit }}</div>
-        }
+      <div *uiAutocompleteContent>
+        <div uiAutocompleteEmpty>No fruits found.</div>
+        <div uiAutocompleteList>
+          @for (fruit of fruits; track fruit) {
+            <div uiAutocompleteItem [value]="fruit">{{ fruit }}</div>
+          }
+        </div>
       </div>
-    </div>
-  </ng-container>`,
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly fruits = [

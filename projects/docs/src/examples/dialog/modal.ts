@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, computed, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
@@ -29,6 +30,7 @@ type Mode = "true" | "trap-focus" | "false"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiCheckbox,
@@ -57,35 +59,44 @@ type Mode = "true" | "trap-focus" | "false"
           [items]="modes"
           [value]="mode()"
           (valueChange)="setMode($event)"
-          ><div uiSelectLabel>Modal</div>
+        >
+          <div uiSelectLabel>Modal</div>
           <button uiSelectTrigger>
-            <span uiSelectValue></span
-            ><svg lucideChevronDown aria-hidden="true"></svg>
+            <span uiSelectValue uiText></span>
+            <svg lucideChevronDown aria-hidden="true"></svg>
           </button>
           <div *uiSelectContent>
             @for (option of modes; track option.value) {
               <div uiSelectItem [value]="option.value">
                 {{ option.label }}
-                <span *uiSelectItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
+                <span *uiSelectItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
               </div>
-            }</div></ng-container
-        ><label data-slot="label"
-          ><button
+            }
+          </div>
+        </ng-container>
+        <label data-slot="label">
+          <button
             uiCheckbox
             #box="uiCheckbox"
             [checked]="outside()"
             (checkedChange)="outside.set($event === true)"
           >
-            <span *uiCheckboxIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span></button
-          ><input [uiCheckboxInput]="box" />Close on outside press</label
-        >
+            <span *uiCheckboxIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
+          </button>
+          <input [uiCheckboxInput]="box" />
+          Close on outside press
+        </label>
       </div>
-      <ng-container uiDialog [modal]="modal()" [closeOnOutsidePress]="outside()"
-        ><button uiDialogTrigger>Open Notes</button>
+      <ng-container
+        uiDialog
+        [modal]="modal()"
+        [closeOnOutsidePress]="outside()"
+      >
+        <button uiDialogTrigger>Open Notes</button>
         @if (modal() === true) {
           <div *uiDialogBackdrop></div>
         }
@@ -99,8 +110,8 @@ Call the printer about the proofs.</textarea>
           <div data-slot="row">
             <button uiDialogClose data-variant="solid">Done</button>
           </div>
-        </div></ng-container
-      >
+        </div>
+      </ng-container>
     </div>
   `,
 })

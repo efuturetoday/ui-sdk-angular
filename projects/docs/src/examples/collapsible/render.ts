@@ -20,9 +20,9 @@ import {
         <button uiCollapsibleTrigger #trigger="uiCollapsibleTrigger">
           <span data-slot="stack">
             <span>Track parcel</span>
-            <span data-slot="hint">{{
-              trigger.state().open ? "3 updates" : "Arrives Thursday"
-            }}</span>
+            <span data-slot="hint">
+              {{ trigger.state().open ? "3 updates" : "Arrives Thursday" }}
+            </span>
           </span>
           <svg lucideChevronDown aria-hidden="true"></svg>
         </button>

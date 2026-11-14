@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   LucideCheck,
@@ -21,6 +22,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     LucideTextAlignCenter,
@@ -39,38 +41,43 @@ import {
   ],
   template: `
     <div uiField>
-      <label uiFieldLabel>Text alignment</label
-      ><ng-container uiSelect defaultValue="start"
-        ><button uiSelectTrigger>
-          <span uiSelectValueIcon></span><span uiSelectValue></span
-          ><svg lucideChevronDown aria-hidden="true"></svg>
+      <label uiFieldLabel>Text alignment</label>
+      <ng-container uiSelect defaultValue="start">
+        <button uiSelectTrigger>
+          <span uiSelectValueIcon></span>
+          <span uiSelectValue uiText></span>
+          <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent>
           <div uiSelectItem value="start">
-            <span uiSelectItemIcon mirror
-              ><svg lucideTextAlignStart aria-hidden="true"></svg></span
-            >Start
-            <span *uiSelectItemIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
+            <span uiSelectItemIcon mirror>
+              <svg lucideTextAlignStart aria-hidden="true"></svg>
+            </span>
+            Start
+            <span *uiSelectItemIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
           </div>
           <div uiSelectItem value="center">
-            <span uiSelectItemIcon
-              ><svg lucideTextAlignCenter aria-hidden="true"></svg></span
-            >Center
-            <span *uiSelectItemIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
+            <span uiSelectItemIcon>
+              <svg lucideTextAlignCenter aria-hidden="true"></svg>
+            </span>
+            Center
+            <span *uiSelectItemIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
           </div>
           <div uiSelectItem value="end">
-            <span uiSelectItemIcon mirror
-              ><svg lucideTextAlignEnd aria-hidden="true"></svg></span
-            >End
-            <span *uiSelectItemIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
-          </div></div
-      ></ng-container>
+            <span uiSelectItemIcon mirror>
+              <svg lucideTextAlignEnd aria-hidden="true"></svg>
+            </span>
+            End
+            <span *uiSelectItemIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
+          </div>
+        </div>
+      </ng-container>
     </div>
   `,
 })

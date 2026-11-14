@@ -75,57 +75,59 @@ function searchMovies(query: string, { signal }: { signal: AbortSignal }) {
     UiComboboxStatus,
     UiComboboxTrigger,
   ],
-  template: `<ng-container
-    uiCombobox
-    [items]="movies.state().items"
-    defaultQuery="the"
-    [filter]="false"
-    [status]="movies.state().status"
-    (queryChange)="movies.setQuery($event)"
-    ><div data-slot="stack">
-      <div uiComboboxLabel>Movie</div>
-      <div data-slot="row">
-        <input uiComboboxInput placeholder="Search movies…" /><button
-          uiComboboxTrigger
-          aria-label="Show movies"
-        >
-          <svg lucideChevronDown aria-hidden="true"></svg>
-        </button>
+  template: `
+    <ng-container
+      uiCombobox
+      [items]="movies.state().items"
+      defaultQuery="the"
+      [filter]="false"
+      [status]="movies.state().status"
+      (queryChange)="movies.setQuery($event)"
+    >
+      <div data-slot="stack">
+        <div uiComboboxLabel>Movie</div>
+        <div data-slot="row">
+          <input uiComboboxInput placeholder="Search movies…" />
+          <button uiComboboxTrigger aria-label="Show movies">
+            <svg lucideChevronDown aria-hidden="true"></svg>
+          </button>
+        </div>
       </div>
-    </div>
-    <div *uiComboboxContent>
-      <div uiComboboxStatus #status="uiComboboxStatus">
-        {{
-          status.state().status === "error"
-            ? "Couldn't load movies."
-            : status.state().loading
-              ? "Searching…"
-              : status.state().count +
-                " " +
-                (status.state().count === 1 ? "movie" : "movies")
-        }}
+      <div *uiComboboxContent>
+        <div uiComboboxStatus #status="uiComboboxStatus">
+          {{
+            status.state().status === "error"
+              ? "Couldn't load movies."
+              : status.state().loading
+                ? "Searching…"
+                : status.state().count +
+                  " " +
+                  (status.state().count === 1 ? "movie" : "movies")
+          }}
+        </div>
+        <div uiComboboxEmpty #empty="uiComboboxEmpty">
+          @if (empty.state().empty && !empty.state().loading) {
+            No movies match “{{ empty.state().query }}”.
+          }
+        </div>
+        <div uiComboboxList #list="uiComboboxList">
+          @for (item of moviesOf(list.state().items); track item.value) {
+            <div
+              uiComboboxItem
+              [value]="item.value"
+              [label]="item.label"
+              [disabled]="item.disabled"
+            >
+              {{ item.label }}
+              <span *uiComboboxItemIndicator>
+                <svg lucideCheck aria-hidden="true"></svg>
+              </span>
+            </div>
+          }
+        </div>
       </div>
-      <div uiComboboxEmpty #empty="uiComboboxEmpty">
-        @if (empty.state().empty && !empty.state().loading) {
-          No movies match “{{ empty.state().query }}”.
-        }
-      </div>
-      <div uiComboboxList #list="uiComboboxList">
-        @for (item of moviesOf(list.state().items); track item.value) {
-          <div
-            uiComboboxItem
-            [value]="item.value"
-            [label]="item.label"
-            [disabled]="item.disabled"
-          >
-            {{ item.label
-            }}<span *uiComboboxItemIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
-          </div>
-        }
-      </div></div
-  ></ng-container>`,
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly movies = injectAsyncOptions(searchMovies, {

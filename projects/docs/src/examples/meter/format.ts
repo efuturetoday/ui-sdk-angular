@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { type NumberFormat } from "@ngx-ui-sdk/core/meter"
 import {
@@ -11,6 +12,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiMeter,
     UiMeterIndicator,
     UiMeterLabel,
@@ -28,7 +30,7 @@ import {
           [locale]="m.locale"
         >
           <span uiMeterLabel>{{ m.label }}</span>
-          <span uiMeterValue></span>
+          <span uiMeterValue uiText></span>
           <div uiMeterTrack><div uiMeterIndicator></div></div>
         </div>
       }

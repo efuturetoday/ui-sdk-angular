@@ -91,9 +91,9 @@ import {
             <ul>
               <li>
                 <a uiNavigationMenuLink href="#">
-                  <span uiNavigationMenuLinkIcon
-                    ><svg lucideCircleQuestionMark></svg
-                  ></span>
+                  <span uiNavigationMenuLinkIcon>
+                    <svg lucideCircleQuestionMark></svg>
+                  </span>
                   Backlog
                 </a>
               </li>
@@ -105,17 +105,17 @@ import {
               </li>
               <li>
                 <a uiNavigationMenuLink href="#">
-                  <span uiNavigationMenuLinkIcon
-                    ><svg lucideCircleCheck></svg
-                  ></span>
+                  <span uiNavigationMenuLinkIcon>
+                    <svg lucideCircleCheck></svg>
+                  </span>
                   Done
                 </a>
               </li>
               <li>
                 <a uiNavigationMenuLink href="#">
-                  <span uiNavigationMenuLinkIcon mirror
-                    ><svg lucideArrowRight></svg
-                  ></span>
+                  <span uiNavigationMenuLinkIcon mirror>
+                    <svg lucideArrowRight></svg>
+                  </span>
                   All issues
                 </a>
               </li>

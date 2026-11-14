@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, DestroyRef, inject, signal } from "@angular/core"
 import {
   LucideArrowUp,
@@ -35,6 +36,7 @@ const loadFile = () => new Promise<void>((resolve) => setTimeout(resolve, 800))
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideArrowUp,
     LucideCheck,
     LucideClock,
@@ -88,7 +90,7 @@ const loadFile = () => new Promise<void>((resolve) => setTimeout(resolve, 800))
         </div>
       </div>
       <ng-container uiTriggerMenu [triggers]="triggers" [onSelect]="onSelect">
-        <span uiTriggerMenuHint></span>
+        <span uiTriggerMenuHint uiText></span>
         <div *uiTriggerMenuContent="let state">
           <div uiTriggerMenuEmpty>No matches</div>
           <div uiTriggerMenuList #list="uiTriggerMenuList">
@@ -119,9 +121,9 @@ const loadFile = () => new Promise<void>((resolve) => setTimeout(resolve, 800))
           @if (token.data?.["run"] === "done") {
             <svg lucideCheck aria-hidden="true"></svg>
           }
-          <span uiTokenInputTokenRemove
-            ><svg lucideX aria-hidden="true"></svg
-          ></span>
+          <span uiTokenInputTokenRemove>
+            <svg lucideX aria-hidden="true"></svg>
+          </span>
         </span>
       </ng-template>
     </ng-container>

@@ -31,9 +31,9 @@ import {
           @for (item of group.items; track item.value) {
             <div uiListboxItem [value]="item.value">
               {{ item.label }}
-              <span *uiListboxItemIndicator
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
+              <span *uiListboxItemIndicator>
+                <svg lucideCheck aria-hidden="true"></svg>
+              </span>
             </div>
           }
         </div>

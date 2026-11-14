@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown, LucideFile } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -32,6 +33,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     LucideFile,
@@ -64,7 +66,7 @@ import { injectLog } from "../../shared/log"
         >
           <div uiSelectLabel>Backspace</div>
           <button uiSelectTrigger>
-            <span uiSelectValue></span>
+            <span uiSelectValue uiText></span>
             <svg lucideChevronDown aria-hidden="true"></svg>
           </button>
           <div *uiSelectContent>

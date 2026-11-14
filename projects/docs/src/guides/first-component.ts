@@ -8,66 +8,63 @@ import { BookmarkButton } from "./live/bookmark-button"
   styleUrl: "./guide.css",
   template: `
     <p>
-      Let's add a Bookmark toggle. Press it once to turn it on, and again to
-      turn it off. If you haven't installed the packages yet, start with
-      <a href="?doc=installation">Installation</a>.
+      Let's build a Bookmark toggle. Press it once to turn it on. Press it again
+      to turn it off. Install the packages first, as shown in
+      <a href="?doc=installation">Installation</a>
+      .
     </p>
 
     <section id="create" data-title="Create the Component">
       <h3>Create the Component</h3>
       <p>
-        Create <code>bookmark-button.ts</code> and put <code>uiToggle</code> on
-        a button:
+        Create
+        <code>bookmark-button.ts</code>
+        and put
+        <code>uiToggle</code>
+        on a button.
       </p>
       <app-code file="bookmark-button.ts" [code]="start" />
       <p>
-        The button keeps track of whether it's pressed, handles Enter and Space,
-        and sets <code>aria-pressed</code> for screen readers.
+        The button now remembers if it is pressed. It reacts to Enter and Space.
+        It also sets
+        <code>aria-pressed</code>
+        for screen readers.
       </p>
     </section>
 
     <section id="use" data-title="Use It in Your App">
       <h3>Use It in Your App</h3>
-      <p>Import <code>BookmarkButton</code> in your app component:</p>
+      <p>
+        Import
+        <code>BookmarkButton</code>
+        in your app component.
+      </p>
       <app-code file="app.ts" [code]="app" />
     </section>
 
     <section id="styles" data-title="Add Styles">
       <h3>Add Styles</h3>
       <p>
-        While the toggle is pressed, it has a <code>data-pressed</code>
-        attribute. Style it with that:
+        A pressed toggle has the attribute
+        <code>data-pressed</code>
+        . Use it in your CSS.
       </p>
       <app-code file="bookmark-button.ts" [code]="source.value() ?? ''" />
       <p>Try it:</p>
       <div class="preview"><app-bookmark-button /></div>
       <p>
-        Keep the label the same in both states. <code>aria-pressed</code>
-        tells a screen reader whether it's on.
+        Keep the label the same in both states. Screen readers learn the state
+        from
+        <code>aria-pressed</code>
+        .
       </p>
     </section>
 
-    <section id="next" data-title="Keep Going">
-      <h3>Keep Going</h3>
-      <ul>
-        <li>
-          <a href="?component=toggle">Toggle</a> covers disabled toggles,
-          controlled state and groups.
-        </li>
-        <li>
-          <a href="?doc=parts-and-composition">Parts and Composition</a> shows
-          how to put a component with several parts together.
-        </li>
-        <li>
-          <a href="?doc=state-and-events">State and Events</a> shows how to read
-          changes and control state from your app.
-        </li>
-        <li>
-          <a href="?doc=styling">Styling and Animation</a> covers state
-          attributes, CSS variables and transitions.
-        </li>
-      </ul>
-    </section>
+    <p>
+      Next,
+      <a href="?doc=parts-and-composition">Parts and Composition</a>
+      builds a component with several parts.
+    </p>
   `,
 })
 class Page {

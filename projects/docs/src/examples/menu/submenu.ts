@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideChevronRight } from "@lucide/angular"
 import {
@@ -15,6 +16,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideChevronRight,
     UiMenu,
     UiMenuContent,
@@ -30,10 +32,12 @@ import { injectLog } from "../../shared/log"
       <button uiMenuTrigger>Edit</button>
       <div *uiMenuContent="let state">
         <div uiMenuItem value="undo" shortcut="mod+z">
-          Undo<span uiMenuShortcut></span>
+          Undo
+          <span uiMenuShortcut uiText></span>
         </div>
         <div uiMenuItem value="redo" shortcut="mod+shift+z">
-          Redo<span uiMenuShortcut></span>
+          Redo
+          <span uiMenuShortcut uiText></span>
         </div>
         <div uiMenuSeparator></div>
         <ng-container uiMenuSub>
@@ -43,13 +47,16 @@ import { injectLog } from "../../shared/log"
           </div>
           <div *uiMenuSubContent>
             <div uiMenuItem value="find" shortcut="mod+f">
-              Find…<span uiMenuShortcut></span>
+              Find…
+              <span uiMenuShortcut uiText></span>
             </div>
             <div uiMenuItem value="find-next" shortcut="mod+g">
-              Find next<span uiMenuShortcut></span>
+              Find next
+              <span uiMenuShortcut uiText></span>
             </div>
             <div uiMenuItem value="find-previous" shortcut="mod+shift+g">
-              Find previous<span uiMenuShortcut></span>
+              Find previous
+              <span uiMenuShortcut uiText></span>
             </div>
           </div>
         </ng-container>

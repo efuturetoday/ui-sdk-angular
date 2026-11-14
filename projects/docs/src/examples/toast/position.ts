@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, DestroyRef, inject, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
@@ -24,6 +25,7 @@ type Align = "start" | "center" | "end"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiSelect,
@@ -47,40 +49,45 @@ type Align = "start" | "center" | "end"
           [items]="sides"
           [value]="side()"
           (valueChange)="setSide($event)"
-          ><div uiSelectLabel>Side</div>
+        >
+          <div uiSelectLabel>Side</div>
           <button uiSelectTrigger>
-            <span uiSelectValue></span
-            ><svg lucideChevronDown aria-hidden="true"></svg>
+            <span uiSelectValue uiText></span>
+            <svg lucideChevronDown aria-hidden="true"></svg>
           </button>
           <div *uiSelectContent>
             @for (option of sides; track option.value) {
               <div uiSelectItem [value]="option.value">
                 {{ option.label }}
-                <span *uiSelectItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
+                <span *uiSelectItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
               </div>
-            }</div></ng-container
-        ><ng-container
+            }
+          </div>
+        </ng-container>
+        <ng-container
           uiSelect
           [items]="aligns"
           [value]="align()"
           (valueChange)="setAlign($event)"
-          ><div uiSelectLabel>Align</div>
+        >
+          <div uiSelectLabel>Align</div>
           <button uiSelectTrigger>
-            <span uiSelectValue></span
-            ><svg lucideChevronDown aria-hidden="true"></svg>
+            <span uiSelectValue uiText></span>
+            <svg lucideChevronDown aria-hidden="true"></svg>
           </button>
           <div *uiSelectContent>
             @for (option of aligns; track option.value) {
               <div uiSelectItem [value]="option.value">
                 {{ option.label }}
-                <span *uiSelectItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
+                <span *uiSelectItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
               </div>
-            }</div
-        ></ng-container>
+            }
+          </div>
+        </ng-container>
       </div>
       <button
         (click)="
@@ -100,8 +107,8 @@ type Align = "start" | "center" | "end"
           @for (item of region.state().toasts; track item.toast.id) {
             <li [uiToast]="item.toast">
               <div data-slot="stack">
-                <div *uiToastTitle></div>
-                <div *uiToastDescription></div>
+                <div *uiToastTitle uiText></div>
+                <div *uiToastDescription uiText></div>
               </div>
             </li>
           }

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   UiProgress,
@@ -10,6 +11,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiProgress,
     UiProgressIndicator,
     UiProgressLabel,
@@ -20,7 +22,7 @@ import {
     <div dir="rtl">
       <div uiProgress [value]="56" locale="ar-EG">
         <span uiProgressLabel>تقدم الرفع</span>
-        <span uiProgressValue></span>
+        <span uiProgressValue uiText></span>
         <div uiProgressTrack><div uiProgressIndicator></div></div>
       </div>
     </div>

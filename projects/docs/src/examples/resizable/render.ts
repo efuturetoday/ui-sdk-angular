@@ -18,11 +18,13 @@ import {
         collapsible
       >
         <h3>Files</h3>
-        <span data-slot="hint">{{
-          files.state().collapsed
-            ? "Collapsed"
-            : round(files.state().size) + "%"
-        }}</span>
+        <span data-slot="hint">
+          {{
+            files.state().collapsed
+              ? "Collapsed"
+              : round(files.state().size) + "%"
+          }}
+        </span>
       </div>
       <div uiResizableHandle aria-label="Resize files"></div>
       <div uiResizablePanel #editor="uiResizablePanel" [minSize]="30">

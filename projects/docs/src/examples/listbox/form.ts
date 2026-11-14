@@ -24,9 +24,9 @@ import { injectLog } from "../../shared/log"
         @for (topping of toppings; track topping.value) {
           <div uiListboxItem [value]="topping.value">
             {{ topping.label }}
-            <span *uiListboxItemIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
+            <span *uiListboxItemIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
           </div>
         }
       </div>

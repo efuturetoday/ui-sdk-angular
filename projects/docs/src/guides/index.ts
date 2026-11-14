@@ -48,6 +48,28 @@ const guides: Guide[] = [
     load: () => import("./state-and-events").then((m) => m.Page),
   },
   {
+    slug: "forms",
+    title: "Forms",
+    description: "Use the controls in a plain form and with Angular's forms.",
+    group: "Guides",
+    load: () => import("./forms").then((m) => m.Page),
+  },
+  {
+    slug: "popups",
+    title: "Popups",
+    description: "Place popups, render them elsewhere, and open toasts.",
+    group: "Guides",
+    load: () => import("./popups").then((m) => m.Page),
+  },
+  {
+    slug: "lists",
+    title: "Lists",
+    description:
+      "Show items you write, from data, by thousands or as they load.",
+    group: "Guides",
+    load: () => import("./lists").then((m) => m.Page),
+  },
+  {
     slug: "styling",
     title: "Styling and Animation",
     description: "Style parts by their state, and animate them in and out.",

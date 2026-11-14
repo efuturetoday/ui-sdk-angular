@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
@@ -30,6 +31,7 @@ type Align = "start" | "center" | "end"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiCheckbox,
@@ -50,94 +52,106 @@ type Align = "start" | "center" | "end"
     UiSelectTrigger,
     UiSelectValue,
   ],
-  template: `<div data-slot="stack">
-    <div data-slot="controls">
-      <ng-container
-        uiSelect
-        [items]="sides"
-        [value]="side()"
-        (valueChange)="setSide($event)"
-        ><div uiSelectLabel>Side</div>
-        <button uiSelectTrigger>
-          <span uiSelectValue></span
-          ><svg lucideChevronDown aria-hidden="true"></svg>
-        </button>
-        <div *uiSelectContent>
-          @for (option of sides; track option.value) {
-            <div uiSelectItem [value]="option.value">
-              {{ option.label
-              }}<span *uiSelectItemIndicator
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
-            </div>
-          }</div></ng-container
-      ><ng-container
-        uiSelect
-        [items]="aligns"
-        [value]="align()"
-        (valueChange)="setAlign($event)"
-        ><div uiSelectLabel>Align</div>
-        <button uiSelectTrigger>
-          <span uiSelectValue></span
-          ><svg lucideChevronDown aria-hidden="true"></svg>
-        </button>
-        <div *uiSelectContent>
-          @for (option of aligns; track option.value) {
-            <div uiSelectItem [value]="option.value">
-              {{ option.label
-              }}<span *uiSelectItemIndicator
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
-            </div>
-          }</div></ng-container
-      ><label data-slot="label"
-        ><button
-          uiCheckbox
-          #box="uiCheckbox"
-          [checked]="anchored()"
-          (checkedChange)="anchored.set($event === true)"
+  template: `
+    <div data-slot="stack">
+      <div data-slot="controls">
+        <ng-container
+          uiSelect
+          [items]="sides"
+          [value]="side()"
+          (valueChange)="setSide($event)"
         >
-          <span *uiCheckboxIndicator
-            ><svg lucideCheck aria-hidden="true"></svg
-          ></span></button
-        ><input [uiCheckboxInput]="box" />Anchor to the box</label
-      >
-    </div>
-    <div #card data-slot="card">
-      <ng-container uiCombobox
-        ><input
-          uiComboboxInput
-          aria-label="Framework"
-          placeholder="Framework" />
-        <div
-          *uiComboboxContent="
-            let state;
-            side: side();
-            align: align();
-            sideOffset: 10;
-            alignOffset: 0;
-            collisionPadding: 16;
-            anchor: anchored() ? card : null
-          "
-        >
-          <div uiComboboxEmpty>No frameworks found.</div>
-          <div uiComboboxList>
-            @for (framework of frameworks; track framework.value) {
-              <div
-                uiComboboxItem
-                [value]="framework.value"
-                [label]="framework.label"
-              >
-                {{ framework.label
-                }}<span *uiComboboxItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
+          <div uiSelectLabel>Side</div>
+          <button uiSelectTrigger>
+            <span uiSelectValue uiText></span>
+            <svg lucideChevronDown aria-hidden="true"></svg>
+          </button>
+          <div *uiSelectContent>
+            @for (option of sides; track option.value) {
+              <div uiSelectItem [value]="option.value">
+                {{ option.label }}
+                <span *uiSelectItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
               </div>
             }
-          </div></div
-      ></ng-container>
+          </div>
+        </ng-container>
+        <ng-container
+          uiSelect
+          [items]="aligns"
+          [value]="align()"
+          (valueChange)="setAlign($event)"
+        >
+          <div uiSelectLabel>Align</div>
+          <button uiSelectTrigger>
+            <span uiSelectValue uiText></span>
+            <svg lucideChevronDown aria-hidden="true"></svg>
+          </button>
+          <div *uiSelectContent>
+            @for (option of aligns; track option.value) {
+              <div uiSelectItem [value]="option.value">
+                {{ option.label }}
+                <span *uiSelectItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
+              </div>
+            }
+          </div>
+        </ng-container>
+        <label data-slot="label">
+          <button
+            uiCheckbox
+            #box="uiCheckbox"
+            [checked]="anchored()"
+            (checkedChange)="anchored.set($event === true)"
+          >
+            <span *uiCheckboxIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
+          </button>
+          <input [uiCheckboxInput]="box" />
+          Anchor to the box
+        </label>
+      </div>
+      <div #card data-slot="card">
+        <ng-container uiCombobox>
+          <input
+            uiComboboxInput
+            aria-label="Framework"
+            placeholder="Framework"
+          />
+          <div
+            *uiComboboxContent="
+              let state;
+              side: side();
+              align: align();
+              sideOffset: 10;
+              alignOffset: 0;
+              collisionPadding: 16;
+              anchor: anchored() ? card : null
+            "
+          >
+            <div uiComboboxEmpty>No frameworks found.</div>
+            <div uiComboboxList>
+              @for (framework of frameworks; track framework.value) {
+                <div
+                  uiComboboxItem
+                  [value]="framework.value"
+                  [label]="framework.label"
+                >
+                  {{ framework.label }}
+                  <span *uiComboboxItemIndicator>
+                    <svg lucideCheck aria-hidden="true"></svg>
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+        </ng-container>
+      </div>
     </div>
-  </div>`,
+  `,
 })
 class Example {
   protected readonly frameworks = [

@@ -38,9 +38,9 @@ import { injectLog } from "../../shared/log"
       >
         <span uiNumberInputScrubArea [pixelsPerStep]="4">
           <label uiFieldLabel>Quantity</label>
-          <span *uiNumberInputScrubAreaCursor
-            ><svg lucideMoveHorizontal aria-hidden="true"></svg
-          ></span>
+          <span *uiNumberInputScrubAreaCursor>
+            <svg lucideMoveHorizontal aria-hidden="true"></svg>
+          </span>
         </span>
         <div uiNumberInputGroup>
           <button uiNumberInputDecrement aria-label="Decrease">

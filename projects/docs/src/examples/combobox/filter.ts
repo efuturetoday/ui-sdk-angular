@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
@@ -42,6 +43,7 @@ type Mode = keyof typeof filters
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiCombobox,
@@ -61,60 +63,66 @@ type Mode = keyof typeof filters
     UiSelectTrigger,
     UiSelectValue,
   ],
-  template: `<div data-slot="stack">
-    <div data-slot="controls">
-      <ng-container
-        uiSelect
-        [items]="modes"
-        [value]="mode()"
-        (valueChange)="setMode($event)"
-        ><div uiSelectLabel>Filter</div>
-        <button uiSelectTrigger>
-          <span uiSelectValue></span
-          ><svg lucideChevronDown aria-hidden="true"></svg>
-        </button>
-        <div *uiSelectContent>
-          @for (option of modes; track option.value) {
-            <div uiSelectItem [value]="option.value">
-              {{ option.label
-              }}<span *uiSelectItemIndicator
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
-            </div>
-          }</div
-      ></ng-container>
-    </div>
-    <ng-container uiCombobox [filter]="filters[mode()]"
-      ><div data-slot="stack">
-        <div uiComboboxLabel>Country</div>
-        <div data-slot="row">
-          <input
-            uiComboboxInput
-            placeholder="Try “an”, “swd” or “deutschland”"
-          /><button uiComboboxTrigger aria-label="Show countries">
+  template: `
+    <div data-slot="stack">
+      <div data-slot="controls">
+        <ng-container
+          uiSelect
+          [items]="modes"
+          [value]="mode()"
+          (valueChange)="setMode($event)"
+        >
+          <div uiSelectLabel>Filter</div>
+          <button uiSelectTrigger>
+            <span uiSelectValue uiText></span>
             <svg lucideChevronDown aria-hidden="true"></svg>
           </button>
-        </div>
+          <div *uiSelectContent>
+            @for (option of modes; track option.value) {
+              <div uiSelectItem [value]="option.value">
+                {{ option.label }}
+                <span *uiSelectItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
+              </div>
+            }
+          </div>
+        </ng-container>
       </div>
-      <div *uiComboboxContent>
-        <div uiComboboxEmpty>No countries found.</div>
-        <div uiComboboxList>
-          @for (country of countries; track country.value) {
-            <div
-              uiComboboxItem
-              [value]="country.value"
-              [label]="country.label"
-              [keywords]="country.keywords"
-            >
-              {{ country.label
-              }}<span *uiComboboxItemIndicator
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
-            </div>
-          }
-        </div></div
-    ></ng-container>
-  </div>`,
+      <ng-container uiCombobox [filter]="filters[mode()]">
+        <div data-slot="stack">
+          <div uiComboboxLabel>Country</div>
+          <div data-slot="row">
+            <input
+              uiComboboxInput
+              placeholder="Try “an”, “swd” or “deutschland”"
+            />
+            <button uiComboboxTrigger aria-label="Show countries">
+              <svg lucideChevronDown aria-hidden="true"></svg>
+            </button>
+          </div>
+        </div>
+        <div *uiComboboxContent>
+          <div uiComboboxEmpty>No countries found.</div>
+          <div uiComboboxList>
+            @for (country of countries; track country.value) {
+              <div
+                uiComboboxItem
+                [value]="country.value"
+                [label]="country.label"
+                [keywords]="country.keywords"
+              >
+                {{ country.label }}
+                <span *uiComboboxItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
+              </div>
+            }
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  `,
 })
 class Example {
   protected readonly countries: {

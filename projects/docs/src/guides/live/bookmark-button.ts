@@ -4,7 +4,9 @@ import { UiToggle } from "@ngx-ui-sdk/core/toggle"
 @Component({
   selector: "app-bookmark-button",
   imports: [UiToggle],
-  template: `<button uiToggle class="bookmark">Bookmark</button>`,
+  template: `
+    <button uiToggle class="bookmark">Bookmark</button>
+  `,
   styles: `
     .bookmark {
       height: 32px;

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { UiField, UiFieldControl, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
@@ -12,6 +13,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiField,
     UiFieldControl,
     UiFieldLabel,
@@ -30,7 +32,7 @@ import { injectLog } from "../../shared/log"
             placeholder="Type / for commands…"
           />
         </div>
-        <span uiTriggerMenuHint></span>
+        <span uiTriggerMenuHint uiText></span>
       </ng-container>
     </form>
   `,

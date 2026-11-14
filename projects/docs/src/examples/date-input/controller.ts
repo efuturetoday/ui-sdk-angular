@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   createDateInputController,
@@ -8,7 +9,7 @@ import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 
 @Component({
   selector: "app-example",
-  imports: [UiDateInput, UiDateInputSegment, UiField, UiFieldLabel],
+  imports: [UiText, UiDateInput, UiDateInputSegment, UiField, UiFieldLabel],
   template: `
     <div data-slot="stack">
       <div data-slot="controls">
@@ -25,7 +26,7 @@ import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
             @if (segment.editable) {
               <input uiDateInputSegment [segment]="segment" />
             } @else {
-              <span uiDateInputSegment [segment]="segment"></span>
+              <span uiDateInputSegment [segment]="segment" uiText></span>
             }
           }
         </div>

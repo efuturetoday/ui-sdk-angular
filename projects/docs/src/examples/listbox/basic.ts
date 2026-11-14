@@ -34,9 +34,9 @@ import {
         @for (topic of topics; track topic.value) {
           <div uiListboxItem [value]="topic.value">
             {{ topic.label }}
-            <span *uiListboxItemIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
+            <span *uiListboxItemIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
           </div>
         }
       </div>

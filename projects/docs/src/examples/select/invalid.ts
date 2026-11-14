@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
@@ -19,6 +20,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -35,22 +37,23 @@ import { injectLog } from "../../shared/log"
   template: `
     <form data-slot="stack" (submit)="submit($event)">
       <div uiField name="shipping">
-        <label uiFieldLabel>Shipping method</label
-        ><ng-container uiSelect required placeholder="Select a shipping method"
-          ><button uiSelectTrigger>
-            <span uiSelectValue></span
-            ><svg lucideChevronDown aria-hidden="true"></svg>
+        <label uiFieldLabel>Shipping method</label>
+        <ng-container uiSelect required placeholder="Select a shipping method">
+          <button uiSelectTrigger>
+            <span uiSelectValue uiText></span>
+            <svg lucideChevronDown aria-hidden="true"></svg>
           </button>
           <div *uiSelectContent>
             @for (method of methods; track method.value) {
               <div uiSelectItem [value]="method.value">
                 {{ method.label }}
-                <span *uiSelectItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
+                <span *uiSelectItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
               </div>
-            }</div
-        ></ng-container>
+            }
+          </div>
+        </ng-container>
         <p uiFieldDescription>Express arrives in two business days.</p>
         <div *uiFieldError="let state; match: 'valueMissing'">
           Choose a shipping method.

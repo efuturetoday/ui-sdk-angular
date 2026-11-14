@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -17,6 +18,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -33,19 +35,19 @@ import {
   ],
   template: `
     <div uiField>
-      <label uiFieldLabel>Plan</label
-      ><ng-container uiSelect [items]="items" defaultValue="pro"
-        ><button uiSelectTrigger>
-          <span uiSelectValue></span
-          ><svg lucideChevronDown aria-hidden="true"></svg>
+      <label uiFieldLabel>Plan</label>
+      <ng-container uiSelect [items]="items" defaultValue="pro">
+        <button uiSelectTrigger>
+          <span uiSelectValue uiText></span>
+          <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent>
           @for (plan of plans; track plan.value) {
             <div uiSelectItem [value]="plan.value">
               {{ plan.label }}
-              <span *uiSelectItemIndicator
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
+              <span *uiSelectItemIndicator>
+                <svg lucideCheck aria-hidden="true"></svg>
+              </span>
             </div>
           }
           <div uiSelectSeparator></div>
@@ -54,13 +56,14 @@ import {
             @for (plan of sales; track plan.value) {
               <div uiSelectItem [value]="plan.value" [disabled]="plan.disabled">
                 {{ plan.label }}
-                <span *uiSelectItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
+                <span *uiSelectItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
               </div>
             }
-          </div></div
-      ></ng-container>
+          </div>
+        </div>
+      </ng-container>
     </div>
   `,
 })

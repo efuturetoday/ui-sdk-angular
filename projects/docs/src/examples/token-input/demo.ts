@@ -56,9 +56,9 @@ import {
         <ng-template uiTokenInputTokens let-token>
           <span uiTokenInputToken>
             {{ token.label }}
-            <span uiTokenInputTokenRemove
-              ><svg lucideX aria-hidden="true"></svg
-            ></span>
+            <span uiTokenInputTokenRemove>
+              <svg lucideX aria-hidden="true"></svg>
+            </span>
           </span>
         </ng-template>
       </ng-container>

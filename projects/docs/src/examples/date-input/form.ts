@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { UiDateInput, UiDateInputSegment } from "@ngx-ui-sdk/core/date-input"
 import { UiField, UiFieldError, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -7,6 +8,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiDateInput,
     UiDateInputSegment,
     UiField,
@@ -30,11 +32,11 @@ import { injectLog } from "../../shared/log"
             @if (segment.editable) {
               <input uiDateInputSegment [segment]="segment" />
             } @else {
-              <span uiDateInputSegment [segment]="segment"></span>
+              <span uiDateInputSegment [segment]="segment" uiText></span>
             }
           }
         </div>
-        <div *uiFieldError></div>
+        <div *uiFieldError uiText></div>
       </div>
       <div uiField>
         <label uiFieldLabel>Time</label>
@@ -49,11 +51,11 @@ import { injectLog } from "../../shared/log"
             @if (segment.editable) {
               <input uiTimeInputSegment [segment]="segment" />
             } @else {
-              <span uiTimeInputSegment [segment]="segment"></span>
+              <span uiTimeInputSegment [segment]="segment" uiText></span>
             }
           }
         </div>
-        <div *uiFieldError></div>
+        <div *uiFieldError uiText></div>
       </div>
       <div data-slot="row">
         <button type="reset">Reset</button>

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -15,6 +16,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -29,17 +31,18 @@ import { injectLog } from "../../shared/log"
   template: `
     <div data-slot="stack">
       <div data-slot="controls">
-        <button type="button" (click)="openAndWait()">Open and Wait</button
-        ><button type="button" (click)="status.setValue('done')">
-          Mark Done</button
-        ><button type="button" (click)="status.clear()">Clear</button
-        ><button type="button" (click)="status.focus()">Focus</button>
+        <button type="button" (click)="openAndWait()">Open and Wait</button>
+        <button type="button" (click)="status.setValue('done')">
+          Mark Done
+        </button>
+        <button type="button" (click)="status.clear()">Clear</button>
+        <button type="button" (click)="status.focus()">Focus</button>
       </div>
       <div uiField>
-        <label uiFieldLabel>Status</label
-        ><button uiSelectTrigger [controller]="status">
-          <span uiSelectValue></span
-          ><svg lucideChevronDown aria-hidden="true"></svg>
+        <label uiFieldLabel>Status</label>
+        <button uiSelectTrigger [controller]="status">
+          <span uiSelectValue uiText></span>
+          <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
       </div>
       <ng-container
@@ -47,16 +50,18 @@ import { injectLog } from "../../shared/log"
         [controller]="status"
         [items]="statuses"
         placeholder="Select a status"
-        ><div *uiSelectContent>
+      >
+        <div *uiSelectContent>
           @for (item of statuses; track item.value) {
             <div uiSelectItem [value]="item.value">
               {{ item.label }}
-              <span *uiSelectItemIndicator
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
+              <span *uiSelectItemIndicator>
+                <svg lucideCheck aria-hidden="true"></svg>
+              </span>
             </div>
-          }</div
-      ></ng-container>
+          }
+        </div>
+      </ng-container>
     </div>
   `,
 })

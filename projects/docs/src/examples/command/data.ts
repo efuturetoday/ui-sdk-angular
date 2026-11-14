@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   type CommandData,
@@ -18,6 +19,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiCommand,
     UiCommandEmpty,
     UiCommandGroup,
@@ -54,7 +56,7 @@ import { injectLog } from "../../shared/log"
                   >
                     {{ asItem(child).label }}
                     @if (asItem(child).shortcut) {
-                      <span uiCommandShortcut></span>
+                      <span uiCommandShortcut uiText></span>
                     }
                   </div>
                 }
@@ -69,7 +71,7 @@ import { injectLog } from "../../shared/log"
               >
                 {{ asItem(entry).label }}
                 @if (asItem(entry).shortcut) {
-                  <span uiCommandShortcut></span>
+                  <span uiCommandShortcut uiText></span>
                 }
               </div>
             }

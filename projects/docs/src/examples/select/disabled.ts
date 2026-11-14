@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -13,6 +14,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -28,15 +30,17 @@ import {
     <div data-slot="stack">
       @for (field of fields; track field.label) {
         <div uiField>
-          <label uiFieldLabel>{{ field.label }}</label><ng-container
+          <label uiFieldLabel>{{ field.label }}</label>
+          <ng-container
             uiSelect
             [defaultValue]="field.disabled || field.readOnly ? 'fr' : null"
             placeholder="Select a country"
             [disabled]="field.disabled"
             [readOnly]="field.readOnly"
-            ><button uiSelectTrigger>
-              <span uiSelectValue></span
-              ><svg lucideChevronDown aria-hidden="true"></svg>
+          >
+            <button uiSelectTrigger>
+              <span uiSelectValue uiText></span>
+              <svg lucideChevronDown aria-hidden="true"></svg>
             </button>
             <div *uiSelectContent>
               @for (country of countries; track country.value) {
@@ -46,12 +50,13 @@ import {
                   [disabled]="country.value === 'dk'"
                 >
                   {{ country.label }}
-                  <span *uiSelectItemIndicator
-                    ><svg lucideCheck aria-hidden="true"></svg
-                  ></span>
+                  <span *uiSelectItemIndicator>
+                    <svg lucideCheck aria-hidden="true"></svg>
+                  </span>
                 </div>
-              }</div
-          ></ng-container>
+              }
+            </div>
+          </ng-container>
         </div>
       }
     </div>

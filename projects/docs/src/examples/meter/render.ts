@@ -22,15 +22,15 @@ import {
       <span uiMeterValue #value="uiMeterValue">
         {{ value.state().text }} used
       </span>
-      <span uiMeterTrack
-        ><div
+      <span uiMeterTrack>
+        <div
           uiMeterIndicator
           #indicator="uiMeterIndicator"
           [attr.data-variant]="
             indicator.state().percent >= 90 ? 'destructive' : undefined
           "
-        ></div
-      ></span>
+        ></div>
+      </span>
     </div>
   `,
 })

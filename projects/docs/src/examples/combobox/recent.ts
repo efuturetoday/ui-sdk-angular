@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
@@ -22,6 +23,7 @@ type Recent = { type: "group"; label: string; items: Country[] }
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiCombobox,
@@ -37,53 +39,55 @@ type Recent = { type: "group"; label: string; items: Country[] }
     UiComboboxList,
     UiComboboxTrigger,
   ],
-  template: `<ng-container
-    uiCombobox
-    [items]="countries"
-    [emptyItems]="recentCountries"
-    [announcement]="announcement"
-    ><div data-slot="stack">
-      <div uiComboboxLabel>Country</div>
-      <div data-slot="row">
-        <input uiComboboxInput placeholder="Search countries…" /><button
-          uiComboboxTrigger
-          aria-label="Show countries"
-        >
-          <svg lucideChevronDown aria-hidden="true"></svg>
-        </button>
+  template: `
+    <ng-container
+      uiCombobox
+      [items]="countries"
+      [emptyItems]="recentCountries"
+      [announcement]="announcement"
+    >
+      <div data-slot="stack">
+        <div uiComboboxLabel>Country</div>
+        <div data-slot="row">
+          <input uiComboboxInput placeholder="Search countries…" />
+          <button uiComboboxTrigger aria-label="Show countries">
+            <svg lucideChevronDown aria-hidden="true"></svg>
+          </button>
+        </div>
       </div>
-    </div>
-    <div *uiComboboxContent>
-      <div uiComboboxEmpty>No countries found.</div>
-      <div uiComboboxList #list="uiComboboxList">
-        @for (entry of entriesOf(list.state().items); track key(entry)) {
-          @if (isGroup(entry)) {
-            <div uiComboboxGroup>
-              <div uiComboboxGroupLabel>{{ entry.label }}</div>
-              @for (country of entry.items; track country.value) {
-                <div
-                  uiComboboxItem
-                  [value]="country.value"
-                  [label]="country.label"
-                >
-                  <span uiComboboxItemText></span
-                  ><span *uiComboboxItemIndicator
-                    ><svg lucideCheck aria-hidden="true"></svg
-                  ></span>
-                </div>
-              }
-            </div>
-          } @else {
-            <div uiComboboxItem [value]="entry.value" [label]="entry.label">
-              <span uiComboboxItemText></span
-              ><span *uiComboboxItemIndicator
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
-            </div>
+      <div *uiComboboxContent>
+        <div uiComboboxEmpty>No countries found.</div>
+        <div uiComboboxList #list="uiComboboxList">
+          @for (entry of entriesOf(list.state().items); track key(entry)) {
+            @if (isGroup(entry)) {
+              <div uiComboboxGroup>
+                <div uiComboboxGroupLabel>{{ entry.label }}</div>
+                @for (country of entry.items; track country.value) {
+                  <div
+                    uiComboboxItem
+                    [value]="country.value"
+                    [label]="country.label"
+                  >
+                    <span uiComboboxItemText uiText></span>
+                    <span *uiComboboxItemIndicator>
+                      <svg lucideCheck aria-hidden="true"></svg>
+                    </span>
+                  </div>
+                }
+              </div>
+            } @else {
+              <div uiComboboxItem [value]="entry.value" [label]="entry.label">
+                <span uiComboboxItemText uiText></span>
+                <span *uiComboboxItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
+              </div>
+            }
           }
-        }
-      </div></div
-  ></ng-container>`,
+        </div>
+      </div>
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly countries: Country[] = [

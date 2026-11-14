@@ -156,6 +156,19 @@ main h2 {
   letter-spacing: -0.02em;
 }
 
+.lead a {
+  color: inherit;
+  text-decoration-color: var(--frame-line);
+  text-underline-offset: 3px;
+}
+
+.lead code {
+  font:
+    0.9em var(--font-geist-mono),
+    ui-monospace,
+    monospace;
+}
+
 .lead {
   max-width: 44rem;
   margin: -1.25rem 0 2rem;

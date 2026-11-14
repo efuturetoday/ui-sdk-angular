@@ -14,9 +14,9 @@ import {
     <div uiTabs defaultValue="overview">
       <div uiTabsList aria-label="Project">
         @for (page of pages; track page.value) {
-          <a uiTabsTab [value]="page.value" [href]="page.href">{{
-            page.label
-          }}</a>
+          <a uiTabsTab [value]="page.value" [href]="page.href">
+            {{ page.label }}
+          </a>
         }
         <span uiTabsIndicator></span>
       </div>

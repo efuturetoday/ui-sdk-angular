@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown, LucideX } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -16,6 +17,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     LucideX,
@@ -31,17 +33,19 @@ import { injectLog } from "../../shared/log"
   ],
   template: `
     <div uiField>
-      <label uiFieldLabel>Assignee</label
-      ><ng-container
+      <label uiFieldLabel>Assignee</label>
+      <ng-container
         uiSelect
         defaultValue="ines"
         placeholder="Unassigned"
         (beforeValueChange)="onValueChange($event.value, $event.details)"
-        ><div data-slot="row">
+      >
+        <div data-slot="row">
           <button uiSelectTrigger>
-            <span uiSelectValue></span
-            ><svg lucideChevronDown aria-hidden="true"></svg></button
-          ><button *uiSelectClear aria-label="Clear assignee">
+            <span uiSelectValue uiText></span>
+            <svg lucideChevronDown aria-hidden="true"></svg>
+          </button>
+          <button *uiSelectClear aria-label="Clear assignee">
             <svg lucideX aria-hidden="true"></svg>
           </button>
         </div>
@@ -49,12 +53,13 @@ import { injectLog } from "../../shared/log"
           @for (person of people; track person.value) {
             <div uiSelectItem [value]="person.value">
               {{ person.label }}
-              <span *uiSelectItemIndicator
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
+              <span *uiSelectItemIndicator>
+                <svg lucideCheck aria-hidden="true"></svg>
+              </span>
             </div>
-          }</div
-      ></ng-container>
+          }
+        </div>
+      </ng-container>
     </div>
   `,
 })

@@ -36,9 +36,9 @@ import { uniqueId } from "../../shared/id"
             [checked]="disabled()"
             (checkedChange)="disabled.set($event === true)"
           >
-            <span *uiCheckboxIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
+            <span *uiCheckboxIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
           </button>
           <input [uiCheckboxInput]="disabledBox" />
           Disabled
@@ -50,9 +50,9 @@ import { uniqueId } from "../../shared/id"
             [checked]="readOnly()"
             (checkedChange)="readOnly.set($event === true)"
           >
-            <span *uiCheckboxIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
+            <span *uiCheckboxIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
           </button>
           <input [uiCheckboxInput]="readOnlyBox" />
           Read-only

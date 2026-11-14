@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, DestroyRef, inject, signal } from "@angular/core"
 import { LucideCheck } from "@lucide/angular"
 import {
@@ -17,6 +18,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     UiCheckbox,
     UiCheckboxIndicator,
@@ -57,8 +59,8 @@ import {
           @for (item of region.state().toasts; track item.toast.id) {
             <li [uiToast]="item.toast">
               <div data-slot="stack">
-                <div *uiToastTitle></div>
-                <div *uiToastDescription></div>
+                <div *uiToastTitle uiText></div>
+                <div *uiToastDescription uiText></div>
               </div>
             </li>
           }

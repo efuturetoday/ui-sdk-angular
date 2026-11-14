@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   UiField,
@@ -15,6 +16,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiField,
     UiFieldDescription,
     UiFieldError,
@@ -31,14 +33,14 @@ import { injectLog } from "../../shared/log"
           <div uiOtpInput name="code" required>
             <div uiOtpInputGroup>
               @for (index of [0, 1, 2, 3, 4, 5]; track index) {
-                <div uiOtpInputSlot [index]="index"></div>
+                <div uiOtpInputSlot [index]="index" uiText></div>
               }
             </div>
           </div>
           <p uiFieldDescription>
             Enter the six-digit code we sent to hollis@example.com.
           </p>
-          <div *uiFieldError></div>
+          <div *uiFieldError uiText></div>
         </div>
       </form>
       <div uiField>
@@ -52,11 +54,11 @@ import { injectLog } from "../../shared/log"
         >
           <div uiOtpInputGroup>
             @for (index of [0, 1, 2, 3, 4, 5, 6, 7]; track index) {
-              <div uiOtpInputSlot [index]="index"></div>
+              <div uiOtpInputSlot [index]="index" uiText></div>
             }
           </div>
         </div>
-        <div *uiFieldError></div>
+        <div *uiFieldError uiText></div>
       </div>
       <div data-slot="row">
         <button type="reset" form="verify-sign-in">Reset</button>

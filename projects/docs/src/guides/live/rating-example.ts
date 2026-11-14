@@ -1,9 +1,10 @@
 import { Component, signal } from "@angular/core"
-import { AppRatingStar, Rating } from "./rating-parts"
+import { UiText } from "@ngx-ui-sdk/core"
+import { AppRatingStar, AppRatingValue, Rating } from "./rating-parts"
 
 @Component({
   selector: "app-rating-example",
-  imports: [AppRatingStar, Rating],
+  imports: [AppRatingStar, AppRatingValue, Rating, UiText],
   template: `
     <app-rating [(value)]="stars" aria-label="Rating">
       @for (star of ["1", "2", "3", "4", "5"]; track star) {
@@ -11,8 +12,8 @@ import { AppRatingStar, Rating } from "./rating-parts"
           ★
         </button>
       }
+      <output appRatingValue uiText></output>
     </app-rating>
-    <output>{{ stars() }} of 5</output>
   `,
   styles: `
     :host {
@@ -23,7 +24,10 @@ import { AppRatingStar, Rating } from "./rating-parts"
 
     app-rating {
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 4px;
+      max-width: 10rem;
     }
 
     button {
@@ -42,6 +46,8 @@ import { AppRatingStar, Rating } from "./rating-parts"
     }
 
     output {
+      flex-basis: 100%;
+      text-align: center;
       color: var(--frame-muted);
       font-size: 13px;
     }

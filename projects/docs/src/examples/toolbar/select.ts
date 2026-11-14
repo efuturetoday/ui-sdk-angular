@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, computed, signal } from "@angular/core"
 import {
   LucideCheck,
@@ -19,6 +20,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronsUpDown,
     LucideZoomIn,
@@ -44,7 +46,7 @@ import { injectLog } from "../../shared/log"
       </button>
       <ng-container uiSelect [value]="zoom()" (valueChange)="onValue($event)">
         <button uiSelectTrigger uiToolbarButton aria-label="Zoom">
-          <span uiSelectValue></span>
+          <span uiSelectValue uiText></span>
           <svg lucideChevronsUpDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent>

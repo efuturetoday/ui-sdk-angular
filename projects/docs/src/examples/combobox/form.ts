@@ -45,77 +45,81 @@ import { injectLog } from "../../shared/log"
     UiFieldError,
     UiFieldLabel,
   ],
-  template: `<form data-slot="stack" (submit)="submit($event)">
-    <div uiField name="country">
-      <label uiFieldLabel>Country</label
-      ><ng-container uiCombobox required [itemToLabel]="countryLabel"
-        ><div data-slot="row">
-          <input uiComboboxInput placeholder="Search countries…" /><button
-            uiComboboxTrigger
-            aria-label="Show countries"
-          >
-            <svg lucideChevronDown aria-hidden="true"></svg>
-          </button>
-        </div>
-        <div *uiComboboxContent>
-          <div uiComboboxEmpty>No countries found.</div>
-          <div uiComboboxList>
-            @for (country of countries; track country.value) {
-              <div
-                uiComboboxItem
-                [value]="country.value"
-                [label]="country.label"
-              >
-                {{ country.label
-                }}<span *uiComboboxItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
-              </div>
-            }
-          </div></div
-      ></ng-container>
-      <p uiFieldDescription>Where we ship your order.</p>
-      <div>
-        <div *uiFieldError="let state; match: 'valueMissing'">
-          Choose a country.
+  template: `
+    <form data-slot="stack" (submit)="submit($event)">
+      <div uiField name="country">
+        <label uiFieldLabel>Country</label>
+        <ng-container uiCombobox required [itemToLabel]="countryLabel">
+          <div data-slot="row">
+            <input uiComboboxInput placeholder="Search countries…" />
+            <button uiComboboxTrigger aria-label="Show countries">
+              <svg lucideChevronDown aria-hidden="true"></svg>
+            </button>
+          </div>
+          <div *uiComboboxContent>
+            <div uiComboboxEmpty>No countries found.</div>
+            <div uiComboboxList>
+              @for (country of countries; track country.value) {
+                <div
+                  uiComboboxItem
+                  [value]="country.value"
+                  [label]="country.label"
+                >
+                  {{ country.label }}
+                  <span *uiComboboxItemIndicator>
+                    <svg lucideCheck aria-hidden="true"></svg>
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+        </ng-container>
+        <p uiFieldDescription>Where we ship your order.</p>
+        <div>
+          <div *uiFieldError="let state; match: 'valueMissing'">
+            Choose a country.
+          </div>
         </div>
       </div>
-    </div>
-    <div uiField name="interests">
-      <label uiFieldLabel>Interests</label
-      ><ng-container uiCombobox multiple [defaultValue]="['Design']"
-        ><div uiComboboxChips>
-          <ng-container uiComboboxValue #value="uiComboboxValue">
-            @for (item of valuesOf(value.state().value); track item) {
-              <div uiComboboxChip [value]="item">
-                {{ item
-                }}<button
-                  uiComboboxChipRemove
-                  [attr.aria-label]="'Remove ' + item"
-                >
-                  <svg lucideX aria-hidden="true"></svg>
-                </button>
-              </div>
-            }</ng-container
-          ><input uiComboboxInput placeholder="Add interests…" />
-        </div>
-        <div *uiComboboxContent>
-          <div uiComboboxList>
-            @for (interest of interests; track interest) {
-              <div uiComboboxItem [value]="interest">
-                {{ interest
-                }}<span *uiComboboxItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
-              </div>
-            }
-          </div></div
-      ></ng-container>
-    </div>
-    <div data-slot="row">
-      <button type="submit">Submit</button><button type="reset">Reset</button>
-    </div>
-  </form>`,
+      <div uiField name="interests">
+        <label uiFieldLabel>Interests</label>
+        <ng-container uiCombobox multiple [defaultValue]="['Design']">
+          <div uiComboboxChips>
+            <ng-container uiComboboxValue #value="uiComboboxValue">
+              @for (item of valuesOf(value.state().value); track item) {
+                <div uiComboboxChip [value]="item">
+                  {{ item }}
+                  <button
+                    uiComboboxChipRemove
+                    [attr.aria-label]="'Remove ' + item"
+                  >
+                    <svg lucideX aria-hidden="true"></svg>
+                  </button>
+                </div>
+              }
+            </ng-container>
+            <input uiComboboxInput placeholder="Add interests…" />
+          </div>
+          <div *uiComboboxContent>
+            <div uiComboboxList>
+              @for (interest of interests; track interest) {
+                <div uiComboboxItem [value]="interest">
+                  {{ interest }}
+                  <span *uiComboboxItemIndicator>
+                    <svg lucideCheck aria-hidden="true"></svg>
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div data-slot="row">
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+  `,
 })
 class Example {
   protected readonly countries = [

@@ -59,42 +59,44 @@ function searchCities(query: string, { signal }: { signal: AbortSignal }) {
     UiAutocompleteList,
     UiAutocompleteStatus,
   ],
-  template: `<ng-container
-    uiAutocomplete
-    [items]="results.state().items"
-    [filter]="false"
-    [status]="results.state().status"
-    (valueChange)="results.setQuery($event)"
-    (loadMore)="results.loadMore()"
-  >
-    <div data-slot="stack">
-      <div uiAutocompleteLabel>City</div>
-      <input uiAutocompleteInput placeholder="e.g. Paris" />
-    </div>
-    <div *uiAutocompleteContent>
-      <div uiAutocompleteStatus #status="uiAutocompleteStatus">
-        {{
-          status.state().loading
-            ? "Searching…"
-            : status.state().count
-              ? status.state().count +
-                " " +
-                (status.state().count === 1 ? "city" : "cities")
-              : ""
-        }}
+  template: `
+    <ng-container
+      uiAutocomplete
+      [items]="results.state().items"
+      [filter]="false"
+      [status]="results.state().status"
+      (valueChange)="results.setQuery($event)"
+      (loadMore)="results.loadMore()"
+    >
+      <div data-slot="stack">
+        <div uiAutocompleteLabel>City</div>
+        <input uiAutocompleteInput placeholder="e.g. Paris" />
       </div>
-      <div uiAutocompleteEmpty #empty="uiAutocompleteEmpty">
-        @if (empty.state().empty && !empty.state().loading) {
-          No cities start with “{{ empty.state().query }}”.
-        }
+      <div *uiAutocompleteContent>
+        <div uiAutocompleteStatus #status="uiAutocompleteStatus">
+          {{
+            status.state().loading
+              ? "Searching…"
+              : status.state().count
+                ? status.state().count +
+                  " " +
+                  (status.state().count === 1 ? "city" : "cities")
+                : ""
+          }}
+        </div>
+        <div uiAutocompleteEmpty #empty="uiAutocompleteEmpty">
+          @if (empty.state().empty && !empty.state().loading) {
+            No cities start with “{{ empty.state().query }}”.
+          }
+        </div>
+        <div uiAutocompleteList #list="uiAutocompleteList">
+          @for (city of citiesOf(list.state().items); track city) {
+            <div uiAutocompleteItem [value]="city">{{ city }}</div>
+          }
+        </div>
       </div>
-      <div uiAutocompleteList #list="uiAutocompleteList">
-        @for (city of citiesOf(list.state().items); track city) {
-          <div uiAutocompleteItem [value]="city">{{ city }}</div>
-        }
-      </div>
-    </div>
-  </ng-container>`,
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly results = injectAsyncOptions(searchCities, {

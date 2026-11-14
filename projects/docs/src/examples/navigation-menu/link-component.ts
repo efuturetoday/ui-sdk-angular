@@ -73,8 +73,9 @@ class RouterLink {
             to="#components"
             [current]="route() === '#components'"
             (navigate)="navigate($event)"
-            >Components</a
           >
+            Components
+          </a>
         </li>
       </ul>
       <div *uiNavigationMenuViewport="let state; sideOffset: 8"></div>

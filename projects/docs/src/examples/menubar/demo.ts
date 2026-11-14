@@ -96,15 +96,15 @@ import { injectLog } from "../../shared/log"
         <button uiMenuTrigger>View</button>
         <div *uiMenuContent="let state">
           <div uiMenuCheckboxItem value="Ruler">
-            <span *uiMenuItemIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
+            <span *uiMenuItemIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
             Show Ruler
           </div>
           <div uiMenuCheckboxItem value="Word count" defaultChecked>
-            <span *uiMenuItemIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
+            <span *uiMenuItemIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
             Show Word Count
           </div>
           <div uiMenuSeparator></div>

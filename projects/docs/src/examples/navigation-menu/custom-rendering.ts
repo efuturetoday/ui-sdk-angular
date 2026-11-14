@@ -58,9 +58,9 @@ import {
                     >
                       <span>{{ link.title }}</span>
                       @if (entry.state().current) {
-                        <span data-slot="hint" data-show="current"
-                          >You're here</span
-                        >
+                        <span data-slot="hint" data-show="current">
+                          You're here
+                        </span>
                       }
                     </a>
                   </li>

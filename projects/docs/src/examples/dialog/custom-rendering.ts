@@ -26,9 +26,9 @@ import {
     <ng-container uiDialog>
       <button uiDialogTrigger shortcut="mod+i" #trigger="uiDialogTrigger">
         {{ trigger.state().open ? "Viewing" : "View Details" }}
-        <span uiDialogShortcut #shortcut="uiDialogShortcut">{{
-          shortcut.state().text
-        }}</span>
+        <span uiDialogShortcut #shortcut="uiDialogShortcut">
+          {{ shortcut.state().text }}
+        </span>
       </button>
       <div *uiDialogBackdrop></div>
       <div *uiDialogContent="let state">
@@ -48,8 +48,9 @@ import {
             uiDialogClose
             data-variant="solid"
             href="https://example.com/details"
-            >Open the Full Page</a
           >
+            Open the Full Page
+          </a>
         </div>
       </div>
     </ng-container>

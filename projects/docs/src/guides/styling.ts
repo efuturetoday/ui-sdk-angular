@@ -7,29 +7,38 @@ import { CodeBlock } from "./code"
   styleUrl: "./guide.css",
   template: `
     <p>
-      The directives add no styles. They set attributes on the elements you
-      wrote, and you style those with your own CSS or with Tailwind CSS.
+      The directives add no styles. They set attributes on your elements. You
+      style these attributes with your own CSS or with Tailwind CSS.
     </p>
 
     <section id="state" data-title="Style the State">
       <h3>Style the State</h3>
       <p>
-        Parts show their state as data attributes, like
-        <code>data-open</code>, <code>data-pressed</code>,
-        <code>data-highlighted</code>, <code>data-selected</code> and
-        <code>data-disabled</code>. Each component's page lists its own.
+        Parts show their state as data attributes. Examples are
+        <code>data-open</code>
+        ,
+        <code>data-pressed</code>
+        ,
+        <code>data-highlighted</code>
+        ,
+        <code>data-selected</code>
+        and
+        <code>data-disabled</code>
+        . Each component's page lists its own.
       </p>
       <app-code lang="css" [code]="stateCss" />
-      <p>With Tailwind CSS, use its data variants:</p>
+      <p>In Tailwind CSS, use the data variants.</p>
       <app-code lang="html" [code]="tailwind" />
     </section>
 
     <section id="slots" data-title="Style Every Instance">
       <h3>Style Every Instance</h3>
       <p>
-        Every part has a <code>data-slot</code>, like
-        <code>data-slot="dialog-content"</code>. Use it to style a component
-        everywhere it's used, from one stylesheet.
+        Every part has a
+        <code>data-slot</code>
+        , for example
+        <code>data-slot="dialog-content"</code>
+        . With it, one stylesheet styles a component everywhere.
       </p>
       <app-code lang="css" [code]="slotCss" />
     </section>
@@ -37,10 +46,14 @@ import { CodeBlock } from "./code"
     <section id="variables" data-title="CSS Variables">
       <h3>CSS Variables</h3>
       <p>
-        What only the browser knows comes as CSS variables. A popup has
-        <code>--anchor-width</code>, <code>--available-height</code> and
-        <code>--transform-origin</code>; a tabs indicator has the selected tab's
-        position and size.
+        Some values only the browser knows. They come as CSS variables. A popup
+        has
+        <code>--anchor-width</code>
+        ,
+        <code>--available-height</code>
+        and
+        <code>--transform-origin</code>
+        . A tabs indicator has the position and size of the selected tab.
       </p>
       <app-code lang="css" [code]="variablesCss" />
     </section>
@@ -48,37 +61,49 @@ import { CodeBlock } from "./code"
     <section id="animation" data-title="Animate In and Out">
       <h3>Animate In and Out</h3>
       <p>
-        A part that comes and goes has <code>data-starting-style</code> as it
-        enters and <code>data-ending-style</code> as it leaves. Style the hidden
-        state with both, and use a transition. Angular removes the element once
-        the transition ends.
+        A part that opens and closes gets
+        <code>data-starting-style</code>
+        while it enters and
+        <code>data-ending-style</code>
+        while it leaves. Style the hidden state with both and add a transition.
+        Angular removes the element when the transition ends.
       </p>
       <app-code lang="css" [code]="animationCss" />
       <p>
-        Without a transition, the element goes at once. People who prefer
-        reduced motion should get a shorter one or none.
+        Without a transition, the element disappears at once. Keep the animation
+        short or turn it off for people who prefer reduced motion.
       </p>
     </section>
 
     <section id="theme" data-title="Default Theme">
       <h3>Default Theme</h3>
       <p>
-        The examples on this site use ui-sdk's example styles. They're available
-        as a separate package:
+        The examples on this site use ui-sdk's example styles. You can install
+        them as a package.
       </p>
       <app-code lang="bash" code="npm install @ngx-ui-sdk/theme-default" />
-      <p>Add it to <code>angular.json</code>:</p>
+      <p>
+        Add it to
+        <code>angular.json</code>
+        :
+      </p>
       <app-code lang="json" [code]="angularJson" />
       <p>
-        The theme only styles elements inside <code>data-ui-theme</code>. To
-        style the whole app, add it to <code>&lt;body&gt;</code>:
+        The theme only styles elements inside
+        <code>data-ui-theme</code>
+        . Put it on
+        <code>&lt;body&gt;</code>
+        to style the whole app.
       </p>
-      <app-code lang="html" code="<body data-ui-theme>" />
+      <app-code lang="html" [code]="body" />
       <p>
-        To load less CSS, import <code>tokens.css</code>,
-        <code>base.css</code> and only the components you use instead of
-        <code>all.css</code>. Colors, radii and sizes are CSS variables you can
-        override.
+        You can load less CSS. Import
+        <code>tokens.css</code>
+        ,
+        <code>base.css</code>
+        and only the components you use, instead of
+        <code>all.css</code>
+        . Colors, radii and sizes are CSS variables. You can override them.
       </p>
     </section>
   `,
@@ -116,6 +141,7 @@ class Page {
   opacity: 0;
   scale: 0.96;
 }`
+  protected readonly body = "<body data-ui-theme>"
   protected readonly angularJson = `"styles": ["@ngx-ui-sdk/theme-default/all.css", "src/styles.css"]`
 }
 

@@ -28,9 +28,9 @@ import { injectLog } from "../../shared/log"
     >
       @for (file of files; track file.value) {
         <div uiListboxItem [value]="file.value">
-          <span uiListboxItemIcon
-            ><svg lucideFile aria-hidden="true"></svg
-          ></span>
+          <span uiListboxItemIcon>
+            <svg lucideFile aria-hidden="true"></svg>
+          </span>
           {{ file.label }}
         </div>
       }

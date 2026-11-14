@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import {
   UiProgress,
@@ -11,6 +12,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiProgress,
     UiProgressIndicator,
     UiProgressLabel,
@@ -31,7 +33,7 @@ import { injectLog } from "../../shared/log"
       </div>
       <div uiProgress [value]="(uploaded() / total) * 100">
         <span uiProgressLabel>Uploading photos</span>
-        <span uiProgressValue></span>
+        <span uiProgressValue uiText></span>
         <div uiProgressTrack><div uiProgressIndicator></div></div>
       </div>
     </div>

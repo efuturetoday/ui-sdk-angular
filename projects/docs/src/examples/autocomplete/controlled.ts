@@ -23,31 +23,33 @@ import { injectLog } from "../../shared/log"
     UiAutocompleteLabel,
     UiAutocompleteList,
   ],
-  template: `<div data-slot="stack">
-    <ng-container
-      uiAutocomplete
-      [(value)]="value"
-      [(open)]="open"
-      debug
-      (beforeValueChange)="changeValue($event.value, $event.details)"
-      (beforeOpenChange)="changeOpen($event.open, $event.details)"
-      (openChangeComplete)="
-        log($event ? 'opened and settled' : 'closed and settled')
-      "
-      (highlight)="$event.value && log('highlighted ' + $event.value)"
-    >
-      <div uiAutocompleteLabel>Fruit (12 characters at most)</div>
-      <input uiAutocompleteInput />
-      <div *uiAutocompleteContent>
-        <div uiAutocompleteEmpty>No fruits found.</div>
-        <div uiAutocompleteList>
-          @for (fruit of fruits; track fruit) {
-            <div uiAutocompleteItem [value]="fruit">{{ fruit }}</div>
-          }
+  template: `
+    <div data-slot="stack">
+      <ng-container
+        uiAutocomplete
+        [(value)]="value"
+        [(open)]="open"
+        debug
+        (beforeValueChange)="changeValue($event.value, $event.details)"
+        (beforeOpenChange)="changeOpen($event.open, $event.details)"
+        (openChangeComplete)="
+          log($event ? 'opened and settled' : 'closed and settled')
+        "
+        (highlight)="$event.value && log('highlighted ' + $event.value)"
+      >
+        <div uiAutocompleteLabel>Fruit (12 characters at most)</div>
+        <input uiAutocompleteInput />
+        <div *uiAutocompleteContent>
+          <div uiAutocompleteEmpty>No fruits found.</div>
+          <div uiAutocompleteList>
+            @for (fruit of fruits; track fruit) {
+              <div uiAutocompleteItem [value]="fruit">{{ fruit }}</div>
+            }
+          </div>
         </div>
-      </div>
-    </ng-container>
-  </div>`,
+      </ng-container>
+    </div>
+  `,
 })
 class Example {
   protected readonly fruits = [

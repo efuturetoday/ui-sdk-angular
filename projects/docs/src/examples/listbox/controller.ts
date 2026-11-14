@@ -15,9 +15,10 @@ import { injectLog } from "../../shared/log"
     <div data-slot="stack">
       <div data-slot="controls">
         <button type="button" (click)="controller.selectAll()">
-          Select All</button
-        ><button type="button" (click)="controller.clear()">Clear</button
-        ><button type="button" (click)="controller.focus()">Focus</button>
+          Select All
+        </button>
+        <button type="button" (click)="controller.clear()">Clear</button>
+        <button type="button" (click)="controller.focus()">Focus</button>
       </div>
       <div
         uiListbox
@@ -36,9 +37,9 @@ import { injectLog } from "../../shared/log"
         @for (topping of toppings; track topping.value) {
           <div uiListboxItem [value]="topping.value">
             {{ topping.label }}
-            <span *uiListboxItemIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
+            <span *uiListboxItemIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
           </div>
         }
       </div>

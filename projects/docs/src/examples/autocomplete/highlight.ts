@@ -22,30 +22,32 @@ import {
     UiAutocompleteLabel,
     UiAutocompleteList,
   ],
-  template: `<ng-container uiAutocomplete>
-    <div data-slot="stack">
-      <div uiAutocompleteLabel>Favorite fruit</div>
-      <input uiAutocompleteInput placeholder="e.g. berry" />
-    </div>
-    <div *uiAutocompleteContent>
-      <div uiAutocompleteEmpty>No fruits found.</div>
-      <div uiAutocompleteList>
-        @for (fruit of fruits; track fruit) {
-          <div uiAutocompleteItem [value]="fruit" [label]="fruit">
-            <span uiAutocompleteItemText #text="uiAutocompleteItemText">
-              @for (segment of text.state().segments; track $index) {
-                @if (segment.match) {
-                  <strong>{{ segment.text }}</strong>
-                } @else {
-                  <span>{{ segment.text }}</span>
-                }
-              }
-            </span>
-          </div>
-        }
+  template: `
+    <ng-container uiAutocomplete>
+      <div data-slot="stack">
+        <div uiAutocompleteLabel>Favorite fruit</div>
+        <input uiAutocompleteInput placeholder="e.g. berry" />
       </div>
-    </div>
-  </ng-container>`,
+      <div *uiAutocompleteContent>
+        <div uiAutocompleteEmpty>No fruits found.</div>
+        <div uiAutocompleteList>
+          @for (fruit of fruits; track fruit) {
+            <div uiAutocompleteItem [value]="fruit" [label]="fruit">
+              <span uiAutocompleteItemText #text="uiAutocompleteItemText">
+                @for (segment of text.state().segments; track $index) {
+                  @if (segment.match) {
+                    <strong>{{ segment.text }}</strong>
+                  } @else {
+                    <span>{{ segment.text }}</span>
+                  }
+                }
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly fruits = [

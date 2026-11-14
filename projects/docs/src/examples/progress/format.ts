@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { type NumberFormat } from "@ngx-ui-sdk/core/meter"
 import {
@@ -11,6 +12,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiProgress,
     UiProgressIndicator,
     UiProgressLabel,
@@ -28,7 +30,7 @@ import {
           [locale]="b.locale"
         >
           <span uiProgressLabel>{{ b.label }}</span>
-          <span uiProgressValue></span>
+          <span uiProgressValue uiText></span>
           <div uiProgressTrack><div uiProgressIndicator></div></div>
         </div>
       }

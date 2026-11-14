@@ -5,11 +5,13 @@ import { Component } from "@angular/core"
   styleUrl: "./guide.css",
   template: `
     <p>
-      <code>@ngx-ui-sdk/core</code> brings
-      <a href="https://github.com/vercel-labs/ui">ui-sdk</a> to Angular. Its
-      components, like Select, Dialog and Tabs, handle keyboard navigation,
-      focus, dismissal and ARIA for you. Each part of a component is a directive
-      you put on your own element, so you write the markup and the styles.
+      <code>@ngx-ui-sdk/core</code>
+      brings
+      <a href="https://github.com/vercel-labs/ui">ui-sdk</a>
+      to Angular. It handles keyboard navigation, focus, dismissal and ARIA for
+      components like Select, Dialog and Tabs. Every part of a component is a
+      directive. You put it on your own element. You write the markup and the
+      styles.
     </p>
 
     <section id="set-it-up" data-title="Set It Up">
@@ -21,39 +23,46 @@ import { Component } from "@angular/core"
         </a>
         <a href="?doc=first-component">
           <strong>First Component</strong>
-          <span>Add and style your first component.</span>
+          <span>Add your first component and style it.</span>
+        </a>
+        <a href="?doc=wrap-parts">
+          <strong>Your Own Components</strong>
+          <span>Wrap the parts in your own components or build new ones.</span>
         </a>
       </div>
     </section>
 
-    <section id="learn-the-basics" data-title="Learn the Basics">
-      <h3>Learn the Basics</h3>
+    <section id="styles" data-title="Styles">
+      <h3>Styles</h3>
       <p>
-        The guides cover what all components share:
-        <a href="?doc=parts-and-composition">putting parts together</a>,
-        <a href="?doc=state-and-events">state and events</a> and
-        <a href="?doc=styling">styling</a>. Each component has its own page with
-        live examples.
+        The parts have no styles. Use your own CSS, or start with
+        <code>@ngx-ui-sdk/theme-default</code>
+        . That is the theme of this site.
+        <a href="?doc=styling">Styling and Animation</a>
+        explains both.
       </p>
     </section>
 
     <section id="ui-sdk-docs" data-title="ui-sdk's Documentation">
       <h3>ui-sdk's Documentation</h3>
       <p>
-        The components work the same as in ui-sdk's other frameworks, so its
-        <a href="https://ui-sdk.dev/docs">documentation</a> applies here too:
-        every component's options, events and keyboard behavior. The names
-        follow one rule: ui-sdk's <code>DialogTrigger</code> is
-        <code>uiDialogTrigger</code> here.
+        The components behave the same as in ui-sdk's other frameworks. Their
+        options, events and keys are described in the
+        <a href="https://ui-sdk.dev/docs">ui-sdk documentation</a>
+        . Only the names differ:
+        <code>DialogTrigger</code>
+        there is
+        <code>uiDialogTrigger</code>
+        here.
       </p>
     </section>
 
-    <section id="tested" data-title="Tested Like the Official Adapters">
-      <h3>Tested Like the Official Adapters</h3>
+    <section id="tested" data-title="Tested">
+      <h3>Tested</h3>
       <p>
-        This isn't an official ui-sdk package. It runs ui-sdk's own end-to-end
-        tests unchanged, more than 4,000 of them, the same ones the React, Vue,
-        Svelte, Solid and web component adapters pass.
+        This is not an official ui-sdk package. It runs ui-sdk's own end-to-end
+        tests without changes. There are more than 4,000 of them. The server
+        rendering tests don't run yet.
       </p>
     </section>
   `,

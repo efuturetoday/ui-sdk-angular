@@ -31,45 +31,51 @@ import { injectLog } from "../../shared/log"
     UiComboboxList,
     UiComboboxTrigger,
   ],
-  template: `<div data-slot="stack">
-    <div data-slot="controls">
-      <button type="button" (click)="value.set('jp')">Choose Japan</button
-      ><button type="button" (click)="open.set(true)">Open</button>
-    </div>
-    <ng-container
-      uiCombobox
-      [(value)]="value"
-      [(query)]="query"
-      [(open)]="open"
-      [itemToLabel]="countryLabel"
-      (beforeValueChange)="changeValue($event.value, $event.details)"
-      (beforeQueryChange)="changeQuery($event.query, $event.details)"
-      (beforeOpenChange)="changeOpen($event.open, $event.details)"
-      ><div data-slot="stack">
-        <div uiComboboxLabel>Country</div>
-        <div data-slot="row">
-          <input uiComboboxInput placeholder="Search countries…" /><button
-            uiComboboxTrigger
-            aria-label="Show countries"
-          >
-            <svg lucideChevronDown aria-hidden="true"></svg>
-          </button>
-        </div>
+  template: `
+    <div data-slot="stack">
+      <div data-slot="controls">
+        <button type="button" (click)="value.set('jp')">Choose Japan</button>
+        <button type="button" (click)="open.set(true)">Open</button>
       </div>
-      <div *uiComboboxContent>
-        <div uiComboboxEmpty>No countries found.</div>
-        <div uiComboboxList>
-          @for (country of countries; track country.value) {
-            <div uiComboboxItem [value]="country.value" [label]="country.label">
-              {{ country.label
-              }}<span *uiComboboxItemIndicator
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
-            </div>
-          }
-        </div></div
-    ></ng-container>
-  </div>`,
+      <ng-container
+        uiCombobox
+        [(value)]="value"
+        [(query)]="query"
+        [(open)]="open"
+        [itemToLabel]="countryLabel"
+        (beforeValueChange)="changeValue($event.value, $event.details)"
+        (beforeQueryChange)="changeQuery($event.query, $event.details)"
+        (beforeOpenChange)="changeOpen($event.open, $event.details)"
+      >
+        <div data-slot="stack">
+          <div uiComboboxLabel>Country</div>
+          <div data-slot="row">
+            <input uiComboboxInput placeholder="Search countries…" />
+            <button uiComboboxTrigger aria-label="Show countries">
+              <svg lucideChevronDown aria-hidden="true"></svg>
+            </button>
+          </div>
+        </div>
+        <div *uiComboboxContent>
+          <div uiComboboxEmpty>No countries found.</div>
+          <div uiComboboxList>
+            @for (country of countries; track country.value) {
+              <div
+                uiComboboxItem
+                [value]="country.value"
+                [label]="country.label"
+              >
+                {{ country.label }}
+                <span *uiComboboxItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
+              </div>
+            }
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  `,
 })
 class Example {
   protected readonly countries = [

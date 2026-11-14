@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   UiSlider,
@@ -11,6 +12,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiSlider,
     UiSliderControl,
     UiSliderIndicator,
@@ -28,7 +30,7 @@ import {
       >
         <div data-slot="row">
           <span data-slot="label">نطاق السعر</span>
-          <output uiSliderValue></output>
+          <output uiSliderValue uiText></output>
         </div>
         <div uiSliderControl>
           <div uiSliderTrack>

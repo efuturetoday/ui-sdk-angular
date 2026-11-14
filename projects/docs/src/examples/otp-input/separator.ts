@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideMinus } from "@lucide/angular"
 import {
@@ -10,6 +11,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideMinus,
     UiOtpInput,
     UiOtpInputGroup,
@@ -19,18 +21,18 @@ import {
   template: `
     <div uiOtpInput [maxLength]="6" aria-label="Verification code">
       <div uiOtpInputGroup>
-        <div uiOtpInputSlot [index]="0"></div>
-        <div uiOtpInputSlot [index]="1"></div>
+        <div uiOtpInputSlot [index]="0" uiText></div>
+        <div uiOtpInputSlot [index]="1" uiText></div>
       </div>
       <div uiOtpInputSeparator><svg lucideMinus aria-hidden="true"></svg></div>
       <div uiOtpInputGroup>
-        <div uiOtpInputSlot [index]="2"></div>
-        <div uiOtpInputSlot [index]="3"></div>
+        <div uiOtpInputSlot [index]="2" uiText></div>
+        <div uiOtpInputSlot [index]="3" uiText></div>
       </div>
       <div uiOtpInputSeparator><svg lucideMinus aria-hidden="true"></svg></div>
       <div uiOtpInputGroup>
-        <div uiOtpInputSlot [index]="4"></div>
-        <div uiOtpInputSlot [index]="5"></div>
+        <div uiOtpInputSlot [index]="4" uiText></div>
+        <div uiOtpInputSlot [index]="5" uiText></div>
       </div>
     </div>
   `,

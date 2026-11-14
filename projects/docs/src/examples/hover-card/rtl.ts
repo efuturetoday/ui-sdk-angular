@@ -17,9 +17,9 @@ import {
   template: `
     <div dir="rtl">
       <ng-container uiHoverCard>
-        <a uiHoverCardTrigger href="https://example.com/people/hollis"
-          >هوليس غرانت</a
-        >
+        <a uiHoverCardTrigger href="https://example.com/people/hollis">
+          هوليس غرانت
+        </a>
         <div *uiHoverCardContent="let state; align: 'start'; sideOffset: 10">
           <div uiHoverCardArrow></div>
           <p>هوليس غرانت</p>

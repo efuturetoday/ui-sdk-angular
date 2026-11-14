@@ -24,9 +24,9 @@ import {
     <ng-container uiPopover>
       <button uiPopoverTrigger #trigger="uiPopoverTrigger" shortcut="mod+u">
         {{ trigger.state().open ? "Hide Updates" : "Show Updates" }}
-        <span uiPopoverShortcut #shortcut="uiPopoverShortcut">{{
-          shortcut.state().text
-        }}</span>
+        <span uiPopoverShortcut #shortcut="uiPopoverShortcut">
+          {{ shortcut.state().text }}
+        </span>
       </button>
       <div *uiPopoverContent>
         <h3 uiPopoverTitle>Updates</h3>

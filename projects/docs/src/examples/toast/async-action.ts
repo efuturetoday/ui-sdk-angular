@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, DestroyRef, inject } from "@angular/core"
 import {
   createToaster,
@@ -13,6 +14,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiToast,
     UiToastAction,
     UiToastDescription,
@@ -27,8 +29,8 @@ import { injectLog } from "../../shared/log"
         @for (item of region.state().toasts; track item.toast.id) {
           <li [uiToast]="item.toast">
             <div data-slot="stack">
-              <div *uiToastTitle></div>
-              <div *uiToastDescription></div>
+              <div *uiToastTitle uiText></div>
+              <div *uiToastDescription uiText></div>
             </div>
             <button *uiToastAction="let state" data-variant="solid">
               {{

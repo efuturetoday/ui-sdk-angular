@@ -26,15 +26,16 @@ import {
   ],
   template: `
     <div uiField>
-      <label uiFieldLabel>Reviewer</label
-      ><ng-container uiSelect defaultValue="hollis"
-        ><button uiSelectTrigger>
-          <span uiSelectValue #current="uiSelectValue"
-            ><span data-slot="badge">{{
-              current.state().label.slice(0, 1)
-            }}</span>
-            {{ current.state().label }}</span
-          ><svg lucideChevronDown aria-hidden="true"></svg>
+      <label uiFieldLabel>Reviewer</label>
+      <ng-container uiSelect defaultValue="hollis">
+        <button uiSelectTrigger>
+          <span uiSelectValue #current="uiSelectValue">
+            <span data-slot="badge">
+              {{ current.state().label.slice(0, 1) }}
+            </span>
+            {{ current.state().label }}
+          </span>
+          <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent>
           @for (member of members; track member.value) {
@@ -45,20 +46,22 @@ import {
               [label]="member.name"
               [disabled]="member.value === 'wren'"
             >
-              <span data-slot="badge">{{ member.name.slice(0, 1) }}</span><span
-                data-slot="stack"
-                >{{ member.name
-                }}<span data-slot="hint">{{
-                  entry.state().disabled ? "Out of office" : member.email
-                }}</span></span
-              ><span *uiSelectItemIndicator="let indicator">
+              <span data-slot="badge">{{ member.name.slice(0, 1) }}</span>
+              <span data-slot="stack">
+                {{ member.name }}
+                <span data-slot="hint">
+                  {{ entry.state().disabled ? "Out of office" : member.email }}
+                </span>
+              </span>
+              <span *uiSelectItemIndicator="let indicator">
                 @if (indicator().selected) {
                   <svg lucideCheck aria-hidden="true"></svg>
                 }
               </span>
             </div>
-          }</div
-      ></ng-container>
+          }
+        </div>
+      </ng-container>
     </div>
   `,
 })

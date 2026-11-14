@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
@@ -14,6 +15,7 @@ import { uniqueId } from "../../shared/id"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiField,
     UiFieldLabel,
     UiSlider,
@@ -36,7 +38,7 @@ import { uniqueId } from "../../shared/id"
           >
             <div data-slot="row">
               <label uiFieldLabel>Price</label>
-              <output uiSliderValue></output>
+              <output uiSliderValue uiText></output>
             </div>
             <div uiSliderControl>
               <div uiSliderTrack>
@@ -51,7 +53,7 @@ import { uniqueId } from "../../shared/id"
           <div uiSlider name="rating" [defaultValue]="3" [min]="1" [max]="5">
             <div data-slot="row">
               <label uiFieldLabel>Minimum rating</label>
-              <output uiSliderValue></output>
+              <output uiSliderValue uiText></output>
             </div>
             <div uiSliderControl>
               <div uiSliderTrack>
@@ -74,7 +76,7 @@ import { uniqueId } from "../../shared/id"
         >
           <div data-slot="row">
             <label uiFieldLabel>Distance</label>
-            <output uiSliderValue></output>
+            <output uiSliderValue uiText></output>
           </div>
           <div uiSliderControl>
             <div uiSliderTrack>

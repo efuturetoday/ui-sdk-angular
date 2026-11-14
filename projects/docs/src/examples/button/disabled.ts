@@ -4,7 +4,9 @@ import { UiButton } from "@ngx-ui-sdk/core/button"
 @Component({
   selector: "app-example",
   imports: [UiButton],
-  template: `<button uiButton disabled>Disabled</button>`,
+  template: `
+    <button uiButton disabled>Disabled</button>
+  `,
 })
 class Example {}
 

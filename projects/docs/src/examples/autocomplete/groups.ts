@@ -26,28 +26,30 @@ import {
     UiAutocompleteList,
     UiAutocompleteSeparator,
   ],
-  template: `<ng-container uiAutocomplete>
-    <div data-slot="stack">
-      <div uiAutocompleteLabel>Fruit</div>
-      <input uiAutocompleteInput placeholder="e.g. Pear" />
-    </div>
-    <div *uiAutocompleteContent>
-      <div uiAutocompleteEmpty>No fruits found.</div>
-      <div uiAutocompleteList>
-        @for (group of fruitGroups; track group.label; let index = $index) {
-          @if (index > 0) {
-            <div uiAutocompleteSeparator></div>
-          }
-          <div uiAutocompleteGroup>
-            <div uiAutocompleteGroupLabel>{{ group.label }}</div>
-            @for (fruit of group.items; track fruit) {
-              <div uiAutocompleteItem [value]="fruit">{{ fruit }}</div>
-            }
-          </div>
-        }
+  template: `
+    <ng-container uiAutocomplete>
+      <div data-slot="stack">
+        <div uiAutocompleteLabel>Fruit</div>
+        <input uiAutocompleteInput placeholder="e.g. Pear" />
       </div>
-    </div>
-  </ng-container>`,
+      <div *uiAutocompleteContent>
+        <div uiAutocompleteEmpty>No fruits found.</div>
+        <div uiAutocompleteList>
+          @for (group of fruitGroups; track group.label; let index = $index) {
+            @if (index > 0) {
+              <div uiAutocompleteSeparator></div>
+            }
+            <div uiAutocompleteGroup>
+              <div uiAutocompleteGroupLabel>{{ group.label }}</div>
+              @for (fruit of group.items; track fruit) {
+                <div uiAutocompleteItem [value]="fruit">{{ fruit }}</div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </ng-container>
+  `,
 })
 class Example {
   protected readonly fruitGroups = [

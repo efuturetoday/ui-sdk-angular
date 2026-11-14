@@ -48,8 +48,9 @@ import {
             #gallery
             href="https://example.com/gallery"
             (blur)="nextFocused = false"
-            >See all photos</a
           >
+            See all photos
+          </a>
         } @else {
           <button
             uiCarouselNext

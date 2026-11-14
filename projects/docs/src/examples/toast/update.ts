@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, DestroyRef, inject } from "@angular/core"
 import { LucideCircleCheck, LucideLoaderCircle } from "@lucide/angular"
 import {
@@ -12,6 +13,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCircleCheck,
     LucideLoaderCircle,
     UiToast,
@@ -35,7 +37,7 @@ import { injectLog } from "../../shared/log"
               data-show="loading"
               aria-hidden="true"
             ></svg>
-            <div *uiToastTitle></div>
+            <div *uiToastTitle uiText></div>
           </li>
         }
       </ol>

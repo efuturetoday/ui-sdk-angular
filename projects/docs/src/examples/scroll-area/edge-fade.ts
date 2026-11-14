@@ -23,7 +23,8 @@ import {
           @for (note of notes; track note.version) {
             <article>
               <h3>
-                {{ note.version }} <span data-slot="hint">{{ note.date }}</span>
+                {{ note.version }}
+                <span data-slot="hint">{{ note.date }}</span>
               </h3>
               <p>{{ note.text }}</p>
             </article>

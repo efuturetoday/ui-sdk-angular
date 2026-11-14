@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideArrowLeft, LucideArrowRight } from "@lucide/angular"
 import {
@@ -13,6 +14,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideArrowLeft,
     LucideArrowRight,
     UiPagination,
@@ -54,7 +56,7 @@ import {
                 }}
               </button>
             } @else {
-              <span uiPaginationEllipsis></span>
+              <span uiPaginationEllipsis uiText></span>
             }
           </li>
         }

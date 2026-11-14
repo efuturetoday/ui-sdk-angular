@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -14,6 +15,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -29,77 +31,84 @@ import { injectLog } from "../../shared/log"
     <div data-slot="stack">
       <form id="select-newsletter" data-slot="stack" (submit)="submit($event)">
         <div uiField>
-          <label uiFieldLabel>Country</label
-          ><ng-container
+          <label uiFieldLabel>Country</label>
+          <ng-container
             uiSelect
             name="country"
             autoComplete="country"
             required
             placeholder="Select a country"
-            ><button uiSelectTrigger>
-              <span uiSelectValue></span
-              ><svg lucideChevronDown aria-hidden="true"></svg>
+          >
+            <button uiSelectTrigger>
+              <span uiSelectValue uiText></span>
+              <svg lucideChevronDown aria-hidden="true"></svg>
             </button>
             <div *uiSelectContent>
               @for (country of countries; track country.value) {
                 <div uiSelectItem [value]="country.value">
                   {{ country.label }}
-                  <span *uiSelectItemIndicator
-                    ><svg lucideCheck aria-hidden="true"></svg
-                  ></span>
+                  <span *uiSelectItemIndicator>
+                    <svg lucideCheck aria-hidden="true"></svg>
+                  </span>
                 </div>
-              }</div
-          ></ng-container>
+              }
+            </div>
+          </ng-container>
         </div>
         <div uiField>
-          <label uiFieldLabel>Topics</label
-          ><ng-container
+          <label uiFieldLabel>Topics</label>
+          <ng-container
             uiSelect
             name="topics"
             multiple
             [defaultValue]="['Design']"
-            ><button uiSelectTrigger>
-              <span uiSelectValue></span
-              ><svg lucideChevronDown aria-hidden="true"></svg>
+          >
+            <button uiSelectTrigger>
+              <span uiSelectValue uiText></span>
+              <svg lucideChevronDown aria-hidden="true"></svg>
             </button>
             <div *uiSelectContent>
               @for (topic of topics; track topic) {
                 <div uiSelectItem [value]="topic">
                   {{ topic }}
-                  <span *uiSelectItemIndicator
-                    ><svg lucideCheck aria-hidden="true"></svg
-                  ></span>
+                  <span *uiSelectItemIndicator>
+                    <svg lucideCheck aria-hidden="true"></svg>
+                  </span>
                 </div>
-              }</div
-          ></ng-container>
+              }
+            </div>
+          </ng-container>
         </div>
       </form>
       <div uiField>
-        <label uiFieldLabel>Frequency</label
-        ><ng-container
+        <label uiFieldLabel>Frequency</label>
+        <ng-container
           uiSelect
           name="frequency"
           form="select-newsletter"
           defaultValue="Weekly"
-          ><button uiSelectTrigger>
-            <span uiSelectValue></span
-            ><svg lucideChevronDown aria-hidden="true"></svg>
+        >
+          <button uiSelectTrigger>
+            <span uiSelectValue uiText></span>
+            <svg lucideChevronDown aria-hidden="true"></svg>
           </button>
           <div *uiSelectContent>
             @for (frequency of frequencies; track frequency) {
               <div uiSelectItem [value]="frequency">
                 {{ frequency }}
-                <span *uiSelectItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
+                <span *uiSelectItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
               </div>
-            }</div
-        ></ng-container>
+            }
+          </div>
+        </ng-container>
       </div>
       <div data-slot="row">
         <button type="submit" form="select-newsletter" data-variant="solid">
-          Save</button
-        ><button type="reset" form="select-newsletter">Reset</button>
+          Save
+        </button>
+        <button type="reset" form="select-newsletter">Reset</button>
       </div>
     </div>
   `,

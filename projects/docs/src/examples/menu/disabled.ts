@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronRight } from "@lucide/angular"
 import {
@@ -20,6 +21,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronRight,
     UiMenu,
@@ -42,10 +44,12 @@ import { injectLog } from "../../shared/log"
         <button uiMenuTrigger>Document</button>
         <div *uiMenuContent="let state">
           <div uiMenuItem value="undo" shortcut="mod+z" disabled>
-            Undo<span uiMenuShortcut></span>
+            Undo
+            <span uiMenuShortcut uiText></span>
           </div>
           <div uiMenuItem value="redo" shortcut="mod+shift+z">
-            Redo<span uiMenuShortcut></span>
+            Redo
+            <span uiMenuShortcut uiText></span>
           </div>
           <div uiMenuSeparator></div>
           <div uiMenuCheckboxItem value="autosave" defaultChecked disabled>

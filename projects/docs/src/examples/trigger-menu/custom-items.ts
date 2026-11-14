@@ -54,9 +54,9 @@ import {
                 [disabled]="person.disabled"
               >
                 {{ person.label }}
-                <span data-slot="hint">{{
-                  person.disabled ? "Deactivated" : "@" + person.value
-                }}</span>
+                <span data-slot="hint">
+                  {{ person.disabled ? "Deactivated" : "@" + person.value }}
+                </span>
               </div>
             }
           </div>

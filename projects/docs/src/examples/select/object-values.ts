@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -16,6 +17,7 @@ type Member = { id: number; name: string; email: string }
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -29,8 +31,8 @@ type Member = { id: number; name: string; email: string }
   ],
   template: `
     <div uiField>
-      <label uiFieldLabel>Assignee</label
-      ><ng-container
+      <label uiFieldLabel>Assignee</label>
+      <ng-container
         uiSelect
         [defaultValue]="initial"
         name="assignee"
@@ -39,22 +41,25 @@ type Member = { id: number; name: string; email: string }
         [isItemEqualToValue]="isEqual"
         placeholder="Unassigned"
         (valueChange)="onValueChange($event)"
-        ><button uiSelectTrigger>
-          <span uiSelectValue></span
-          ><svg lucideChevronDown aria-hidden="true"></svg>
+      >
+        <button uiSelectTrigger>
+          <span uiSelectValue uiText></span>
+          <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent>
           @for (member of members; track member.id) {
             <div uiSelectItem [value]="member">
-              <span data-slot="stack"
-                >{{ member.name
-                }}<span data-slot="hint">{{ member.email }}</span></span
-              ><span *uiSelectItemIndicator
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
+              <span data-slot="stack">
+                {{ member.name }}
+                <span data-slot="hint">{{ member.email }}</span>
+              </span>
+              <span *uiSelectItemIndicator>
+                <svg lucideCheck aria-hidden="true"></svg>
+              </span>
             </div>
-          }</div
-      ></ng-container>
+          }
+        </div>
+      </ng-container>
     </div>
   `,
 })

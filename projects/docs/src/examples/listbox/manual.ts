@@ -22,9 +22,9 @@ import { injectLog } from "../../shared/log"
       @for (framework of frameworks; track framework.value) {
         <div uiListboxItem [value]="framework.value">
           {{ framework.label }}
-          <span *uiListboxItemIndicator
-            ><svg lucideCheck aria-hidden="true"></svg
-          ></span>
+          <span *uiListboxItemIndicator>
+            <svg lucideCheck aria-hidden="true"></svg>
+          </span>
         </div>
       }
     </div>

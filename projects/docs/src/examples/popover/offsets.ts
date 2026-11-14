@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, computed, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
@@ -22,6 +23,7 @@ type Name = "sideOffset" | "alignOffset" | "collisionPadding"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiPopover,
@@ -46,25 +48,27 @@ type Name = "sideOffset" | "alignOffset" | "collisionPadding"
             [items]="choice.values"
             [value]="offsets()[choice.name]"
             (valueChange)="setOffset(choice.name, $event)"
-            ><div uiSelectLabel>{{ choice.label }}</div>
+          >
+            <div uiSelectLabel>{{ choice.label }}</div>
             <button uiSelectTrigger>
-              <span uiSelectValue></span
-              ><svg lucideChevronDown aria-hidden="true"></svg>
+              <span uiSelectValue uiText></span>
+              <svg lucideChevronDown aria-hidden="true"></svg>
             </button>
             <div *uiSelectContent>
               @for (value of choice.values; track value) {
                 <div uiSelectItem [value]="value">
                   {{ value }}px
-                  <span *uiSelectItemIndicator
-                    ><svg lucideCheck aria-hidden="true"></svg
-                  ></span>
+                  <span *uiSelectItemIndicator>
+                    <svg lucideCheck aria-hidden="true"></svg>
+                  </span>
                 </div>
-              }</div
-          ></ng-container>
+              }
+            </div>
+          </ng-container>
         }
       </div>
-      <ng-container uiPopover
-        ><button uiPopoverTrigger>Delivery</button>
+      <ng-container uiPopover>
+        <button uiPopoverTrigger>Delivery</button>
         <div
           *uiPopoverContent="
             let state;
@@ -76,8 +80,8 @@ type Name = "sideOffset" | "alignOffset" | "collisionPadding"
         >
           <h2 uiPopoverTitle>Delivery window</h2>
           <p uiPopoverDescription>Arrives Tuesday between 9 AM and noon.</p>
-        </div></ng-container
-      >
+        </div>
+      </ng-container>
     </div>
   `,
 })

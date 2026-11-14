@@ -27,45 +27,47 @@ import {
     UiComboboxList,
     UiComboboxTrigger,
   ],
-  template: `<div data-slot="stack">
-    @for (field of fields; track field.variant) {
-      <ng-container
-        uiCombobox
-        [defaultValue]="field.variant === 'item' ? null : 'fr'"
-        [itemToLabel]="countryLabel"
-        [disabled]="field.variant === 'disabled'"
-        [readOnly]="field.variant === 'readOnly'"
-        ><div data-slot="stack">
-          <div uiComboboxLabel>{{ field.label }}</div>
-          <div data-slot="row">
-            <input uiComboboxInput placeholder="Search countries…" /><button
-              uiComboboxTrigger
-              aria-label="Show countries"
-            >
-              <svg lucideChevronDown aria-hidden="true"></svg>
-            </button>
+  template: `
+    <div data-slot="stack">
+      @for (field of fields; track field.variant) {
+        <ng-container
+          uiCombobox
+          [defaultValue]="field.variant === 'item' ? null : 'fr'"
+          [itemToLabel]="countryLabel"
+          [disabled]="field.variant === 'disabled'"
+          [readOnly]="field.variant === 'readOnly'"
+        >
+          <div data-slot="stack">
+            <div uiComboboxLabel>{{ field.label }}</div>
+            <div data-slot="row">
+              <input uiComboboxInput placeholder="Search countries…" />
+              <button uiComboboxTrigger aria-label="Show countries">
+                <svg lucideChevronDown aria-hidden="true"></svg>
+              </button>
+            </div>
           </div>
-        </div>
-        <div *uiComboboxContent>
-          <div uiComboboxEmpty>No countries found.</div>
-          <div uiComboboxList>
-            @for (country of countries; track country.value) {
-              <div
-                uiComboboxItem
-                [value]="country.value"
-                [label]="country.label"
-                [disabled]="country.value === 'dk'"
-              >
-                {{ country.label
-                }}<span *uiComboboxItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
-              </div>
-            }
-          </div></div
-      ></ng-container>
-    }
-  </div>`,
+          <div *uiComboboxContent>
+            <div uiComboboxEmpty>No countries found.</div>
+            <div uiComboboxList>
+              @for (country of countries; track country.value) {
+                <div
+                  uiComboboxItem
+                  [value]="country.value"
+                  [label]="country.label"
+                  [disabled]="country.value === 'dk'"
+                >
+                  {{ country.label }}
+                  <span *uiComboboxItemIndicator>
+                    <svg lucideCheck aria-hidden="true"></svg>
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+  `,
 })
 class Example {
   protected readonly countries = [

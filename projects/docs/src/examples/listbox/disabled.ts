@@ -30,9 +30,9 @@ import {
             [disabled]="topping.value === 'olive'"
           >
             {{ topping.label }}
-            <span *uiListboxItemIndicator
-              ><svg lucideCheck aria-hidden="true"></svg
-            ></span>
+            <span *uiListboxItemIndicator>
+              <svg lucideCheck aria-hidden="true"></svg>
+            </span>
           </div>
         }
       </div>

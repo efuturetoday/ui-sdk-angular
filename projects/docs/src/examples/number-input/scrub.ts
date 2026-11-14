@@ -34,9 +34,9 @@ import { uniqueId } from "../../shared/id"
             <div uiNumberInputGroup>
               <span uiNumberInputScrubArea [pixelsPerStep]="1">
                 <span aria-hidden="true">{{ field.handle }}</span>
-                <span *uiNumberInputScrubAreaCursor
-                  ><svg lucideMoveHorizontal aria-hidden="true"></svg
-                ></span>
+                <span *uiNumberInputScrubAreaCursor>
+                  <svg lucideMoveHorizontal aria-hidden="true"></svg>
+                </span>
               </span>
               <input uiNumberInputControl [attr.aria-label]="field.label" />
             </div>

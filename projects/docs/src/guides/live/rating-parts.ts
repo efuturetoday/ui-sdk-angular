@@ -4,6 +4,8 @@ import {
   injectPart,
   injectPrimitive,
   provideRoot,
+  showText,
+  TextSource,
 } from "@ngx-ui-sdk/core"
 import { rating } from "./rating"
 
@@ -35,6 +37,15 @@ class AppRatingStar {
   })).state
 }
 
+@Directive({
+  selector: "[appRatingValue]",
+  providers: [{ provide: TextSource, useExisting: AppRatingValue }],
+})
+class AppRatingValue implements TextSource {
+  readonly #handle = injectHandle(rating)
+  readonly attach = showText(() => `${this.#handle.state().value} of 5`)
+}
+
 @Component({
   selector: "app-rating",
   hostDirectives: [
@@ -48,4 +59,4 @@ class AppRatingStar {
 })
 class Rating {}
 
-export { AppRating, AppRatingStar, Rating }
+export { AppRating, AppRatingStar, AppRatingValue, Rating }

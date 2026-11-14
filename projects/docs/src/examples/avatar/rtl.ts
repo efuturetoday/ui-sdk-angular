@@ -18,7 +18,7 @@ import {
           </span>
         </span>
       }
-      <span data-slot="media"> +٣ </span>
+      <span data-slot="media">+٣</span>
     </div>
   `,
 })

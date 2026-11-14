@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   type WaterfallBarLabelDetails,
@@ -18,6 +19,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiWaterfall,
     UiWaterfallAxis,
     UiWaterfallBar,
@@ -42,7 +44,7 @@ import {
         <div uiWaterfallColumnHeader aria-label="Timeline">
           <div uiWaterfallAxis #axis="uiWaterfallAxis" [maxTicks]="5">
             @for (tick of axis.state().ticks; track tick.time) {
-              <span uiWaterfallTick [time]="tick.time"></span>
+              <span uiWaterfallTick [time]="tick.time" uiText></span>
             }
           </div>
           <span uiWaterfallMark [time]="620">DOMContentLoaded</span>

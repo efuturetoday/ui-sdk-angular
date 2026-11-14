@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
@@ -13,6 +14,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiField,
     UiFieldLabel,
     UiSlider,
@@ -45,7 +47,7 @@ import { injectLog } from "../../shared/log"
         >
           <div data-slot="row">
             <label uiFieldLabel>Temperature</label>
-            <output uiSliderValue></output>
+            <output uiSliderValue uiText></output>
           </div>
           <div uiSliderControl>
             <div uiSliderTrack>

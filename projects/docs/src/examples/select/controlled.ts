@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -16,6 +17,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -30,12 +32,12 @@ import { injectLog } from "../../shared/log"
   template: `
     <div data-slot="stack">
       <div data-slot="controls">
-        <button type="button" (click)="value.set('editor')">Make Editor</button
-        ><button type="button" (click)="open.set(true)">Open</button>
+        <button type="button" (click)="value.set('editor')">Make Editor</button>
+        <button type="button" (click)="open.set(true)">Open</button>
       </div>
       <div uiField>
-        <label uiFieldLabel>Role</label
-        ><ng-container
+        <label uiFieldLabel>Role</label>
+        <ng-container
           uiSelect
           [(value)]="value"
           [(open)]="open"
@@ -43,20 +45,22 @@ import { injectLog } from "../../shared/log"
           (beforeOpenChange)="
             log('open: ' + $event.open + ' (' + $event.details.reason + ')')
           "
-          ><button uiSelectTrigger>
-            <span uiSelectValue></span
-            ><svg lucideChevronDown aria-hidden="true"></svg>
+        >
+          <button uiSelectTrigger>
+            <span uiSelectValue uiText></span>
+            <svg lucideChevronDown aria-hidden="true"></svg>
           </button>
           <div *uiSelectContent>
             @for (role of roles; track role.value) {
               <div uiSelectItem [value]="role.value">
                 {{ role.label }}
-                <span *uiSelectItemIndicator
-                  ><svg lucideCheck aria-hidden="true"></svg
-                ></span>
+                <span *uiSelectItemIndicator>
+                  <svg lucideCheck aria-hidden="true"></svg>
+                </span>
               </div>
-            }</div
-        ></ng-container>
+            }
+          </div>
+        </ng-container>
       </div>
     </div>
   `,

@@ -27,9 +27,7 @@ import { injectLog } from "../../shared/log"
       (valueChange)="log($event.length + ' of ' + people.length + ' selected')"
     >
       <table>
-        <caption data-slot="visually-hidden">
-          Team members
-        </caption>
+        <caption data-slot="visually-hidden">Team members</caption>
         <thead>
           <tr>
             <th>

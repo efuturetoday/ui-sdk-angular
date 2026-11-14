@@ -7,69 +7,82 @@ import { CodeBlock } from "./code"
   styleUrl: "./guide.css",
   template: `
     <p>
-      Components keep their own state unless you bind it. Their outputs tell you
-      about every change either way.
+      A component keeps its own state until you bind it. Its outputs tell you
+      about every change.
     </p>
 
     <section id="default" data-title="Set the Starting Value">
       <h3>Set the Starting Value</h3>
-      <p>Use a default input to choose where it starts:</p>
+      <p>A default input sets where it starts.</p>
       <app-code [code]="defaultPressed" />
       <p>
-        The input depends on the component: <code>defaultPressed</code>,
-        <code>defaultChecked</code>, <code>defaultOpen</code> or
-        <code>defaultValue</code>.
+        The name depends on the component:
+        <code>defaultPressed</code>
+        ,
+        <code>defaultChecked</code>
+        ,
+        <code>defaultOpen</code>
+        or
+        <code>defaultValue</code>
+        .
       </p>
     </section>
 
     <section id="control" data-title="Control the Value">
       <h3>Control the Value</h3>
-      <p>Bind it two ways when your component needs the current value:</p>
+      <p>Use two-way binding when your component needs the current value.</p>
       <app-code [code]="twoWay" />
       <p>
-        The main value depends on the component: <code>checked</code> for a
-        checkbox, <code>open</code> for a popover, <code>value</code> for a
-        select. Bind others the same way, like <code>[(open)]</code> on a select
-        or <code>[(query)]</code> on a combobox. If you bind only
-        <code>[pressed]</code>, update it yourself in
-        <code>(pressedChange)</code>, or it stays where it is.
+        The main value depends on the component. It is
+        <code>checked</code>
+        for a checkbox,
+        <code>open</code>
+        for a popover and
+        <code>value</code>
+        for a select. Other values bind the same way, for example
+        <code>[(open)]</code>
+        on a select or
+        <code>[(query)]</code>
+        on a combobox.
       </p>
-    </section>
-
-    <section id="forms" data-title="Forms">
-      <h3>Forms</h3>
       <p>
-        Form controls like Checkbox, Switch, Radio, Select, Combobox and Toggle
-        work with <code>ngModel</code>, <code>formControl</code> and
-        <code>formControlName</code>. Import the component's value accessor too:
-      </p>
-      <app-code [code]="forms" />
-      <p>
-        They also render a hidden native input, so a plain
-        <code>&lt;form&gt;</code> submits their value.
+        If you only bind
+        <code>[pressed]</code>
+        , you must update it yourself in
+        <code>(pressedChange)</code>
+        . Otherwise it doesn't change. For
+        <code>ngModel</code>
+        and reactive forms, see
+        <a href="?doc=forms">Forms</a>
+        .
       </p>
     </section>
 
     <section id="respond" data-title="Respond to a Change">
       <h3>Respond to a Change</h3>
       <p>
-        Each value has an output that runs before it changes, like
-        <code>(beforePressedChange)</code>. It gets the requested value and
-        <code>details</code>:
+        Every value has an output that runs before the change, for example
+        <code>(beforePressedChange)</code>
+        . It gets the new value and
+        <code>details</code>
+        .
       </p>
       <table>
         <thead>
           <tr>
             <th>Detail</th>
-            <th>What it tells you</th>
+            <th>Meaning</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><code>reason</code></td>
             <td>
-              What asked for the change, like <code>press</code> or
-              <code>outside-press</code>.
+              What caused the change, like
+              <code>press</code>
+              or
+              <code>outside-press</code>
+              .
             </td>
           </tr>
           <tr>
@@ -79,9 +92,20 @@ import { CodeBlock } from "./code"
           <tr>
             <td><code>source</code></td>
             <td>
-              <code>keyboard</code>, <code>mouse</code>, <code>touch</code>,
-              <code>pen</code>, <code>virtual</code>,
-              <code>programmatic</code> or <code>agent</code>.
+              <code>keyboard</code>
+              ,
+              <code>mouse</code>
+              ,
+              <code>touch</code>
+              ,
+              <code>pen</code>
+              ,
+              <code>virtual</code>
+              ,
+              <code>programmatic</code>
+              or
+              <code>agent</code>
+              .
             </td>
           </tr>
           <tr>
@@ -90,28 +114,31 @@ import { CodeBlock } from "./code"
           </tr>
         </tbody>
       </table>
-      <p>For example, keep a popover open when someone clicks outside it:</p>
+      <p>This popover stays open when someone clicks outside of it:</p>
       <app-code [code]="keepOpen" />
       <p>
-        The Done button still closes it. Add <code>debug</code> to a root to log
-        every change while you work.
+        The Done button still closes it. Add
+        <code>debug</code>
+        to a root to log every change in the console.
       </p>
     </section>
 
     <section id="values" data-title="Empty and Multiple Values">
       <h3>Empty and Multiple Values</h3>
       <p>
-        Select, Tabs and Radio Group give <code>null</code> when nothing is
-        selected. A multiple Select or Combobox uses an array. Accordion and
-        Toggle Group always use arrays.
+        Select, Tabs and Radio Group use
+        <code>null</code>
+        when nothing is selected. A select or combobox with
+        <code>multiple</code>
+        uses an array. Accordion and Toggle Group always use arrays.
       </p>
     </section>
 
     <section id="controllers" data-title="Controllers">
       <h3>Controllers</h3>
       <p>
-        To change a component from outside its parts, create a controller and
-        pass it in:
+        A controller changes a component from outside its parts. Create one and
+        pass it in.
       </p>
       <app-code [code]="controller" />
     </section>
@@ -135,11 +162,6 @@ class Bold {
 }
 
 export { Bold }`
-  protected readonly forms = `import { FormsModule } from "@angular/forms"
-import { UiCheckbox, UiCheckboxValueAccessor } from "@ngx-ui-sdk/core/checkbox"
-
-// imports: [FormsModule, UiCheckbox, UiCheckboxValueAccessor]
-<button uiCheckbox [(ngModel)]="terms">Accept the terms</button>`
   protected readonly keepOpen = `<ng-container uiPopover (beforeOpenChange)="keepOpen($event)">
   <button uiPopoverTrigger>Details</button>
   <div *uiPopoverContent>

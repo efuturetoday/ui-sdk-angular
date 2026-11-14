@@ -37,18 +37,18 @@ import {
             @if (item.href) {
               <a uiTreeItemLabel [href]="item.href">
                 @if (item.children) {
-                  <span uiTreeItemIndicator
-                    ><svg lucideChevronRight aria-hidden="true"></svg
-                  ></span>
+                  <span uiTreeItemIndicator>
+                    <svg lucideChevronRight aria-hidden="true"></svg>
+                  </span>
                 }
                 {{ item.label }}
               </a>
             } @else {
               <span uiTreeItemLabel>
                 @if (item.children) {
-                  <span uiTreeItemIndicator
-                    ><svg lucideChevronRight aria-hidden="true"></svg
-                  ></span>
+                  <span uiTreeItemIndicator>
+                    <svg lucideChevronRight aria-hidden="true"></svg>
+                  </span>
                 }
                 {{ item.label }}
               </span>

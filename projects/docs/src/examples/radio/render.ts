@@ -27,14 +27,15 @@ import { uniqueId } from "../../shared/id"
             [attr.aria-describedby]="id + '-' + option.value + '-description'"
           >
             <span data-slot="stack">
-              <span [id]="id + '-' + option.value + '-label'">{{
-                option.label
-              }}</span>
+              <span [id]="id + '-' + option.value + '-label'">
+                {{ option.label }}
+              </span>
               <span
                 [id]="id + '-' + option.value + '-description'"
                 data-slot="hint"
-                >{{ option.description }}</span
               >
+                {{ option.description }}
+              </span>
             </span>
             <svg
               lucideCheck

@@ -41,9 +41,9 @@ import {
             </div>
             <div uiTimelineConnector></div>
             <div uiTimelineTitle>{{ step.title }}</div>
-            <time uiTimelineTime [attr.datetime]="step.dateTime">{{
-              step.time
-            }}</time>
+            <time uiTimelineTime [attr.datetime]="step.dateTime">
+              {{ step.time }}
+            </time>
             <div uiTimelineDescription>{{ step.description }}</div>
           </div>
         }

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, DestroyRef, inject } from "@angular/core"
 import { LucideX } from "@lucide/angular"
 import {
@@ -15,6 +16,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideX,
     UiToast,
     UiToastAction,
@@ -46,10 +48,10 @@ import { injectLog } from "../../shared/log"
           >
             <span data-slot="media">{{ initials(item.toast.data) }}</span>
             <div data-slot="stack">
-              <div *uiToastTitle></div>
-              <div *uiToastDescription></div>
+              <div *uiToastTitle uiText></div>
+              <div *uiToastDescription uiText></div>
             </div>
-            <button *uiToastAction data-variant="solid"></button>
+            <button *uiToastAction data-variant="solid" uiText></button>
             <button uiToastClose aria-label="Close">
               <svg lucideX aria-hidden="true"></svg>
             </button>

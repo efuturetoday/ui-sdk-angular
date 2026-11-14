@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   UiMeter,
@@ -10,6 +11,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiMeter,
     UiMeterIndicator,
     UiMeterLabel,
@@ -19,7 +21,7 @@ import {
   template: `
     <div uiMeter [value]="42">
       <span uiMeterLabel>Battery</span>
-      <span uiMeterValue></span>
+      <span uiMeterValue uiText></span>
       <div uiMeterTrack><div uiMeterIndicator></div></div>
     </div>
   `,

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
@@ -14,6 +15,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideCheck,
     LucideChevronDown,
     UiField,
@@ -27,27 +29,29 @@ import { injectLog } from "../../shared/log"
   ],
   template: `
     <div uiField>
-      <label uiFieldLabel>Role</label
-      ><ng-container
+      <label uiFieldLabel>Role</label>
+      <ng-container
         uiSelect
         defaultValue="editor"
         (openChangeComplete)="
           log($event ? 'Finished opening' : 'Finished closing')
         "
-        ><button uiSelectTrigger>
-          <span uiSelectValue></span
-          ><svg lucideChevronDown aria-hidden="true"></svg>
+      >
+        <button uiSelectTrigger>
+          <span uiSelectValue uiText></span>
+          <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent>
           @for (role of roles; track role.value) {
             <div uiSelectItem [value]="role.value">
               {{ role.label }}
-              <span *uiSelectItemIndicator="let state; keepMounted: true"
-                ><svg lucideCheck aria-hidden="true"></svg
-              ></span>
+              <span *uiSelectItemIndicator="let state; keepMounted: true">
+                <svg lucideCheck aria-hidden="true"></svg>
+              </span>
             </div>
-          }</div
-      ></ng-container>
+          }
+        </div>
+      </ng-container>
     </div>
   `,
 })

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import {
   LucideChevronLeft,
@@ -18,6 +19,7 @@ import { injectLog } from "../../shared/log"
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideChevronLeft,
     LucideChevronRight,
     LucideEllipsis,
@@ -52,6 +54,7 @@ import { injectLog } from "../../shared/log"
                 uiPaginationLink
                 data-variant="ghost"
                 [page]="item"
+                uiText
               ></button>
             } @else {
               <span uiPaginationEllipsis><svg lucideEllipsis></svg></span>

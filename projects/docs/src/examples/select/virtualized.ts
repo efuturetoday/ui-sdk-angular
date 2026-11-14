@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideChevronDown } from "@lucide/angular"
-import { UiVirtualFor } from "@ngx-ui-sdk/core"
+import { UiVirtualFor, UiText } from "@ngx-ui-sdk/core"
 import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiSelect,
@@ -16,6 +16,7 @@ type Item = { value: string; label: string }
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     LucideChevronDown,
     UiField,
     UiFieldLabel,
@@ -32,7 +33,7 @@ type Item = { value: string; label: string }
       <label uiFieldLabel>Item</label>
       <ng-container uiSelect [items]="items" placeholder="Select an item">
         <button uiSelectTrigger>
-          <span uiSelectValue></span>
+          <span uiSelectValue uiText></span>
           <svg lucideChevronDown aria-hidden="true"></svg>
         </button>
         <div *uiSelectContent>

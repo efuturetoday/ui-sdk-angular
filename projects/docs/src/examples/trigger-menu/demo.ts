@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { UiField, UiFieldControl, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
@@ -15,6 +16,7 @@ import {
 @Component({
   selector: "app-example",
   imports: [
+    UiText,
     UiField,
     UiFieldControl,
     UiFieldLabel,
@@ -37,7 +39,7 @@ import {
         />
       </div>
       <div data-slot="visually-hidden">
-        <div uiTriggerMenuStatus></div>
+        <div uiTriggerMenuStatus uiText></div>
       </div>
       <div *uiTriggerMenuContent="let state">
         <div uiTriggerMenuEmpty>No one found</div>
