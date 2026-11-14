@@ -9,3 +9,6 @@ projects/playground/src/fixtures
 todo.md
 projects/demo/src/examples/index.ts
 projects/demo/src/examples.css
+
+# Written by release-please.
+CHANGELOG.md
