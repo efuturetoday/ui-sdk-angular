@@ -8,7 +8,7 @@ This isn't an official part of ui-sdk. To make sure it behaves the same way, it 
 
 ## Getting started
 
-> The package is experimental and not on npm yet. Once it is, this is how you'll install it.
+> The package is experimental, so expect breaking changes until 1.0.
 
 Install the package together with `@ui-sdk/core`, which holds the actual behavior:
 

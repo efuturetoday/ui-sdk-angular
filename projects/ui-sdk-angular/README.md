@@ -1,64 +1,138 @@
-# UiSdkAngular
+# ui-sdk-angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
+> Built on `@ui-sdk/core` **0.1.0-beta.1** (Angular 22)
 
-## Code scaffolding
+This package adds Angular support for [ui-sdk](https://github.com/vercel-labs/ui). You get all the behavior: keyboard navigation, focus handling, dismissal, popups and the right ARIA attributes. You keep full control of your markup and styles. Every part of a component is a directive that you put on your own elements, so there are no wrapper components and nothing to override.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+This isn't an official part of ui-sdk. To make sure it behaves the same way, it runs upstream's own Playwright specs, unchanged, against Angular versions of upstream's test fixtures.
 
-```bash
-ng generate component component-name
-```
+## Getting started
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+> The package is experimental, so expect breaking changes until 1.0.
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the library, run:
+Install the package together with `@ui-sdk/core`, which holds the actual behavior:
 
 ```bash
-ng build ui-sdk-angular
+npm install ui-sdk-angular @ui-sdk/core
 ```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
+You need Angular 22 or newer. There's nothing to configure and no providers to add. Import the directives you need into your standalone component and put them on your elements:
 
-### Publishing the Library
+```ts
+import { Component, signal } from "@angular/core"
+import {
+  UiDialog,
+  UiDialogBackdrop,
+  UiDialogClose,
+  UiDialogContent,
+  UiDialogDescription,
+  UiDialogTitle,
+  UiDialogTrigger,
+} from "ui-sdk-angular"
 
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-
-   ```bash
-   cd dist/ui-sdk-angular
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
+@Component({
+  selector: "app-edit-profile",
+  imports: [
+    UiDialog,
+    UiDialogBackdrop,
+    UiDialogClose,
+    UiDialogContent,
+    UiDialogDescription,
+    UiDialogTitle,
+    UiDialogTrigger,
+  ],
+  template: `
+    <ng-container uiDialog [(open)]="open">
+      <button uiDialogTrigger>Edit profile</button>
+      <div *uiDialogBackdrop class="backdrop"></div>
+      <div *uiDialogContent class="dialog">
+        <h2 uiDialogTitle>Edit profile</h2>
+        <p uiDialogDescription>Make changes to your profile.</p>
+        <button uiDialogClose>Close</button>
+      </div>
+    </ng-container>
+  `,
+})
+export class EditProfile {
+  readonly open = signal(false)
+}
 ```
 
-## Running end-to-end tests
+The directives don't add any styles. Style the elements however you like, and use the `data-*` attributes they set, like `data-open`, for states and animations.
 
-For end-to-end (e2e) testing, run:
+The components, their parts and options work the same way as in every other ui-sdk framework. The [ui-sdk documentation](https://ui-sdk.dev/docs) explains them in detail. Its [Vue guide](https://ui-sdk.dev/docs/vue) is the closest to how things work here.
 
-```bash
-ng e2e
-```
+## Status
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+| Component         | Supported |
+| ----------------- | :-------: |
+| Accordion         |    ✅     |
+| Alert Dialog      |    ✅     |
+| Autocomplete      |    ✅     |
+| Avatar            |    ✅     |
+| Button            |    ✅     |
+| Calendar          |    ✅     |
+| Carousel          |    ✅     |
+| Checkbox          |    ✅     |
+| Collapsible       |    ✅     |
+| Color Picker      |    ✅     |
+| Combobox          |    ✅     |
+| Command           |    ✅     |
+| Date Input        |    ✅     |
+| Date Picker       |    ✅     |
+| Dialog            |    ✅     |
+| Drawer            |    ✅     |
+| Field             |    ✅     |
+| File Input        |    ✅     |
+| Hover Card        |    ✅     |
+| Image             |    ✅     |
+| Image Cropper     |    ✅     |
+| Input             |    ✅     |
+| Label             |    ✅     |
+| Listbox           |    ✅     |
+| Menu              |    ✅     |
+| Menubar           |    ✅     |
+| Meter             |    ✅     |
+| Navigation Menu   |    ✅     |
+| Number Input      |    ✅     |
+| OTP Input         |    ✅     |
+| Pagination        |    ✅     |
+| Password Input    |    ✅     |
+| Popover           |    ✅     |
+| Preferences       |    ✅     |
+| Progress          |    ✅     |
+| Radio             |    ✅     |
+| Rating            |    ✅     |
+| Resizable         |    ✅     |
+| Scroll Area       |    ✅     |
+| Segmented Control |    ✅     |
+| Segmented Input   |    ✅     |
+| Select            |    ✅     |
+| Separator         |    ✅     |
+| Shortcuts         |    ✅     |
+| Slider            |    ✅     |
+| Switch            |    ✅     |
+| Tabs              |    ✅     |
+| Textarea          |    ✅     |
+| Time Input        |    ✅     |
+| Timeline          |    ✅     |
+| Toast             |    ✅     |
+| Toggle            |    ✅     |
+| Token Input       |    ✅     |
+| Toolbar           |    ✅     |
+| Tooltip           |    ✅     |
+| Tree              |    ✅     |
+| Trigger Menu      |    ✅     |
+| Waterfall         |    ✅     |
+| Agent tools       |    ❌     |
 
-## Additional Resources
+A few things still have known issues:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Pagination:** page links that use `routerLink` don't change the page yet.
+- **Tree:** two accessibility checks fail while branches are expanded.
+- **Command:** with a long virtualized list, holding an arrow key can lose the highlight.
+- **Tabs:** memory grows when tabs are mounted and unmounted many times.
+
+## Source
+
+The code, the demo and how to contribute are on [GitHub](https://github.com/efuturetoday/ui-sdk-angular). There's also a [live demo](https://efuturetoday.github.io/ui-sdk-angular/).
