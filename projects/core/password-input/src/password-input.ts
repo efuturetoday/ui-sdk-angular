@@ -6,6 +6,7 @@ import {
   inject,
   input,
   output,
+  type OnInit,
 } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -37,7 +38,7 @@ import {
   exportAs: "uiPasswordInput",
   providers: [provideRoot(passwordInput, () => UiPasswordInput)],
 })
-class UiPasswordInput {
+class UiPasswordInput implements OnInit {
   /** The password. Bind it, or `[(value)]`, to control it. */
   readonly value = input<string>()
   /** The password at first, when uncontrolled, and after a form reset. */
@@ -134,6 +135,11 @@ class UiPasswordInput {
   readonly #part = injectPart(this.handle, "root")
   /** The password input's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -145,7 +151,7 @@ class UiPasswordInput {
   exportAs: "uiPasswordInputControl",
   host: { "[attr.value]": "defaultAttr()" },
 })
-class UiPasswordInputControl {
+class UiPasswordInputControl implements OnInit {
   /** The input's id. Inside a field, the field's when left out. */
   readonly id = input<string>()
   readonly #root = inject(UiPasswordInput)
@@ -172,6 +178,10 @@ class UiPasswordInputControl {
       }
     })
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -183,10 +193,14 @@ class UiPasswordInputControl {
   selector: "[uiPasswordInputToggle]",
   exportAs: "uiPasswordInputToggle",
 })
-class UiPasswordInputToggle {
+class UiPasswordInputToggle implements OnInit {
   readonly #part = injectPart(injectHandle(passwordInput), "toggle")
   /** The toggle's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createPasswordInputController } from "@ui-sdk/core/password-input"

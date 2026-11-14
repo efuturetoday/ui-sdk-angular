@@ -5,6 +5,7 @@ import {
   input,
   output,
   type Signal,
+  type OnInit,
 } from "@angular/core"
 import type { Anchor, ChangeDetails, Side, TypesOf } from "@ui-sdk/core"
 import {
@@ -49,7 +50,7 @@ type TooltipOpenChangeDetails = ChangeDetails<TooltipOpenChangeReason>
   exportAs: "uiTooltip",
   providers: [provideRoot(tooltip, () => UiTooltip)],
 })
-class UiTooltip {
+class UiTooltip implements OnInit {
   /** Whether the tooltip is open. Bind it, or `[(open)]`, to control the tooltip. */
   readonly open = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -130,6 +131,10 @@ class UiTooltip {
   )
   /** The tooltip's state. */
   readonly state: Signal<TypesOf<TooltipPrimitive>["state"]> = this.handle.state
+
+  ngOnInit() {
+    this.handle.init()
+  }
 }
 
 /**
@@ -142,7 +147,7 @@ class UiTooltip {
   exportAs: "uiTooltipTrigger",
   providers: [provideTrigger(tooltip, () => UiTooltipTrigger)],
 })
-class UiTooltipTrigger implements TriggerContext<typeof tooltip> {
+class UiTooltipTrigger implements OnInit, TriggerContext<typeof tooltip> {
   /** What the tooltip gets as its payload when this trigger opens it. */
   readonly payload = input<unknown>()
   /** Connects a trigger outside the tooltip to the one with this controller. */
@@ -164,6 +169,10 @@ class UiTooltipTrigger implements TriggerContext<typeof tooltip> {
   readonly target = this.#part.target
   /** The trigger's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -172,7 +181,7 @@ class UiTooltipTrigger implements TriggerContext<typeof tooltip> {
  * @experimental
  */
 @Directive({ selector: "[uiTooltipContent]" })
-class UiTooltipContent {
+class UiTooltipContent implements OnInit {
   /** Which side of the trigger it opens on: `*uiTooltipContent="let state; side: 'bottom'"`. */
   readonly side = input<Side>(undefined, { alias: "uiTooltipContentSide" })
   /** How it lines up with the trigger along that side. */
@@ -226,6 +235,10 @@ class UiTooltipContent {
   ): _context is PresentPartContext<TooltipContentState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -233,10 +246,14 @@ class UiTooltipContent {
  * @experimental
  */
 @Directive({ selector: "[uiTooltipArrow]", exportAs: "uiTooltipArrow" })
-class UiTooltipArrow {
+class UiTooltipArrow implements OnInit {
   readonly #part = injectPart(injectHandle(tooltip), "arrow")
   /** The arrow's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -246,12 +263,16 @@ class UiTooltipArrow {
  * @experimental
  */
 @Directive({ selector: "[uiTooltipShortcut]", exportAs: "uiTooltipShortcut" })
-class UiTooltipShortcut {
+class UiTooltipShortcut implements OnInit {
   /** The keys to show. By default, the tooltip's `shortcut`. */
   readonly shortcut = input<string>()
   readonly #part = injectShortcutPart(tooltip, this.shortcut)
   /** The shortcut's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createTooltipController } from "@ui-sdk/core/tooltip"

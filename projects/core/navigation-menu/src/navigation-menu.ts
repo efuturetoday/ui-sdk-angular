@@ -1,4 +1,11 @@
-import { computed, Directive, inject, input, output } from "@angular/core"
+import {
+  computed,
+  Directive,
+  inject,
+  input,
+  output,
+  type OnInit,
+} from "@angular/core"
 import type { Anchor, ChangeDetails, Side } from "@ui-sdk/core"
 import {
   navigationMenu,
@@ -39,7 +46,7 @@ type NavigationMenuValueChangeDetails =
   exportAs: "uiNavigationMenu",
   providers: [provideRoot(navigationMenu, () => UiNavigationMenu)],
 })
-class UiNavigationMenu {
+class UiNavigationMenu implements OnInit {
   /** The open item's value, or null. Bind it, or `[(value)]`, to control it. */
   readonly value = input<string | null>()
   /** The open item at first, when uncontrolled. */
@@ -113,6 +120,11 @@ class UiNavigationMenu {
   readonly #part = injectPart(this.handle, "root")
   /** The menu's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -123,10 +135,14 @@ class UiNavigationMenu {
   selector: "[uiNavigationMenuList]",
   exportAs: "uiNavigationMenuList",
 })
-class UiNavigationMenuList {
+class UiNavigationMenuList implements OnInit {
   readonly #part = injectPart(injectHandle(navigationMenu), "list")
   /** The list's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -137,7 +153,7 @@ class UiNavigationMenuList {
   selector: "[uiNavigationMenuItem]",
   exportAs: "uiNavigationMenuItem",
 })
-class UiNavigationMenuItem {
+class UiNavigationMenuItem implements OnInit {
   /** The item's value, which the menu's `value` names while it's open. A link's item needs none. */
   readonly value = input<string>()
   readonly #id = inject(UiIds).next()
@@ -148,6 +164,10 @@ class UiNavigationMenuItem {
   }))
   /** The item's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -159,7 +179,7 @@ class UiNavigationMenuItem {
   selector: "[uiNavigationMenuTrigger]",
   exportAs: "uiNavigationMenuTrigger",
 })
-class UiNavigationMenuTrigger {
+class UiNavigationMenuTrigger implements OnInit {
   /** Stops it from opening its content. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -171,6 +191,10 @@ class UiNavigationMenuTrigger {
   }))
   /** The trigger's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -180,7 +204,7 @@ class UiNavigationMenuTrigger {
  * @experimental
  */
 @Directive({ selector: "[uiNavigationMenuContent]" })
-class UiNavigationMenuContent {
+class UiNavigationMenuContent implements OnInit {
   /** Which side of the trigger it opens on, without a viewport. */
   readonly side = input<Side>(undefined, {
     alias: "uiNavigationMenuContentSide",
@@ -259,6 +283,10 @@ class UiNavigationMenuContent {
   ): _context is PresentPartContext<NavigationMenuContentState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -270,7 +298,7 @@ class UiNavigationMenuContent {
   selector: "[uiNavigationMenuLink]",
   exportAs: "uiNavigationMenuLink",
 })
-class UiNavigationMenuLink {
+class UiNavigationMenuLink implements OnInit {
   /** Marks the current page. */
   readonly current = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -288,6 +316,10 @@ class UiNavigationMenuLink {
   }))
   /** The link's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -299,7 +331,7 @@ class UiNavigationMenuLink {
   selector: "[uiNavigationMenuLinkIcon]",
   exportAs: "uiNavigationMenuLinkIcon",
 })
-class UiNavigationMenuLinkIcon {
+class UiNavigationMenuLinkIcon implements OnInit {
   /** Flips it in right-to-left text, for icons that point a way. */
   readonly mirror = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -313,6 +345,10 @@ class UiNavigationMenuLinkIcon {
   )
   /** The icon's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -322,7 +358,7 @@ class UiNavigationMenuLinkIcon {
  * @experimental
  */
 @Directive({ selector: "[uiNavigationMenuViewport]" })
-class UiNavigationMenuViewport {
+class UiNavigationMenuViewport implements OnInit {
   /** Which side of the trigger it opens on. */
   readonly side = input<Side>(undefined, {
     alias: "uiNavigationMenuViewportSide",
@@ -377,6 +413,10 @@ class UiNavigationMenuViewport {
   ): _context is PresentPartContext<NavigationMenuViewportState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -388,10 +428,14 @@ class UiNavigationMenuViewport {
   selector: "[uiNavigationMenuIndicator]",
   exportAs: "uiNavigationMenuIndicator",
 })
-class UiNavigationMenuIndicator {
+class UiNavigationMenuIndicator implements OnInit {
   readonly #part = injectPart(injectHandle(navigationMenu), "indicator")
   /** The indicator's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createNavigationMenuController } from "@ui-sdk/core/navigation-menu"

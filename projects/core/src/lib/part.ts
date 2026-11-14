@@ -39,6 +39,20 @@ type Unbound<State> = {
   state: () => State
 }
 
+// A part's props before it starts, for a binding or a template that reads its
+// state first. A required input Angular hasn't set yet throws NG0950 (code
+// -950), and still notifies once it's set, so the state reads the props then.
+function propsSoFar<Props>(props: () => Props) {
+  try {
+    return props()
+  } catch (error) {
+    if ((error as { code?: number }).code === -950) {
+      return {} as Props
+    }
+    throw error
+  }
+}
+
 // One of core's optional features of a primitive, like a combobox's chips.
 type Feature<P extends Primitive> = Parameters<ReturnType<P>["use"]>[0]
 
@@ -91,9 +105,7 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
     at: element.at,
   }
 
-  // A binding on the part's own element can read its state before Angular
-  // sets the inputs, when a required one throws, so until `init()` the state
-  // is the part's without props.
+  // Until it starts, the state reads the props it can (`propsSoFar`).
   const ready = signal(false)
 
   // Only a connected part has no instance, and it passes `unbound`.
@@ -105,7 +117,7 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
     }
     handle.version()
     liveVersion()
-    const current = ready() ? props() : ({} as PropsOf<P, S>)
+    const current = ready() ? props() : propsSoFar(props)
     return partState(handle.instance.part(slot, current)) as StateOf<P, S>
   })
 

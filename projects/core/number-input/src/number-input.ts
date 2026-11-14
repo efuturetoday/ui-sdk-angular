@@ -1,5 +1,12 @@
 import { DOCUMENT } from "@angular/common"
-import { Directive, inject, InjectionToken, input, output } from "@angular/core"
+import {
+  Directive,
+  inject,
+  InjectionToken,
+  input,
+  output,
+  type OnInit,
+} from "@angular/core"
 import type { ChangeDetails, CommitDetails, SlotName } from "@ui-sdk/core"
 import { fieldControlId } from "@ui-sdk/core/renderer"
 import {
@@ -55,7 +62,7 @@ const ControlField = new InjectionToken<JoinedPart | undefined>(
     },
   ],
 })
-class UiNumberInput {
+class UiNumberInput implements OnInit {
   /** The number, or null for an empty field. Bind it, or `[(value)]`, to control it. */
   readonly value = input<Value>()
   /** The number at first, when uncontrolled, and after a form reset. */
@@ -163,6 +170,12 @@ class UiNumberInput {
     () => ({}) as never,
     injectInputInside()
   )
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+    this.#hidden.init()
+  }
 }
 
 /**
@@ -170,10 +183,14 @@ class UiNumberInput {
  * @experimental
  */
 @Directive({ selector: "[uiNumberInputGroup]", exportAs: "uiNumberInputGroup" })
-class UiNumberInputGroup {
+class UiNumberInputGroup implements OnInit {
   readonly #part = injectPart(injectHandle(numberInput), "group")
   /** The group's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -185,12 +202,16 @@ class UiNumberInputGroup {
   selector: "input[uiNumberInputControl]",
   exportAs: "uiNumberInputControl",
 })
-class UiNumberInputControl {
+class UiNumberInputControl implements OnInit {
   readonly #part = injectPart(injectHandle(numberInput), "control", undefined, {
     join: inject(ControlField),
   })
   /** The field's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -201,7 +222,7 @@ class UiNumberInputControl {
   selector: "[uiNumberInputIncrement]",
   exportAs: "uiNumberInputIncrement",
 })
-class UiNumberInputIncrement {
+class UiNumberInputIncrement implements OnInit {
   /** Stops it from stepping, as at the bound it steps toward. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -211,6 +232,10 @@ class UiNumberInputIncrement {
   }))
   /** The button's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -221,7 +246,7 @@ class UiNumberInputIncrement {
   selector: "[uiNumberInputDecrement]",
   exportAs: "uiNumberInputDecrement",
 })
-class UiNumberInputDecrement {
+class UiNumberInputDecrement implements OnInit {
   /** Stops it from stepping, as at the bound it steps toward. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -231,6 +256,10 @@ class UiNumberInputDecrement {
   }))
   /** The button's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 const unconnected: NumberInputState = {
@@ -250,7 +279,7 @@ const unconnected: NumberInputState = {
   selector: "[uiNumberInputScrubArea]",
   exportAs: "uiNumberInputScrubArea",
 })
-class UiNumberInputScrubArea {
+class UiNumberInputScrubArea implements OnInit {
   /** Which way a drag changes the number. */
   readonly orientation = input<"horizontal" | "vertical">()
   /** How many pixels of dragging make one step. */
@@ -271,6 +300,10 @@ class UiNumberInputScrubArea {
   readonly target = this.#part.target
   /** The scrub area's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**

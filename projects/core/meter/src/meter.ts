@@ -1,4 +1,4 @@
-import { Directive, input, type Signal } from "@angular/core"
+import { Directive, input, type Signal, type OnInit } from "@angular/core"
 import {
   meter,
   type MeterLabelDetails,
@@ -26,7 +26,7 @@ import {
   exportAs: "uiMeter",
   providers: [provideRoot(meter, () => UiMeter)],
 })
-class UiMeter {
+class UiMeter implements OnInit {
   /** The reading, between `min` and `max`. Outside them, the fill is clamped. Left out, it's `min`. */
   readonly value = input<number>()
   /** The lowest value. */
@@ -54,6 +54,11 @@ class UiMeter {
   readonly #part = injectPart(this.handle, "root")
   /** The meter's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -61,10 +66,14 @@ class UiMeter {
  * @experimental
  */
 @Directive({ selector: "[uiMeterTrack]", exportAs: "uiMeterTrack" })
-class UiMeterTrack {
+class UiMeterTrack implements OnInit {
   readonly #part = injectPart(injectHandle(meter), "track")
   /** The track's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -72,10 +81,14 @@ class UiMeterTrack {
  * @experimental
  */
 @Directive({ selector: "[uiMeterIndicator]", exportAs: "uiMeterIndicator" })
-class UiMeterIndicator {
+class UiMeterIndicator implements OnInit {
   readonly #part = injectPart(injectHandle(meter), "indicator")
   /** The indicator's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -83,10 +96,14 @@ class UiMeterIndicator {
  * @experimental
  */
 @Directive({ selector: "[uiMeterLabel]", exportAs: "uiMeterLabel" })
-class UiMeterLabel {
+class UiMeterLabel implements OnInit {
   readonly #part = injectPart(injectHandle(meter), "label")
   /** The label's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -99,12 +116,16 @@ class UiMeterLabel {
   selector: "[uiMeterValue]",
   exportAs: "uiMeterValue",
 })
-class UiMeterValue implements TextSource {
+class UiMeterValue implements OnInit, TextSource {
   readonly #part = injectPart(injectHandle(meter), "value")
   /** The value's state, with its formatted `text`. */
   readonly state: Signal<MeterValueState> = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => this.state().text)
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export type {

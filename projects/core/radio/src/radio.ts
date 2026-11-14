@@ -5,6 +5,7 @@ import {
   input,
   output,
   type Signal,
+  type OnInit,
 } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -45,7 +46,7 @@ import {
   host: { "(focusout)": "focusOut($event)" },
   providers: [provideRoot(radioGroup, () => UiRadioGroup)],
 })
-class UiRadioGroup {
+class UiRadioGroup implements OnInit {
   /** The checked radio's value. Bind it, or `[(value)]`, to control the group. */
   readonly value = input<string | null>()
   /** The checked radio's value at first, when uncontrolled, and after a form reset. */
@@ -123,6 +124,11 @@ class UiRadioGroup {
       this.#form?.touch()
     }
   }
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -131,7 +137,7 @@ class UiRadioGroup {
  * @experimental
  */
 @Directive({ selector: "[uiRadio]", exportAs: "uiRadio" })
-class UiRadio {
+class UiRadio implements OnInit {
   /** What the group's value becomes when this radio is checked. */
   readonly value = input.required<string>()
   /** Skips the radio: arrow keys pass it and it can't be focused or checked. */
@@ -158,6 +164,10 @@ class UiRadio {
   readonly state = this.#part.state
 
   readonly #check = checkHiddenInput(this, "uiRadio")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -167,7 +177,7 @@ class UiRadio {
  * @experimental
  */
 @Directive({ selector: "[uiRadioIndicator]" })
-class UiRadioIndicator {
+class UiRadioIndicator implements OnInit {
   /** Keeps it in the page while unchecked: `*uiRadioIndicator="let state; keepMounted: true"`. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiRadioIndicatorKeepMounted",
@@ -190,6 +200,10 @@ class UiRadioIndicator {
     _context: unknown
   ): _context is PresentPartContext<RadioIndicatorState> {
     return true
+  }
+
+  ngOnInit() {
+    this.#part.init()
   }
 }
 
@@ -217,7 +231,7 @@ class UiRadioGroupValueAccessor extends UiValueAccessor<string | null> {
  * @experimental
  */
 @Directive({ selector: "input[uiRadioInput]" })
-class UiRadioInput {
+class UiRadioInput implements OnInit {
   /** The radio it's the input of. */
   readonly radio = input.required<UiRadio>({ alias: "uiRadioInput" })
   readonly #part = injectTargetPart(
@@ -228,6 +242,10 @@ class UiRadioInput {
 
   constructor() {
     linkHiddenInput(() => this.radio())
+  }
+
+  ngOnInit() {
+    this.#part.init()
   }
 }
 

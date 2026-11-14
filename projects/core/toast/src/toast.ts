@@ -6,6 +6,7 @@ import {
   input,
   type Provider,
   Renderer2,
+  type OnInit,
 } from "@angular/core"
 import {
   toast as globalToaster,
@@ -58,7 +59,7 @@ function provideToaster(toaster: Toaster<any>) {
   exportAs: "uiToastRegion",
   providers: [provideRoot(toastRegion, () => UiToastRegion)],
 })
-class UiToastRegion {
+class UiToastRegion implements OnInit {
   /** The toaster whose toasts it shows; the one `TOASTER` gives by default. */
   readonly toaster = input<Toaster<any>>()
   /** The edge it sits on. */
@@ -109,6 +110,11 @@ class UiToastRegion {
   constructor() {
     inject(Renderer2).removeAttribute(this.#el, "aria-label")
   }
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -116,8 +122,12 @@ class UiToastRegion {
  * @experimental
  */
 @Directive({ selector: "[uiToastList]", exportAs: "uiToastList" })
-class UiToastList {
+class UiToastList implements OnInit {
   readonly #part = injectPart(inject(UiToastRegion).handle, "list")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -127,7 +137,7 @@ class UiToastList {
  * @experimental
  */
 @Directive({ selector: "[uiToast]", exportAs: "uiToast" })
-class UiToast {
+class UiToast implements OnInit {
   /** The toast it shows, from the region's `state().toasts`. */
   readonly toast = input.required<Toast<any>>({ alias: "uiToast" })
   /** @internal The region it's in. */
@@ -137,6 +147,10 @@ class UiToast {
   }))
   /** The toast's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 // A toast's title or description, while the toast has one.
@@ -158,11 +172,15 @@ function injectToastText(slot: "title" | "description") {
   selector: "[uiToastTitle]",
   providers: [{ provide: TextSource, useExisting: UiToastTitle }],
 })
-class UiToastTitle implements TextSource {
+class UiToastTitle implements OnInit, TextSource {
   readonly #toast = inject(UiToast)
   readonly #part = injectToastText("title")
   /** Shows the toast's title where `uiText` is. */
   readonly attach = showText(() => String(this.#toast.toast().title ?? ""))
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -175,13 +193,17 @@ class UiToastTitle implements TextSource {
   selector: "[uiToastDescription]",
   providers: [{ provide: TextSource, useExisting: UiToastDescription }],
 })
-class UiToastDescription implements TextSource {
+class UiToastDescription implements OnInit, TextSource {
   readonly #toast = inject(UiToast)
   readonly #part = injectToastText("description")
   /** Shows the toast's description where `uiText` is. */
   readonly attach = showText(() =>
     String(this.#toast.toast().description ?? "")
   )
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -195,7 +217,7 @@ class UiToastDescription implements TextSource {
   selector: "[uiToastAction]",
   providers: [{ provide: TextSource, useExisting: UiToastAction }],
 })
-class UiToastAction implements TextSource {
+class UiToastAction implements OnInit, TextSource {
   /** Runs instead of the toast's own `action.onAction`: `*uiToastAction="let state; onAction: undo"`. */
   readonly onAction = input<ToastActionProps["onAction"]>(undefined, {
     alias: "uiToastActionOnAction",
@@ -225,6 +247,10 @@ class UiToastAction implements TextSource {
   readonly attach = showText(() =>
     String(this.#toast.toast().action?.label ?? "")
   )
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -233,7 +259,7 @@ class UiToastAction implements TextSource {
  * @experimental
  */
 @Directive({ selector: "[uiToastClose]", exportAs: "uiToastClose" })
-class UiToastClose {
+class UiToastClose implements OnInit {
   /** Runs before the toast closes. A returned Promise keeps it open and pending until it settles. */
   readonly action = input<ToastCloseProps["action"]>()
   readonly #toast = inject(UiToast)
@@ -245,6 +271,10 @@ class UiToastClose {
   }))
   /** The button's state, with `pending` while its action runs. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createToaster, toast } from "@ui-sdk/core/toast"

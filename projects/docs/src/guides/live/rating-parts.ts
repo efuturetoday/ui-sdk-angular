@@ -1,4 +1,4 @@
-import { Component, Directive, input, output } from "@angular/core"
+import { Component, Directive, input, output, type OnInit } from "@angular/core"
 import {
   injectHandle,
   injectPart,
@@ -13,7 +13,7 @@ import { rating } from "./rating"
   selector: "[appRating]",
   providers: [provideRoot(rating, () => AppRating)],
 })
-class AppRating {
+class AppRating implements OnInit {
   readonly value = input<number>()
   readonly defaultValue = input<number>()
   readonly valueChange = output<number>()
@@ -26,15 +26,26 @@ class AppRating {
       }
     },
   }))
-  readonly state = injectPart(this.handle, "root").state
+  readonly #part = injectPart(this.handle, "root")
+  readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 @Directive({ selector: "button[appRatingStar]" })
-class AppRatingStar {
+class AppRatingStar implements OnInit {
   readonly value = input.required<string>({ alias: "appRatingStar" })
-  readonly state = injectPart(injectHandle(rating), "star", () => ({
+  readonly #part = injectPart(injectHandle(rating), "star", () => ({
     value: this.value(),
-  })).state
+  }))
+  readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 @Directive({

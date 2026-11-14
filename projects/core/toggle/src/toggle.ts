@@ -1,4 +1,4 @@
-import { Directive, inject, input, output } from "@angular/core"
+import { Directive, inject, input, output, type OnInit } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   toggle,
@@ -36,7 +36,7 @@ import {
   host: { "(focusout)": "focusOut($event)" },
   providers: [provideRoot(toggleGroup, () => UiToggleGroup)],
 })
-class UiToggleGroup {
+class UiToggleGroup implements OnInit {
   /** The pressed toggles' values. Bind it, or `[(value)]`, to control the group. */
   readonly value = input<string[]>()
   /** The toggles pressed at first, when uncontrolled. */
@@ -108,6 +108,11 @@ class UiToggleGroup {
       this.#form?.touch()
     }
   }
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -121,7 +126,7 @@ class UiToggleGroup {
   host: { "(focusout)": "focusOut($event)" },
   providers: [provideRoot(toggle, () => UiToggle)],
 })
-class UiToggle {
+class UiToggle implements OnInit {
   /** Whether it's pressed. Bind it, or `[(pressed)]`, to control the toggle. */
   readonly pressed = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -190,6 +195,11 @@ class UiToggle {
       this.#form?.touch()
     }
   }
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -198,7 +208,7 @@ class UiToggle {
  * @experimental
  */
 @Directive({ selector: "[uiToggleIcon]", exportAs: "uiToggleIcon" })
-class UiToggleIcon {
+class UiToggleIcon implements OnInit {
   /** Flips the icon horizontally in right-to-left text, for icons that point a way. */
   readonly mirror = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -210,6 +220,10 @@ class UiToggleIcon {
   }))
   /** The icon's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**

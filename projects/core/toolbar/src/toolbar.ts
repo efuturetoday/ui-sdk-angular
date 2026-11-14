@@ -1,4 +1,11 @@
-import { computed, Directive, forwardRef, inject, input } from "@angular/core"
+import {
+  computed,
+  Directive,
+  forwardRef,
+  inject,
+  input,
+  type OnInit,
+} from "@angular/core"
 import {
   toolbar,
   type ToolbarController,
@@ -37,7 +44,7 @@ import {
     },
   ],
 })
-class UiToolbar {
+class UiToolbar implements OnInit {
   /** Which arrow keys move between the items. */
   readonly orientation = input<ToolbarOrientation>()
   /** Whether arrow keys wrap from the last item to the first. */
@@ -67,6 +74,11 @@ class UiToolbar {
   readonly #part = injectPart(this.handle, "root")
   /** The toolbar's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -86,7 +98,7 @@ class UiToolbar {
     },
   ],
 })
-class UiToolbarGroup {
+class UiToolbarGroup implements OnInit {
   /** Disables every item in it. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -99,6 +111,10 @@ class UiToolbarGroup {
   }))
   /** The group's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 // What an item takes from the group it sits in.
@@ -113,7 +129,7 @@ function injectGroupDisabled() {
  * @experimental
  */
 @Directive({ selector: "[uiToolbarButton]", exportAs: "uiToolbarButton" })
-class UiToolbarButton {
+class UiToolbarButton implements OnInit {
   /** Stops presses. It stays focusable with `focusableWhenDisabled`. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -133,6 +149,10 @@ class UiToolbarButton {
   }))
   /** The button's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -141,7 +161,7 @@ class UiToolbarButton {
  * @experimental
  */
 @Directive({ selector: "input[uiToolbarInput]", exportAs: "uiToolbarInput" })
-class UiToolbarInput {
+class UiToolbarInput implements OnInit {
   /** Stops typing. It stays focusable with `focusableWhenDisabled`. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -161,6 +181,10 @@ class UiToolbarInput {
   }))
   /** The field's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -168,7 +192,7 @@ class UiToolbarInput {
  * @experimental
  */
 @Directive({ selector: "[uiToolbarLink]", exportAs: "uiToolbarLink" })
-class UiToolbarLink {
+class UiToolbarLink implements OnInit {
   readonly #id = inject(UiIds).next()
   readonly #group = injectGroupDisabled()
   readonly #part = injectPart(injectHandle(toolbar), "link", () => ({
@@ -177,6 +201,10 @@ class UiToolbarLink {
   }))
   /** The link's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -184,10 +212,14 @@ class UiToolbarLink {
  * @experimental
  */
 @Directive({ selector: "[uiToolbarSeparator]", exportAs: "uiToolbarSeparator" })
-class UiToolbarSeparator {
+class UiToolbarSeparator implements OnInit {
   readonly #part = injectPart(injectHandle(toolbar), "separator")
   /** The separator's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createToolbarController } from "@ui-sdk/core/toolbar"

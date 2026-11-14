@@ -1,4 +1,11 @@
-import { computed, Directive, inject, input, output } from "@angular/core"
+import {
+  computed,
+  Directive,
+  inject,
+  input,
+  output,
+  type OnInit,
+} from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   carousel,
@@ -44,7 +51,7 @@ type CarouselPlayingChangeDetails = ChangeDetails<CarouselPlayingChangeReason>
   exportAs: "uiCarousel",
   providers: [provideRoot(carousel, () => UiCarousel)],
 })
-class UiCarousel {
+class UiCarousel implements OnInit {
   /** The current page, from 1. Bind it, or `[(page)]`, to control it. */
   readonly page = input<number>()
   /** The page at first, when uncontrolled. */
@@ -142,6 +149,11 @@ class UiCarousel {
   readonly #part = injectPart(this.handle, "root")
   /** The carousel's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -149,10 +161,14 @@ class UiCarousel {
  * @experimental
  */
 @Directive({ selector: "[uiCarouselViewport]", exportAs: "uiCarouselViewport" })
-class UiCarouselViewport {
+class UiCarouselViewport implements OnInit {
   readonly #part = injectPart(injectHandle(carousel), "viewport")
   /** The viewport's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -160,10 +176,14 @@ class UiCarouselViewport {
  * @experimental
  */
 @Directive({ selector: "[uiCarouselContent]", exportAs: "uiCarouselContent" })
-class UiCarouselContent {
+class UiCarouselContent implements OnInit {
   readonly #part = injectPart(injectHandle(carousel), "content")
   /** The content's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -171,13 +191,17 @@ class UiCarouselContent {
  * @experimental
  */
 @Directive({ selector: "[uiCarouselItem]", exportAs: "uiCarouselItem" })
-class UiCarouselItem {
+class UiCarouselItem implements OnInit {
   readonly #id = inject(UiIds).next()
   readonly #part = injectPart(injectHandle(carousel), "item", () => ({
     id: this.#id,
   }))
   /** The slide's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 // A control that pages or plays the carousel it's in, or the one its
@@ -201,7 +225,7 @@ function injectControl<
  * @experimental
  */
 @Directive({ selector: "[uiCarouselPrevious]", exportAs: "uiCarouselPrevious" })
-class UiCarouselPrevious {
+class UiCarouselPrevious implements OnInit {
   /** Connects it to the carousel with this controller, from anywhere. */
   readonly controller = input<CarouselController>()
   readonly #part = injectControl(
@@ -212,6 +236,10 @@ class UiCarouselPrevious {
   )
   /** The step's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -219,7 +247,7 @@ class UiCarouselPrevious {
  * @experimental
  */
 @Directive({ selector: "[uiCarouselNext]", exportAs: "uiCarouselNext" })
-class UiCarouselNext {
+class UiCarouselNext implements OnInit {
   /** Connects it to the carousel with this controller, from anywhere. */
   readonly controller = input<CarouselController>()
   readonly #part = injectControl(
@@ -230,6 +258,10 @@ class UiCarouselNext {
   )
   /** The step's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -240,7 +272,7 @@ class UiCarouselNext {
   selector: "[uiCarouselPlayToggle]",
   exportAs: "uiCarouselPlayToggle",
 })
-class UiCarouselPlayToggle {
+class UiCarouselPlayToggle implements OnInit {
   /** Connects it to the carousel with this controller, from anywhere. */
   readonly controller = input<CarouselController>()
   readonly #part = injectControl(
@@ -251,6 +283,10 @@ class UiCarouselPlayToggle {
   )
   /** The toggle's state, with whether it's `playing`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -261,7 +297,7 @@ class UiCarouselPlayToggle {
   selector: "[uiCarouselIndicatorGroup]",
   exportAs: "uiCarouselIndicatorGroup",
 })
-class UiCarouselIndicatorGroup {
+class UiCarouselIndicatorGroup implements OnInit {
   /** Connects it to the carousel with this controller, from anywhere. */
   readonly controller = input<CarouselController>()
   readonly #part = injectControl(
@@ -274,6 +310,10 @@ class UiCarouselIndicatorGroup {
   readonly target = this.#part.target
   /** The group's state, with its `pageCount`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -284,7 +324,7 @@ class UiCarouselIndicatorGroup {
   selector: "[uiCarouselIndicator]",
   exportAs: "uiCarouselIndicator",
 })
-class UiCarouselIndicator {
+class UiCarouselIndicator implements OnInit {
   /** The page it goes to, from 1. */
   readonly page = input<number>()
   readonly #group = inject(UiCarouselIndicatorGroup, { optional: true })
@@ -301,6 +341,10 @@ class UiCarouselIndicator {
   )
   /** The indicator's state, with whether it's `selected`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createCarouselController } from "@ui-sdk/core/carousel"

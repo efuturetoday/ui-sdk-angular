@@ -5,6 +5,7 @@ import {
   input,
   output,
   type Signal,
+  type OnInit,
 } from "@angular/core"
 import type { Anchor, ChangeDetails, Side, TypesOf } from "@ui-sdk/core"
 import {
@@ -46,7 +47,7 @@ type HoverCardOpenChangeDetails = ChangeDetails<HoverCardOpenChangeReason>
   exportAs: "uiHoverCard",
   providers: [provideRoot(hoverCard, () => UiHoverCard)],
 })
-class UiHoverCard {
+class UiHoverCard implements OnInit {
   /** Whether the card is open. Bind it, or `[(open)]`, to control the card. */
   readonly open = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -112,6 +113,10 @@ class UiHoverCard {
   /** The card's state. */
   readonly state: Signal<TypesOf<HoverCardPrimitive>["state"]> =
     this.handle.state
+
+  ngOnInit() {
+    this.handle.init()
+  }
 }
 
 /**
@@ -123,7 +128,7 @@ class UiHoverCard {
   selector: "[uiHoverCardTrigger]",
   exportAs: "uiHoverCardTrigger",
 })
-class UiHoverCardTrigger {
+class UiHoverCardTrigger implements OnInit {
   /** What the card gets as its payload when this trigger opens it. */
   readonly payload = input<unknown>()
   /** Connects a trigger outside the card to the one with this controller. */
@@ -140,6 +145,10 @@ class UiHoverCardTrigger {
   readonly target = this.#part.target
   /** The trigger's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -148,7 +157,7 @@ class UiHoverCardTrigger {
  * @experimental
  */
 @Directive({ selector: "[uiHoverCardContent]" })
-class UiHoverCardContent {
+class UiHoverCardContent implements OnInit {
   /** Which side of the trigger it opens on: `*uiHoverCardContent="let state; side: 'top'"`. */
   readonly side = input<Side>(undefined, { alias: "uiHoverCardContentSide" })
   /** How it lines up with the trigger along that side. */
@@ -208,6 +217,10 @@ class UiHoverCardContent {
   ): _context is PresentPartContext<HoverCardContentState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -215,10 +228,14 @@ class UiHoverCardContent {
  * @experimental
  */
 @Directive({ selector: "[uiHoverCardArrow]", exportAs: "uiHoverCardArrow" })
-class UiHoverCardArrow {
+class UiHoverCardArrow implements OnInit {
   readonly #part = injectPart(injectHandle(hoverCard), "arrow")
   /** The arrow's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createHoverCardController } from "@ui-sdk/core/hover-card"

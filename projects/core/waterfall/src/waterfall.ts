@@ -1,4 +1,11 @@
-import { computed, Directive, inject, input, output } from "@angular/core"
+import {
+  computed,
+  Directive,
+  inject,
+  input,
+  output,
+  type OnInit,
+} from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   waterfall,
@@ -35,7 +42,7 @@ type Value = string | null
   exportAs: "uiWaterfall",
   providers: [provideRoot(waterfall, () => UiWaterfall)],
 })
-class UiWaterfall {
+class UiWaterfall implements OnInit {
   /** The spans, with their start, end and children. */
   readonly items = input.required<WaterfallData>()
   /** The time range shown, if not the spans'. */
@@ -126,6 +133,11 @@ class UiWaterfall {
     this.handle.version()
     return this.handle.api.internal.all()
   })
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -136,8 +148,12 @@ class UiWaterfall {
   selector: "[uiWaterfallHeaderRow]",
   exportAs: "uiWaterfallHeaderRow",
 })
-class UiWaterfallHeaderRow {
+class UiWaterfallHeaderRow implements OnInit {
   readonly #part = injectPart(injectHandle(waterfall), "header-row")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -148,8 +164,12 @@ class UiWaterfallHeaderRow {
   selector: "[uiWaterfallColumnHeader]",
   exportAs: "uiWaterfallColumnHeader",
 })
-class UiWaterfallColumnHeader {
+class UiWaterfallColumnHeader implements OnInit {
   readonly #part = injectPart(injectHandle(waterfall), "column-header")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -157,7 +177,7 @@ class UiWaterfallColumnHeader {
  * @experimental
  */
 @Directive({ selector: "[uiWaterfallAxis]", exportAs: "uiWaterfallAxis" })
-class UiWaterfallAxis {
+class UiWaterfallAxis implements OnInit {
   /** The most ticks it shows. */
   readonly maxTicks = input<number>()
   readonly #part = injectPart(injectHandle(waterfall), "axis", () => ({
@@ -165,6 +185,10 @@ class UiWaterfallAxis {
   }))
   /** The axis's state, with its `ticks`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -176,7 +200,7 @@ class UiWaterfallAxis {
   selector: "[uiWaterfallTick]",
   exportAs: "uiWaterfallTick",
 })
-class UiWaterfallTick implements TextSource {
+class UiWaterfallTick implements OnInit, TextSource {
   /** The time it marks. */
   readonly time = input.required<number>()
   readonly #part = injectPart(injectHandle(waterfall), "tick", () => ({
@@ -186,6 +210,10 @@ class UiWaterfallTick implements TextSource {
   readonly state = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => this.state().label)
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -193,7 +221,7 @@ class UiWaterfallTick implements TextSource {
  * @experimental
  */
 @Directive({ selector: "[uiWaterfallMark]", exportAs: "uiWaterfallMark" })
-class UiWaterfallMark {
+class UiWaterfallMark implements OnInit {
   /** The time it marks. */
   readonly time = input.required<number>()
   readonly #part = injectPart(injectHandle(waterfall), "mark", () => ({
@@ -201,6 +229,10 @@ class UiWaterfallMark {
   }))
   /** The mark's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -208,7 +240,7 @@ class UiWaterfallMark {
  * @experimental
  */
 @Directive({ selector: "[uiWaterfallRow]", exportAs: "uiWaterfallRow" })
-class UiWaterfallRow {
+class UiWaterfallRow implements OnInit {
   /** The span it shows. */
   readonly value = input.required<string>()
   readonly #part = injectPart(injectHandle(waterfall), "row", () => ({
@@ -216,6 +248,10 @@ class UiWaterfallRow {
   }))
   /** The row's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 // A part inside a row, which takes its value.
@@ -234,10 +270,14 @@ function injectRowPart(slot: "row-header" | "indicator" | "cell" | "bar") {
   selector: "[uiWaterfallRowHeader]",
   exportAs: "uiWaterfallRowHeader",
 })
-class UiWaterfallRowHeader {
+class UiWaterfallRowHeader implements OnInit {
   readonly #part = injectRowPart("row-header")
   /** The row's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -248,10 +288,14 @@ class UiWaterfallRowHeader {
   selector: "[uiWaterfallIndicator]",
   exportAs: "uiWaterfallIndicator",
 })
-class UiWaterfallIndicator {
+class UiWaterfallIndicator implements OnInit {
   readonly #part = injectRowPart("indicator")
   /** The row's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -259,10 +303,14 @@ class UiWaterfallIndicator {
  * @experimental
  */
 @Directive({ selector: "[uiWaterfallCell]", exportAs: "uiWaterfallCell" })
-class UiWaterfallCell {
+class UiWaterfallCell implements OnInit {
   readonly #part = injectRowPart("cell")
   /** The row's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -270,10 +318,14 @@ class UiWaterfallCell {
  * @experimental
  */
 @Directive({ selector: "[uiWaterfallBar]", exportAs: "uiWaterfallBar" })
-class UiWaterfallBar {
+class UiWaterfallBar implements OnInit {
   readonly #part = injectRowPart("bar")
   /** The row's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export {

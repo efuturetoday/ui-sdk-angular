@@ -1,4 +1,10 @@
-import { Directive, forwardRef, inject, input } from "@angular/core"
+import {
+  Directive,
+  forwardRef,
+  inject,
+  input,
+  type OnInit,
+} from "@angular/core"
 import {
   menubar,
   type MenubarController,
@@ -35,7 +41,7 @@ import {
     },
   ],
 })
-class UiMenubar {
+class UiMenubar implements OnInit {
   /** Which arrow keys move between menus. A vertical menubar opens its menus to the side. */
   readonly orientation = input<MenubarOrientation>()
   /** Whether arrow keys wrap from the last menu to the first. */
@@ -68,6 +74,11 @@ class UiMenubar {
   readonly #part = injectPart(this.handle, "root")
   /** The menubar's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 export { createMenubarController } from "@ui-sdk/core/menubar"

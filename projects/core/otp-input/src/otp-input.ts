@@ -1,4 +1,4 @@
-import { Directive, input, output } from "@angular/core"
+import { Directive, input, output, type OnInit } from "@angular/core"
 import type { ChangeDetails, CommitDetails } from "@ui-sdk/core"
 import {
   otpInput,
@@ -49,7 +49,7 @@ const inputAttributes = [
   exportAs: "uiOtpInput",
   providers: [provideRoot(otpInput, () => UiOtpInput)],
 })
-class UiOtpInput {
+class UiOtpInput implements OnInit {
   /** The code. Bind it, or `[(value)]`, to control it. */
   readonly value = input<string>()
   /** The code at first, when uncontrolled, and after a form reset. */
@@ -139,6 +139,12 @@ class UiOtpInput {
     undefined,
     this.#field?.join
   )
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+    this.#control.init()
+  }
 }
 
 /**
@@ -146,10 +152,14 @@ class UiOtpInput {
  * @experimental
  */
 @Directive({ selector: "[uiOtpInputGroup]", exportAs: "uiOtpInputGroup" })
-class UiOtpInputGroup {
+class UiOtpInputGroup implements OnInit {
   readonly #part = injectPart(injectHandle(otpInput), "group")
   /** The group's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -160,8 +170,12 @@ class UiOtpInputGroup {
   selector: "[uiOtpInputSeparator]",
   exportAs: "uiOtpInputSeparator",
 })
-class UiOtpInputSeparator {
+class UiOtpInputSeparator implements OnInit {
   readonly #part = injectPart(injectHandle(otpInput), "separator")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -174,7 +188,7 @@ class UiOtpInputSeparator {
   selector: "[uiOtpInputSlot]",
   exportAs: "uiOtpInputSlot",
 })
-class UiOtpInputSlot implements TextSource {
+class UiOtpInputSlot implements OnInit, TextSource {
   /** Which character it shows, from 0. */
   readonly index = input.required<number>()
   readonly #part = injectPart(injectHandle(otpInput), "slot", () => ({
@@ -185,6 +199,10 @@ class UiOtpInputSlot implements TextSource {
   readonly state = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => this.state().char ?? "")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createOTPInputController } from "@ui-sdk/core/otp-input"

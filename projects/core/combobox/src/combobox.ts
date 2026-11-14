@@ -10,6 +10,7 @@ import {
   signal,
   type InputSignal,
   type Signal,
+  type OnInit,
 } from "@angular/core"
 import type {
   Anchor,
@@ -104,7 +105,7 @@ type ComboboxQueryChangeDetails = ChangeDetails<ComboboxQueryChangeReason>
     },
   ],
 })
-class UiCombobox {
+class UiCombobox implements OnInit {
   /** The selected value, or values with `multiple`. Bind it, or `[(value)]`, to control it. */
   readonly value = input<unknown>(undefined)
   /** The value at first, when uncontrolled. */
@@ -328,6 +329,11 @@ class UiCombobox {
     this.touch.emit()
     this.#form?.touch()
   }
+
+  ngOnInit() {
+    this.handle.init()
+    this.#inputs.init()
+  }
 }
 
 /**
@@ -335,10 +341,14 @@ class UiCombobox {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxLabel]", exportAs: "uiComboboxLabel" })
-class UiComboboxLabel {
+class UiComboboxLabel implements OnInit {
   readonly #part = injectPart(injectHandle(combobox), "label")
   /** The label's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -351,7 +361,7 @@ class UiComboboxLabel {
   exportAs: "uiComboboxInput",
   host: { "(focusout)": "focusOut($event)" },
 })
-class UiComboboxInput {
+class UiComboboxInput implements OnInit {
   readonly #root = inject(UiCombobox)
   readonly #field = injectFieldControl()
   readonly #part = injectPart(injectHandle(combobox), "input", undefined, {
@@ -369,6 +379,10 @@ class UiComboboxInput {
       this.#root.touched()
     }
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -376,10 +390,14 @@ class UiComboboxInput {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxTrigger]", exportAs: "uiComboboxTrigger" })
-class UiComboboxTrigger {
+class UiComboboxTrigger implements OnInit {
   readonly #part = injectPart(injectHandle(combobox), "trigger")
   /** The trigger's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -388,7 +406,7 @@ class UiComboboxTrigger {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxContent]" })
-class UiComboboxContent {
+class UiComboboxContent implements OnInit {
   /** Which side of the input it opens on: `*uiComboboxContent="let state; side: 'top'"`. */
   readonly side = input<Side>(undefined, { alias: "uiComboboxContentSide" })
   /** How it lines up with the input along that side. */
@@ -452,6 +470,10 @@ class UiComboboxContent {
   ): _context is PresentPartContext<ComboboxContentState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -460,10 +482,14 @@ class UiComboboxContent {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxList]", exportAs: "uiComboboxList" })
-class UiComboboxList {
+class UiComboboxList implements OnInit {
   readonly #part = injectPart(injectHandle(combobox), "list")
   /** The list's state, with the `items` that match. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -472,7 +498,7 @@ class UiComboboxList {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxGroup]", exportAs: "uiComboboxGroup" })
-class UiComboboxGroup {
+class UiComboboxGroup implements OnInit {
   /** @internal The group's id, which its items and label name. */
   readonly id = inject(UiIds).next()
   readonly #part = injectPart(injectHandle(combobox), "group", () => ({
@@ -480,6 +506,10 @@ class UiComboboxGroup {
   }))
   /** The group's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -490,7 +520,7 @@ class UiComboboxGroup {
   selector: "[uiComboboxGroupLabel]",
   exportAs: "uiComboboxGroupLabel",
 })
-class UiComboboxGroupLabel {
+class UiComboboxGroupLabel implements OnInit {
   readonly #group = inject(UiComboboxGroup)
   readonly #part = injectPart(injectHandle(combobox), "group-label", () => ({
     id: this.#group.id,
@@ -498,6 +528,10 @@ class UiComboboxGroupLabel {
   }))
   /** The label's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -505,7 +539,7 @@ class UiComboboxGroupLabel {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxItem]", exportAs: "uiComboboxItem" })
-class UiComboboxItem {
+class UiComboboxItem implements OnInit {
   /** The value it selects. */
   readonly value = input.required<unknown>()
   /** Its label, if its text isn't. */
@@ -530,6 +564,10 @@ class UiComboboxItem {
   }))
   /** The item's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -543,7 +581,7 @@ class UiComboboxItem {
   selector: "[uiComboboxItemText]",
   exportAs: "uiComboboxItemText",
 })
-class UiComboboxItemText implements TextSource {
+class UiComboboxItemText implements OnInit, TextSource {
   readonly #item = inject(UiComboboxItem)
   readonly #handle = injectHandle(combobox)
   /** Shows the part's text where `uiText` is, with its matches marked. */
@@ -563,6 +601,10 @@ class UiComboboxItemText implements TextSource {
   })
   /** The text's state, with the match. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -572,7 +614,7 @@ class UiComboboxItemText implements TextSource {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxItemIndicator]" })
-class UiComboboxItemIndicator {
+class UiComboboxItemIndicator implements OnInit {
   /** Keeps it in the page while unselected: `*uiComboboxItemIndicator="let state; keepMounted: true"`. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiComboboxItemIndicatorKeepMounted",
@@ -596,6 +638,10 @@ class UiComboboxItemIndicator {
   ): _context is PresentPartContext<ComboboxItemIndicatorState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -607,7 +653,7 @@ class UiComboboxItemIndicator {
   selector: "[uiComboboxSelectAll]",
   exportAs: "uiComboboxSelectAll",
 })
-class UiComboboxSelectAll {
+class UiComboboxSelectAll implements OnInit {
   readonly #group = inject(UiComboboxGroup, { optional: true })
   readonly #handle = injectHandle(combobox)
   readonly #part = injectPart(
@@ -620,6 +666,10 @@ class UiComboboxSelectAll {
   )
   /** The option's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -629,7 +679,7 @@ class UiComboboxSelectAll {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxItemIcon]", exportAs: "uiComboboxItemIcon" })
-class UiComboboxItemIcon {
+class UiComboboxItemIcon implements OnInit {
   /** Flips it in right-to-left text, for icons that point a way. */
   readonly mirror = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -649,6 +699,10 @@ class UiComboboxItemIcon {
   )
   /** The icon's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -660,11 +714,15 @@ class UiComboboxItemIcon {
   selector: "[uiComboboxValueIcon]",
   exportAs: "uiComboboxValueIcon",
 })
-class UiComboboxValueIcon {
+class UiComboboxValueIcon implements OnInit {
   readonly #handle = injectHandle(combobox)
   readonly #part = injectPart(this.#handle, "value-icon", undefined, {
     uses: comboboxItemIcons,
   })
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -675,8 +733,12 @@ class UiComboboxValueIcon {
   selector: "[uiComboboxSeparator]",
   exportAs: "uiComboboxSeparator",
 })
-class UiComboboxSeparator {
+class UiComboboxSeparator implements OnInit {
   readonly #part = injectPart(injectHandle(combobox), "separator")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -686,7 +748,7 @@ class UiComboboxSeparator {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxCreate]" })
-class UiComboboxCreate {
+class UiComboboxCreate implements OnInit {
   /** Runs with the text when the option is chosen. A returned Promise marks it pending until it settles. */
   readonly onCreate = input<(query: string) => unknown>(undefined, {
     alias: "uiComboboxCreateOnCreate",
@@ -707,6 +769,10 @@ class UiComboboxCreate {
     undefined,
     { uses: comboboxCreate }
   )
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -715,12 +781,16 @@ class UiComboboxCreate {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxEmpty]", exportAs: "uiComboboxEmpty" })
-class UiComboboxEmpty {
+class UiComboboxEmpty implements OnInit {
   readonly #part = injectPart(injectHandle(combobox), "empty", () => ({
     stash: true,
   }))
   /** The empty message's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -728,10 +798,14 @@ class UiComboboxEmpty {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxStatus]", exportAs: "uiComboboxStatus" })
-class UiComboboxStatus {
+class UiComboboxStatus implements OnInit {
   readonly #part = injectPart(injectHandle(combobox), "status")
   /** The status's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -741,7 +815,7 @@ class UiComboboxStatus {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxClear]" })
-class UiComboboxClear {
+class UiComboboxClear implements OnInit {
   /** Keeps it in the page while there's nothing to clear. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiComboboxClearKeepMounted",
@@ -752,6 +826,10 @@ class UiComboboxClear {
     "clear",
     computed(() => ({ keepMounted: this.keepMounted() }))
   )
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -761,7 +839,7 @@ class UiComboboxClear {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxValue]", exportAs: "uiComboboxValue" })
-class UiComboboxValue {
+class UiComboboxValue implements OnInit {
   /** How many labels `state().label` lists before it sums the rest up. */
   readonly maxLabels = input<number>()
   /** The text for the labels it leaves out, like `"+2 more"`. */
@@ -772,6 +850,10 @@ class UiComboboxValue {
   }))
   /** The value's state: `value`, and its `label`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -782,13 +864,17 @@ class UiComboboxValue {
   selector: "[uiComboboxChips]",
   exportAs: "uiComboboxChips",
 })
-class UiComboboxChips {
+class UiComboboxChips implements OnInit {
   readonly #handle = injectHandle(combobox)
   readonly #part = injectPart(this.#handle, "chips", undefined, {
     uses: comboboxChips,
   })
   /** The chips' state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -801,7 +887,7 @@ class UiComboboxChips {
   selector: "[uiComboboxChipsOverflow]",
   exportAs: "uiComboboxChipsOverflow",
 })
-class UiComboboxChipsOverflow implements TextSource {
+class UiComboboxChipsOverflow implements OnInit, TextSource {
   readonly #handle = injectHandle(combobox)
   readonly #part = injectPart(this.#handle, "chips-overflow", undefined, {
     uses: comboboxChips,
@@ -810,6 +896,10 @@ class UiComboboxChipsOverflow implements TextSource {
   readonly state = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => `+${this.state().count} more`)
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -821,7 +911,7 @@ class UiComboboxChipsOverflow implements TextSource {
   exportAs: "uiComboboxChip",
   providers: [{ provide: TextSource, useExisting: UiComboboxChip }],
 })
-class UiComboboxChip implements TextSource {
+class UiComboboxChip implements OnInit, TextSource {
   /** The value it shows. */
   readonly value = input.required<unknown>()
   readonly #handle = injectHandle(combobox)
@@ -838,6 +928,10 @@ class UiComboboxChip implements TextSource {
   readonly state: Signal<ComboboxChipState> = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => this.state()?.label ?? "")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -848,7 +942,7 @@ class UiComboboxChip implements TextSource {
   selector: "[uiComboboxChipRemove]",
   exportAs: "uiComboboxChipRemove",
 })
-class UiComboboxChipRemove {
+class UiComboboxChipRemove implements OnInit {
   readonly #chip = inject(UiComboboxChip)
   readonly #handle = injectHandle(combobox)
   readonly #part = injectPart(
@@ -862,6 +956,10 @@ class UiComboboxChipRemove {
   )
   /** The button's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -869,10 +967,14 @@ class UiComboboxChipRemove {
  * @experimental
  */
 @Directive({ selector: "[uiComboboxArrow]", exportAs: "uiComboboxArrow" })
-class UiComboboxArrow {
+class UiComboboxArrow implements OnInit {
   readonly #part = injectPart(injectHandle(combobox), "arrow")
   /** The arrow's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**

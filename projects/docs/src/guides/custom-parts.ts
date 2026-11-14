@@ -52,11 +52,12 @@ const text = (load: () => Promise<unknown>) => () =>
         part.
       </p>
       <p>
-        Call these helpers in field initializers. They start when Angular has
-        set the inputs. The instance is destroyed together with the directive.
-        You don't need
+        Call these helpers in field initializers. Then call their
+        <code>init()</code>
+        in
         <code>ngOnInit</code>
-        .
+        . That is when Angular has set the inputs, before your template reads
+        the state. The instance is destroyed together with the directive.
       </p>
     </section>
 

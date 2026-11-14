@@ -1,4 +1,4 @@
-import { Directive, inject, input, output } from "@angular/core"
+import { Directive, inject, input, output, type OnInit } from "@angular/core"
 import type { SlotName } from "@ui-sdk/core"
 import {
   colorPicker,
@@ -34,7 +34,7 @@ import {
   exportAs: "uiColorPicker",
   providers: [provideRoot(colorPicker, () => UiColorPicker)],
 })
-class UiColorPicker {
+class UiColorPicker implements OnInit {
   /** The color, as a CSS color. Bind it, or `[(value)]`, to control it. */
   readonly value = input<string>()
   /** The color at first, when uncontrolled, and after a form reset. */
@@ -119,6 +119,12 @@ class UiColorPicker {
     () => ({}) as never,
     injectInputInside()
   )
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+    this.#hidden.init()
+  }
 }
 
 /**
@@ -126,7 +132,7 @@ class UiColorPicker {
  * @experimental
  */
 @Directive({ selector: "[uiColorPickerArea]", exportAs: "uiColorPickerArea" })
-class UiColorPickerArea {
+class UiColorPickerArea implements OnInit {
   /** The channel along its width. */
   readonly x = input<ColorChannel>()
   /** The channel along its height. */
@@ -137,6 +143,10 @@ class UiColorPickerArea {
   }))
   /** The picker's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -147,7 +157,7 @@ class UiColorPickerArea {
   selector: "[uiColorPickerAreaThumb]",
   exportAs: "uiColorPickerAreaThumb",
 })
-class UiColorPickerAreaThumb {
+class UiColorPickerAreaThumb implements OnInit {
   readonly #area = inject(UiColorPickerArea)
   readonly #part = injectPart(injectHandle(colorPicker), "area-thumb", () => ({
     x: this.#area.x(),
@@ -155,6 +165,10 @@ class UiColorPickerAreaThumb {
   }))
   /** The picker's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -165,12 +179,16 @@ class UiColorPickerAreaThumb {
   selector: "canvas[uiColorPickerAreaCanvas]",
   exportAs: "uiColorPickerAreaCanvas",
 })
-class UiColorPickerAreaCanvas {
+class UiColorPickerAreaCanvas implements OnInit {
   readonly #area = inject(UiColorPickerArea)
   readonly #part = injectPart(injectHandle(colorPicker), "area-canvas", () => ({
     x: this.#area.x(),
     y: this.#area.y(),
   }))
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -181,7 +199,7 @@ class UiColorPickerAreaCanvas {
   selector: "[uiColorPickerSlider]",
   exportAs: "uiColorPickerSlider",
 })
-class UiColorPickerSlider {
+class UiColorPickerSlider implements OnInit {
   /** The channel it moves. */
   readonly channel = input<ColorChannel>()
   /** Which way it runs. */
@@ -195,6 +213,10 @@ class UiColorPickerSlider {
   }))
   /** The slider's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -205,7 +227,7 @@ class UiColorPickerSlider {
   selector: "[uiColorPickerSliderThumb]",
   exportAs: "uiColorPickerSliderThumb",
 })
-class UiColorPickerSliderThumb {
+class UiColorPickerSliderThumb implements OnInit {
   readonly #slider = inject(UiColorPickerSlider)
   readonly #part = injectPart(
     injectHandle(colorPicker),
@@ -218,6 +240,10 @@ class UiColorPickerSliderThumb {
   )
   /** The slider's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -228,10 +254,14 @@ class UiColorPickerSliderThumb {
   selector: "input[uiColorPickerInput]",
   exportAs: "uiColorPickerInput",
 })
-class UiColorPickerInput {
+class UiColorPickerInput implements OnInit {
   readonly #part = injectPart(injectHandle(colorPicker), "input")
   /** The picker's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -242,7 +272,7 @@ class UiColorPickerInput {
   selector: "input[uiColorPickerChannelInput]",
   exportAs: "uiColorPickerChannelInput",
 })
-class UiColorPickerChannelInput {
+class UiColorPickerChannelInput implements OnInit {
   /** The channel it shows and sets. */
   readonly channel = input<ColorChannel>()
   readonly #id = inject(UiIds).next()
@@ -253,6 +283,10 @@ class UiColorPickerChannelInput {
   )
   /** The picker's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -263,10 +297,14 @@ class UiColorPickerChannelInput {
   selector: "[uiColorPickerSwatch]",
   exportAs: "uiColorPickerSwatch",
 })
-class UiColorPickerSwatch {
+class UiColorPickerSwatch implements OnInit {
   readonly #part = injectPart(injectHandle(colorPicker), "swatch")
   /** The picker's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -277,10 +315,14 @@ class UiColorPickerSwatch {
   selector: "[uiColorPickerEyeDropper]",
   exportAs: "uiColorPickerEyeDropper",
 })
-class UiColorPickerEyeDropper {
+class UiColorPickerEyeDropper implements OnInit {
   readonly #part = injectPart(injectHandle(colorPicker), "eye-dropper")
   /** The picker's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -291,10 +333,14 @@ class UiColorPickerEyeDropper {
   selector: "[uiColorPickerSwatches]",
   exportAs: "uiColorPickerSwatches",
 })
-class UiColorPickerSwatches {
+class UiColorPickerSwatches implements OnInit {
   readonly #part = injectPart(injectHandle(colorPicker), "swatches")
   /** The picker's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -305,7 +351,7 @@ class UiColorPickerSwatches {
   selector: "[uiColorPickerSwatchItem]",
   exportAs: "uiColorPickerSwatchItem",
 })
-class UiColorPickerSwatchItem {
+class UiColorPickerSwatchItem implements OnInit {
   /** The color it picks, as a CSS color. */
   readonly value = input.required<string>()
   readonly #part = injectPart(injectHandle(colorPicker), "swatch-item", () => ({
@@ -313,6 +359,10 @@ class UiColorPickerSwatchItem {
   }))
   /** The item's state, with whether it's `selected`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createColorPickerController } from "@ui-sdk/core/color-picker"

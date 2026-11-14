@@ -12,6 +12,7 @@ import {
   Renderer2,
   signal,
   untracked,
+  type OnInit,
 } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -48,7 +49,7 @@ type RatingValueChangeDetails = ChangeDetails<RatingValueChangeReason>
   exportAs: "uiRating",
   providers: [provideRoot(rating, () => UiRating)],
 })
-class UiRating {
+class UiRating implements OnInit {
   /** The score, or null for none. Bind it, or `[(value)]`, to control it. */
   readonly value = input<number | null>()
   /** The score at first, when uncontrolled, and after a form reset. */
@@ -134,6 +135,11 @@ class UiRating {
   readonly items = computed(() =>
     Array.from({ length: this.max() }, (_, at) => at + 1)
   )
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -144,7 +150,7 @@ class UiRating {
  * @experimental
  */
 @Directive({ selector: "[uiRatingItem]", exportAs: "uiRatingItem" })
-class UiRatingItem {
+class UiRatingItem implements OnInit {
   /** Which star it is, from 1. */
   readonly index = input.required<number>()
   readonly #root = inject(UiRating)
@@ -205,6 +211,10 @@ class UiRatingItem {
       })
     })
     inject(DestroyRef).onDestroy(() => made.forEach((stop) => stop()))
+  }
+
+  ngOnInit() {
+    this.#part.init()
   }
 }
 

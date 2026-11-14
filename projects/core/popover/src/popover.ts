@@ -6,6 +6,7 @@ import {
   output,
   type InputSignal,
   type Signal,
+  type OnInit,
 } from "@angular/core"
 import type {
   Anchor,
@@ -65,7 +66,7 @@ type PopoverDismissAttemptDetails = DismissAttemptDetails<PopoverDismissReason>
   exportAs: "uiPopover",
   providers: [provideRoot(popover, () => UiPopover)],
 })
-class UiPopover {
+class UiPopover implements OnInit {
   /** Whether the popover is open. Bind it, or `[(open)]`, to control the popover. */
   readonly open = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -145,6 +146,10 @@ class UiPopover {
   )
   /** The popover's state. */
   readonly state: Signal<TypesOf<PopoverPrimitive>["state"]> = this.handle.state
+
+  ngOnInit() {
+    this.handle.init()
+  }
 }
 
 /**
@@ -157,7 +162,7 @@ class UiPopover {
   exportAs: "uiPopoverTrigger",
   providers: [provideTrigger(popover, () => UiPopoverTrigger)],
 })
-class UiPopoverTrigger implements TriggerContext<typeof popover> {
+class UiPopoverTrigger implements OnInit, TriggerContext<typeof popover> {
   /** What the popover gets as its payload when this trigger opens it. */
   readonly payload = input<unknown>()
   /** Stops the trigger from opening the popover. */
@@ -191,6 +196,10 @@ class UiPopoverTrigger implements TriggerContext<typeof popover> {
   readonly target = this.#part.target
   /** The trigger's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -199,12 +208,16 @@ class UiPopoverTrigger implements TriggerContext<typeof popover> {
  * @experimental
  */
 @Directive({ selector: "[uiPopoverShortcut]", exportAs: "uiPopoverShortcut" })
-class UiPopoverShortcut {
+class UiPopoverShortcut implements OnInit {
   /** The keys to show. Inside a trigger, its shortcut. */
   readonly shortcut = input<string>()
   readonly #part = injectShortcutPart(popover, this.shortcut)
   /** The shortcut's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -214,7 +227,7 @@ class UiPopoverShortcut {
  * @experimental
  */
 @Directive({ selector: "[uiPopoverContent]" })
-class UiPopoverContent {
+class UiPopoverContent implements OnInit {
   /** Which side of the trigger it opens on: `*uiPopoverContent="let state; side: 'top'"`. */
   readonly side = input<Side>(undefined, { alias: "uiPopoverContentSide" })
   /** How it lines up with the trigger along that side. */
@@ -287,6 +300,10 @@ class UiPopoverContent {
   ): _context is PresentPartContext<PopoverContentState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -294,10 +311,14 @@ class UiPopoverContent {
  * @experimental
  */
 @Directive({ selector: "[uiPopoverTitle]", exportAs: "uiPopoverTitle" })
-class UiPopoverTitle {
+class UiPopoverTitle implements OnInit {
   readonly #part = injectPart(injectHandle(popover), "title")
   /** The title's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -308,10 +329,14 @@ class UiPopoverTitle {
   selector: "[uiPopoverDescription]",
   exportAs: "uiPopoverDescription",
 })
-class UiPopoverDescription {
+class UiPopoverDescription implements OnInit {
   readonly #part = injectPart(injectHandle(popover), "description")
   /** The description's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -319,10 +344,14 @@ class UiPopoverDescription {
  * @experimental
  */
 @Directive({ selector: "[uiPopoverClose]", exportAs: "uiPopoverClose" })
-class UiPopoverClose {
+class UiPopoverClose implements OnInit {
   readonly #part = injectPart(injectHandle(popover), "close")
   /** The close button's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -330,10 +359,14 @@ class UiPopoverClose {
  * @experimental
  */
 @Directive({ selector: "[uiPopoverArrow]", exportAs: "uiPopoverArrow" })
-class UiPopoverArrow {
+class UiPopoverArrow implements OnInit {
   readonly #part = injectPart(injectHandle(popover), "arrow")
   /** The arrow's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createPopoverController } from "@ui-sdk/core/popover"

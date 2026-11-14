@@ -1,4 +1,11 @@
-import { computed, Directive, inject, input, output } from "@angular/core"
+import {
+  computed,
+  Directive,
+  inject,
+  input,
+  output,
+  type OnInit,
+} from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   tabs,
@@ -29,7 +36,7 @@ import {
   exportAs: "uiTabs",
   providers: [provideRoot(tabs, () => UiTabs)],
 })
-class UiTabs {
+class UiTabs implements OnInit {
   /** The selected tab's value. Bind it, or `[(value)]`, to control the tabs. `null` selects nothing. */
   readonly value = input<string | null>()
   /** The tab selected at first, when uncontrolled. Defaults to the first enabled tab. */
@@ -76,6 +83,11 @@ class UiTabs {
   readonly #part = injectPart(this.handle, "root")
   /** The tabs' state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -83,10 +95,14 @@ class UiTabs {
  * @experimental
  */
 @Directive({ selector: "[uiTabsList]", exportAs: "uiTabsList" })
-class UiTabsList {
+class UiTabsList implements OnInit {
   readonly #part = injectPart(injectHandle(tabs), "list")
   /** The list's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -94,7 +110,7 @@ class UiTabsList {
  * @experimental
  */
 @Directive({ selector: "[uiTabsTab]", exportAs: "uiTabsTab" })
-class UiTabsTab {
+class UiTabsTab implements OnInit {
   /** Identifies the tab and pairs it with the panel of the same value. */
   readonly value = input.required<string>()
   /** Keeps the tab focusable but stops it from being selected. */
@@ -107,6 +123,10 @@ class UiTabsTab {
   }))
   /** The tab's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -115,7 +135,7 @@ class UiTabsTab {
  * @experimental
  */
 @Directive({ selector: "[uiTabsTabIcon]", exportAs: "uiTabsTabIcon" })
-class UiTabsTabIcon {
+class UiTabsTabIcon implements OnInit {
   /** Flips it in right-to-left text, for icons that point a way. */
   readonly mirror = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -129,6 +149,10 @@ class UiTabsTabIcon {
   }))
   /** The icon's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -137,10 +161,14 @@ class UiTabsTabIcon {
  * @experimental
  */
 @Directive({ selector: "[uiTabsIndicator]", exportAs: "uiTabsIndicator" })
-class UiTabsIndicator {
+class UiTabsIndicator implements OnInit {
   readonly #part = injectPart(injectHandle(tabs), "indicator")
   /** The indicator's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -150,7 +178,7 @@ class UiTabsIndicator {
  * @experimental
  */
 @Directive({ selector: "[uiTabsPanel]" })
-class UiTabsPanel {
+class UiTabsPanel implements OnInit {
   /** The value of the tab this panel belongs to. */
   readonly value = input.required<string>({ alias: "uiTabsPanel" })
   /** Keeps the panel in the page, hidden, while its tab isn't selected: `*uiTabsPanel="'account'; keepMounted: true"`. */
@@ -178,6 +206,10 @@ class UiTabsPanel {
     _context: unknown
   ): _context is PresentPartContext<TabsPanelState> {
     return true
+  }
+
+  ngOnInit() {
+    this.#part.init()
   }
 }
 

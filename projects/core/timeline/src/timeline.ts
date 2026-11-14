@@ -1,4 +1,4 @@
-import { computed, Directive, inject, input } from "@angular/core"
+import { computed, Directive, inject, input, type OnInit } from "@angular/core"
 import {
   timeline,
   type TimelineController,
@@ -27,7 +27,7 @@ import {
   exportAs: "uiTimeline",
   providers: [provideRoot(timeline, () => UiTimeline)],
 })
-class UiTimeline {
+class UiTimeline implements OnInit {
   /** The direction the events run in, which the arrow keys follow. */
   readonly orientation = input<TimelineOrientation>()
   /** Whether the arrow keys wrap around. */
@@ -62,6 +62,11 @@ class UiTimeline {
   readonly #part = injectPart(this.handle, "root")
   /** The timeline's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -70,7 +75,7 @@ class UiTimeline {
  * @experimental
  */
 @Directive({ selector: "[uiTimelineItem]", exportAs: "uiTimelineItem" })
-class UiTimelineItem {
+class UiTimelineItem implements OnInit {
   /** Names the event for the controller. Generated when left out. */
   readonly value = input<string>()
   /** Where the event is in the story: `"complete"`, `"current"` or `"upcoming"`. */
@@ -84,6 +89,10 @@ class UiTimelineItem {
   }))
   /** The event's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -92,7 +101,7 @@ class UiTimelineItem {
  * @experimental
  */
 @Directive({ selector: "[uiTimelineMarker]", exportAs: "uiTimelineMarker" })
-class UiTimelineMarker {
+class UiTimelineMarker implements OnInit {
   readonly #item = inject(UiTimelineItem)
   readonly #part = injectPart(injectHandle(timeline), "marker", () => ({
     value: this.#item.key(),
@@ -100,6 +109,10 @@ class UiTimelineMarker {
   }))
   /** The marker's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -111,7 +124,7 @@ class UiTimelineMarker {
   selector: "[uiTimelineConnector]",
   exportAs: "uiTimelineConnector",
 })
-class UiTimelineConnector {
+class UiTimelineConnector implements OnInit {
   readonly #item = inject(UiTimelineItem)
   readonly #part = injectPart(injectHandle(timeline), "connector", () => ({
     value: this.#item.key(),
@@ -119,6 +132,10 @@ class UiTimelineConnector {
   }))
   /** The connector's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -127,7 +144,7 @@ class UiTimelineConnector {
  * @experimental
  */
 @Directive({ selector: "[uiTimelineTime]", exportAs: "uiTimelineTime" })
-class UiTimelineTime {
+class UiTimelineTime implements OnInit {
   readonly #item = inject(UiTimelineItem)
   readonly #part = injectPart(injectHandle(timeline), "time", () => ({
     value: this.#item.key(),
@@ -135,6 +152,10 @@ class UiTimelineTime {
   }))
   /** The time's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -142,7 +163,7 @@ class UiTimelineTime {
  * @experimental
  */
 @Directive({ selector: "[uiTimelineTitle]", exportAs: "uiTimelineTitle" })
-class UiTimelineTitle {
+class UiTimelineTitle implements OnInit {
   readonly #item = inject(UiTimelineItem)
   readonly #part = injectPart(injectHandle(timeline), "title", () => ({
     value: this.#item.key(),
@@ -150,6 +171,10 @@ class UiTimelineTitle {
   }))
   /** The title's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -160,7 +185,7 @@ class UiTimelineTitle {
   selector: "[uiTimelineDescription]",
   exportAs: "uiTimelineDescription",
 })
-class UiTimelineDescription {
+class UiTimelineDescription implements OnInit {
   readonly #item = inject(UiTimelineItem)
   readonly #part = injectPart(injectHandle(timeline), "description", () => ({
     value: this.#item.key(),
@@ -168,6 +193,10 @@ class UiTimelineDescription {
   }))
   /** The description's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createTimelineController } from "@ui-sdk/core/timeline"

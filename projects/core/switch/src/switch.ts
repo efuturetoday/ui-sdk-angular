@@ -4,6 +4,7 @@ import {
   input,
   output,
   type InputSignal,
+  type OnInit,
 } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -41,7 +42,7 @@ import {
   host: { "(focusout)": "focusOut($event)" },
   providers: [provideRoot(switchPrimitive, () => UiSwitch)],
 })
-class UiSwitch {
+class UiSwitch implements OnInit {
   /** Whether it's on. Bind it, or `[(checked)]`, to control the switch. */
   readonly checked = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -122,6 +123,11 @@ class UiSwitch {
   }
 
   readonly #check = checkHiddenInput(this, "uiSwitch")
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -129,10 +135,14 @@ class UiSwitch {
  * @experimental
  */
 @Directive({ selector: "[uiSwitchThumb]", exportAs: "uiSwitchThumb" })
-class UiSwitchThumb {
+class UiSwitchThumb implements OnInit {
   readonly #part = injectPart(injectHandle(switchPrimitive), "thumb")
   /** The thumb's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -159,13 +169,17 @@ class UiSwitchValueAccessor extends UiValueAccessor<boolean> {
  * @experimental
  */
 @Directive({ selector: "input[uiSwitchInput]" })
-class UiSwitchInput {
+class UiSwitchInput implements OnInit {
   /** The switch it's the input of. */
   readonly switch = input.required<UiSwitch>({ alias: "uiSwitchInput" })
   readonly #part = injectTargetPart(() => this.switch().handle, "input")
 
   constructor() {
     linkHiddenInput(() => this.switch())
+  }
+
+  ngOnInit() {
+    this.#part.init()
   }
 }
 

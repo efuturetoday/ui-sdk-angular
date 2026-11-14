@@ -8,6 +8,7 @@ import {
   output,
   type InputSignal,
   type Signal,
+  type OnInit,
 } from "@angular/core"
 import {
   formatShortcut,
@@ -90,7 +91,7 @@ const MenuGroupToken = new InjectionToken<{ id: string }>("menu-group")
     { provide: MenubarToken, useValue: null },
   ],
 })
-class UiMenu {
+class UiMenu implements OnInit {
   /** Whether the menu is open. Bind it, or `[(open)]`, to control it. */
   readonly open = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -198,6 +199,10 @@ class UiMenu {
   )
   /** The menu's state. */
   readonly state: Signal<TypesOf<MenuPrimitive>["state"]> = this.handle.state
+
+  ngOnInit() {
+    this.handle.init()
+  }
 }
 
 /**
@@ -213,7 +218,7 @@ class UiMenu {
     { provide: MenubarToken, useValue: null },
   ],
 })
-class UiMenuSub {
+class UiMenuSub implements OnInit {
   /** Whether the submenu is open. Bind it, or `[(open)]`, to control it. */
   readonly open = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -267,6 +272,10 @@ class UiMenuSub {
   )
   /** The submenu's state. */
   readonly state: Signal<TypesOf<MenuPrimitive>["state"]> = this.handle.state
+
+  ngOnInit() {
+    this.handle.init()
+  }
 }
 
 /**
@@ -275,7 +284,7 @@ class UiMenuSub {
  * @experimental
  */
 @Directive({ selector: "[uiMenuTrigger]", exportAs: "uiMenuTrigger" })
-class UiMenuTrigger {
+class UiMenuTrigger implements OnInit {
   /** What the menu gets as its payload when this trigger opens it. */
   readonly payload = input<unknown>()
   /** Stops the trigger from opening the menu. */
@@ -309,6 +318,10 @@ class UiMenuTrigger {
   readonly target = this.#part.target
   /** The trigger's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -320,7 +333,7 @@ class UiMenuTrigger {
   selector: "[uiMenuContextTrigger]",
   exportAs: "uiMenuContextTrigger",
 })
-class UiMenuContextTrigger {
+class UiMenuContextTrigger implements OnInit {
   /** What the menu gets as its payload when this area opens it. */
   readonly payload = input<unknown>()
   /** Stops the area from opening the menu. */
@@ -349,6 +362,10 @@ class UiMenuContextTrigger {
   readonly target = this.#part.target
   /** The area's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -357,7 +374,7 @@ class UiMenuContextTrigger {
  * @experimental
  */
 @Directive({ selector: "[uiMenuContent], [uiMenuSubContent]" })
-class UiMenuContent {
+class UiMenuContent implements OnInit {
   /** Which side of the trigger it opens on: `*uiMenuContent="let state; side: 'top'"`. */
   readonly side = input<Side>(undefined, { alias: "uiMenuContentSide" })
   /** How it lines up with the trigger along that side. */
@@ -428,6 +445,10 @@ class UiMenuContent {
   ): _context is PresentPartContext<MenuContentState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -436,7 +457,7 @@ class UiMenuContent {
  * @experimental
  */
 @Directive({ selector: "[uiMenuItem]", exportAs: "uiMenuItem" })
-class UiMenuItem {
+class UiMenuItem implements OnInit {
   /** Identifies the item in the menu's `onAction`. */
   readonly value = input<string>()
   /** Its label, if its text isn't. */
@@ -470,6 +491,10 @@ class UiMenuItem {
   }))
   /** The item's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -482,7 +507,7 @@ class UiMenuItem {
   selector: "[uiMenuShortcut]",
   exportAs: "uiMenuShortcut",
 })
-class UiMenuShortcut implements TextSource {
+class UiMenuShortcut implements OnInit, TextSource {
   readonly #handle = injectHandle(menu)
   readonly #item = inject(UiMenuItem, { optional: true })
   readonly #part = injectPart(this.#handle, "shortcut")
@@ -491,6 +516,10 @@ class UiMenuShortcut implements TextSource {
     const shortcut = this.#item?.shortcut()
     return shortcut ? formatShortcut(shortcut, this.#handle.state().apple) : ""
   })
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -510,7 +539,7 @@ class UiMenuShortcut implements TextSource {
     },
   ],
 })
-class UiMenuCheckboxItem {
+class UiMenuCheckboxItem implements OnInit {
   /** Identifies the option. */
   readonly value = input.required<string>()
   /** Its label, if its text isn't. */
@@ -563,6 +592,10 @@ class UiMenuCheckboxItem {
   )
   /** The item's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -579,7 +612,7 @@ class UiMenuCheckboxItem {
     },
   ],
 })
-class UiMenuRadioGroup {
+class UiMenuRadioGroup implements OnInit {
   /** Identifies the group in the menu's `valueChange`. A generated id by default. */
   readonly name = input<string>()
   /** The checked value. Bind it, or `[(value)]`, to control it. */
@@ -621,6 +654,10 @@ class UiMenuRadioGroup {
   )
   /** The group's state, with its `value`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -644,7 +681,7 @@ class UiMenuRadioGroup {
     },
   ],
 })
-class UiMenuRadioItem {
+class UiMenuRadioItem implements OnInit {
   /** The value it checks. */
   readonly value = input.required<string>()
   /** Its label, if its text isn't. */
@@ -673,6 +710,10 @@ class UiMenuRadioItem {
   )
   /** The item's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -682,7 +723,7 @@ class UiMenuRadioItem {
  * @experimental
  */
 @Directive({ selector: "[uiMenuItemIndicator]" })
-class UiMenuItemIndicator {
+class UiMenuItemIndicator implements OnInit {
   /** Keeps it in the page while unchecked: `*uiMenuItemIndicator="let state; keepMounted: true"`. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiMenuItemIndicatorKeepMounted",
@@ -711,6 +752,10 @@ class UiMenuItemIndicator {
   ): _context is PresentPartContext<MenuItemIndicatorState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -719,7 +764,7 @@ class UiMenuItemIndicator {
  * @experimental
  */
 @Directive({ selector: "[uiMenuItemIcon]", exportAs: "uiMenuItemIcon" })
-class UiMenuItemIcon {
+class UiMenuItemIcon implements OnInit {
   /** Flips it in right-to-left text, for icons that point a way. */
   readonly mirror = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -737,6 +782,10 @@ class UiMenuItemIcon {
   )
   /** The icon's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -753,7 +802,7 @@ class UiMenuItemIcon {
     },
   ],
 })
-class UiMenuGroup {
+class UiMenuGroup implements OnInit {
   /** @internal The group's id, which its label names. */
   readonly id = inject(UiIds).next()
   readonly #part = injectPart(injectHandle(menu), "group", () => ({
@@ -761,6 +810,10 @@ class UiMenuGroup {
   }))
   /** The group's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -768,7 +821,7 @@ class UiMenuGroup {
  * @experimental
  */
 @Directive({ selector: "[uiMenuGroupLabel]", exportAs: "uiMenuGroupLabel" })
-class UiMenuGroupLabel {
+class UiMenuGroupLabel implements OnInit {
   readonly #group = inject(MenuGroupToken)
   // Keyed by its group, so each group's label is a part of its own.
   readonly #part = injectPart(injectHandle(menu), "group-label", () => ({
@@ -777,6 +830,10 @@ class UiMenuGroupLabel {
   }))
   /** The label's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -784,8 +841,12 @@ class UiMenuGroupLabel {
  * @experimental
  */
 @Directive({ selector: "[uiMenuSeparator]", exportAs: "uiMenuSeparator" })
-class UiMenuSeparator {
+class UiMenuSeparator implements OnInit {
   readonly #part = injectPart(injectHandle(menu), "separator")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -793,7 +854,7 @@ class UiMenuSeparator {
  * @experimental
  */
 @Directive({ selector: "[uiMenuSubTrigger]", exportAs: "uiMenuSubTrigger" })
-class UiMenuSubTrigger {
+class UiMenuSubTrigger implements OnInit {
   /** Stops it from opening the submenu. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -803,6 +864,10 @@ class UiMenuSubTrigger {
   }))
   /** The trigger's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createMenuController } from "@ui-sdk/core/menu"

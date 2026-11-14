@@ -1,4 +1,4 @@
-import { Directive, input, output } from "@angular/core"
+import { Directive, input, output, type OnInit } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   pagination,
@@ -32,7 +32,7 @@ type PaginationPageChangeDetails = ChangeDetails<PaginationPageChangeReason>
   exportAs: "uiPagination",
   providers: [provideRoot(pagination, () => UiPagination)],
 })
-class UiPagination {
+class UiPagination implements OnInit {
   /** The current page, from 1. Bind it, or `[(page)]`, to control it. */
   readonly page = input<number>()
   /** The page at first, when uncontrolled. */
@@ -84,6 +84,11 @@ class UiPagination {
   readonly #part = injectPart(this.handle, "root")
   /** The pagination's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -92,10 +97,14 @@ class UiPagination {
  * @experimental
  */
 @Directive({ selector: "[uiPaginationList]", exportAs: "uiPaginationList" })
-class UiPaginationList {
+class UiPaginationList implements OnInit {
   readonly #part = injectPart(injectHandle(pagination), "list")
   /** The list's state, with its `items`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -103,8 +112,12 @@ class UiPaginationList {
  * @experimental
  */
 @Directive({ selector: "[uiPaginationItem]", exportAs: "uiPaginationItem" })
-class UiPaginationItem {
+class UiPaginationItem implements OnInit {
   readonly #part = injectPart(injectHandle(pagination), "item")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -116,7 +129,7 @@ class UiPaginationItem {
   selector: "[uiPaginationLink]",
   exportAs: "uiPaginationLink",
 })
-class UiPaginationLink implements TextSource {
+class UiPaginationLink implements OnInit, TextSource {
   /** The page it goes to. */
   readonly page = input.required<number>()
   readonly #part = injectPart(injectHandle(pagination), "link", () => ({
@@ -127,6 +140,10 @@ class UiPaginationLink implements TextSource {
   readonly state = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => String(this.state().page ?? ""))
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -138,12 +155,16 @@ class UiPaginationLink implements TextSource {
   selector: "[uiPaginationEllipsis]",
   exportAs: "uiPaginationEllipsis",
 })
-class UiPaginationEllipsis implements TextSource {
+class UiPaginationEllipsis implements OnInit, TextSource {
   readonly #part = injectPart(injectHandle(pagination), "ellipsis")
   /** The ellipsis's state. */
   readonly state = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => "…")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 // A step to another page, which is disabled where it can't go.
@@ -159,10 +180,14 @@ function injectStep(slot: "previous" | "next" | "first" | "last") {
   selector: "[uiPaginationPrevious]",
   exportAs: "uiPaginationPrevious",
 })
-class UiPaginationPrevious {
+class UiPaginationPrevious implements OnInit {
   readonly #part = injectStep("previous")
   /** The step's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -170,10 +195,14 @@ class UiPaginationPrevious {
  * @experimental
  */
 @Directive({ selector: "[uiPaginationNext]", exportAs: "uiPaginationNext" })
-class UiPaginationNext {
+class UiPaginationNext implements OnInit {
   readonly #part = injectStep("next")
   /** The step's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -181,10 +210,14 @@ class UiPaginationNext {
  * @experimental
  */
 @Directive({ selector: "[uiPaginationFirst]", exportAs: "uiPaginationFirst" })
-class UiPaginationFirst {
+class UiPaginationFirst implements OnInit {
   readonly #part = injectStep("first")
   /** The step's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -192,10 +225,14 @@ class UiPaginationFirst {
  * @experimental
  */
 @Directive({ selector: "[uiPaginationLast]", exportAs: "uiPaginationLast" })
-class UiPaginationLast {
+class UiPaginationLast implements OnInit {
   readonly #part = injectStep("last")
   /** The step's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export {

@@ -7,6 +7,7 @@ import {
   output,
   signal,
   type Signal,
+  type OnInit,
 } from "@angular/core"
 import type {
   Anchor,
@@ -83,7 +84,7 @@ type TriggerMenuQueryChangeDetails =
     },
   ],
 })
-class UiTriggerMenu {
+class UiTriggerMenu implements OnInit {
   /** The triggers, like `@` for people, and the items each suggests. */
   readonly triggers = input.required<TriggerDefinition<any>[]>()
   /** The text editor it suggests into, if not the token input around it or its own input. */
@@ -182,6 +183,10 @@ class UiTriggerMenu {
   /** The menu's state. */
   readonly state: Signal<TypesOf<TriggerMenuPrimitive>["state"]> =
     this.handle.state
+
+  ngOnInit() {
+    this.handle.init()
+  }
 }
 
 /**
@@ -192,10 +197,14 @@ class UiTriggerMenu {
   selector: "textarea[uiTriggerMenuInput], input[uiTriggerMenuInput]",
   exportAs: "uiTriggerMenuInput",
 })
-class UiTriggerMenuInput {
+class UiTriggerMenuInput implements OnInit {
   readonly #part = injectPart(injectHandle(triggerMenu), "input")
   /** The input's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -204,7 +213,7 @@ class UiTriggerMenuInput {
  * @experimental
  */
 @Directive({ selector: "[uiTriggerMenuContent]" })
-class UiTriggerMenuContent {
+class UiTriggerMenuContent implements OnInit {
   /** Which side of the caret it opens on. */
   readonly side = input<Side>(undefined, {
     alias: "uiTriggerMenuContentSide",
@@ -265,6 +274,10 @@ class UiTriggerMenuContent {
   ): _context is PresentPartContext<TriggerMenuContentState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -272,10 +285,14 @@ class UiTriggerMenuContent {
  * @experimental
  */
 @Directive({ selector: "[uiTriggerMenuList]", exportAs: "uiTriggerMenuList" })
-class UiTriggerMenuList {
+class UiTriggerMenuList implements OnInit {
   readonly #part = injectPart(injectHandle(triggerMenu), "list")
   /** The list's state, with the matching `items`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -284,7 +301,7 @@ class UiTriggerMenuList {
  * @experimental
  */
 @Directive({ selector: "[uiTriggerMenuGroup]", exportAs: "uiTriggerMenuGroup" })
-class UiTriggerMenuGroup {
+class UiTriggerMenuGroup implements OnInit {
   /** @internal The group's id, which its items and label name. */
   readonly id = inject(UiIds).next()
   readonly #part = injectPart(injectHandle(triggerMenu), "group", () => ({
@@ -292,6 +309,10 @@ class UiTriggerMenuGroup {
   }))
   /** The group's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -302,7 +323,7 @@ class UiTriggerMenuGroup {
   selector: "[uiTriggerMenuGroupLabel]",
   exportAs: "uiTriggerMenuGroupLabel",
 })
-class UiTriggerMenuGroupLabel {
+class UiTriggerMenuGroupLabel implements OnInit {
   readonly #group = inject(UiTriggerMenuGroup)
   readonly #part = injectPart(injectHandle(triggerMenu), "group-label", () => ({
     id: this.#group.id,
@@ -310,6 +331,10 @@ class UiTriggerMenuGroupLabel {
   }))
   /** The label's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -317,7 +342,7 @@ class UiTriggerMenuGroupLabel {
  * @experimental
  */
 @Directive({ selector: "[uiTriggerMenuItem]", exportAs: "uiTriggerMenuItem" })
-class UiTriggerMenuItem {
+class UiTriggerMenuItem implements OnInit {
   /** The value it inserts. */
   readonly value = input.required<unknown>()
   /** Its label, if its text isn't, for matching and the token. */
@@ -349,6 +374,10 @@ class UiTriggerMenuItem {
   }))
   /** The item's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -360,7 +389,7 @@ class UiTriggerMenuItem {
   selector: "[uiTriggerMenuItemIcon]",
   exportAs: "uiTriggerMenuItemIcon",
 })
-class UiTriggerMenuItemIcon {
+class UiTriggerMenuItemIcon implements OnInit {
   /** Flips it in right-to-left text, for icons that point a way. */
   readonly mirror = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -374,6 +403,10 @@ class UiTriggerMenuItemIcon {
   }))
   /** The icon's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -384,8 +417,12 @@ class UiTriggerMenuItemIcon {
   selector: "[uiTriggerMenuSeparator]",
   exportAs: "uiTriggerMenuSeparator",
 })
-class UiTriggerMenuSeparator {
+class UiTriggerMenuSeparator implements OnInit {
   readonly #part = injectPart(injectHandle(triggerMenu), "separator")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -393,12 +430,16 @@ class UiTriggerMenuSeparator {
  * @experimental
  */
 @Directive({ selector: "[uiTriggerMenuEmpty]", exportAs: "uiTriggerMenuEmpty" })
-class UiTriggerMenuEmpty {
+class UiTriggerMenuEmpty implements OnInit {
   readonly #part = injectPart(injectHandle(triggerMenu), "empty", () => ({
     stash: true,
   }))
   /** The empty message's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -411,7 +452,7 @@ class UiTriggerMenuEmpty {
   selector: "[uiTriggerMenuStatus]",
   exportAs: "uiTriggerMenuStatus",
 })
-class UiTriggerMenuStatus implements TextSource {
+class UiTriggerMenuStatus implements OnInit, TextSource {
   readonly #coreWrites = signal(false)
   /** Has core write the part's text where `uiText` is. */
   readonly attach = letCoreWrite(this.#coreWrites)
@@ -420,6 +461,10 @@ class UiTriggerMenuStatus implements TextSource {
   }))
   /** The status's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -432,7 +477,7 @@ class UiTriggerMenuStatus implements TextSource {
   selector: "[uiTriggerMenuHint]",
   exportAs: "uiTriggerMenuHint",
 })
-class UiTriggerMenuHint implements TextSource {
+class UiTriggerMenuHint implements OnInit, TextSource {
   readonly #coreWrites = signal(false)
   /** Has core write the part's text where `uiText` is. */
   readonly attach = letCoreWrite(this.#coreWrites)
@@ -441,6 +486,10 @@ class UiTriggerMenuHint implements TextSource {
   }))
   /** The hint's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export {

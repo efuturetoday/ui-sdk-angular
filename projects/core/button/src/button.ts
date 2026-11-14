@@ -1,4 +1,4 @@
-import { Directive, input } from "@angular/core"
+import { Directive, input, type OnInit } from "@angular/core"
 import {
   button,
   type ButtonActionDetails,
@@ -17,7 +17,7 @@ import {
  * @experimental
  */
 @Directive({ selector: "[uiButton]", exportAs: "uiButton" })
-class UiButton {
+class UiButton implements OnInit {
   /** Stops presses. The button leaves the tab order unless `focusableWhenDisabled` is set. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -57,6 +57,11 @@ class UiButton {
   readonly #part = injectPart(this.handle, "root")
   /** The button's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 export type {

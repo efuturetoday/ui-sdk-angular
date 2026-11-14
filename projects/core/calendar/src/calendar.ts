@@ -1,4 +1,4 @@
-import { Directive, inject, input, output } from "@angular/core"
+import { Directive, inject, input, output, type OnInit } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   calendar,
@@ -46,7 +46,7 @@ type CalendarMonthChangeDetails = ChangeDetails<CalendarMonthChangeReason>
   exportAs: "uiCalendar",
   providers: [provideRoot(calendar, () => UiCalendar)],
 })
-class UiCalendar {
+class UiCalendar implements OnInit {
   /** What it picks: one date, a range, or several dates. */
   readonly mode = input<CalendarMode>()
   /** The selected date, range or dates. Bind it, or `[(value)]`, to control it. */
@@ -194,6 +194,11 @@ class UiCalendar {
   readonly #part = injectPart(this.handle, "root")
   /** The calendar's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -205,12 +210,16 @@ class UiCalendar {
   selector: "[uiCalendarHeading]",
   exportAs: "uiCalendarHeading",
 })
-class UiCalendarHeading implements TextSource {
+class UiCalendarHeading implements OnInit, TextSource {
   readonly #part = injectPart(injectHandle(calendar), "heading")
   /** The heading's state, with its `label`. */
   readonly state = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => this.state().label)
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -221,10 +230,14 @@ class UiCalendarHeading implements TextSource {
   selector: "select[uiCalendarMonthSelect]",
   exportAs: "uiCalendarMonthSelect",
 })
-class UiCalendarMonthSelect {
+class UiCalendarMonthSelect implements OnInit {
   readonly #part = injectPart(injectHandle(calendar), "month-select")
   /** The select's state, with its `options` and `value`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -235,10 +248,14 @@ class UiCalendarMonthSelect {
   selector: "select[uiCalendarYearSelect]",
   exportAs: "uiCalendarYearSelect",
 })
-class UiCalendarYearSelect {
+class UiCalendarYearSelect implements OnInit {
   readonly #part = injectPart(injectHandle(calendar), "year-select")
   /** The select's state, with its `options` and `value`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -250,12 +267,16 @@ class UiCalendarYearSelect {
   selector: "[uiCalendarPrevious]",
   exportAs: "uiCalendarPrevious",
 })
-class UiCalendarPrevious implements TextSource {
+class UiCalendarPrevious implements OnInit, TextSource {
   readonly #part = injectPart(injectHandle(calendar), "previous")
   /** The step's state. */
   readonly state = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => "‹")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -267,12 +288,16 @@ class UiCalendarPrevious implements TextSource {
   selector: "[uiCalendarNext]",
   exportAs: "uiCalendarNext",
 })
-class UiCalendarNext implements TextSource {
+class UiCalendarNext implements OnInit, TextSource {
   readonly #part = injectPart(injectHandle(calendar), "next")
   /** The step's state. */
   readonly state = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => "›")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -281,7 +306,7 @@ class UiCalendarNext implements TextSource {
  * @experimental
  */
 @Directive({ selector: "[uiCalendarGrid]", exportAs: "uiCalendarGrid" })
-class UiCalendarGrid {
+class UiCalendarGrid implements OnInit {
   /** Which shown month it is, from 0. */
   readonly offset = input(0)
   readonly #part = injectPart(injectHandle(calendar), "grid", () => ({
@@ -290,6 +315,10 @@ class UiCalendarGrid {
   }))
   /** The grid's state, with its `weekdays` and `weeks`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -300,11 +329,15 @@ class UiCalendarGrid {
   selector: "[uiCalendarWeekdays]",
   exportAs: "uiCalendarWeekdays",
 })
-class UiCalendarWeekdays {
+class UiCalendarWeekdays implements OnInit {
   readonly #grid = inject(UiCalendarGrid)
   readonly #part = injectPart(injectHandle(calendar), "weekdays", () => ({
     id: String(this.#grid.offset()),
   }))
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -316,7 +349,7 @@ class UiCalendarWeekdays {
   exportAs: "uiCalendarWeekday",
   providers: [{ provide: TextSource, useExisting: UiCalendarWeekday }],
 })
-class UiCalendarWeekday implements TextSource {
+class UiCalendarWeekday implements OnInit, TextSource {
   /** Its place in the week, from 0. */
   readonly index = input.required<number>()
   readonly #grid = inject(UiCalendarGrid)
@@ -328,6 +361,10 @@ class UiCalendarWeekday implements TextSource {
   readonly state = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => this.state().label)
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -335,13 +372,17 @@ class UiCalendarWeekday implements TextSource {
  * @experimental
  */
 @Directive({ selector: "[uiCalendarWeek]", exportAs: "uiCalendarWeek" })
-class UiCalendarWeek {
+class UiCalendarWeek implements OnInit {
   /** Its place in the grid's weeks, from 0. */
   readonly index = input.required<number>()
   readonly #grid = inject(UiCalendarGrid)
   readonly #part = injectPart(injectHandle(calendar), "week", () => ({
     id: `${this.#grid.offset()}-${this.index()}`,
   }))
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -353,7 +394,7 @@ class UiCalendarWeek {
   selector: "[uiCalendarDay]",
   exportAs: "uiCalendarDay",
 })
-class UiCalendarDay implements TextSource {
+class UiCalendarDay implements OnInit, TextSource {
   /** The day's date, like `"2026-11-14"`, from its cell. */
   readonly value = input.required<string>()
   readonly #grid = inject(UiCalendarGrid, { optional: true })
@@ -365,6 +406,10 @@ class UiCalendarDay implements TextSource {
   readonly state = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => this.state().label)
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createCalendarController } from "@ui-sdk/core/calendar"

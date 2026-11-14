@@ -6,6 +6,7 @@ import {
   input,
   type InputSignal,
   output,
+  type OnInit,
 } from "@angular/core"
 import type {
   Anchor,
@@ -79,7 +80,7 @@ type DatePickerOpenChangeDetails = ChangeDetails<DatePickerOpenChangeReason>
     },
   ],
 })
-class UiDatePicker {
+class UiDatePicker implements OnInit {
   /** What it picks: one date, a range, or several dates. */
   readonly mode = input<DatePickerMode>()
   /** The picked date, range or dates. Bind it, or `[(value)]`, to control it. */
@@ -298,6 +299,13 @@ class UiDatePicker {
       { ...made, show: () => (submits() ? made.show() : undefined) }
     )
   }
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+    this.#start.init()
+    this.#end.init()
+  }
 }
 
 /**
@@ -309,7 +317,7 @@ class UiDatePicker {
   selector: "input[uiDatePickerInput]",
   exportAs: "uiDatePickerInput",
 })
-class UiDatePickerInput {
+class UiDatePickerInput implements OnInit {
   /** Makes it a range's end. */
   readonly end = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -330,6 +338,10 @@ class UiDatePickerInput {
   )
   /** The input's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -341,10 +353,14 @@ class UiDatePickerInput {
   selector: "[uiDatePickerTrigger]",
   exportAs: "uiDatePickerTrigger",
 })
-class UiDatePickerTrigger {
+class UiDatePickerTrigger implements OnInit {
   readonly #part = injectPart(injectHandle(datePicker), "trigger")
   /** The trigger's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -353,7 +369,7 @@ class UiDatePickerTrigger {
  * @experimental
  */
 @Directive({ selector: "[uiDatePickerContent]" })
-class UiDatePickerContent {
+class UiDatePickerContent implements OnInit {
   /** Which side of the field it opens on. */
   readonly side = input<Side>(undefined, { alias: "uiDatePickerContentSide" })
   /** How it lines up with the field along that side. */
@@ -423,6 +439,10 @@ class UiDatePickerContent {
   ): _context is PresentPartContext<DatePickerContentState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -434,12 +454,16 @@ class UiDatePickerContent {
   selector: "[uiDatePickerHint]",
   exportAs: "uiDatePickerHint",
 })
-class UiDatePickerHint implements TextSource {
+class UiDatePickerHint implements OnInit, TextSource {
   readonly #part = injectPart(injectHandle(datePicker), "hint")
   /** The hint's state, with its `placeholder`. */
   readonly state = this.#part.state
   /** Shows the part's text where `uiText` is. */
   readonly attach = showText(() => this.state().placeholder)
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -448,8 +472,12 @@ class UiDatePickerHint implements TextSource {
  * @experimental
  */
 @Directive({ selector: "[uiDatePickerClear]" })
-class UiDatePickerClear {
+class UiDatePickerClear implements OnInit {
   readonly #part = injectPresentPart(injectHandle(datePicker), "clear")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -457,7 +485,7 @@ class UiDatePickerClear {
  * @experimental
  */
 @Directive({ selector: "[uiDatePickerPreset]", exportAs: "uiDatePickerPreset" })
-class UiDatePickerPreset {
+class UiDatePickerPreset implements OnInit {
   /** The date or range it picks. */
   readonly value = input.required<DatePickerValue>()
   readonly #part = injectPart(injectHandle(datePicker), "preset", () => ({
@@ -466,6 +494,10 @@ class UiDatePickerPreset {
   }))
   /** The preset's state, with whether it's `selected`. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export { createDatePickerController } from "@ui-sdk/core/date-picker"

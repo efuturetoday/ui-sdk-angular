@@ -9,6 +9,7 @@ import {
   signal,
   type InputSignal,
   type Signal,
+  type OnInit,
 } from "@angular/core"
 import type {
   Anchor,
@@ -86,7 +87,7 @@ type AutocompleteOpenChangeDetails = ChangeDetails<AutocompleteOpenChangeReason>
     },
   ],
 })
-class UiAutocomplete {
+class UiAutocomplete implements OnInit {
   /** The text. Bind it, or `[(value)]`, to control it. */
   readonly value = input<string>()
   /** The text at first, when uncontrolled. */
@@ -273,6 +274,10 @@ class UiAutocomplete {
     this.touch.emit()
     this.#form?.touch()
   }
+
+  ngOnInit() {
+    this.handle.init()
+  }
 }
 
 /**
@@ -283,10 +288,14 @@ class UiAutocomplete {
   selector: "[uiAutocompleteLabel]",
   exportAs: "uiAutocompleteLabel",
 })
-class UiAutocompleteLabel {
+class UiAutocompleteLabel implements OnInit {
   readonly #part = injectPart(injectHandle(autocomplete), "label")
   /** The label's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -299,7 +308,7 @@ class UiAutocompleteLabel {
   exportAs: "uiAutocompleteInput",
   host: { "(focusout)": "focusOut($event)" },
 })
-class UiAutocompleteInput {
+class UiAutocompleteInput implements OnInit {
   readonly #root = inject(UiAutocomplete)
   readonly #field = injectFieldControl()
   readonly #part = injectPart(injectHandle(autocomplete), "input", undefined, {
@@ -317,6 +326,10 @@ class UiAutocompleteInput {
       this.#root.touched()
     }
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -327,10 +340,14 @@ class UiAutocompleteInput {
   selector: "[uiAutocompleteTrigger]",
   exportAs: "uiAutocompleteTrigger",
 })
-class UiAutocompleteTrigger {
+class UiAutocompleteTrigger implements OnInit {
   readonly #part = injectPart(injectHandle(autocomplete), "trigger")
   /** The trigger's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -340,7 +357,7 @@ class UiAutocompleteTrigger {
  * @experimental
  */
 @Directive({ selector: "[uiAutocompleteClear]" })
-class UiAutocompleteClear {
+class UiAutocompleteClear implements OnInit {
   /** Keeps it in the page while there's no text. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiAutocompleteClearKeepMounted",
@@ -351,6 +368,10 @@ class UiAutocompleteClear {
     "clear",
     computed(() => ({ keepMounted: this.keepMounted() }))
   )
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -359,7 +380,7 @@ class UiAutocompleteClear {
  * @experimental
  */
 @Directive({ selector: "[uiAutocompleteContent]" })
-class UiAutocompleteContent {
+class UiAutocompleteContent implements OnInit {
   /** Which side of the input it opens on: `*uiAutocompleteContent="let state; side: 'top'"`. */
   readonly side = input<Side>(undefined, { alias: "uiAutocompleteContentSide" })
   /** How it lines up with the input along that side. */
@@ -424,6 +445,10 @@ class UiAutocompleteContent {
   ): _context is PresentPartContext<AutocompleteContentState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -432,10 +457,14 @@ class UiAutocompleteContent {
  * @experimental
  */
 @Directive({ selector: "[uiAutocompleteList]", exportAs: "uiAutocompleteList" })
-class UiAutocompleteList {
+class UiAutocompleteList implements OnInit {
   readonly #part = injectPart(injectHandle(autocomplete), "list")
   /** The list's state, with the `items` that match. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -447,7 +476,7 @@ class UiAutocompleteList {
   selector: "[uiAutocompleteGroup]",
   exportAs: "uiAutocompleteGroup",
 })
-class UiAutocompleteGroup {
+class UiAutocompleteGroup implements OnInit {
   /** @internal The group's id, which its suggestions and label name. */
   readonly id = inject(UiIds).next()
   readonly #part = injectPart(injectHandle(autocomplete), "group", () => ({
@@ -455,6 +484,10 @@ class UiAutocompleteGroup {
   }))
   /** The group's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -465,7 +498,7 @@ class UiAutocompleteGroup {
   selector: "[uiAutocompleteGroupLabel]",
   exportAs: "uiAutocompleteGroupLabel",
 })
-class UiAutocompleteGroupLabel {
+class UiAutocompleteGroupLabel implements OnInit {
   readonly #group = inject(UiAutocompleteGroup)
   readonly #part = injectPart(
     injectHandle(autocomplete),
@@ -474,6 +507,10 @@ class UiAutocompleteGroupLabel {
   )
   /** The label's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -481,7 +518,7 @@ class UiAutocompleteGroupLabel {
  * @experimental
  */
 @Directive({ selector: "[uiAutocompleteItem]", exportAs: "uiAutocompleteItem" })
-class UiAutocompleteItem {
+class UiAutocompleteItem implements OnInit {
   /** Identifies the suggestion; the input gets it when there's no `label`. */
   readonly value = input.required<string>()
   /** The text the input gets and filtering matches, when the content isn't plain text. */
@@ -506,6 +543,10 @@ class UiAutocompleteItem {
   }))
   /** The suggestion's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -519,7 +560,7 @@ class UiAutocompleteItem {
   selector: "[uiAutocompleteItemText]",
   exportAs: "uiAutocompleteItemText",
 })
-class UiAutocompleteItemText implements TextSource {
+class UiAutocompleteItemText implements OnInit, TextSource {
   readonly #item = inject(UiAutocompleteItem)
   readonly #handle = injectHandle(autocomplete)
   /** Shows the part's text where `uiText` is, with its matches marked. */
@@ -538,6 +579,10 @@ class UiAutocompleteItemText implements TextSource {
   })
   /** The text's state, with the match. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -549,7 +594,7 @@ class UiAutocompleteItemText implements TextSource {
   selector: "[uiAutocompleteItemIcon]",
   exportAs: "uiAutocompleteItemIcon",
 })
-class UiAutocompleteItemIcon {
+class UiAutocompleteItemIcon implements OnInit {
   /** Flips it in right-to-left text, for icons that point a way. */
   readonly mirror = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -563,6 +608,10 @@ class UiAutocompleteItemIcon {
   }))
   /** The icon's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -573,8 +622,12 @@ class UiAutocompleteItemIcon {
   selector: "[uiAutocompleteSeparator]",
   exportAs: "uiAutocompleteSeparator",
 })
-class UiAutocompleteSeparator {
+class UiAutocompleteSeparator implements OnInit {
   readonly #part = injectPart(injectHandle(autocomplete), "separator")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -586,12 +639,16 @@ class UiAutocompleteSeparator {
   selector: "[uiAutocompleteEmpty]",
   exportAs: "uiAutocompleteEmpty",
 })
-class UiAutocompleteEmpty {
+class UiAutocompleteEmpty implements OnInit {
   readonly #part = injectPart(injectHandle(autocomplete), "empty", () => ({
     stash: true,
   }))
   /** The empty message's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -602,10 +659,14 @@ class UiAutocompleteEmpty {
   selector: "[uiAutocompleteStatus]",
   exportAs: "uiAutocompleteStatus",
 })
-class UiAutocompleteStatus {
+class UiAutocompleteStatus implements OnInit {
   readonly #part = injectPart(injectHandle(autocomplete), "status")
   /** The status's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -616,10 +677,14 @@ class UiAutocompleteStatus {
   selector: "[uiAutocompleteArrow]",
   exportAs: "uiAutocompleteArrow",
 })
-class UiAutocompleteArrow {
+class UiAutocompleteArrow implements OnInit {
   readonly #part = injectPart(injectHandle(autocomplete), "arrow")
   /** The arrow's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**

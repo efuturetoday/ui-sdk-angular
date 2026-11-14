@@ -17,6 +17,7 @@ import {
   untracked,
   ViewContainerRef,
   type EmbeddedViewRef,
+  type OnInit,
 } from "@angular/core"
 import type { SlotName } from "@ui-sdk/core"
 import {
@@ -67,7 +68,7 @@ const TokenScope = new InjectionToken<string>("token-input-token")
     },
   ],
 })
-class UiTokenInput {
+class UiTokenInput implements OnInit {
   /** The tokens and text. Bind it, or `[(value)]`, to control it. */
   readonly value = input<TokenInputValue>()
   /** The tokens and text at first, when uncontrolled, and after a form reset. */
@@ -193,6 +194,11 @@ class UiTokenInput {
       }
     )
   }
+
+  ngOnInit() {
+    this.handle.init()
+    this.#formInput.init()
+  }
 }
 
 /**
@@ -205,7 +211,7 @@ class UiTokenInput {
   selector: "[uiTokenInputEditor]",
   exportAs: "uiTokenInputEditor",
 })
-class UiTokenInputEditor {
+class UiTokenInputEditor implements OnInit {
   /** What it says while empty, for `data-empty` styles and screen readers. */
   readonly placeholder = input<string>()
   // The editor is the field's control, on its own element.
@@ -218,6 +224,10 @@ class UiTokenInputEditor {
   )
   /** The editor's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -301,7 +311,7 @@ function injectToken(part: string) {
  * @experimental
  */
 @Directive({ selector: "[uiTokenInputToken]", exportAs: "uiTokenInputToken" })
-class UiTokenInputToken {
+class UiTokenInputToken implements OnInit {
   readonly #id = injectToken("uiTokenInputToken")
   readonly #part = injectPart(injectHandle(tokenInput), "token", () => ({
     id: this.#id,
@@ -309,6 +319,10 @@ class UiTokenInputToken {
   }))
   /** The token's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -320,12 +334,16 @@ class UiTokenInputToken {
   selector: "[uiTokenInputTokenRemove]",
   exportAs: "uiTokenInputTokenRemove",
 })
-class UiTokenInputTokenRemove {
+class UiTokenInputTokenRemove implements OnInit {
   readonly #id = injectToken("uiTokenInputTokenRemove")
   readonly #part = injectPart(injectHandle(tokenInput), "token-remove", () => ({
     id: this.#id,
     token: this.#id,
   }))
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export {

@@ -1,4 +1,4 @@
-import { Directive } from "@angular/core"
+import { Directive, type OnInit } from "@angular/core"
 import { label, type LabelPrimitive } from "@ui-sdk/core/label"
 import {
   injectPart,
@@ -13,7 +13,7 @@ import {
  * @experimental
  */
 @Directive({ selector: "[uiLabel]", exportAs: "uiLabel" })
-class UiLabel {
+class UiLabel implements OnInit {
   readonly handle: PrimitiveHandle<LabelPrimitive> = injectPrimitive(
     label,
     () => ({})
@@ -21,6 +21,11 @@ class UiLabel {
   readonly #part = injectPart(this.handle, "root")
   /** The label's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 export type { LabelOptions, LabelPrimitive } from "@ui-sdk/core/label"

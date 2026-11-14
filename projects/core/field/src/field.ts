@@ -14,6 +14,7 @@ import {
   untracked,
   ViewContainerRef,
   type Signal,
+  type OnInit,
 } from "@angular/core"
 import { isPlatformBrowser } from "@angular/common"
 import {
@@ -64,10 +65,16 @@ function injectOutside(slot: FieldOutsideSlot) {
   if (isPlatformBrowser(inject(PLATFORM_ID))) {
     afterNextRender(() => checkFieldOutside(el, slot))
   }
-  // Like a part, it starts once Angular has set the inputs.
-  effect(() =>
-    untracked(() => applyAttrs(el, fieldOutsideAttrs(slot), "field-outside"))
-  )
+  // Like a part, it starts in `ngOnInit`, or on its own in its first effect run.
+  let started = false
+  const init = () => {
+    if (!started) {
+      started = true
+      applyAttrs(el, fieldOutsideAttrs(slot), "field-outside")
+    }
+  }
+  effect(() => untracked(init))
+  return { init }
 }
 
 /**
@@ -84,7 +91,7 @@ function injectOutside(slot: FieldOutsideSlot) {
     { provide: DescribedToken, useExisting: forwardRef(() => UiField) },
   ],
 })
-class UiField implements FieldContext {
+class UiField implements OnInit, FieldContext {
   /** The name the control submits under, when the control doesn't set its own. */
   readonly name = input<string>()
   /** Disables the control, and marks every part. */
@@ -109,6 +116,11 @@ class UiField implements FieldContext {
   readonly #part = injectPart(this.handle, "root")
   /** The field's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -117,11 +129,15 @@ class UiField implements FieldContext {
  * @experimental
  */
 @Directive({ selector: "[uiFieldLabel]", exportAs: "uiFieldLabel" })
-class UiFieldLabel {
+class UiFieldLabel implements OnInit {
   readonly #field = inject(FieldContextToken, { optional: true })
   readonly #part = this.#field
     ? injectPart(this.#field.handle, "label")
     : injectOutside("label")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -130,7 +146,7 @@ class UiFieldLabel {
  * @experimental
  */
 @Directive({ selector: "[uiFieldDescription]", exportAs: "uiFieldDescription" })
-class UiFieldDescription {
+class UiFieldDescription implements OnInit {
   readonly #described = inject(DescribedToken, { optional: true })
   readonly #inside = this.#described
     ? injectPart(this.#described.handle, "description")
@@ -142,6 +158,10 @@ class UiFieldDescription {
    * field, it has none.
    */
   readonly state = this.#inside?.state ?? computed(() => undefined)
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -229,7 +249,7 @@ function injectOutsideError(props: () => FieldErrorProps) {
  * @experimental
  */
 @Directive({ selector: "[uiFieldControl]", exportAs: "uiFieldControl" })
-class UiFieldControl {
+class UiFieldControl implements OnInit {
   readonly #el = inject(ElementRef).nativeElement as HTMLElement
   readonly #field = inject(FieldContextToken, { optional: true })
   readonly #part = this.#field
@@ -257,6 +277,10 @@ class UiFieldControl {
       }
     })
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -271,7 +295,7 @@ class UiFieldControl {
     { provide: DescribedToken, useExisting: forwardRef(() => UiFieldSet) },
   ],
 })
-class UiFieldSet {
+class UiFieldSet implements OnInit {
   /** Disables every control inside it. */
   readonly disabled = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -283,6 +307,11 @@ class UiFieldSet {
   readonly #part = injectPart(this.handle, "set")
   /** The field set's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -290,8 +319,12 @@ class UiFieldSet {
  * @experimental
  */
 @Directive({ selector: "[uiFieldLegend]", exportAs: "uiFieldLegend" })
-class UiFieldLegend {
+class UiFieldLegend implements OnInit {
   readonly #part = injectPart(injectHandle(fieldSet), "legend")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -299,12 +332,17 @@ class UiFieldLegend {
  * @experimental
  */
 @Directive({ selector: "[uiFieldGroup]", exportAs: "uiFieldGroup" })
-class UiFieldGroup {
+class UiFieldGroup implements OnInit {
   readonly handle: PrimitiveHandle<FieldGroupPrimitive> = injectPrimitive(
     fieldGroup,
     () => ({})
   )
   readonly #part = injectPart(this.handle, "group")
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 export type {

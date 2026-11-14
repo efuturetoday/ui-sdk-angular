@@ -1,4 +1,11 @@
-import { computed, Directive, inject, input, output } from "@angular/core"
+import {
+  computed,
+  Directive,
+  inject,
+  input,
+  output,
+  type OnInit,
+} from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   checkbox,
@@ -48,7 +55,7 @@ const checkedState = (value: unknown) =>
   host: { "(focusout)": "focusOut($event)" },
   providers: [provideRoot(checkbox, () => UiCheckbox)],
 })
-class UiCheckbox {
+class UiCheckbox implements OnInit {
   /** Whether it's checked. Bind it, or `[(checked)]`, to control the checkbox. */
   readonly checked = input<CheckedState | undefined, unknown>(undefined, {
     transform: checkedState,
@@ -137,6 +144,11 @@ class UiCheckbox {
   }
 
   readonly #check = checkHiddenInput(this, "uiCheckbox")
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -146,7 +158,7 @@ class UiCheckbox {
  * @experimental
  */
 @Directive({ selector: "[uiCheckboxIndicator]" })
-class UiCheckboxIndicator {
+class UiCheckboxIndicator implements OnInit {
   /** Keeps it in the page while unchecked: `*uiCheckboxIndicator="let state; keepMounted: true"`. */
   readonly keepMounted = input<boolean | undefined, unknown>(undefined, {
     alias: "uiCheckboxIndicatorKeepMounted",
@@ -164,6 +176,10 @@ class UiCheckboxIndicator {
   ): _context is PresentPartContext<CheckboxState> {
     return true
   }
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 /**
@@ -177,7 +193,7 @@ class UiCheckboxIndicator {
   host: { "(focusout)": "focusOut($event)" },
   providers: [provideRoot(checkboxGroup, () => UiCheckboxGroup)],
 })
-class UiCheckboxGroup {
+class UiCheckboxGroup implements OnInit {
   /** The checked values. Bind it, or `[(value)]`, to control the group. */
   readonly value = input<string[]>()
   /** The checked values at first, when uncontrolled, and after a form reset. */
@@ -251,6 +267,11 @@ class UiCheckboxGroup {
       this.#form?.touch()
     }
   }
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -293,13 +314,17 @@ class UiCheckboxGroupValueAccessor extends UiValueAccessor<string[]> {
  * @experimental
  */
 @Directive({ selector: "input[uiCheckboxInput]" })
-class UiCheckboxInput {
+class UiCheckboxInput implements OnInit {
   /** The checkbox it's the input of. */
   readonly checkbox = input.required<UiCheckbox>({ alias: "uiCheckboxInput" })
   readonly #part = injectTargetPart(() => this.checkbox().handle, "input")
 
   constructor() {
     linkHiddenInput(() => this.checkbox())
+  }
+
+  ngOnInit() {
+    this.#part.init()
   }
 }
 
@@ -310,8 +335,12 @@ class UiCheckboxInput {
  * @experimental
  */
 @Directive({ selector: "input[uiCheckboxGroupInput]" })
-class UiCheckboxGroupInput {
+class UiCheckboxGroupInput implements OnInit {
   readonly #part = injectPart(injectHandle(checkboxGroup), "group-input")
+
+  ngOnInit() {
+    this.#part.init()
+  }
 }
 
 export {

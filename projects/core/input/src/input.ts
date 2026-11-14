@@ -5,6 +5,7 @@ import {
   inject,
   input,
   Renderer2,
+  type OnInit,
 } from "@angular/core"
 import {
   input as inputPrimitive,
@@ -38,7 +39,7 @@ import { UiTextControl } from "./text-control"
   exportAs: "uiInput",
   host: { "[attr.value]": "defaultAttr()" },
 })
-class UiInput extends UiTextControl {
+class UiInput extends UiTextControl implements OnInit {
   readonly handle: PrimitiveHandle<InputPrimitive> = injectPrimitive(
     inputPrimitive,
     () => this.textOptions()
@@ -52,6 +53,11 @@ class UiInput extends UiTextControl {
   })
   /** The input's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -60,7 +66,7 @@ class UiInput extends UiTextControl {
  * @experimental
  */
 @Directive({ selector: "textarea[uiTextarea]", exportAs: "uiTextarea" })
-class UiTextarea extends UiTextControl {
+class UiTextarea extends UiTextControl implements OnInit {
   /** Grows and shrinks with the text, between its CSS `min-height` and `max-height`. */
   readonly autoResize = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -95,6 +101,11 @@ class UiTextarea extends UiTextControl {
       }
     })
   }
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -107,7 +118,7 @@ class UiTextarea extends UiTextControl {
   exportAs: "uiInputGroup",
   providers: [provideRoot(inputGroup, () => UiInputGroup)],
 })
-class UiInputGroup {
+class UiInputGroup implements OnInit {
   /** Logs every state change with its reason to the console, in development builds. */
   readonly debug = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -119,6 +130,11 @@ class UiInputGroup {
   readonly #part = injectPart(this.handle, "group")
   /** The group's state. */
   readonly state = this.#part.state
+
+  ngOnInit() {
+    this.handle.init()
+    this.#part.init()
+  }
 }
 
 /**
@@ -127,7 +143,7 @@ class UiInputGroup {
  * @experimental
  */
 @Directive({ selector: "[uiInputClear]" })
-class UiInputClear {
+class UiInputClear implements OnInit {
   readonly #part = injectPresentPart(injectHandle(inputGroup), "clear")
 
   static ngTemplateContextGuard(
@@ -135,6 +151,10 @@ class UiInputClear {
     _context: unknown
   ): _context is PresentPartContext<InputGroupState> {
     return true
+  }
+
+  ngOnInit() {
+    this.#part.init()
   }
 }
 
