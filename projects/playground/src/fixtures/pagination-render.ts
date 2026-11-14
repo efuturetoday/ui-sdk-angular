@@ -1,4 +1,4 @@
-import { Component, Directive, ElementRef, inject, signal } from "@angular/core"
+import { Component, Directive, inject, signal } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
   UiPagination,
@@ -9,21 +9,21 @@ import {
   UiPaginationPrevious,
 } from "ui-sdk-angular"
 
-// A client-side router's link: it navigates without a page load, unless a
-// handler before it prevented that.
+// A client-side router: links navigate without a page load, unless a handler
+// before it prevented that. A directive on the link itself runs before core's,
+// so it listens around the links, as upstream's web components fixture does.
 @Directive({
-  selector: "a[uiRouterLink]",
+  selector: "[uiRouter]",
   host: { "(click)": "navigate($event)" },
 })
-class RouterLink {
-  readonly #el = inject<ElementRef<HTMLAnchorElement>>(ElementRef)
-
+class Router {
   protected navigate(event: MouseEvent) {
-    if (event.defaultPrevented) {
+    const link = (event.target as Element).closest("a[href]")
+    if (!link || event.defaultPrevented) {
       return
     }
     event.preventDefault()
-    history.pushState(null, "", this.#el.nativeElement.getAttribute("href"))
+    history.pushState(null, "", link.getAttribute("href"))
   }
 }
 
@@ -33,7 +33,6 @@ class RouterLink {
   selector: "a[app-page-link]",
   hostDirectives: [
     { directive: UiPaginationLink, inputs: ["page"] },
-    RouterLink,
   ],
   host: {
     "[class]": "'pagination-link ' + (link.state().current ? 'is-active' : 'is-inactive')",
@@ -50,7 +49,7 @@ class PageLink {
   selector: "app-fixture",
   imports: [
     PageLink,
-    RouterLink,
+    Router,
     UiPagination,
     UiPaginationItem,
     UiPaginationList,
@@ -58,7 +57,7 @@ class PageLink {
     UiPaginationPrevious,
   ],
   template: `
-    <div class="fixture">
+    <div class="fixture" uiRouter>
       <button>Before</button>
       <nav
         uiPagination
@@ -69,7 +68,7 @@ class PageLink {
       >
         <ul uiPaginationList #list="uiPaginationList" class="pagination-list">
           <li uiPaginationItem>
-            <a uiPaginationPrevious uiRouterLink class="pagination-step">Previous</a>
+            <a uiPaginationPrevious class="pagination-step">Previous</a>
           </li>
           @for (item of list.state().items; track item) {
             <li uiPaginationItem>
@@ -77,7 +76,7 @@ class PageLink {
             </li>
           }
           <li uiPaginationItem>
-            <a uiPaginationNext uiRouterLink class="pagination-step">Next</a>
+            <a uiPaginationNext class="pagination-step">Next</a>
           </li>
         </ul>
       </nav>
