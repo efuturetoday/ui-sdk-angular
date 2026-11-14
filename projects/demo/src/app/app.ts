@@ -104,6 +104,10 @@ class App {
     )
   }
 
+  protected titleOfExample(name: string) {
+    return examples[name]!.title
+  }
+
   protected anchorOf(name: string) {
     return name.split("/")[1]!
   }

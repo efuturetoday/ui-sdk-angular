@@ -1,8 +1,12 @@
+@if (caption(); as caption) {
+  <p class="caption">{{ caption }}</p>
+}
 <div class="frame" uiTabs [value]="tab()" (valueChange)="tab.set($any($event))">
   <div class="bar">
     <div uiTabsList class="tabs" aria-label="View">
       <button uiTabsTab value="preview">Preview</button>
       <button uiTabsTab value="code">Code</button>
+      <span uiTabsIndicator class="indicator"></span>
     </div>
     <ng-container uiTooltip>
       <button
@@ -29,6 +33,9 @@
     }
   </div>
   <div *uiTabsPanel="'code'" class="code">
+    @if (source.isLoading()) {
+      <p class="loading">Loading…</p>
+    }
     @for (file of source.value(); track file.name) {
       @if (source.value()!.length > 1) {
         <p class="file">{{ file.name }}</p>
@@ -36,7 +43,7 @@
       <div [innerHTML]="file.html"></div>
     }
   </div>
-  @if (log().length) {
+  @if (logs()) {
     <p class="console">Console</p>
     <ol #logList class="log" aria-label="Log">
       @for (entry of log(); track $index) {
@@ -45,6 +52,3 @@
     </ol>
   }
 </div>
-@if (caption(); as caption) {
-  <p class="caption">{{ caption }}</p>
-}

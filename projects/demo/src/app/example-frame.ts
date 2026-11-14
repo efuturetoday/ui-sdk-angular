@@ -3,6 +3,7 @@ import {
   afterRenderEffect,
   Component,
   computed,
+  DestroyRef,
   ElementRef,
   inject,
   Injector,
@@ -16,6 +17,7 @@ import { LucideRotateCcw } from "@lucide/angular"
 import { UiButton } from "@ngx-ui-sdk/core/button"
 import {
   UiTabs,
+  UiTabsIndicator,
   UiTabsList,
   UiTabsPanel,
   UiTabsTab,
@@ -43,6 +45,7 @@ const sharedSources: Record<string, () => Promise<string>> = {
     NgComponentOutlet,
     UiButton,
     UiTabs,
+    UiTabsIndicator,
     UiTabsList,
     UiTabsPanel,
     UiTabsTab,
@@ -57,6 +60,7 @@ class ExampleFrame {
   /** The example, like "dialog/basic". */
   readonly name = input.required<string>()
   protected readonly caption = computed(() => examples[this.name()]?.caption)
+  protected readonly logs = computed(() => !!examples[this.name()]?.logs)
   protected readonly tab = signal<"preview" | "code">("preview")
   protected readonly run = signal(0)
   protected readonly log = signal<string[]>([])
@@ -118,6 +122,36 @@ class ExampleFrame {
   protected readonly logList = viewChild<ElementRef<HTMLElement>>("logList")
 
   constructor() {
+    const preview = inject(ElementRef).nativeElement as HTMLElement
+    // The preview grows with what opens in it and never shrinks back, so
+    // closing a panel doesn't move the page; a reset starts it over.
+    let tallest = 0
+    // It writes the height a frame later: writing it as the observer reports
+    // would resize what it observes in the same frame, which browsers report.
+    const observer = new ResizeObserver(([entry]) => {
+      const height = entry!.borderBoxSize[0]!.blockSize
+      if (height <= tallest) {
+        return
+      }
+      tallest = height
+      requestAnimationFrame(() => {
+        const box = entry!.target as HTMLElement
+        box.style.minHeight = `${tallest}px`
+        // The code takes the same height, so switching tabs doesn't jump.
+        preview.style.setProperty("--preview-height", `${tallest}px`)
+      })
+    })
+    afterRenderEffect(() => {
+      this.run()
+      tallest = 0
+      const box = preview.querySelector<HTMLElement>(".preview")
+      if (box) {
+        box.style.minHeight = ""
+        observer.disconnect()
+        observer.observe(box)
+      }
+    })
+    inject(DestroyRef).onDestroy(() => observer.disconnect())
     afterRenderEffect(() => {
       this.log()
       const list = this.logList()?.nativeElement

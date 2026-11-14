@@ -123,16 +123,35 @@ for (const fixture of [...opened].sort()) {
   }
 }
 
-// The order and captions of each component's examples on ui-sdk.dev, from its Vue page.
+// The order, titles and captions of each component's examples on ui-sdk.dev,
+// from its Vue page. An example's title is the heading above it; the one at
+// the top, above every heading, is the component's overview.
 const docs = path.join(vendor, "apps/docs/content/docs/vue/components")
 const shownOnSite = new Map()
 for (const file of existsSync(docs) ? readdirSync(docs) : []) {
-  for (const [, name, caption] of read(path.join(docs, file)).matchAll(
+  const page = read(path.join(docs, file))
+  for (const match of page.matchAll(
     /<ComponentExample\s+name="([\w/-]+)"\s+caption="([^"]*)"/g
   )) {
-    shownOnSite.set(name, { index: shownOnSite.size, caption })
+    const [, name, caption] = match
+    const headings = [
+      ...page
+        .slice(0, match.index)
+        .matchAll(/^#{2,3} (.+?)(?: \[#[\w-]+\])?$/gm),
+    ]
+    const title = headings.at(-1)?.[1] ?? "Overview"
+    shownOnSite.set(name, { index: shownOnSite.size, caption, title })
   }
 }
+// An example the site doesn't show is titled by its name, like "Dirty Form".
+const words = { rtl: "Right to Left", otp: "OTP", sr: "Screen Reader" }
+const titleOf = (key) =>
+  shownOnSite.get(key)?.title ??
+  key
+    .split("/")[1]
+    .split("-")
+    .map((word) => words[word] ?? word[0].toUpperCase() + word.slice(1))
+    .join(" ")
 const siteOrder = (a, b) =>
   (shownOnSite.get(a)?.index ?? Infinity) -
     (shownOnSite.get(b)?.index ?? Infinity) || a.localeCompare(b)
@@ -177,6 +196,8 @@ const generated = {
     "const examples: Record<",
     "  string,",
     "  {",
+    "    title: string",
+    "    logs: boolean",
     "    caption?: string",
     "    load: () => Promise<Type<unknown>>",
     "    source: () => Promise<string>",
@@ -186,7 +207,7 @@ const generated = {
       .sort(siteOrder)
       .map(
         (key) =>
-          `  "${key}": { caption: ${JSON.stringify(shownOnSite.get(key)?.caption)}, load: () => import("./${key}").then((m) => m.Example), source: () => import("./${key}", { with: { loader: "text" } }).then((m: unknown) => (m as { default: string }).default) },`
+          `  "${key}": { title: ${JSON.stringify(titleOf(key))}, logs: ${/shared\/log"/.test(read(path.join(ours, `${key}.ts`)))}, caption: ${JSON.stringify(shownOnSite.get(key)?.caption)}, load: () => import("./${key}").then((m) => m.Example), source: () => import("./${key}", { with: { loader: "text" } }).then((m: unknown) => (m as { default: string }).default) },`
       ),
     "}",
     "",

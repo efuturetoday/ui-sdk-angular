@@ -74,7 +74,7 @@
   <h2>{{ titleOf(current()) }}</h2>
   @for (name of names(); track name) {
     <section class="example" [id]="anchorOf(name)">
-      <h3>{{ name.split("/")[1] }}</h3>
+      <h3>{{ titleOfExample(name) }}</h3>
       <app-example-frame [name]="name" />
     </section>
   }
@@ -85,7 +85,7 @@
     <a
       [href]="'#' + anchorOf(name)"
       [attr.aria-current]="anchorOf(name) === section() ? 'location' : null"
-      >{{ name.split("/")[1] }}</a
+      >{{ titleOfExample(name) }}</a
     >
   }
 </nav>
