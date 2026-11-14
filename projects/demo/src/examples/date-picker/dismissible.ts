@@ -5,7 +5,6 @@ import {
   LucideChevronRight,
 } from "@lucide/angular"
 import {
-  type DatePickerValue,
   UiCalendarDay,
   UiCalendarGrid,
   UiCalendarHeading,
@@ -14,11 +13,14 @@ import {
   UiCalendarWeek,
   UiCalendarWeekday,
   UiCalendarWeekdays,
+} from "ngx-ui-sdk/calendar"
+import {
+  type DatePickerValue,
   UiDatePicker,
   UiDatePickerContent,
   UiDatePickerInput,
   UiDatePickerTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/date-picker"
 
 @Component({
   selector: "app-example",

@@ -1,15 +1,13 @@
 import { Component, computed, signal } from "@angular/core"
+import { UiField, UiFieldControl, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
   createPopoverController,
-  UiField,
-  UiFieldControl,
-  UiFieldLabel,
   UiPopover,
   UiPopoverContent,
   UiPopoverDescription,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/popover"
 import { injectLog } from "../../shared/log"
 
 type Member = { name: string; role: string }

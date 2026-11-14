@@ -6,7 +6,7 @@ import {
   UiAccordionItem,
   UiAccordionPanel,
   UiAccordionTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/accordion"
 
 // An accordion of N items, like a long FAQ.
 // Every item starts closed. With ?found, closed panels stay in the page for

@@ -8,7 +8,7 @@ import {
   UiCalendarNext,
   UiCalendarPrevious,
   UiCalendarWeekday,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/calendar"
 
 @Component({
   selector: "app-example",

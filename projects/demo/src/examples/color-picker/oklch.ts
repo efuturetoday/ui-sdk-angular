@@ -8,7 +8,7 @@ import {
   UiColorPickerSlider,
   UiColorPickerSliderThumb,
   UiColorPickerSwatch,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/color-picker"
 
 @Component({
   selector: "app-example",

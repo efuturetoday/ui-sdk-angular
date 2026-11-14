@@ -6,6 +6,8 @@ import {
   UiPopoverDescription,
   UiPopoverTitle,
   UiPopoverTrigger,
+} from "ngx-ui-sdk/popover"
+import {
   UiSelect,
   UiSelectContent,
   UiSelectItem,
@@ -13,7 +15,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
 
 type Name = "sideOffset" | "alignOffset" | "collisionPadding"
 

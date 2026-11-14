@@ -19,8 +19,10 @@ import {
 import { onItemsChange } from "tests/fixtures/items"
 import { longItems, serializeForm } from "tests/fixtures/select"
 import {
-  type ComboboxValueChangeDetails,
   injectAsyncOptions,
+} from "ngx-ui-sdk"
+import {
+  type ComboboxValueChangeDetails,
   UiCombobox,
   UiComboboxChip,
   UiComboboxChipRemove,
@@ -42,7 +44,7 @@ import {
   UiComboboxStatus,
   UiComboboxTrigger,
   UiComboboxValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/combobox"
 
 type Entry = {
   value: string

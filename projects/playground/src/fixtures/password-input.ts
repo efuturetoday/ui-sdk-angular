@@ -6,14 +6,16 @@ import {
   passwordInputOptions,
 } from "tests/fixtures/password-input"
 import {
-  createPasswordInputController,
   UiField,
   UiFieldDescription,
   UiFieldLabel,
+} from "ngx-ui-sdk/field"
+import {
+  createPasswordInputController,
   UiPasswordInput,
   UiPasswordInputControl,
   UiPasswordInputToggle,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/password-input"
 
 @Component({
   selector: "app-fixture",

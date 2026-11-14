@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideFile } from "@lucide/angular"
-import { UiListbox, UiListboxItem, UiListboxItemIcon } from "ngx-ui-sdk"
+import { UiListbox, UiListboxItem, UiListboxItemIcon } from "ngx-ui-sdk/listbox"
 import { injectLog } from "../../shared/log"
 
 @Component({

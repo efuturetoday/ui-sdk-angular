@@ -1,9 +1,7 @@
 import { afterNextRender, Component, signal } from "@angular/core"
 import { menubarFixture as f, menubarOptions } from "tests/fixtures/menubar"
 import {
-  createMenubarController,
   UiMenu,
-  UiMenubar,
   UiMenuCheckboxItem,
   UiMenuContent,
   UiMenuItem,
@@ -15,7 +13,11 @@ import {
   UiMenuSubTrigger,
   UiMenuTrigger,
   type MenuCheckedChangeDetails,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/menu"
+import {
+  createMenubarController,
+  UiMenubar,
+} from "ngx-ui-sdk/menubar"
 
 // Upstream's fixture; an item's shortcut shows through the `uiMenuShortcut`
 // written in it.

@@ -5,6 +5,8 @@ import {
   UiHoverCardArrow,
   UiHoverCardContent,
   UiHoverCardTrigger,
+} from "ngx-ui-sdk/hover-card"
+import {
   UiSelect,
   UiSelectContent,
   UiSelectItem,
@@ -12,7 +14,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
 
 type Side = "top" | "right" | "bottom" | "left"
 type Align = "start" | "center" | "end"

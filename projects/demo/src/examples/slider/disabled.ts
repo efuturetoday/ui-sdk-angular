@@ -1,15 +1,13 @@
 import { Component } from "@angular/core"
+import { UiField, UiFieldDescription, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  UiField,
-  UiFieldDescription,
-  UiFieldLabel,
   UiSlider,
   UiSliderControl,
   UiSliderIndicator,
   UiSliderThumb,
   UiSliderTrack,
   UiSliderValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/slider"
 
 @Component({
   selector: "app-example",

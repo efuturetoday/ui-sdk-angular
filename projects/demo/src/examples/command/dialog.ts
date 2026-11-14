@@ -17,13 +17,15 @@ import {
   UiCommandItem,
   UiCommandItemIcon,
   UiCommandList,
+} from "ngx-ui-sdk/command"
+import {
   UiDialog,
   UiDialogBackdrop,
   UiDialogContent,
   UiDialogShortcut,
   UiDialogTitle,
   UiDialogTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/dialog"
 import { injectLog } from "../../shared/log"
 
 @Component({

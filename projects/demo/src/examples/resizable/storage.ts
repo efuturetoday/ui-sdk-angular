@@ -4,7 +4,7 @@ import {
   UiResizable,
   UiResizableHandle,
   UiResizablePanel,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/resizable"
 
 @Component({
   selector: "app-example",

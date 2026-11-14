@@ -6,14 +6,12 @@ import {
   LucideTrash2,
   LucideType,
 } from "@lucide/angular"
+import { UiToggle, UiToggleGroup, UiToggleIcon } from "ngx-ui-sdk/toggle"
 import {
-  UiToggle,
-  UiToggleGroup,
-  UiToggleIcon,
   UiToolbar,
   UiToolbarButton,
   UiToolbarSeparator,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/toolbar"
 import { injectLog } from "../../shared/log"
 
 @Component({

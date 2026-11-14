@@ -4,13 +4,15 @@ import {
   UiField,
   UiFieldDescription,
   UiFieldLabel,
+} from "ngx-ui-sdk/field"
+import {
   UiSlider,
   UiSliderControl,
   UiSliderIndicator,
   UiSliderThumb,
   UiSliderTrack,
   UiSliderValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/slider"
 
 type Value = number | number[]
 

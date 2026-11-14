@@ -1,11 +1,11 @@
 import { Component } from "@angular/core"
 import { LucideCheck } from "@lucide/angular"
 import {
-  type ListData,
   UiListbox,
   UiListboxItem,
   UiListboxItemIndicator,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/listbox"
+import { type ListData } from "ngx-ui-sdk/select"
 import { injectLog } from "../../shared/log"
 
 type Plan = { id: string; price: number }

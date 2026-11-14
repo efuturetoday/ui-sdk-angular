@@ -6,11 +6,13 @@ import {
   UiAutocompleteInput,
   UiAutocompleteItem,
   UiAutocompleteList,
+} from "ngx-ui-sdk/autocomplete"
+import {
   UiField,
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/field"
 import { injectLog } from "../../shared/log"
 
 @Component({

@@ -6,7 +6,7 @@ import {
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/toast"
 
 @Component({
   selector: "app-example",

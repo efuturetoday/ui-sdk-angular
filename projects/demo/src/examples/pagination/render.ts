@@ -8,7 +8,7 @@ import {
   UiPaginationList,
   UiPaginationNext,
   UiPaginationPrevious,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/pagination"
 
 @Component({
   selector: "app-example",

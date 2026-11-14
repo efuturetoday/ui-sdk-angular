@@ -10,7 +10,7 @@ import {
   UiComboboxLabel,
   UiComboboxList,
   UiComboboxTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/combobox"
 
 @Component({
   selector: "app-example",

@@ -1,6 +1,10 @@
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideCopy } from "@lucide/angular"
-import { UiTooltip, UiTooltipContent, UiTooltipTrigger } from "ngx-ui-sdk"
+import {
+  UiTooltip,
+  UiTooltipContent,
+  UiTooltipTrigger,
+} from "ngx-ui-sdk/tooltip"
 
 @Component({
   selector: "app-example",

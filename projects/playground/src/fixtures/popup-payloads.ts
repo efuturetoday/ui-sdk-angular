@@ -2,23 +2,29 @@ import { Component, signal } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import { describeChange } from "tests/fixtures/hover-popups"
 import {
-  createPopoverController,
   UiDialog,
   UiDialogContent,
   UiDialogTrigger,
+} from "ngx-ui-sdk/dialog"
+import {
   UiDrawer,
   UiDrawerContent,
   UiDrawerTrigger,
+} from "ngx-ui-sdk/drawer"
+import {
   UiMenu,
   UiMenuContent,
   UiMenuGroup,
   UiMenuGroupLabel,
   UiMenuItem,
   UiMenuTrigger,
+} from "ngx-ui-sdk/menu"
+import {
+  createPopoverController,
   UiPopover,
   UiPopoverContent,
   UiPopoverTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/popover"
 
 // Upstream's tests/fixtures/popup-payloads.ts, inlined: it re-exports
 // `describeChange` with a ".ts" path, which this build can't compile. Its

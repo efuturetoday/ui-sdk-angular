@@ -1,6 +1,10 @@
 import { Component } from "@angular/core"
 import { LucideCheck } from "@lucide/angular"
-import { UiCheckbox, UiCheckboxIndicator, UiCheckboxInput } from "ngx-ui-sdk"
+import {
+  UiCheckbox,
+  UiCheckboxIndicator,
+  UiCheckboxInput,
+} from "ngx-ui-sdk/checkbox"
 
 @Component({
   selector: "app-example",

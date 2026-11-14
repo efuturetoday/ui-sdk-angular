@@ -6,7 +6,7 @@ import {
   UiRating,
   UiRatingItem,
   type RatingValueChangeDetails,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/rating"
 
 const { quality, value, average } = ratingFixture
 

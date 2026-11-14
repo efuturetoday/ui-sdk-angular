@@ -5,7 +5,7 @@ import {
   UiMenuContent,
   UiMenuItem,
   UiMenuTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/menu"
 
 // Counts renders of each custom item, so specs can check what re-renders.
 const renders = { watched: 0, plain: 0 }

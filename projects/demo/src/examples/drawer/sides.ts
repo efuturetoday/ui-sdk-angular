@@ -7,7 +7,7 @@ import {
   UiDrawerDescription,
   UiDrawerTitle,
   UiDrawerTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/drawer"
 
 const sides = [
   {

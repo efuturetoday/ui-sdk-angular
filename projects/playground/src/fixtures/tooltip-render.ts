@@ -3,7 +3,7 @@ import {
   UiTooltip,
   UiTooltipContent,
   UiTooltipTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/tooltip"
 
 @Component({
   selector: "app-fixture",

@@ -1,20 +1,21 @@
 import { Component, signal } from "@angular/core"
 import { LucideCheck } from "@lucide/angular"
 import {
-  type PopoverOpenChangeDetails,
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-  UiField,
-  UiFieldLabel,
-  UiInput,
+} from "ngx-ui-sdk/checkbox"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiInput } from "ngx-ui-sdk/input"
+import {
+  type PopoverOpenChangeDetails,
   UiPopover,
   UiPopoverClose,
   UiPopoverContent,
   UiPopoverDescription,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/popover"
 import { injectLog } from "../../shared/log"
 
 @Component({

@@ -4,10 +4,12 @@ import {
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
+} from "ngx-ui-sdk/field"
+import {
   UiOtpInput,
   UiOtpInputGroup,
   UiOtpInputSlot,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/otp-input"
 import { injectLog } from "../../shared/log"
 
 @Component({

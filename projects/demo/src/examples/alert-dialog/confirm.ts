@@ -7,7 +7,7 @@ import {
   UiAlertDialogDescription,
   UiAlertDialogTitle,
   createConfirm,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/alert-dialog"
 
 type Project = { name: string }
 

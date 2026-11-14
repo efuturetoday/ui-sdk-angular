@@ -13,25 +13,35 @@ import {
   UiAccordionItem,
   UiAccordionPanel,
   UiAccordionTrigger,
+} from "ngx-ui-sdk/accordion"
+import {
   UiAutocomplete,
   UiAutocompleteContent,
   UiAutocompleteInput,
   UiAutocompleteItem,
   UiAutocompleteList,
+} from "ngx-ui-sdk/autocomplete"
+import {
   UiCollapsible,
   UiCollapsiblePanel,
   UiCollapsibleTrigger,
+} from "ngx-ui-sdk/collapsible"
+import {
   UiCombobox,
   UiComboboxContent,
   UiComboboxInput,
   UiComboboxItem,
   UiComboboxList,
+} from "ngx-ui-sdk/combobox"
+import {
   UiDialog,
   UiDialogClose,
   UiDialogContent,
   UiDialogDescription,
   UiDialogTitle,
   UiDialogTrigger,
+} from "ngx-ui-sdk/dialog"
+import {
   UiDrawer,
   UiDrawerBackdrop,
   UiDrawerClose,
@@ -39,55 +49,79 @@ import {
   UiDrawerDescription,
   UiDrawerTitle,
   UiDrawerTrigger,
+} from "ngx-ui-sdk/drawer"
+import {
   UiHoverCard,
   UiHoverCardContent,
   UiHoverCardTrigger,
+} from "ngx-ui-sdk/hover-card"
+import {
   UiMenu,
   UiMenuContent,
   UiMenuItem,
   UiMenuTrigger,
+} from "ngx-ui-sdk/menu"
+import {
   UiPopover,
   UiPopoverClose,
   UiPopoverContent,
   UiPopoverTrigger,
+} from "ngx-ui-sdk/popover"
+import {
   UiResizable,
   UiResizableHandle,
   UiResizablePanel,
+} from "ngx-ui-sdk/resizable"
+import {
   UiScrollArea,
   UiScrollAreaContent,
   UiScrollAreaScrollbar,
   UiScrollAreaThumb,
   UiScrollAreaViewport,
+} from "ngx-ui-sdk/scroll-area"
+import {
   UiSelect,
   UiSelectContent,
   UiSelectItem,
   UiSelectTrigger,
   UiSelectValue,
+} from "ngx-ui-sdk/select"
+import {
   UiSlider,
   UiSliderControl,
   UiSliderIndicator,
   UiSliderThumb,
   UiSliderTrack,
+} from "ngx-ui-sdk/slider"
+import {
   UiTabs,
   UiTabsIndicator,
   UiTabsList,
   UiTabsPanel,
   UiTabsTab,
+} from "ngx-ui-sdk/tabs"
+import {
   UiToolbar,
   UiToolbarButton,
+} from "ngx-ui-sdk/toolbar"
+import {
   UiTooltip,
   UiTooltipContent,
   UiTooltipTrigger,
+} from "ngx-ui-sdk/tooltip"
+import {
   UiTree,
   UiTreeGroup,
   UiTreeItem,
   UiTreeItemLabel,
+  type TreeItemData,
+} from "ngx-ui-sdk/tree"
+import {
   UiWaterfall,
   UiWaterfallBar,
   UiWaterfallRow,
   UiWaterfallRowHeader,
-  type TreeItemData,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/waterfall"
 
 // One component for the leak specs, picked with ?component=, and a button
 // that mounts and unmounts it. The tree's and the waterfall's rows are

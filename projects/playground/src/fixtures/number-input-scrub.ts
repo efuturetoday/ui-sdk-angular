@@ -6,7 +6,7 @@ import {
   UiNumberInputControl,
   UiNumberInputGroup,
   UiNumberInputScrubArea,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/number-input"
 
 @Component({
   selector: "app-fixture",

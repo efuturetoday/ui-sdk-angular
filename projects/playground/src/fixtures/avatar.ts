@@ -6,7 +6,7 @@ import {
   UiAvatarFallback,
   UiAvatarImage,
   type AvatarLoadingStatus,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/avatar"
 
 @Component({
   selector: "app-fixture",

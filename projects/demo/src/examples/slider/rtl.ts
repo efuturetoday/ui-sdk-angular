@@ -6,7 +6,7 @@ import {
   UiSliderThumb,
   UiSliderTrack,
   UiSliderValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/slider"
 
 @Component({
   selector: "app-example",

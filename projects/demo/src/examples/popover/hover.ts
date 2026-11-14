@@ -6,7 +6,7 @@ import {
   UiPopoverDescription,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/popover"
 import { injectLog } from "../../shared/log"
 
 @Component({

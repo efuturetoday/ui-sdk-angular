@@ -6,7 +6,7 @@ import {
   UiNumberInputGroup,
   UiNumberInputScrubArea,
   UiNumberInputScrubAreaCursor,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/number-input"
 import { injectLog } from "../../shared/log"
 import { uniqueId } from "../../shared/id"
 

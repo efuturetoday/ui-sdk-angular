@@ -1,12 +1,7 @@
 import { Component } from "@angular/core"
 import { LucideCheck } from "@lucide/angular"
-import {
-  UiField,
-  UiFieldLabel,
-  UiRadio,
-  UiRadioGroup,
-  UiRadioInput,
-} from "ngx-ui-sdk"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiRadio, UiRadioGroup, UiRadioInput } from "ngx-ui-sdk/radio"
 import { uniqueId } from "../../shared/id"
 
 @Component({

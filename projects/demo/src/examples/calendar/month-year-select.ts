@@ -12,7 +12,7 @@ import {
   UiCalendarWeekday,
   UiCalendarWeekdays,
   UiCalendarYearSelect,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/calendar"
 
 @Component({
   selector: "app-example",

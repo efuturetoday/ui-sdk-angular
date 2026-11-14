@@ -1,8 +1,7 @@
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  UiField,
-  UiFieldLabel,
   UiSelect,
   UiSelectContent,
   UiSelectEmpty,
@@ -15,7 +14,7 @@ import {
   UiSelectList,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
 
 @Component({
   selector: "app-example",

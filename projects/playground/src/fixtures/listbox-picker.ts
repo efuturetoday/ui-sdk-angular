@@ -12,7 +12,10 @@ import {
   type PickerFixture,
   pickerFixtures,
 } from "tests/fixtures/listbox-picker"
-import { UiListbox, UiListboxItem } from "ngx-ui-sdk"
+import {
+  UiListbox,
+  UiListboxItem,
+} from "ngx-ui-sdk/listbox"
 
 @Component({
   selector: "app-picker",

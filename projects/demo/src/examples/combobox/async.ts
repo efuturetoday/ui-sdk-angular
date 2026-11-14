@@ -1,7 +1,7 @@
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
+import { injectAsyncOptions } from "ngx-ui-sdk"
 import {
-  injectAsyncOptions,
   UiCombobox,
   UiComboboxContent,
   UiComboboxEmpty,
@@ -12,7 +12,7 @@ import {
   UiComboboxList,
   UiComboboxStatus,
   UiComboboxTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/combobox"
 
 const movieTitles = [
   "The Shawshank Redemption",

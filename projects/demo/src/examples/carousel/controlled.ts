@@ -7,7 +7,7 @@ import {
   UiCarouselNext,
   UiCarouselPrevious,
   UiCarouselViewport,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/carousel"
 import { injectLog } from "../../shared/log"
 
 @Component({

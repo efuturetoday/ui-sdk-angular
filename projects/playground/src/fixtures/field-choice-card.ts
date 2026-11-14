@@ -7,10 +7,12 @@ import {
   UiCheckbox,
   UiCheckboxInput,
   UiCheckboxIndicator,
+} from "ngx-ui-sdk/checkbox"
+import {
   UiField,
   UiFieldDescription,
   UiFieldLabel,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/field"
 
 @Component({
   selector: "app-fixture",

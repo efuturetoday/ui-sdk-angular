@@ -3,7 +3,7 @@ import {
   UiHoverCard,
   UiHoverCardContent,
   UiHoverCardTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/hover-card"
 
 @Component({
   selector: "app-fixture",

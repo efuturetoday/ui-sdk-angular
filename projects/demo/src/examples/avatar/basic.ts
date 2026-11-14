@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { UiAvatar, UiAvatarFallback, UiAvatarImage } from "ngx-ui-sdk"
+import { UiAvatar, UiAvatarFallback, UiAvatarImage } from "ngx-ui-sdk/avatar"
 
 @Component({
   selector: "app-example",

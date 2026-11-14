@@ -1,14 +1,14 @@
 import { Component, computed, signal } from "@angular/core"
 import { LucideChevronRight } from "@lucide/angular"
+import { type ListHighlightDetails } from "ngx-ui-sdk/select"
 import {
-  type ListHighlightDetails,
   type TreeItemData,
   UiTree,
   UiTreeItem,
   UiTreeItemIndicator,
   UiTreeItemLabel,
   visibleTreeRows,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/tree"
 
 const items: TreeItemData[] = Array.from({ length: 100 }, (_, folder) => ({
   value: `folder-${folder + 1}`,

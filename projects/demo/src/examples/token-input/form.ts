@@ -1,15 +1,16 @@
 import { Component, signal } from "@angular/core"
 import { LucideCheck } from "@lucide/angular"
 import {
-  type TokenInputValue,
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-  UiField,
-  UiFieldLabel,
+} from "ngx-ui-sdk/checkbox"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import {
+  type TokenInputValue,
   UiTokenInput,
   UiTokenInputEditor,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/token-input"
 import { injectLog } from "../../shared/log"
 import { uniqueId } from "../../shared/id"
 

@@ -17,9 +17,7 @@
       "tests/*": ["./vendor/ui/tests/*"],
       "playground-fixtures/*": ["./vendor/ui/apps/playground/src/fixtures/*"],
       "ngx-ui-sdk": ["./projects/ngx-ui-sdk/src/public-api.ts"],
-      "ngx-ui-sdk/overlays": [
-        "./projects/ngx-ui-sdk/overlays/src/public-api.ts"
-      ]
+      "ngx-ui-sdk/*": ["./projects/ngx-ui-sdk/*/src/public-api.ts"]
     }
   },
   "angularCompilerOptions": {

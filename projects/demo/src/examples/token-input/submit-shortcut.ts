@@ -1,12 +1,11 @@
 import { Component } from "@angular/core"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
   toLabel,
   type TokenInputValue,
-  UiField,
-  UiFieldLabel,
   UiTokenInput,
   UiTokenInputEditor,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/token-input"
 import { injectLog } from "../../shared/log"
 
 @Component({

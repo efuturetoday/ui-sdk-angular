@@ -7,10 +7,8 @@ import {
   UiDialogDescription,
   UiDialogTitle,
   UiDialogTrigger,
-  UiField,
-  UiFieldControl,
-  UiFieldLabel,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/dialog"
+import { UiField, UiFieldControl, UiFieldLabel } from "ngx-ui-sdk/field"
 
 @Component({
   selector: "app-example",

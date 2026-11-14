@@ -5,19 +5,17 @@ import {
   signal,
   viewChild,
 } from "@angular/core"
+import { UiField, UiFieldControl, UiFieldLabel } from "ngx-ui-sdk/field"
+import { type TextEditorAdapter } from "ngx-ui-sdk/token-input"
 import {
   textFieldAdapter,
-  type TextEditorAdapter,
   type TriggerDefinition,
   type TriggerMenuDataItem,
-  UiField,
-  UiFieldControl,
-  UiFieldLabel,
   UiTriggerMenu,
   UiTriggerMenuContent,
   UiTriggerMenuItem,
   UiTriggerMenuList,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/trigger-menu"
 
 @Component({
   selector: "app-example",

@@ -1,14 +1,13 @@
 import { Component } from "@angular/core"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiTextarea } from "ngx-ui-sdk/input"
 import {
-  UiField,
-  UiFieldLabel,
   UiTabs,
   UiTabsIndicator,
   UiTabsList,
   UiTabsPanel,
   UiTabsTab,
-  UiTextarea,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/tabs"
 
 @Component({
   selector: "app-example",

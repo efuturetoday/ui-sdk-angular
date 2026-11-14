@@ -9,7 +9,7 @@ import {
   UiTreeItem,
   UiTreeItemIndicator,
   UiTreeItemLabel,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/tree"
 
 @Component({
   selector: "app-example",

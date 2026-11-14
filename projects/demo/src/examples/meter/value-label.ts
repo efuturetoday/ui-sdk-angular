@@ -1,12 +1,12 @@
 import { Component } from "@angular/core"
-import type { MeterLabelDetails } from "ngx-ui-sdk"
+import { type MeterLabelDetails } from "ngx-ui-sdk/meter"
 import {
   UiMeter,
   UiMeterIndicator,
   UiMeterLabel,
   UiMeterTrack,
   UiMeterValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/meter"
 
 @Component({
   selector: "app-example",

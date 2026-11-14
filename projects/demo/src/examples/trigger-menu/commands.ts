@@ -1,14 +1,12 @@
 import { Component } from "@angular/core"
+import { UiField, UiFieldControl, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
   type TriggerDefinition,
   type TriggerMenuSelectDetails,
-  UiField,
-  UiFieldControl,
-  UiFieldLabel,
   UiTriggerMenu,
   UiTriggerMenuHint,
   UiTriggerMenuInput,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/trigger-menu"
 import { injectLog } from "../../shared/log"
 
 @Component({

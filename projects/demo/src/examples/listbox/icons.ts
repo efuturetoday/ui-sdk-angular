@@ -6,7 +6,7 @@ import {
   LucidePencil,
   LucideStar,
 } from "@lucide/angular"
-import { UiListbox, UiListboxItem, UiListboxItemIcon } from "ngx-ui-sdk"
+import { UiListbox, UiListboxItem, UiListboxItemIcon } from "ngx-ui-sdk/listbox"
 
 @Component({
   selector: "app-example",

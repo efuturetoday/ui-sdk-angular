@@ -15,6 +15,8 @@ import {
   UiAutocompleteItemText,
   UiAutocompleteLabel,
   UiAutocompleteList,
+} from "ngx-ui-sdk/autocomplete"
+import {
   UiCombobox,
   UiComboboxContent,
   UiComboboxInput,
@@ -24,6 +26,8 @@ import {
   UiComboboxLabel,
   UiComboboxList,
   UiComboboxValueIcon,
+} from "ngx-ui-sdk/combobox"
+import {
   UiCommand,
   UiCommandEmpty,
   UiCommandInput,
@@ -31,16 +35,22 @@ import {
   UiCommandItemIcon,
   UiCommandItemText,
   UiCommandList,
+} from "ngx-ui-sdk/command"
+import {
   UiMenu,
   UiMenuContent,
   UiMenuItem,
   UiMenuItemIcon,
   UiMenuTrigger,
+} from "ngx-ui-sdk/menu"
+import {
   UiNavigationMenu,
   UiNavigationMenuItem,
   UiNavigationMenuLink,
   UiNavigationMenuLinkIcon,
   UiNavigationMenuList,
+} from "ngx-ui-sdk/navigation-menu"
+import {
   UiSelect,
   UiSelectContent,
   UiSelectItem,
@@ -49,14 +59,18 @@ import {
   UiSelectTrigger,
   UiSelectValue,
   UiSelectValueIcon,
+} from "ngx-ui-sdk/select"
+import {
   UiTabs,
   UiTabsList,
   UiTabsTab,
   UiTabsTabIcon,
+} from "ngx-ui-sdk/tabs"
+import {
   UiToggle,
   UiToggleGroup,
   UiToggleIcon,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/toggle"
 
 // An entry's icon: its SVG, with its title, or its emoji.
 @Component({

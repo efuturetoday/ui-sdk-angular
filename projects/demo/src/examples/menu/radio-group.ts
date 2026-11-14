@@ -8,7 +8,7 @@ import {
   UiMenuRadioItem,
   UiMenuSeparator,
   UiMenuTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/menu"
 import { injectLog } from "../../shared/log"
 
 @Component({

@@ -9,20 +9,27 @@
 // - exports-at-end: a module declares everything without `export` and lists
 //   its exports once, at its end. Covers every .ts, .mts and .mjs file but
 //   .d.ts files and vendor.
-// - public-docs: every export of the package's entry has a JSDoc comment.
+// - public-docs: every export of the package's entries has a JSDoc comment.
 // - stability: each of those exports has exactly one of `@stable` or
 //   `@experimental` in its JSDoc.
-// - entry-types: the entry names its exports one by one, never `export *`,
+// - entry-types: each entry names its exports one by one, never `export *`,
 //   and each component's file re-exports every type core's entry for it
 //   exports, by name, in an `export type { } from "@ui-sdk/core/<name>"`.
 import { execFileSync } from "node:child_process"
-import { existsSync, readFileSync } from "node:fs"
+import { existsSync, readdirSync, readFileSync } from "node:fs"
 import path from "node:path"
 import ts from "typescript"
 
 const root = path.resolve(import.meta.dirname, "..")
-const library = path.join(root, "projects/ngx-ui-sdk/src")
-const entry = path.join(library, "public-api.ts")
+const library = path.join(root, "projects/ngx-ui-sdk")
+// The primary entry and one secondary entry per component.
+const entries = [
+  path.join(library, "src/public-api.ts"),
+  ...readdirSync(library, { withFileTypes: true })
+    .filter((dir) => dir.isDirectory() && dir.name !== "src")
+    .map((dir) => path.join(library, dir.name, "src/public-api.ts"))
+    .filter((file) => existsSync(file)),
+]
 const allowReturnType = /\/\/\s*check-code:\s*allow return-type(.*)$/
 const stabilityLabels = ["stable", "experimental"]
 // Component files whose core entry has another name.
@@ -30,8 +37,12 @@ const coreEntryOf = {}
 
 const violations = []
 const allowances = []
-const program = ts.createProgram([entry], {
+const program = ts.createProgram(entries, {
   module: ts.ModuleKind.ESNext,
+  paths: {
+    "ngx-ui-sdk": [path.join(library, "src/public-api.ts")],
+    "ngx-ui-sdk/*": [path.join(library, "*/src/public-api.ts")],
+  },
   target: ts.ScriptTarget.ES2022,
   moduleResolution: ts.ModuleResolutionKind.Bundler,
   experimentalDecorators: true,
@@ -179,19 +190,26 @@ function checkExportsAtEnd() {
   }
 }
 
-// Every export of the entry declared in the package, once, at its declaration.
+// Every export of the entries declared in the package, once, at its
+// declaration. A `ɵ` name is shared between the entries, not public.
 function publicDeclarations() {
-  const module = checker.getSymbolAtLocation(program.getSourceFile(entry))
   const seen = new Set()
   const declarations = []
-  for (const exported of checker.getExportsOfModule(module)) {
-    const declaration = resolve(exported).declarations?.[0]
-    const source = declaration?.getSourceFile()
-    if (!source?.fileName.startsWith(library) || seen.has(declaration)) {
-      continue
+  for (const entry of entries) {
+    const module = checker.getSymbolAtLocation(program.getSourceFile(entry))
+    for (const exported of checker.getExportsOfModule(module)) {
+      const declaration = resolve(exported).declarations?.[0]
+      const source = declaration?.getSourceFile()
+      if (
+        exported.name.startsWith("ɵ") ||
+        !source?.fileName.startsWith(library) ||
+        seen.has(declaration)
+      ) {
+        continue
+      }
+      seen.add(declaration)
+      declarations.push({ name: exported.name, declaration, source })
     }
-    seen.add(declaration)
-    declarations.push({ name: exported.name, declaration, source })
   }
   return declarations
 }
@@ -236,15 +254,17 @@ function checkStability() {
 }
 
 function checkEntryTypes() {
-  const entrySource = program.getSourceFile(entry)
-  for (const statement of entrySource.statements) {
-    if (ts.isExportDeclaration(statement) && !statement.exportClause) {
-      report(
-        entrySource,
-        statement,
-        "entry-types",
-        `name what to re-export from \`${statement.moduleSpecifier.text}\` one by one.`
-      )
+  for (const entry of entries) {
+    const entrySource = program.getSourceFile(entry)
+    for (const statement of entrySource.statements) {
+      if (ts.isExportDeclaration(statement) && !statement.exportClause) {
+        report(
+          entrySource,
+          statement,
+          "entry-types",
+          `name what to re-export from \`${statement.moduleSpecifier.text}\` one by one.`
+        )
+      }
     }
   }
   for (const source of librarySources()) {

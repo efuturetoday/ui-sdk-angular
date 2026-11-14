@@ -7,7 +7,7 @@ import {
   UiDrawerHandle,
   UiDrawerTitle,
   UiDrawerTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/drawer"
 
 const places = [
   { name: "Blue Bottle Coffee", detail: "Coffee · 0.2 mi" },

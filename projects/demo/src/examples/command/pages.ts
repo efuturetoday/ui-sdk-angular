@@ -11,7 +11,7 @@ import {
   UiCommandItemIcon,
   UiCommandList,
   UiCommandPage,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/command"
 
 @Component({
   selector: "app-example",

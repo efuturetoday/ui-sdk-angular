@@ -10,6 +10,8 @@ import {
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
+} from "ngx-ui-sdk/field"
+import {
   UiFileInput,
   UiFileInputDropzone,
   UiFileInputItem,
@@ -18,7 +20,7 @@ import {
   UiFileInputTrigger,
   type FileInputValueChangeDetails,
   type FileRejection,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/file-input"
 
 @Component({
   selector: "app-fixture",

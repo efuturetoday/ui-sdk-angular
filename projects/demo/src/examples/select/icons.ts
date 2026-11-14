@@ -6,9 +6,8 @@ import {
   LucideTextAlignEnd,
   LucideTextAlignStart,
 } from "@lucide/angular"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  UiField,
-  UiFieldLabel,
   UiSelect,
   UiSelectContent,
   UiSelectItem,
@@ -17,7 +16,7 @@ import {
   UiSelectTrigger,
   UiSelectValue,
   UiSelectValueIcon,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
 
 @Component({
   selector: "app-example",

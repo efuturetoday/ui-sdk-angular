@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideMoon, LucideSun } from "@lucide/angular"
-import { UiSwitch, UiSwitchThumb, UiSwitchInput } from "ngx-ui-sdk"
+import { UiSwitch, UiSwitchThumb, UiSwitchInput } from "ngx-ui-sdk/switch"
 
 @Component({
   selector: "app-example",

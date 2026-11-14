@@ -9,13 +9,17 @@ import {
 } from "tests/fixtures/toast"
 import {
   confirm,
-  createToaster,
-  type ToastOptions,
+} from "ngx-ui-sdk/alert-dialog"
+import {
   UiDialog,
   UiDialogClose,
   UiDialogContent,
   UiDialogTitle,
   UiDialogTrigger,
+} from "ngx-ui-sdk/dialog"
+import {
+  createToaster,
+  type ToastOptions,
   UiToast,
   UiToastAction,
   UiToastClose,
@@ -23,7 +27,7 @@ import {
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/toast"
 
 // The page's toaster, the buttons' handlers and `window.showToast`, as
 // upstream's shared fixture has them; its imports don't compile here.

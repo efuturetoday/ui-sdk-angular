@@ -7,7 +7,7 @@ import {
   UiDrawerContent,
   UiDrawerDescription,
   UiDrawerTitle,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/drawer"
 import { injectLog } from "../../shared/log"
 
 type PhotoAction = "share" | "duplicate" | "delete" | "cancel"

@@ -1,12 +1,12 @@
 import { Component } from "@angular/core"
-import type { NumberFormat } from "ngx-ui-sdk"
+import { type NumberFormat } from "ngx-ui-sdk/meter"
 import {
   UiMeter,
   UiMeterIndicator,
   UiMeterLabel,
   UiMeterTrack,
   UiMeterValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/meter"
 
 @Component({
   selector: "app-example",

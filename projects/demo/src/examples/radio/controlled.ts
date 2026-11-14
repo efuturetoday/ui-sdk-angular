@@ -1,13 +1,12 @@
 import { Component, signal } from "@angular/core"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
   createRadioGroupController,
-  UiField,
-  UiFieldLabel,
   UiRadio,
   UiRadioInput,
   UiRadioGroup,
   UiRadioIndicator,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/radio"
 import { injectLog } from "../../shared/log"
 
 @Component({

@@ -5,7 +5,7 @@ import {
   UiProgressLabel,
   UiProgressTrack,
   UiProgressValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/progress"
 import { injectLog } from "../../shared/log"
 
 @Component({

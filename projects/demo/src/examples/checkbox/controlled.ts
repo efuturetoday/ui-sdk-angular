@@ -7,7 +7,7 @@ import {
   UiCheckbox,
   UiCheckboxInput,
   UiCheckboxIndicator,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/checkbox"
 import { injectLog } from "../../shared/log"
 
 @Component({

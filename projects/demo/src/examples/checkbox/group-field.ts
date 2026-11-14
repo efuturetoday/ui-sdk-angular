@@ -6,11 +6,13 @@ import {
   UiCheckboxGroupInput,
   UiCheckboxIndicator,
   UiCheckboxInput,
+} from "ngx-ui-sdk/checkbox"
+import {
   UiField,
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/field"
 import { injectLog } from "../../shared/log"
 
 @Component({

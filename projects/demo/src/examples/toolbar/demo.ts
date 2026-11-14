@@ -5,13 +5,12 @@ import {
   LucideLink,
   LucideUnderline,
 } from "@lucide/angular"
+import { UiToggle, UiToggleIcon } from "ngx-ui-sdk/toggle"
 import {
-  UiToggle,
-  UiToggleIcon,
   UiToolbar,
   UiToolbarButton,
   UiToolbarSeparator,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/toolbar"
 import { injectLog } from "../../shared/log"
 
 @Component({

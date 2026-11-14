@@ -6,7 +6,7 @@ import {
   UiMeterLabel,
   UiMeterTrack,
   UiMeterValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/meter"
 
 const { storage, requests, disk, score } = meterFixture
 

@@ -8,7 +8,7 @@ import {
   UiPopoverDescription,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/popover"
 
 const sides = [
   { value: "top", label: "Top" },

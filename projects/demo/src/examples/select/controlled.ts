@@ -1,17 +1,16 @@
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
   type SelectOpenChangeDetails,
   type SelectValueChangeDetails,
-  UiField,
-  UiFieldLabel,
   UiSelect,
   UiSelectContent,
   UiSelectItem,
   UiSelectItemIndicator,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
 import { injectLog } from "../../shared/log"
 
 @Component({

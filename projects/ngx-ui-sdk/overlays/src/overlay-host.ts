@@ -32,6 +32,8 @@ import {
   UiAlertDialogContent,
   UiAlertDialogDescription,
   UiAlertDialogTitle,
+} from "ngx-ui-sdk/alert-dialog"
+import {
   UiToast,
   UiToastAction,
   UiToastClose,
@@ -39,7 +41,7 @@ import {
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/toast"
 
 /**
  * Options for the toast regions the overlay host renders, like `side` and `class`.
@@ -226,14 +228,14 @@ class HostedConfirm {
   }
 }
 
+const defaultRenderers = { toaster: HostedToaster, confirm: HostedConfirm }
+
 /**
  * Renders the overlays of one type, given each `entry` as an input, like the
  * `"toaster"` and `"confirm"` that `toast()` and `confirm()` open. Add one for
  * a type of your own with `provideOverlayRenderer`; the host stays as it is.
  * @experimental
  */
-const defaultRenderers = { toaster: HostedToaster, confirm: HostedConfirm }
-
 const OVERLAY_RENDERERS = new InjectionToken<
   Readonly<Record<string, Type<unknown>>>
 >("overlay-renderers", {

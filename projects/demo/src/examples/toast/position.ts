@@ -1,7 +1,6 @@
 import { Component, DestroyRef, inject, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
-  createToaster,
   UiSelect,
   UiSelectContent,
   UiSelectItem,
@@ -9,12 +8,15 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
+} from "ngx-ui-sdk/select"
+import {
+  createToaster,
   UiToast,
   UiToastDescription,
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/toast"
 
 type Side = "top" | "bottom"
 type Align = "start" | "center" | "end"

@@ -1,11 +1,9 @@
 import { Component } from "@angular/core"
 import { LucideUsers } from "@lucide/angular"
+import { UiField, UiFieldControl, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
   type TriggerDefinition,
   type TriggerMenuSelectDetails,
-  UiField,
-  UiFieldControl,
-  UiFieldLabel,
   UiTriggerMenu,
   UiTriggerMenuContent,
   UiTriggerMenuGroup,
@@ -15,7 +13,7 @@ import {
   UiTriggerMenuItemIcon,
   UiTriggerMenuList,
   UiTriggerMenuSeparator,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/trigger-menu"
 
 @Component({
   selector: "app-example",

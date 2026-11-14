@@ -1,6 +1,10 @@
 import { Component } from "@angular/core"
 import { LucideFolder, LucideSearch, LucideSettings } from "@lucide/angular"
-import { UiResizable, UiResizableHandle, UiResizablePanel } from "ngx-ui-sdk"
+import {
+  UiResizable,
+  UiResizableHandle,
+  UiResizablePanel,
+} from "ngx-ui-sdk/resizable"
 
 @Component({
   selector: "app-example",

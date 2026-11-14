@@ -1,14 +1,13 @@
 import { Component } from "@angular/core"
 import { LucideEye, LucideEyeOff } from "@lucide/angular"
 import { injectLog } from "../../shared/log"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  UiField,
-  UiFieldLabel,
   UiPasswordInput,
   UiPasswordInputControl,
   UiPasswordInputToggle,
   createPasswordInputController,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/password-input"
 
 @Component({
   selector: "app-example",

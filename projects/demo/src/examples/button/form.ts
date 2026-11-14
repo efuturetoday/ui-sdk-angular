@@ -1,5 +1,7 @@
 import { Component } from "@angular/core"
-import { UiButton, UiField, UiFieldLabel, UiInput } from "ngx-ui-sdk"
+import { UiButton } from "ngx-ui-sdk/button"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiInput } from "ngx-ui-sdk/input"
 import { injectLog } from "../../shared/log"
 
 @Component({

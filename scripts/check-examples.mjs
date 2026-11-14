@@ -6,7 +6,7 @@ import path from "node:path"
 
 const root = path.resolve(import.meta.dirname, "..")
 const vendor = path.join(root, "vendor/ui")
-const lib = path.join(root, "projects/ngx-ui-sdk/src/lib")
+const lib = path.join(root, "projects/ngx-ui-sdk")
 const report = process.argv.includes("--report")
 const write = process.argv.includes("--write")
 
@@ -50,7 +50,9 @@ function entriesIn(source) {
   return entries
 }
 
-const has = (entry) => existsSync(path.join(lib, `${entry}.ts`))
+const has = (entry) =>
+  existsSync(path.join(lib, entry, `src/${entry}.ts`)) ||
+  existsSync(path.join(lib, `src/lib/${entry}.ts`))
 const missingOf = (source) => [...entriesIn(source)].filter((e) => !has(e))
 
 const errors = []

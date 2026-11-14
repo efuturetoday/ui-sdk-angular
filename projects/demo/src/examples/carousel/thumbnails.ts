@@ -11,7 +11,7 @@ import {
   UiCarouselContent,
   UiCarouselItem,
   UiCarouselViewport,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/carousel"
 
 @Component({
   selector: "app-example",

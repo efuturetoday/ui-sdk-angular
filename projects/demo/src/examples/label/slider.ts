@@ -1,13 +1,13 @@
 import { Component } from "@angular/core"
+import { UiLabel } from "ngx-ui-sdk/label"
 import {
-  UiLabel,
   UiSlider,
   UiSliderControl,
   UiSliderIndicator,
   UiSliderThumb,
   UiSliderTrack,
   UiSliderValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/slider"
 
 @Component({
   selector: "app-example",

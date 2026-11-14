@@ -17,7 +17,6 @@ import {
 } from "tests/fixtures/dialog"
 import {
   createConfirm,
-  createDialogController,
   UiAlertDialog,
   UiAlertDialogBackdrop,
   UiAlertDialogClose,
@@ -25,6 +24,9 @@ import {
   UiAlertDialogDescription,
   UiAlertDialogTitle,
   UiAlertDialogTrigger,
+} from "ngx-ui-sdk/alert-dialog"
+import {
+  createDialogController,
   UiDialog,
   UiDialogBackdrop,
   UiDialogClose,
@@ -34,7 +36,7 @@ import {
   UiDialogTitle,
   UiDialogTrigger,
   type DialogOpenChangeDetails,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/dialog"
 
 @Component({
   selector: "app-fixture",

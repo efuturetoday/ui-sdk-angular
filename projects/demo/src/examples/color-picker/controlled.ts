@@ -7,7 +7,7 @@ import {
   UiColorPickerInput,
   UiColorPickerSlider,
   UiColorPickerSliderThumb,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/color-picker"
 import { injectLog } from "../../shared/log"
 
 @Component({

@@ -10,7 +10,7 @@ import {
   UiAutocompleteLabel,
   UiAutocompleteList,
   UiAutocompleteSeparator,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/autocomplete"
 
 @Component({
   selector: "app-example",

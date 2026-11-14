@@ -1,13 +1,13 @@
 import { Component } from "@angular/core"
+import { injectAsyncOptions } from "ngx-ui-sdk"
 import {
-  injectAsyncOptions,
   UiCommand,
   UiCommandEmpty,
   UiCommandInput,
   UiCommandItem,
   UiCommandList,
   UiCommandStatus,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/command"
 
 function searchIssues(query: string, { signal }: { signal: AbortSignal }) {
   const issues = [

@@ -8,7 +8,7 @@ import {
   UiAccordionItem,
   UiAccordionPanel,
   UiAccordionTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/accordion"
 
 @Component({
   selector: "app-example",

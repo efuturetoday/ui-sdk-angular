@@ -26,7 +26,7 @@ import {
   UiListboxItemIndicator,
   UiListboxSeparator,
   type ListboxValueChangeDetails,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/listbox"
 
 @Component({
   selector: "app-fixture",

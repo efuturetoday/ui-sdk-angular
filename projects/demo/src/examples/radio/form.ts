@@ -1,12 +1,11 @@
 import { Component } from "@angular/core"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  UiField,
-  UiFieldLabel,
   UiRadio,
   UiRadioGroup,
   UiRadioIndicator,
   UiRadioInput,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/radio"
 import { injectLog } from "../../shared/log"
 import { uniqueId } from "../../shared/id"
 

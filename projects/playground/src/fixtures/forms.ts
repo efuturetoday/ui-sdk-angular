@@ -10,20 +10,26 @@ import {
   UiCheckboxGroup,
   UiCheckboxGroupInput,
   UiCheckboxIndicator,
+  type CheckedState,
+} from "ngx-ui-sdk/checkbox"
+import {
   UiField,
   UiFieldControl,
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
+} from "ngx-ui-sdk/field"
+import {
   UiRadio,
   UiRadioInput,
   UiRadioGroup,
   UiRadioIndicator,
+} from "ngx-ui-sdk/radio"
+import {
   UiSwitch,
   UiSwitchInput,
   UiSwitchThumb,
-  type CheckedState,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/switch"
 
 type Details = { cancel: () => void; canceled: boolean; source: string }
 

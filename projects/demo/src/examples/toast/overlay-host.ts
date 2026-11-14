@@ -14,17 +14,15 @@ import {
 } from "ngx-ui-sdk/overlays"
 import {
   createConfirm,
-  createToaster,
   UiAlertDialog,
   UiAlertDialogBackdrop,
   UiAlertDialogClose,
   UiAlertDialogContent,
   UiAlertDialogDescription,
   UiAlertDialogTitle,
-  UiToast,
-  UiToastTitle,
   type ConfirmOptions,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/alert-dialog"
+import { createToaster, UiToast, UiToastTitle } from "ngx-ui-sdk/toast"
 
 @Component({
   selector: "app-example",

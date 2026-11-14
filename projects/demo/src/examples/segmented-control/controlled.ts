@@ -6,7 +6,7 @@ import {
   UiSegmentedControlInput,
   UiSegmentedControlItem,
   createSegmentedControlController,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/segmented-control"
 
 @Component({
   selector: "app-example",

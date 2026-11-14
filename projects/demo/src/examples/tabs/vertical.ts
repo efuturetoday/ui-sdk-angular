@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { UiTabs, UiTabsList, UiTabsPanel, UiTabsTab } from "ngx-ui-sdk"
+import { UiTabs, UiTabsList, UiTabsPanel, UiTabsTab } from "ngx-ui-sdk/tabs"
 
 @Component({
   selector: "app-example",

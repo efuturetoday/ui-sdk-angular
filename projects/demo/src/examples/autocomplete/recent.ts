@@ -1,6 +1,5 @@
 import { Component } from "@angular/core"
 import {
-  type ListAnnouncement,
   UiAutocomplete,
   UiAutocompleteContent,
   UiAutocompleteEmpty,
@@ -10,7 +9,8 @@ import {
   UiAutocompleteItem,
   UiAutocompleteItemText,
   UiAutocompleteList,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/autocomplete"
+import { type ListAnnouncement } from "ngx-ui-sdk/select"
 
 type Recent = { type: "group"; label: string; items: string[] }
 

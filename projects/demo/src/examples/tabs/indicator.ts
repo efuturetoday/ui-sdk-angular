@@ -5,7 +5,7 @@ import {
   UiTabsList,
   UiTabsPanel,
   UiTabsTab,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/tabs"
 
 @Component({
   selector: "app-example",

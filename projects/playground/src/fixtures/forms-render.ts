@@ -3,16 +3,22 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
+} from "ngx-ui-sdk/checkbox"
+import {
   UiField,
   UiFieldControl,
   UiFieldLabel,
+} from "ngx-ui-sdk/field"
+import {
   UiRadio,
   UiRadioGroup,
   UiRadioInput,
+} from "ngx-ui-sdk/radio"
+import {
   UiSwitch,
   UiSwitchInput,
   UiSwitchThumb,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/switch"
 
 @Component({
   selector: "app-fixture",

@@ -8,14 +8,15 @@ import {
   UiDialogContent,
   UiDialogDescription,
   UiDialogTitle,
-  UiField,
-  UiFieldLabel,
-  UiInput,
+} from "ngx-ui-sdk/dialog"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiInput } from "ngx-ui-sdk/input"
+import {
   UiMenu,
   UiMenuContent,
   UiMenuItem,
   UiMenuTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/menu"
 
 @Component({
   selector: "app-example",

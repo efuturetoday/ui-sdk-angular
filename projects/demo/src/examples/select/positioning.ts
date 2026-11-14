@@ -4,6 +4,8 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
+} from "ngx-ui-sdk/checkbox"
+import {
   UiSelect,
   UiSelectArrow,
   UiSelectContent,
@@ -12,7 +14,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
 
 type Side = "top" | "right" | "bottom" | "left"
 type Align = "start" | "center" | "end"

@@ -1,13 +1,7 @@
 import { Component } from "@angular/core"
 import { LucideX } from "@lucide/angular"
-import {
-  UiField,
-  UiFieldDescription,
-  UiFieldLabel,
-  UiInput,
-  UiInputClear,
-  UiInputGroup,
-} from "ngx-ui-sdk"
+import { UiField, UiFieldDescription, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiInput, UiInputClear, UiInputGroup } from "ngx-ui-sdk/input"
 
 @Component({
   selector: "app-example",

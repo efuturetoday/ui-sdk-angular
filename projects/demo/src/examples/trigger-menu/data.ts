@@ -1,12 +1,10 @@
 import { Component } from "@angular/core"
+import { UiField, UiFieldControl, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
   type TriggerDefinition,
-  UiField,
-  UiFieldControl,
-  UiFieldLabel,
   UiTriggerMenu,
   UiTriggerMenuInput,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/trigger-menu"
 
 @Component({
   selector: "app-example",

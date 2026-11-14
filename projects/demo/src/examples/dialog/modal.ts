@@ -4,6 +4,8 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
+} from "ngx-ui-sdk/checkbox"
+import {
   UiDialog,
   UiDialogBackdrop,
   UiDialogClose,
@@ -11,6 +13,8 @@ import {
   UiDialogDescription,
   UiDialogTitle,
   UiDialogTrigger,
+} from "ngx-ui-sdk/dialog"
+import {
   UiSelect,
   UiSelectContent,
   UiSelectItem,
@@ -18,7 +22,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
 
 type Mode = "true" | "trap-focus" | "false"
 

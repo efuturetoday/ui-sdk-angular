@@ -14,13 +14,15 @@ import {
   UiCalendarWeek,
   UiCalendarWeekday,
   UiCalendarWeekdays,
+} from "ngx-ui-sdk/calendar"
+import {
   UiDatePicker,
   UiDatePickerClear,
   UiDatePickerContent,
   UiDatePickerHint,
   UiDatePickerInput,
   UiDatePickerTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/date-picker"
 
 @Component({
   selector: "app-example",

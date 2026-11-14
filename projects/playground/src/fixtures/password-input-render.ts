@@ -3,7 +3,7 @@ import {
   UiPasswordInput,
   UiPasswordInputControl,
   UiPasswordInputToggle,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/password-input"
 
 @Component({
   selector: "app-fixture",

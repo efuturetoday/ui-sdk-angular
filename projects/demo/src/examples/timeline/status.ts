@@ -10,7 +10,7 @@ import {
   UiTimelineMarker,
   UiTimelineTime,
   UiTimelineTitle,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/timeline"
 
 @Component({
   selector: "app-example",

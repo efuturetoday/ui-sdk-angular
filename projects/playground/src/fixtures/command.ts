@@ -21,7 +21,7 @@ import {
   UiCommandStatus,
   type CommandData,
   type CommandDataItem,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/command"
 
 type Entry = CommandData[number]
 

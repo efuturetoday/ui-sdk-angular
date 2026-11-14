@@ -1,20 +1,21 @@
 import { Component, signal } from "@angular/core"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
   toText,
   type Token,
   type TokenInputValue,
   type TokenInputValueChangeDetails,
-  type TriggerDefinition,
-  type TriggerMenuDataItem,
-  UiField,
-  UiFieldLabel,
   UiTokenInput,
   UiTokenInputEditor,
+} from "ngx-ui-sdk/token-input"
+import {
+  type TriggerDefinition,
+  type TriggerMenuDataItem,
   UiTriggerMenu,
   UiTriggerMenuContent,
   UiTriggerMenuItem,
   UiTriggerMenuList,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/trigger-menu"
 import { injectLog } from "../../shared/log"
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { UiToolbar, UiToolbarButton } from "ngx-ui-sdk"
+import { UiToolbar, UiToolbarButton } from "ngx-ui-sdk/toolbar"
 import { injectLog } from "../../shared/log"
 
 @Component({

@@ -1,6 +1,10 @@
 import { Component, signal } from "@angular/core"
 import { LucideStar } from "@lucide/angular"
-import { createRatingController, UiRating, UiRatingItem } from "ngx-ui-sdk"
+import {
+  createRatingController,
+  UiRating,
+  UiRatingItem,
+} from "ngx-ui-sdk/rating"
 import { injectLog } from "../../shared/log"
 
 @Component({

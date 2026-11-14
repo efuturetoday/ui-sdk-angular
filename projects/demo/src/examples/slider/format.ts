@@ -1,14 +1,13 @@
 import { Component } from "@angular/core"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  UiField,
-  UiFieldLabel,
   UiSlider,
   UiSliderControl,
   UiSliderIndicator,
   UiSliderThumb,
   UiSliderTrack,
   UiSliderValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/slider"
 
 type Format = {
   label: string

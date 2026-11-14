@@ -1,16 +1,15 @@
 import { Component } from "@angular/core"
 import { LucideChevronDown } from "@lucide/angular"
+import { UiVirtualFor } from "ngx-ui-sdk"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  UiField,
-  UiFieldLabel,
   UiSelect,
   UiSelectContent,
   UiSelectItem,
   UiSelectList,
   UiSelectTrigger,
   UiSelectValue,
-  UiVirtualFor,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
 
 type Item = { value: string; label: string }
 

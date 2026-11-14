@@ -5,7 +5,7 @@ import {
   UiCommandInput,
   UiCommandItem,
   UiCommandList,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/command"
 
 // Parts rendered as other elements, with class names of state.
 @Component({

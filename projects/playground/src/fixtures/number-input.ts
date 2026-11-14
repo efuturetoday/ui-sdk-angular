@@ -4,13 +4,15 @@ import {
   UiField,
   UiFieldDescription,
   UiFieldLabel,
+} from "ngx-ui-sdk/field"
+import {
   UiNumberInput,
   UiNumberInputControl,
   UiNumberInputDecrement,
   UiNumberInputGroup,
   UiNumberInputIncrement,
   UiNumberInputScrubArea,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/number-input"
 
 type Value = number | null
 

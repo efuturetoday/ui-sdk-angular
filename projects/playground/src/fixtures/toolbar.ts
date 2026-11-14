@@ -5,22 +5,28 @@ import {
   toolbarOptions,
 } from "tests/fixtures/toolbar"
 import {
-  createToolbarController,
   UiMenu,
   UiMenuContent,
   UiMenuItem,
   UiMenuTrigger,
+} from "ngx-ui-sdk/menu"
+import {
   UiNumberInput,
   UiNumberInputControl,
+} from "ngx-ui-sdk/number-input"
+import {
   UiToggle,
   UiToggleGroup,
+} from "ngx-ui-sdk/toggle"
+import {
+  createToolbarController,
   UiToolbar,
   UiToolbarButton,
   UiToolbarGroup,
   UiToolbarInput,
   UiToolbarLink,
   UiToolbarSeparator,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/toolbar"
 
 // Upstream's fixture. With ?locked, groups wrap Text style, Spellcheck and
 // Help, written out for each case: Angular has no wrapper a template adds or

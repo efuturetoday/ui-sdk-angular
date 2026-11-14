@@ -1,10 +1,12 @@
 import { Component, signal } from "@angular/core"
 import { LucideCheck } from "@lucide/angular"
 import {
-  type DialogOpenChangeDetails,
   UiCheckbox,
   UiCheckboxInput,
   UiCheckboxIndicator,
+} from "ngx-ui-sdk/checkbox"
+import {
+  type DialogOpenChangeDetails,
   UiDialog,
   UiDialogBackdrop,
   UiDialogClose,
@@ -12,7 +14,7 @@ import {
   UiDialogDescription,
   UiDialogTitle,
   UiDialogTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/dialog"
 import { injectLog } from "../../shared/log"
 
 @Component({

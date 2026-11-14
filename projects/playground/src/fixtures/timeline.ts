@@ -15,7 +15,7 @@ import {
   UiTimelineTime,
   UiTimelineTitle,
   type TimelineOrientation,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/timeline"
 
 @Component({
   selector: "app-fixture",

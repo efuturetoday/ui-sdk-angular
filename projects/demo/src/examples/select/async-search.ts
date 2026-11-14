@@ -1,9 +1,8 @@
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
+import { injectAsyncOptions } from "ngx-ui-sdk"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  injectAsyncOptions,
-  UiField,
-  UiFieldLabel,
   UiSelect,
   UiSelectContent,
   UiSelectEmpty,
@@ -14,7 +13,7 @@ import {
   UiSelectStatus,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
 
 type Country = { value: string; label: string; disabled?: boolean }
 

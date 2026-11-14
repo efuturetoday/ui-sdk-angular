@@ -1,16 +1,18 @@
 import { Component, DestroyRef, inject, signal } from "@angular/core"
 import { LucideCheck } from "@lucide/angular"
 import {
-  createToaster,
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
+} from "ngx-ui-sdk/checkbox"
+import {
+  createToaster,
   UiToast,
   UiToastDescription,
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/toast"
 
 @Component({
   selector: "app-example",

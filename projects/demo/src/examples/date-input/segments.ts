@@ -1,10 +1,6 @@
 import { Component } from "@angular/core"
-import {
-  UiDateInput,
-  UiDateInputSegment,
-  UiField,
-  UiFieldLabel,
-} from "ngx-ui-sdk"
+import { UiDateInput, UiDateInputSegment } from "ngx-ui-sdk/date-input"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 
 @Component({
   selector: "app-example",

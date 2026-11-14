@@ -1,14 +1,12 @@
 import { Component } from "@angular/core"
 import { injectLog } from "../../shared/log"
+import { UiField, UiFieldDescription, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  UiField,
-  UiFieldDescription,
-  UiFieldLabel,
   UiSegmentedControl,
   UiSegmentedControlIndicator,
   UiSegmentedControlInput,
   UiSegmentedControlItem,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/segmented-control"
 
 @Component({
   selector: "app-example",

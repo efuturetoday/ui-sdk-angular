@@ -4,7 +4,7 @@ import {
   UiResizable,
   UiResizableHandle,
   UiResizablePanel,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/resizable"
 import { injectLog } from "../../shared/log"
 
 @Component({

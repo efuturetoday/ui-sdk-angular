@@ -5,21 +5,27 @@ import {
   UiAutocompleteContent,
   UiAutocompleteInput,
   UiAutocompleteLabel,
+} from "ngx-ui-sdk/autocomplete"
+import {
   UiCombobox,
   UiComboboxContent,
   UiComboboxInput,
   UiComboboxLabel,
+} from "ngx-ui-sdk/combobox"
+import {
   UiSelect,
   UiSelectContent,
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
+} from "ngx-ui-sdk/select"
+import {
   UiTriggerMenu,
   UiTriggerMenuContent,
   UiTriggerMenuInput,
   UiTriggerMenuList,
   type TriggerDefinition,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/trigger-menu"
 
 // Data roots whose content sits inside a wrapping element. Each should render
 // that content, and no second list of its own.

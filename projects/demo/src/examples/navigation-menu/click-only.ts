@@ -8,7 +8,7 @@ import {
   UiNavigationMenuList,
   UiNavigationMenuTrigger,
   UiNavigationMenuViewport,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/navigation-menu"
 
 @Component({
   selector: "app-example",

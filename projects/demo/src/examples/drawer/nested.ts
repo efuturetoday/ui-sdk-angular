@@ -7,10 +7,9 @@ import {
   UiDrawerDescription,
   UiDrawerTitle,
   UiDrawerTrigger,
-  UiField,
-  UiFieldLabel,
-  UiInput,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/drawer"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiInput } from "ngx-ui-sdk/input"
 
 @Component({
   selector: "app-example",

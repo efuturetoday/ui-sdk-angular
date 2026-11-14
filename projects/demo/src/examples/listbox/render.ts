@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideExternalLink } from "@lucide/angular"
-import { UiListbox, UiListboxItem } from "ngx-ui-sdk"
+import { UiListbox, UiListboxItem } from "ngx-ui-sdk/listbox"
 
 @Component({
   selector: "app-example",

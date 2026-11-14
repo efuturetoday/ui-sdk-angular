@@ -4,7 +4,7 @@ import {
   UiScrollAreaScrollbar,
   UiScrollAreaThumb,
   UiScrollAreaViewport,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/scroll-area"
 
 const notes = Array.from({ length: 40 }, (_, index) => `Note ${index + 1}`)
 const renders = ((window as unknown as { renders: { root: number } }).renders =

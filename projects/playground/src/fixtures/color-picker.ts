@@ -16,7 +16,7 @@ import {
   UiColorPickerSwatches,
   UiColorPickerSwatchItem,
   type ColorPickerValueChangeDetails,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/color-picker"
 
 @Component({
   selector: "app-fixture",

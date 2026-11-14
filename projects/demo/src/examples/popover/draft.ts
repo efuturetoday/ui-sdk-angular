@@ -1,16 +1,14 @@
 import { Component, signal } from "@angular/core"
+import { UiField, UiFieldControl, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
   type PopoverDismissAttemptDetails,
-  UiField,
-  UiFieldControl,
-  UiFieldLabel,
   UiPopover,
   UiPopoverClose,
   UiPopoverContent,
   UiPopoverDescription,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/popover"
 import { injectLog } from "../../shared/log"
 
 @Component({

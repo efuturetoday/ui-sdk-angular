@@ -6,7 +6,7 @@ import {
   UiTooltipContent,
   UiTooltipShortcut,
   UiTooltipTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/tooltip"
 import { injectLog } from "../../shared/log"
 
 @Component({

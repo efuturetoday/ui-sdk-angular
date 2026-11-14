@@ -1,13 +1,11 @@
 import { Component } from "@angular/core"
 import { LucideCheck } from "@lucide/angular"
+import { UiField, UiFieldDescription, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  UiField,
-  UiFieldDescription,
-  UiFieldLabel,
   UiListbox,
   UiListboxItem,
   UiListboxItemIndicator,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/listbox"
 
 @Component({
   selector: "app-example",

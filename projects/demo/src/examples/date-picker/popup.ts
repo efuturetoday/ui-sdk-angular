@@ -5,8 +5,6 @@ import {
   LucideChevronRight,
 } from "@lucide/angular"
 import {
-  type DatePickerMonthChangeReason,
-  type DatePickerOpenChangeReason,
   UiCalendarDay,
   UiCalendarGrid,
   UiCalendarHeading,
@@ -15,12 +13,16 @@ import {
   UiCalendarWeek,
   UiCalendarWeekday,
   UiCalendarWeekdays,
+} from "ngx-ui-sdk/calendar"
+import {
+  type DatePickerMonthChangeReason,
+  type DatePickerOpenChangeReason,
   UiDatePicker,
   UiDatePickerContent,
   UiDatePickerHint,
   UiDatePickerInput,
   UiDatePickerTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/date-picker"
 import { injectLog } from "../../shared/log"
 
 @Component({

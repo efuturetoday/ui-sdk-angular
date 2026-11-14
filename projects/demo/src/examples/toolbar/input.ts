@@ -6,10 +6,12 @@ import {
   UiNumberInputDecrement,
   UiNumberInputGroup,
   UiNumberInputIncrement,
+} from "ngx-ui-sdk/number-input"
+import {
   UiToolbar,
   UiToolbarInput,
   UiToolbarSeparator,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/toolbar"
 
 @Component({
   selector: "app-example",

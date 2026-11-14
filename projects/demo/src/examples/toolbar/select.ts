@@ -12,9 +12,8 @@ import {
   UiSelectItemIndicator,
   UiSelectTrigger,
   UiSelectValue,
-  UiToolbar,
-  UiToolbarButton,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
+import { UiToolbar, UiToolbarButton } from "ngx-ui-sdk/toolbar"
 import { injectLog } from "../../shared/log"
 
 @Component({

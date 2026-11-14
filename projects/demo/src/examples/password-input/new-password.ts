@@ -1,12 +1,11 @@
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideEye, LucideEyeOff, LucideX } from "@lucide/angular"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  UiField,
-  UiFieldLabel,
   UiPasswordInput,
   UiPasswordInputControl,
   UiPasswordInputToggle,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/password-input"
 
 @Component({
   selector: "app-example",

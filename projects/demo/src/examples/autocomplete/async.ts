@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
+import { injectAsyncOptions } from "ngx-ui-sdk"
 import {
-  injectAsyncOptions,
   UiAutocomplete,
   UiAutocompleteContent,
   UiAutocompleteEmpty,
@@ -9,7 +9,7 @@ import {
   UiAutocompleteLabel,
   UiAutocompleteList,
   UiAutocompleteStatus,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/autocomplete"
 
 const cities = [
   "Amsterdam",

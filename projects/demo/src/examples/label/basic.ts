@@ -1,11 +1,11 @@
 import { Component } from "@angular/core"
+import { UiLabel } from "ngx-ui-sdk/label"
 import {
-  UiLabel,
   UiRadio,
   UiRadioGroup,
   UiRadioIndicator,
   UiRadioInput,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/radio"
 
 @Component({
   selector: "app-example",

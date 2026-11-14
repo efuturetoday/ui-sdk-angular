@@ -12,7 +12,7 @@ import {
   UiPaginationList,
   UiPaginationNext,
   UiPaginationPrevious,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/pagination"
 import { injectLog } from "../../shared/log"
 
 @Component({

@@ -3,13 +3,15 @@ import {
   UiNumberInput,
   UiNumberInputControl,
   UiNumberInputIncrement,
+} from "ngx-ui-sdk/number-input"
+import {
   UiSlider,
   UiSliderControl,
   UiSliderIndicator,
   UiSliderThumb,
   UiSliderTrack,
   UiSliderValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/slider"
 
 // Parts rendered as other elements, and from their state. One fixture covers
 // Slider and Number Input.

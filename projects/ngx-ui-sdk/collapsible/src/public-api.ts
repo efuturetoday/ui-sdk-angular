@@ -1,0 +1,17 @@
+export {
+  type CollapsibleApi,
+  type CollapsibleChangeOptions,
+  type CollapsibleController,
+  type CollapsibleOpenChangeReason,
+  type CollapsibleOptions,
+  type CollapsiblePanelProps,
+  type CollapsiblePanelState,
+  type CollapsiblePrimitive,
+  type CollapsibleState,
+  type CollapsibleTriggerProps,
+  type CollapsibleTriggerState,
+  createCollapsibleController,
+  UiCollapsible,
+  UiCollapsiblePanel,
+  UiCollapsibleTrigger,
+} from "./collapsible"

@@ -5,13 +5,15 @@ import {
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
+} from "ngx-ui-sdk/field"
+import {
   UiSelect,
   UiSelectContent,
   UiSelectItem,
   UiSelectItemIndicator,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
 import { injectLog } from "../../shared/log"
 
 @Component({

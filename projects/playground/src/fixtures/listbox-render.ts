@@ -1,6 +1,9 @@
 import { Component, signal } from "@angular/core"
 import { listboxAction, listboxFixture as f } from "tests/fixtures/listbox"
-import { UiListbox, UiListboxItem } from "ngx-ui-sdk"
+import {
+  UiListbox,
+  UiListboxItem,
+} from "ngx-ui-sdk/listbox"
 
 // Parts rendered as other elements, with class names of state.
 @Component({

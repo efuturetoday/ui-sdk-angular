@@ -12,6 +12,8 @@ import {
   UiCarouselNext,
   UiCarouselPrevious,
   UiCarouselViewport,
+} from "ngx-ui-sdk/carousel"
+import {
   UiSelect,
   UiSelectContent,
   UiSelectItem,
@@ -19,7 +21,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/select"
 
 type Align = "start" | "center" | "end"
 

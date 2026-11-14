@@ -5,7 +5,7 @@ import {
   UiPopoverClose,
   UiPopoverContent,
   UiPopoverTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/popover"
 
 // Many popovers on one page, like a row action in every row of a table, for
 // the counts specs. Only the first one is opened. ?modal opens them modal.

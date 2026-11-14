@@ -6,18 +6,20 @@ import {
   tooltipParts,
 } from "tests/fixtures/tooltip"
 import {
-  createTooltipController,
   UiPopover,
   UiPopoverClose,
   UiPopoverContent,
   UiPopoverTitle,
   UiPopoverTrigger,
+} from "ngx-ui-sdk/popover"
+import {
+  createTooltipController,
   UiTooltip,
   UiTooltipArrow,
   UiTooltipContent,
   UiTooltipShortcut,
   UiTooltipTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/tooltip"
 
 @Component({
   selector: "app-fixture",

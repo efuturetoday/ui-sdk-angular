@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { UiSwitch, UiSwitchThumb, UiSwitchInput } from "ngx-ui-sdk"
+import { UiSwitch, UiSwitchThumb, UiSwitchInput } from "ngx-ui-sdk/switch"
 
 @Component({
   selector: "app-example",

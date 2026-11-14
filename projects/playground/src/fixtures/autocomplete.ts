@@ -16,8 +16,10 @@ import {
 import { onItemsChange } from "tests/fixtures/items"
 import { serializeForm } from "tests/fixtures/select"
 import {
-  type AutocompleteValueChangeDetails,
   injectAsyncOptions,
+} from "ngx-ui-sdk"
+import {
+  type AutocompleteValueChangeDetails,
   UiAutocomplete,
   UiAutocompleteClear,
   UiAutocompleteContent,
@@ -32,7 +34,7 @@ import {
   UiAutocompleteSeparator,
   UiAutocompleteStatus,
   UiAutocompleteTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/autocomplete"
 
 type Entry = {
   value: string

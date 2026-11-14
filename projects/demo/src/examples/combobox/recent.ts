@@ -1,7 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideCheck, LucideChevronDown } from "@lucide/angular"
 import {
-  type ListAnnouncement,
   UiCombobox,
   UiComboboxContent,
   UiComboboxEmpty,
@@ -14,7 +13,8 @@ import {
   UiComboboxLabel,
   UiComboboxList,
   UiComboboxTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/combobox"
+import { type ListAnnouncement } from "ngx-ui-sdk/select"
 
 type Country = { value: string; label: string; keywords?: string[] }
 type Recent = { type: "group"; label: string; items: Country[] }

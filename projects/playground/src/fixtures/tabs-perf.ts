@@ -1,6 +1,11 @@
 import { Component } from "@angular/core"
 import { perfItems, perfSize } from "tests/fixtures/perf"
-import { UiTabs, UiTabsList, UiTabsPanel, UiTabsTab } from "ngx-ui-sdk"
+import {
+  UiTabs,
+  UiTabsList,
+  UiTabsPanel,
+  UiTabsTab,
+} from "ngx-ui-sdk/tabs"
 
 // Many tabs for the counts specs.
 @Component({

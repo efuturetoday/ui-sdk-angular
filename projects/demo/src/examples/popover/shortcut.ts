@@ -1,8 +1,7 @@
 import { Component } from "@angular/core"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiInput } from "ngx-ui-sdk/input"
 import {
-  UiField,
-  UiFieldLabel,
-  UiInput,
   UiPopover,
   UiPopoverClose,
   UiPopoverContent,
@@ -10,7 +9,7 @@ import {
   UiPopoverShortcut,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/popover"
 
 @Component({
   selector: "app-example",

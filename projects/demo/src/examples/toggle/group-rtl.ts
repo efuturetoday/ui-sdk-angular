@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { UiToggle, UiToggleGroup } from "ngx-ui-sdk"
+import { UiToggle, UiToggleGroup } from "ngx-ui-sdk/toggle"
 
 @Component({
   selector: "app-example",

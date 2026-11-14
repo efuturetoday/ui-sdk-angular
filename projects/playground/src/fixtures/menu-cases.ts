@@ -12,7 +12,7 @@ import {
   UiMenuSub,
   UiMenuSubTrigger,
   UiMenuTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/menu"
 
 @Component({
   selector: "app-fixture",

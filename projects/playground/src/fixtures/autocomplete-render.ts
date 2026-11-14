@@ -8,7 +8,7 @@ import {
   UiAutocompleteLabel,
   UiAutocompleteList,
   UiAutocompleteTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/autocomplete"
 
 // Parts rendered as other elements, with class names of state.
 @Component({

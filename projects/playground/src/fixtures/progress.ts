@@ -6,7 +6,7 @@ import {
   UiProgressLabel,
   UiProgressTrack,
   UiProgressValue,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/progress"
 
 const { upload, loading, files, disk } = progressFixture
 

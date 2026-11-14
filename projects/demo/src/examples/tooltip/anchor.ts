@@ -1,13 +1,12 @@
 import { Component } from "@angular/core"
 import { LucideInfo } from "@lucide/angular"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiInput } from "ngx-ui-sdk/input"
 import {
-  UiField,
-  UiFieldLabel,
-  UiInput,
   UiTooltip,
   UiTooltipContent,
   UiTooltipTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/tooltip"
 
 @Component({
   selector: "app-example",

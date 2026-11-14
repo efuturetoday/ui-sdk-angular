@@ -10,7 +10,7 @@ import {
   UiComboboxItemIndicator,
   UiComboboxLabel,
   UiComboboxList,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/combobox"
 import { injectLog } from "../../shared/log"
 
 @Component({

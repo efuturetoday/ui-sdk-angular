@@ -5,9 +5,8 @@ import {
   UiMenuContent,
   UiMenuItem,
   UiMenuTrigger,
-  UiToolbar,
-  UiToolbarButton,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/menu"
+import { UiToolbar, UiToolbarButton } from "ngx-ui-sdk/toolbar"
 import { injectLog } from "../../shared/log"
 
 @Component({

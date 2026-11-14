@@ -12,7 +12,7 @@ import {
   UiCarouselPrevious,
   UiCarouselViewport,
   type CarouselPageChangeDetails,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/carousel"
 
 @Component({
   selector: "app-fixture",

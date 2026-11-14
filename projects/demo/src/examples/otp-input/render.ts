@@ -1,5 +1,9 @@
 import { Component } from "@angular/core"
-import { UiOtpInput, UiOtpInputGroup, UiOtpInputSlot } from "ngx-ui-sdk"
+import {
+  UiOtpInput,
+  UiOtpInputGroup,
+  UiOtpInputSlot,
+} from "ngx-ui-sdk/otp-input"
 
 @Component({
   selector: "app-example",

@@ -1,13 +1,12 @@
 import { Component } from "@angular/core"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
   createTokenInputController,
   type Token,
   type TokenInputValue,
-  UiField,
-  UiFieldLabel,
   UiTokenInput,
   UiTokenInputEditor,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/token-input"
 
 const loadFile = () => new Promise<void>((resolve) => setTimeout(resolve, 800))
 

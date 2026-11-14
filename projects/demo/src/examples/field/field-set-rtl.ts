@@ -5,8 +5,8 @@ import {
   UiFieldLabel,
   UiFieldLegend,
   UiFieldSet,
-  UiInput,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/field"
+import { UiInput } from "ngx-ui-sdk/input"
 
 @Component({
   selector: "app-example",

@@ -8,7 +8,7 @@ import {
   UiMenuGroupLabel,
   UiMenuItem,
   UiMenuTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/menu"
 
 // Groups of items the specs reorder while the menu is open.
 @Component({

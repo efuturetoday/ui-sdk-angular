@@ -3,7 +3,7 @@ import {
   UiScrollArea,
   UiScrollAreaContent,
   UiScrollAreaViewport,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/scroll-area"
 
 @Component({
   selector: "app-example",

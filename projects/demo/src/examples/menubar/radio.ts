@@ -6,8 +6,8 @@ import {
   UiMenuRadioGroup,
   UiMenuRadioItem,
   UiMenuTrigger,
-  UiMenubar,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/menu"
+import { UiMenubar } from "ngx-ui-sdk/menubar"
 
 @Component({
   selector: "app-example",

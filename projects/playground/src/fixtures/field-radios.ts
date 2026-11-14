@@ -3,11 +3,13 @@ import { fieldRadiosFixture as f, fieldRadiosOptions } from "tests/fixtures/fiel
 import {
   UiField,
   UiFieldLabel,
+} from "ngx-ui-sdk/field"
+import {
   UiRadio,
   UiRadioInput,
   UiRadioGroup,
   UiRadioIndicator,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/radio"
 
 @Component({
   selector: "app-fixture",

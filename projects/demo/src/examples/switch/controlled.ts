@@ -4,7 +4,7 @@ import {
   UiSwitch,
   UiSwitchThumb,
   UiSwitchInput,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/switch"
 import { injectLog } from "../../shared/log"
 
 @Component({

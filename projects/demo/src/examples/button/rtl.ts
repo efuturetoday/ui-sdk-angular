@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideChevronRight } from "@lucide/angular"
-import { UiButton } from "ngx-ui-sdk"
+import { UiButton } from "ngx-ui-sdk/button"
 
 @Component({
   selector: "app-example",

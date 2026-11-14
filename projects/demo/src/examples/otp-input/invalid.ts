@@ -1,12 +1,10 @@
 import { Component, signal } from "@angular/core"
+import { UiField, UiFieldError, UiFieldLabel } from "ngx-ui-sdk/field"
 import {
-  UiField,
-  UiFieldError,
-  UiFieldLabel,
   UiOtpInput,
   UiOtpInputGroup,
   UiOtpInputSlot,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/otp-input"
 
 @Component({
   selector: "app-example",

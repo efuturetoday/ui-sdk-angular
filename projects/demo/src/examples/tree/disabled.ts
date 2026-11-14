@@ -1,16 +1,15 @@
 import { NgTemplateOutlet } from "@angular/common"
 import { Component, signal } from "@angular/core"
 import { LucideChevronRight } from "@lucide/angular"
+import { UiSwitch, UiSwitchThumb } from "ngx-ui-sdk/switch"
 import {
   type TreeItemData,
-  UiSwitch,
-  UiSwitchThumb,
   UiTree,
   UiTreeGroup,
   UiTreeItem,
   UiTreeItemIndicator,
   UiTreeItemLabel,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/tree"
 
 @Component({
   selector: "app-example",

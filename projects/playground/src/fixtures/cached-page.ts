@@ -14,24 +14,30 @@ import {
   UiAlertDialogContent,
   UiAlertDialogTitle,
   UiAlertDialogTrigger,
+} from "ngx-ui-sdk/alert-dialog"
+import {
   UiDialog,
   UiDialogBackdrop,
   UiDialogClose,
   UiDialogContent,
   UiDialogTitle,
   UiDialogTrigger,
+} from "ngx-ui-sdk/dialog"
+import {
   UiDrawer,
   UiDrawerBackdrop,
   UiDrawerClose,
   UiDrawerContent,
   UiDrawerTitle,
   UiDrawerTrigger,
+} from "ngx-ui-sdk/drawer"
+import {
   UiPopover,
   UiPopoverClose,
   UiPopoverContent,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/popover"
 
 // Two pages in one outlet: the profile page is detached while the other
 // shows, as a RouteReuseStrategy keeps a route. Like upstream's, it takes

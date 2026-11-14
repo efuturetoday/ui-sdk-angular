@@ -6,9 +6,8 @@ import {
   UiColorPickerSlider,
   UiColorPickerSliderThumb,
   UiColorPickerSwatch,
-  UiField,
-  UiFieldLabel,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/color-picker"
+import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
 import { injectLog } from "../../shared/log"
 
 @Component({

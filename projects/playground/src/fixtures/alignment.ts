@@ -5,8 +5,6 @@ import {
 } from "tests/fixtures/alignment"
 import {
   createMenuController,
-  createPopoverController,
-  createTabsController,
   UiMenu,
   UiMenuCheckboxItem,
   UiMenuContent,
@@ -16,15 +14,21 @@ import {
   UiMenuRadioGroup,
   UiMenuRadioItem,
   UiMenuTrigger,
+  type MenuDataItem,
+} from "ngx-ui-sdk/menu"
+import {
+  createPopoverController,
   UiPopover,
   UiPopoverContent,
   UiPopoverTitle,
+} from "ngx-ui-sdk/popover"
+import {
+  createTabsController,
   UiTabs,
   UiTabsList,
   UiTabsPanel,
   UiTabsTab,
-  type MenuDataItem,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/tabs"
 
 @Component({
   selector: "app-fixture",
