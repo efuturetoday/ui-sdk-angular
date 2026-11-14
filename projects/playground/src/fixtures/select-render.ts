@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { selectFixture } from "tests/fixtures/select"
 import {
@@ -12,7 +13,7 @@ import {
 // Parts rendered as other elements, with class names of state.
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiSelect,
     UiSelectContent,
     UiSelectItem,
@@ -30,7 +31,7 @@ import {
           #trigger="uiSelectTrigger"
           [class]="['trigger', trigger.state().open ? 'is-open' : 'is-closed']"
         >
-          <span uiSelectValue></span>
+          <span uiSelectValue uiText></span>
           <span aria-hidden="true">{{ trigger.state().open ? "▲" : "▼" }}</span>
         </button>
         <div *uiSelectContent class="popup list-popup">

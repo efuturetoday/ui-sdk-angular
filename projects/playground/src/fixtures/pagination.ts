@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -20,7 +21,7 @@ import {
 
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiPagination,
     UiPaginationEllipsis,
     UiPaginationFirst,
@@ -67,12 +68,12 @@ import {
               <li uiPaginationItem>
                 @if (isNumber(item)) {
                   @if (options.getHref) {
-                    <a uiPaginationLink class="pagination-link" [page]="item"></a>
+                    <a uiPaginationLink class="pagination-link" [page]="item" uiText></a>
                   } @else {
-                    <button uiPaginationLink class="pagination-link" [page]="item"></button>
+                    <button uiPaginationLink class="pagination-link" [page]="item" uiText></button>
                   }
                 } @else {
-                  <span uiPaginationEllipsis class="pagination-ellipsis"></span>
+                  <span uiPaginationEllipsis class="pagination-ellipsis" uiText></span>
                 }
               </li>
             }

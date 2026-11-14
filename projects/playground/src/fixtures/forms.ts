@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import {
   formsFixture as f,
@@ -35,7 +36,7 @@ type Details = { cancel: () => void; canceled: boolean; source: string }
 
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiCheckbox,
   UiCheckboxInput,
     UiCheckboxGroup,
@@ -179,14 +180,14 @@ type Details = { cancel: () => void; canceled: boolean; source: string }
             }
           </div>
           <p uiFieldDescription>{{ f.plan.description }}</p>
-          <div *uiFieldError class="field-error"></div>
+          <div *uiFieldError class="field-error" uiText></div>
         </div>
 
         <div uiField [invalid]="options.invalid">
           <label uiFieldLabel>{{ f.email.label }}</label>
           <input uiFieldControl type="email" [name]="f.email.name" required />
           <p uiFieldDescription>{{ f.email.description }}</p>
-          <div *uiFieldError class="field-error"></div>
+          <div *uiFieldError class="field-error" uiText></div>
         </div>
 
         @if (options.nickname) {

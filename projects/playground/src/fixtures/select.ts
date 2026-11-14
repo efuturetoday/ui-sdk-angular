@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { NgTemplateOutlet } from "@angular/common"
 import {
   Component,
@@ -51,6 +52,7 @@ const dataParts = [
   UiSelectItemIndicator,
   UiSelectItemText,
   UiSelectSeparator,
+  UiText,
 ]
 
 // The list's data, rendered like the composed list: items with their check,
@@ -62,12 +64,12 @@ const dataParts = [
     @for (entry of items(); track $index) {
       @if (typeof entry === "string") {
         <div uiSelectItem class="item" [value]="entry" [label]="entry">
-          <span uiSelectItemText></span>
+          <span uiSelectItemText uiText></span>
           <span *uiSelectItemIndicator class="indicator">✓</span>
         </div>
       } @else if ("value" in entry) {
         <div uiSelectItem class="item" [value]="entry.value" [disabled]="entry.disabled" [label]="entry.label">
-          <span uiSelectItemText></span>
+          <span uiSelectItemText uiText></span>
           <span *uiSelectItemIndicator class="indicator">✓</span>
         </div>
       } @else if (entry.type === "separator") {
@@ -77,7 +79,7 @@ const dataParts = [
           <div uiSelectGroupLabel class="label">{{ entry.label }}</div>
           @for (item of entry.items; track item.value) {
             <div uiSelectItem class="item" [value]="item.value" [label]="item.label">
-              <span uiSelectItemText></span>
+              <span uiSelectItemText uiText></span>
               <span *uiSelectItemIndicator class="indicator">✓</span>
             </div>
           }
@@ -97,7 +99,7 @@ class DataItems {
 // component of the app's own, as a styled layer does.
 @Component({
   selector: "app-styled-content",
-  imports: [DataItems, UiSelectContent],
+  imports: [UiText, DataItems, UiSelectContent],
   template: `
     <div *uiSelectContent="let state" class="popup list-popup">
       <app-data-items [items]="state().items" />
@@ -109,7 +111,7 @@ class StyledContent {}
 
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     DataItems,
     NgTemplateOutlet,
     StyledContent,
@@ -159,7 +161,7 @@ class StyledContent {}
           >
             <div uiSelectLabel class="label">{{ f.label }}</div>
             <button uiSelectTrigger class="trigger">
-              <span uiSelectValue class="value" [maxLabels]="o.max"></span>
+              <span uiSelectValue class="value" [maxLabels]="o.max" uiText></span>
               <span aria-hidden="true">▾</span>
             </button>
             <button *uiSelectClear>{{ f.clear }}</button>
@@ -188,14 +190,14 @@ class StyledContent {}
                           }
                           @for (child of entry.items; track child.value) {
                             <div uiSelectItem class="item" [value]="child.value" [label]="child.label">
-                              <span uiSelectItemText></span>
+                              <span uiSelectItemText uiText></span>
                               <span *uiSelectItemIndicator class="indicator">✓</span>
                             </div>
                           }
                         </div>
                       } @else {
                         <div uiSelectItem class="item" [value]="entry.value" [disabled]="entry.disabled" [label]="entry.label">
-                          <span uiSelectItemText></span>
+                          <span uiSelectItemText uiText></span>
                           <span *uiSelectItemIndicator class="indicator">✓</span>
                         </div>
                       }

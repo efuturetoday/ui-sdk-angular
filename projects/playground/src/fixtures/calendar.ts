@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -25,7 +26,7 @@ import {
 // select's options without content; here they're written from the states.
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiCalendar,
     UiCalendarDay,
     UiCalendarGrid,
@@ -68,8 +69,8 @@ import {
         (beforeMonthChange)="onMonthChange($event.month, $event.details)"
       >
         <div class="calendar-header">
-          <button uiCalendarPrevious class="calendar-step"></button>
-          <h2 uiCalendarHeading class="calendar-heading"></h2>
+          <button uiCalendarPrevious class="calendar-step" uiText></button>
+          <h2 uiCalendarHeading class="calendar-heading" uiText></h2>
           @if (o.selects) {
             <select uiCalendarMonthSelect #months="uiCalendarMonthSelect">
               @for (option of months.state().options; track option.value) {
@@ -94,7 +95,7 @@ import {
               }
             </select>
           }
-          <button uiCalendarNext class="calendar-step"></button>
+          <button uiCalendarNext class="calendar-step" uiText></button>
         </div>
         <div class="calendar-months">
           @for (offset of offsets; track offset) {
@@ -107,7 +108,7 @@ import {
               <thead>
                 <tr uiCalendarWeekdays>
                   @for (weekday of grid.state().weekdays; track weekday) {
-                    <th uiCalendarWeekday scope="col" [index]="$index"></th>
+                    <th uiCalendarWeekday scope="col" [index]="$index" uiText></th>
                   }
                 </tr>
               </thead>
@@ -118,7 +119,7 @@ import {
                       @if (cell.hidden) {
                         <td></td>
                       } @else {
-                        <td uiCalendarDay [value]="cell.date"></td>
+                        <td uiCalendarDay [value]="cell.date" uiText></td>
                       }
                     }
                   </tr>

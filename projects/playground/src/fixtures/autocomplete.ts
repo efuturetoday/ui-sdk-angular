@@ -16,8 +16,7 @@ import {
 import { onItemsChange } from "tests/fixtures/items"
 import { serializeForm } from "tests/fixtures/select"
 import {
-  injectAsyncOptions,
-} from "@ngx-ui-sdk/core"
+  injectAsyncOptions, UiText } from "@ngx-ui-sdk/core"
 import {
   type AutocompleteValueChangeDetails,
   UiAutocomplete,
@@ -51,7 +50,7 @@ type Shown =
 // The data variant renders the same autocomplete from `items`, with ?data.
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     NgTemplateOutlet,
     UiAutocomplete,
     UiAutocompleteClear,
@@ -119,7 +118,7 @@ type Shown =
                     @if (typeof entry === "string") {
                       <div uiAutocompleteItem class="item" [value]="entry" [label]="entry">
                         @if (o.highlight) {
-                          <span uiAutocompleteItemText></span>
+                          <span uiAutocompleteItemText uiText></span>
                         } @else {
                           {{ entry }}
                         }
@@ -134,7 +133,7 @@ type Shown =
                         [disabled]="entry.disabled"
                       >
                         @if (o.highlight) {
-                          <span uiAutocompleteItemText></span>
+                          <span uiAutocompleteItemText uiText></span>
                         } @else {
                           {{ entry.label }}
                         }
@@ -154,7 +153,7 @@ type Shown =
                             [disabled]="item.disabled"
                           >
                             @if (o.highlight) {
-                              <span uiAutocompleteItemText></span>
+                              <span uiAutocompleteItemText uiText></span>
                             } @else {
                               {{ item.label }}
                             }
@@ -188,7 +187,7 @@ type Shown =
                         [disabled]="item.disabled"
                       >
                         @if (o.highlight) {
-                          <span uiAutocompleteItemText></span>
+                          <span uiAutocompleteItemText uiText></span>
                         } @else {
                           {{ item.label }}
                         }

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import {
   pendingSelect,
@@ -27,7 +28,7 @@ import {
 
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiTokenInput,
     UiTokenInputEditor,
     UiTokenInputToken,
@@ -78,7 +79,7 @@ import {
             [triggers]="triggers"
             [onSelect]="onSelect"
           >
-            <span uiTriggerMenuHint class="hint"></span>
+            <span uiTriggerMenuHint class="hint" uiText></span>
             <div *uiTriggerMenuContent class="popup list-popup">
               <div uiTriggerMenuList #list="uiTriggerMenuList">
                 @for (item of itemsOf(list.state().items); track item.value) {

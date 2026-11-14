@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { NgTemplateOutlet } from "@angular/common"
 import { Component, signal } from "@angular/core"
 import {
@@ -31,7 +32,7 @@ type Entry = CommandData[number]
 
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     NgTemplateOutlet,
     UiCommand,
     UiCommandEmpty,
@@ -91,12 +92,12 @@ type Entry = CommandData[number]
                 [shortcut]="commandOf(entry).shortcut"
               >
                 @if (o.highlight) {
-                  <span uiCommandItemText></span>
+                  <span uiCommandItemText uiText></span>
                 } @else {
                   {{ commandOf(entry).label }}
                 }
                 @if (commandOf(entry).shortcut) {
-                  <span uiCommandShortcut class="shortcut"></span>
+                  <span uiCommandShortcut class="shortcut" uiText></span>
                 }
               </div>
             }
@@ -135,12 +136,12 @@ type Entry = CommandData[number]
                       [label]="o.highlight ? item.label : undefined"
                     >
                       @if (o.highlight) {
-                        <span uiCommandItemText></span>
+                        <span uiCommandItemText uiText></span>
                       } @else {
                         {{ item.label }}
                       }
                       @if (field(item, "shortcut")) {
-                        <span uiCommandShortcut class="shortcut"></span>
+                        <span uiCommandShortcut class="shortcut" uiText></span>
                       }
                     </div>
                   }

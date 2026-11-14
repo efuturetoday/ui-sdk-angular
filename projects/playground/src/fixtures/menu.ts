@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import { menuOptions } from "tests/fixtures/page"
 import {
@@ -21,7 +22,7 @@ import {
 // written in it, where Vue renders one for you.
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiMenu,
     UiMenuCheckboxItem,
     UiMenuContent,
@@ -50,8 +51,8 @@ import {
       >
         <button uiMenuTrigger>File</button>
         <div *uiMenuContent class="popup">
-          <div uiMenuItem class="item" value="new" shortcut="mod+n">New file<span uiMenuShortcut></span></div>
-          <div uiMenuItem class="item" value="open" shortcut="mod+o">Open…<span uiMenuShortcut></span></div>
+          <div uiMenuItem class="item" value="new" shortcut="mod+n">New file<span uiMenuShortcut uiText></span></div>
+          <div uiMenuItem class="item" value="open" shortcut="mod+o">Open…<span uiMenuShortcut uiText></span></div>
           <div uiMenuItem class="item" value="save" disabled>Save</div>
           <div uiMenuSeparator class="separator"></div>
           <div uiMenuGroup>

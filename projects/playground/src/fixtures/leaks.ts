@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { NgTemplateOutlet } from "@angular/common"
 import { Component, signal } from "@angular/core"
 import {
@@ -128,7 +129,7 @@ import {
 // written out, which Vue renders from their data.
 @Component({
   selector: "app-fixture",
-  imports: [NgTemplateOutlet, UiAccordion, UiAccordionHeader, UiAccordionItem, UiAccordionPanel, UiAccordionTrigger, UiAutocomplete, UiAutocompleteContent, UiAutocompleteInput, UiAutocompleteItem, UiAutocompleteList, UiCollapsible, UiCollapsiblePanel, UiCollapsibleTrigger, UiCombobox, UiComboboxContent, UiComboboxInput, UiComboboxItem, UiComboboxList, UiDialog, UiDialogClose, UiDialogContent, UiDialogDescription, UiDialogTitle, UiDialogTrigger, UiDrawer, UiDrawerBackdrop, UiDrawerClose, UiDrawerContent, UiDrawerDescription, UiDrawerTitle, UiDrawerTrigger, UiHoverCard, UiHoverCardContent, UiHoverCardTrigger, UiMenu, UiMenuContent, UiMenuItem, UiMenuTrigger, UiPopover, UiPopoverClose, UiPopoverContent, UiPopoverTrigger, UiResizable, UiResizableHandle, UiResizablePanel, UiScrollArea, UiScrollAreaContent, UiScrollAreaScrollbar, UiScrollAreaThumb, UiScrollAreaViewport, UiSelect, UiSelectContent, UiSelectItem, UiSelectTrigger, UiSelectValue, UiSlider, UiSliderControl, UiSliderIndicator, UiSliderThumb, UiSliderTrack, UiTabs, UiTabsIndicator, UiTabsList, UiTabsPanel, UiTabsTab, UiToolbar, UiToolbarButton, UiTooltip, UiTooltipContent, UiTooltipTrigger, UiTree, UiTreeGroup, UiTreeItem, UiTreeItemLabel, UiWaterfall, UiWaterfallBar, UiWaterfallRow, UiWaterfallRowHeader],
+  imports: [UiText, NgTemplateOutlet, UiAccordion, UiAccordionHeader, UiAccordionItem, UiAccordionPanel, UiAccordionTrigger, UiAutocomplete, UiAutocompleteContent, UiAutocompleteInput, UiAutocompleteItem, UiAutocompleteList, UiCollapsible, UiCollapsiblePanel, UiCollapsibleTrigger, UiCombobox, UiComboboxContent, UiComboboxInput, UiComboboxItem, UiComboboxList, UiDialog, UiDialogClose, UiDialogContent, UiDialogDescription, UiDialogTitle, UiDialogTrigger, UiDrawer, UiDrawerBackdrop, UiDrawerClose, UiDrawerContent, UiDrawerDescription, UiDrawerTitle, UiDrawerTrigger, UiHoverCard, UiHoverCardContent, UiHoverCardTrigger, UiMenu, UiMenuContent, UiMenuItem, UiMenuTrigger, UiPopover, UiPopoverClose, UiPopoverContent, UiPopoverTrigger, UiResizable, UiResizableHandle, UiResizablePanel, UiScrollArea, UiScrollAreaContent, UiScrollAreaScrollbar, UiScrollAreaThumb, UiScrollAreaViewport, UiSelect, UiSelectContent, UiSelectItem, UiSelectTrigger, UiSelectValue, UiSlider, UiSliderControl, UiSliderIndicator, UiSliderThumb, UiSliderTrack, UiTabs, UiTabsIndicator, UiTabsList, UiTabsPanel, UiTabsTab, UiToolbar, UiToolbarButton, UiTooltip, UiTooltipContent, UiTooltipTrigger, UiTree, UiTreeGroup, UiTreeItem, UiTreeItemLabel, UiWaterfall, UiWaterfallBar, UiWaterfallRow, UiWaterfallRowHeader],
   template: `
 <div class="fixture">
   <button>Before</button>
@@ -147,7 +148,7 @@ import {
       @case ("select") {
         <ng-container uiSelect [defaultValue]="items[0]!.value">
           <button uiSelectTrigger aria-label="Open" class="trigger">
-            <span uiSelectValue></span>
+            <span uiSelectValue uiText></span>
           </button>
           <div *uiSelectContent class="popup list-popup">
             @for (item of items; track item.value) {

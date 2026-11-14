@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import {
   datePickerFieldFixture as f,
@@ -32,7 +33,7 @@ import {
 // Vue renders without content.
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiCalendarDay,
     UiCalendarGrid,
     UiCalendarHeading,
@@ -71,18 +72,18 @@ import {
             >
               <input uiDatePickerInput />
               <button uiDatePickerTrigger></button>
-              <span uiDatePickerHint class="date-picker-hint"></span>
+              <span uiDatePickerHint class="date-picker-hint" uiText></span>
               <div *uiDatePickerContent class="date-picker-content">
                 <div>
-                  <button uiCalendarPrevious></button>
-                  <h2 uiCalendarHeading></h2>
-                  <button uiCalendarNext></button>
+                  <button uiCalendarPrevious uiText></button>
+                  <h2 uiCalendarHeading uiText></h2>
+                  <button uiCalendarNext uiText></button>
                 </div>
                 <table uiCalendarGrid #grid="uiCalendarGrid">
                   <thead>
                     <tr uiCalendarWeekdays>
                       @for (weekday of grid.state().weekdays; track weekday) {
-                        <th uiCalendarWeekday scope="col" [index]="$index"></th>
+                        <th uiCalendarWeekday scope="col" [index]="$index" uiText></th>
                       }
                     </tr>
                   </thead>
@@ -93,7 +94,7 @@ import {
                           @if (cell.hidden) {
                             <td></td>
                           } @else {
-                            <td uiCalendarDay [value]="cell.date"></td>
+                            <td uiCalendarDay [value]="cell.date" uiText></td>
                           }
                         }
                       </tr>
@@ -104,7 +105,7 @@ import {
             </div>
           }
           <p uiFieldDescription>{{ f.description }}</p>
-          <div *uiFieldError class="field-error"></div>
+          <div *uiFieldError class="field-error" uiText></div>
         </div>
         <button type="submit">Submit</button>
         <button type="button" (click)="shown.set(false)">

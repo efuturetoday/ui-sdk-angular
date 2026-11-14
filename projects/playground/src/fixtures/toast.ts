@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import { UiOverlayHost, UiOverlayToast } from "@ngx-ui-sdk/core/overlays"
 import {
@@ -88,7 +89,7 @@ function createFixtureToasts(record: (action: string) => void) {
 
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiOverlayHost,
     UiOverlayToast,
     UiDialog,
@@ -128,9 +129,9 @@ function createFixtureToasts(record: (action: string) => void) {
         <ui-overlay-host [toast]="{ ...options, class: 'toast-region' }">
           <ng-template uiOverlayToast let-toast>
             <li [uiToast]="toast" class="toast">
-              <div *uiToastTitle></div>
-              <div *uiToastDescription></div>
-              <button *uiToastAction></button>
+              <div *uiToastTitle uiText></div>
+              <div *uiToastDescription uiText></div>
+              <button *uiToastAction uiText></button>
               @if (toast.cancel; as cancel) {
                 <button uiToastClose [action]="cancel.onCancel">{{ cancel.label }}</button>
               }
@@ -152,9 +153,9 @@ function createFixtureToasts(record: (action: string) => void) {
         <ol uiToastList>
           @for (item of region.state().toasts; track item.toast.id) {
             <li [uiToast]="item.toast" class="toast">
-              <div *uiToastTitle class="toast-title"></div>
-              <div *uiToastDescription class="toast-description"></div>
-              <button *uiToastAction class="toast-action"></button>
+              <div *uiToastTitle class="toast-title" uiText></div>
+              <div *uiToastDescription class="toast-description" uiText></div>
+              <button *uiToastAction class="toast-action" uiText></button>
               <button uiToastClose class="toast-close">{{ f.dismiss }}</button>
             </li>
           }

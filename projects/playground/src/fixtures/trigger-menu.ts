@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import {
   Component,
   input,
@@ -33,6 +34,7 @@ let ids = 0
 @Component({
   selector: "app-composer",
   imports: [
+    UiText,
     UiTextarea,
     UiTriggerMenu,
     UiTriggerMenuContent,
@@ -70,8 +72,8 @@ let ids = 0
           class="input"
         ></textarea>
       }
-      <span uiTriggerMenuHint class="hint"></span>
-      <div uiTriggerMenuStatus class="status"></div>
+      <span uiTriggerMenuHint class="hint" uiText></span>
+      <div uiTriggerMenuStatus class="status" uiText></div>
       <div *uiTriggerMenuContent class="popup list-popup">
         @if (o.empty) {
           <div uiTriggerMenuEmpty class="empty">{{ f.empty }}</div>
@@ -112,7 +114,7 @@ class Composer {
 
 @Component({
   selector: "app-fixture",
-  imports: [Composer],
+  imports: [UiText, Composer],
   template: `
     <div class="fixture">
       <button>Before</button>

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import {
   describeWaterfall,
@@ -26,7 +27,7 @@ import type { ChangeDetails } from "@ui-sdk/core"
 // renders without content.
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiWaterfall,
     UiWaterfallAxis,
     UiWaterfallBar,
@@ -59,7 +60,7 @@ import type { ChangeDetails } from "@ui-sdk/core"
           <div uiWaterfallColumnHeader aria-label="Timeline">
             <div uiWaterfallAxis #axis="uiWaterfallAxis">
               @for (tick of axis.state().ticks; track tick.time) {
-                <span uiWaterfallTick [time]="tick.time"></span>
+                <span uiWaterfallTick [time]="tick.time" uiText></span>
               }
             </div>
             <span uiWaterfallMark [time]="f.mark.time">{{ f.mark.label }}</span>

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, input, signal } from "@angular/core"
 import {
   type IconName,
@@ -93,7 +94,7 @@ class IconGlyph {
 
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     IconGlyph,
     UiAutocomplete,
     UiAutocompleteContent,
@@ -191,7 +192,7 @@ class IconGlyph {
         <div uiSelectLabel class="label">{{ f.select.label }}</div>
         <button uiSelectTrigger class="trigger">
           <span uiSelectValueIcon class="value-icon"></span>
-          <span uiSelectValue class="value"></span>
+          <span uiSelectValue class="value" uiText></span>
         </button>
         <div *uiSelectContent class="popup list-popup">
           @for (item of f.select.items; track item.value) {
@@ -229,7 +230,7 @@ class IconGlyph {
                     ><app-icon-glyph [entry]="item"
                   /></span>
                 }
-                <span uiComboboxItemText></span>
+                <span uiComboboxItemText uiText></span>
               </div>
             }
           </div>
@@ -247,7 +248,7 @@ class IconGlyph {
                 <span uiAutocompleteItemIcon
                   ><app-icon-glyph [entry]="item"
                 /></span>
-                <span uiAutocompleteItemText></span>
+                <span uiAutocompleteItemText uiText></span>
               </div>
             }
           </div>
@@ -270,7 +271,7 @@ class IconGlyph {
                   ><app-icon-glyph [entry]="item"
                 /></span>
               }
-              <span uiCommandItemText></span>
+              <span uiCommandItemText uiText></span>
             </div>
           }
         </div>

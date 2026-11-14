@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component } from "@angular/core"
 import { wrappedContentFixture as f } from "tests/fixtures/wrapped-content"
 import {
@@ -31,7 +32,7 @@ import {
 // that content, and no second list of its own.
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiAutocomplete,
     UiAutocompleteContent,
     UiAutocompleteInput,
@@ -55,7 +56,7 @@ import {
       <button>Before</button>
       <ng-container uiSelect [items]="f.items">
         <div uiSelectLabel>{{ f.select }}</div>
-        <button uiSelectTrigger><span uiSelectValue></span></button>
+        <button uiSelectTrigger><span uiSelectValue uiText></span></button>
         <ng-container>
           <div *uiSelectContent class="popup"></div>
         </ng-container>

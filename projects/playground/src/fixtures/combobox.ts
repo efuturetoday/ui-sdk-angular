@@ -19,8 +19,7 @@ import {
 import { onItemsChange } from "tests/fixtures/items"
 import { longItems, serializeForm } from "tests/fixtures/select"
 import {
-  injectAsyncOptions,
-} from "@ngx-ui-sdk/core"
+  injectAsyncOptions, UiText } from "@ngx-ui-sdk/core"
 import {
   type ComboboxValueChangeDetails,
   UiCombobox,
@@ -57,7 +56,7 @@ type Shown = Entry | { type: "group"; label: string; items: Entry[] }
 // The data variant renders the same combobox from `items`, with ?data.
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     NgTemplateOutlet,
     UiCombobox,
     UiComboboxChip,
@@ -129,7 +128,7 @@ type Shown = Entry | { type: "group"; label: string; items: Entry[] }
                   }
                 </ng-container>
                 @if (o.overflow) {
-                  <span uiComboboxChipsOverflow class="chips-overflow"></span>
+                  <span uiComboboxChipsOverflow class="chips-overflow" uiText></span>
                 }
                 <input uiComboboxInput class="input" />
               </div>
@@ -172,7 +171,7 @@ type Shown = Entry | { type: "group"; label: string; items: Entry[] }
                             [disabled]="item.disabled"
                           >
                             @if (o.highlight) {
-                              <span uiComboboxItemText></span>
+                              <span uiComboboxItemText uiText></span>
                             } @else {
                               {{ item.label }}
                             }
@@ -190,7 +189,7 @@ type Shown = Entry | { type: "group"; label: string; items: Entry[] }
                         [disabled]="entry.disabled"
                       >
                         @if (o.highlight) {
-                          <span uiComboboxItemText></span>
+                          <span uiComboboxItemText uiText></span>
                         } @else {
                           {{ entry.label }}
                         }
@@ -214,7 +213,7 @@ type Shown = Entry | { type: "group"; label: string; items: Entry[] }
                         @for (item of group.items; track item.value) {
                           <div uiComboboxItem class="item" [value]="item.value" [label]="item.label">
                             @if (o.highlight) {
-                              <span uiComboboxItemText></span>
+                              <span uiComboboxItemText uiText></span>
                             } @else {
                               {{ item.label }}
                             }
@@ -237,7 +236,7 @@ type Shown = Entry | { type: "group"; label: string; items: Entry[] }
                         [disabled]="item.disabled"
                       >
                         @if (o.highlight) {
-                          <span uiComboboxItemText></span>
+                          <span uiComboboxItemText uiText></span>
                         } @else {
                           {{ item.label }}
                         }

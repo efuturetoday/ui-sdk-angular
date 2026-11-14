@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import { serialize, sliderFixture as f, sliderOptions } from "tests/fixtures/slider"
 import {
@@ -18,7 +19,7 @@ type Value = number | number[]
 
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiField,
     UiFieldDescription,
     UiFieldLabel,
@@ -53,7 +54,7 @@ type Value = number | number[]
             (valueChange)="volume.set($event)"
             (valueCommit)="commit(f.volume.name, $event.value)"
           >
-            <output uiSliderValue class="slider-value"></output>
+            <output uiSliderValue class="slider-value" uiText></output>
             <div uiSliderControl class="slider-control">
               <div uiSliderTrack class="slider-track">
                 <div uiSliderIndicator class="slider-indicator"></div>
@@ -79,7 +80,7 @@ type Value = number | number[]
             (beforeValueChange)="report(f.price.name, $event.value, $event.details)"
             (valueCommit)="commit(f.price.name, $event.value)"
           >
-            <output uiSliderValue class="slider-value"></output>
+            <output uiSliderValue class="slider-value" uiText></output>
             <div uiSliderControl class="slider-control">
               <div uiSliderTrack class="slider-track">
                 <div uiSliderIndicator class="slider-indicator"></div>

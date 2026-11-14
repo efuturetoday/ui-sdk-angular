@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { afterNextRender, Component, signal } from "@angular/core"
 import { menubarFixture as f, menubarOptions } from "tests/fixtures/menubar"
 import {
@@ -23,7 +24,7 @@ import {
 // written in it.
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiMenu,
     UiMenubar,
     UiMenuCheckboxItem,
@@ -62,7 +63,7 @@ import {
               >
                 {{ item.label }}
                 @if (item.shortcut) {
-                  <span uiMenuShortcut></span>
+                  <span uiMenuShortcut uiText></span>
                 }
               </div>
             }

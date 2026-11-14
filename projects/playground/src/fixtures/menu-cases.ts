@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import {
   UiMenu,
@@ -16,7 +17,7 @@ import {
 
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiMenu,
     UiMenuCheckboxItem,
     UiMenuContent,
@@ -38,8 +39,8 @@ import {
         <div *uiMenuContent class="popup">
           <div uiMenuItem class="item" value="pin" [onSelect]="keepOpen">Pin</div>
           <div uiMenuItem class="item" value="zoom" [closeOnSelect]="false">Zoom in</div>
-          <div uiMenuItem class="item" value="erase" shortcut="mod+backspace">Erase<span uiMenuShortcut></span></div>
-          <div uiMenuItem class="item" value="window" shortcut="alt+n">New window<span uiMenuShortcut></span></div>
+          <div uiMenuItem class="item" value="erase" shortcut="mod+backspace">Erase<span uiMenuShortcut uiText></span></div>
+          <div uiMenuItem class="item" value="window" shortcut="alt+n">New window<span uiMenuShortcut uiText></span></div>
           <div uiMenuSeparator class="separator"></div>
           <div uiMenuCheckboxItem class="item" value="autosave" closeOnSelect>Autosave</div>
           <div uiMenuCheckboxItem class="item" value="pinned" checked>Pinned</div>

@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -30,7 +31,7 @@ import {
 // its state, which Vue renders without content.
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiCalendarDay,
     UiCalendarGrid,
     UiCalendarHeading,
@@ -84,18 +85,18 @@ import {
           }
           <button uiDatePickerTrigger></button>
           <button *uiDatePickerClear>Clear</button>
-          <span uiDatePickerHint class="date-picker-hint"></span>
+          <span uiDatePickerHint class="date-picker-hint" uiText></span>
           <div *uiDatePickerContent class="date-picker-content">
             <div class="calendar-header">
-              <button uiCalendarPrevious class="calendar-step"></button>
-              <h2 uiCalendarHeading class="calendar-heading"></h2>
-              <button uiCalendarNext class="calendar-step"></button>
+              <button uiCalendarPrevious class="calendar-step" uiText></button>
+              <h2 uiCalendarHeading class="calendar-heading" uiText></h2>
+              <button uiCalendarNext class="calendar-step" uiText></button>
             </div>
             <table uiCalendarGrid #grid="uiCalendarGrid" class="calendar-grid">
               <thead>
                 <tr uiCalendarWeekdays>
                   @for (weekday of grid.state().weekdays; track weekday) {
-                    <th uiCalendarWeekday scope="col" [index]="$index"></th>
+                    <th uiCalendarWeekday scope="col" [index]="$index" uiText></th>
                   }
                 </tr>
               </thead>
@@ -106,7 +107,7 @@ import {
                       @if (cell.hidden) {
                         <td></td>
                       } @else {
-                        <td uiCalendarDay [value]="cell.date"></td>
+                        <td uiCalendarDay [value]="cell.date" uiText></td>
                       }
                     }
                   </tr>

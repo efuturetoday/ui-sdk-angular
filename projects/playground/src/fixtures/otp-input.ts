@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -17,7 +18,7 @@ const { code, recovery, form } = otpInputFixture
 
 @Component({
   selector: "app-fixture",
-  imports: [UiOtpInput, UiOtpInputGroup, UiOtpInputSeparator, UiOtpInputSlot],
+  imports: [UiText, UiOtpInput, UiOtpInputGroup, UiOtpInputSeparator, UiOtpInputSlot],
   template: `
     <div class="fixture">
       <button>Before</button>
@@ -44,8 +45,7 @@ const { code, recovery, form } = otpInputFixture
                 <div
                   uiOtpInputSlot
                   class="otp-slot"
-                  [index]="starts[group]! + slot"
-                ></div>
+                  [index]="starts[group]! + slot" uiText></div>
               }
             </div>
           }
@@ -62,7 +62,7 @@ const { code, recovery, form } = otpInputFixture
       >
         <div uiOtpInputGroup class="otp-group">
           @for (slot of slotsOf(recovery.length); track slot) {
-            <div uiOtpInputSlot class="otp-slot" [index]="slot"></div>
+            <div uiOtpInputSlot class="otp-slot" [index]="slot" uiText></div>
           }
         </div>
       </div>

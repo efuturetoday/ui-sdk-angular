@@ -1,3 +1,4 @@
+import { UiText } from "@ngx-ui-sdk/core"
 import { Component, signal } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import {
@@ -22,7 +23,7 @@ import {
 
 @Component({
   selector: "app-fixture",
-  imports: [
+  imports: [UiText, 
     UiDateInput,
     UiDateInputSegment,
     UiField,
@@ -58,11 +59,11 @@ import {
               @if (segment.editable) {
                 <input uiDateInputSegment [segment]="segment" />
               } @else {
-                <span uiDateInputSegment [segment]="segment"></span>
+                <span uiDateInputSegment [segment]="segment" uiText></span>
               }
             }
           </div>
-          <div *uiFieldError class="field-error"></div>
+          <div *uiFieldError class="field-error" uiText></div>
         </div>
         <div uiField class="field" [name]="f.time.name">
           <label uiFieldLabel>{{ f.time.label }}</label>
@@ -82,7 +83,7 @@ import {
               @if (segment.editable) {
                 <input uiTimeInputSegment [segment]="segment" />
               } @else {
-                <span uiTimeInputSegment [segment]="segment"></span>
+                <span uiTimeInputSegment [segment]="segment" uiText></span>
               }
             }
           </div>
