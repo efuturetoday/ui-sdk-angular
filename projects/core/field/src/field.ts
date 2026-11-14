@@ -64,9 +64,10 @@ function injectOutside(slot: FieldOutsideSlot) {
   if (isPlatformBrowser(inject(PLATFORM_ID))) {
     afterNextRender(() => checkFieldOutside(el, slot))
   }
-  return {
-    init: () => applyAttrs(el, fieldOutsideAttrs(slot), "field-outside"),
-  }
+  // Like a part, it starts once Angular has set the inputs.
+  effect(() =>
+    untracked(() => applyAttrs(el, fieldOutsideAttrs(slot), "field-outside"))
+  )
 }
 
 /**
@@ -197,11 +198,10 @@ class UiFieldError implements TextSource {
 function injectOutsideError(props: () => FieldErrorProps) {
   const template = inject(TemplateRef)
   const viewContainer = inject(ViewContainerRef)
-  const started = signal(false)
   const element = signal<HTMLElement | undefined>(undefined)
   const state = signal(fieldOutsideState).asReadonly()
   effect(() => {
-    const shown = started() && fieldOutsideErrorShown(props())
+    const shown = fieldOutsideErrorShown(props())
     untracked(() => {
       if (shown === !!element()) {
         return
@@ -221,7 +221,7 @@ function injectOutsideError(props: () => FieldErrorProps) {
       element.set(el)
     })
   })
-  return { init: () => started.set(true), element, state }
+  return { element, state }
 }
 
 /**
