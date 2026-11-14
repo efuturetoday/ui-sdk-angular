@@ -64,7 +64,7 @@ function unboundTrigger(
 // A Shortcut part: in its root, or inside a trigger, which gives its keys and
 // the instance it opens. Inside a trigger whose instance isn't on the page
 // yet, it shows nothing.
-function injectShortcut<P extends Primitive>(
+function injectShortcutPart<P extends Primitive>(
   primitive: P,
   shortcut: () => string | undefined
 ) {
@@ -93,4 +93,9 @@ function injectShortcut<P extends Primitive>(
   )
 }
 
-export { injectShortcut, provideTrigger, type TriggerContext, unboundTrigger }
+export {
+  injectShortcutPart,
+  provideTrigger,
+  type TriggerContext,
+  unboundTrigger,
+}

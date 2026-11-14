@@ -98,4 +98,40 @@ function injectFormInputs<P extends Primitive>(
   return part
 }
 
-export { injectFormInputs }
+// An input the adapter makes at the end of this directive's element, like a
+// slider thumb's, in the browser only. The attributes in `moves`, like an
+// `aria-label`, name the input, so they move to it. See the design's "Elements".
+function injectInputInside(moves: readonly string[] = []) {
+  const renderer = inject(Renderer2)
+  const host = inject(ElementRef).nativeElement as HTMLElement
+  const browser = isPlatformBrowser(inject(PLATFORM_ID))
+  let made: HTMLInputElement | undefined
+  inject(DestroyRef).onDestroy(() => {
+    if (made?.parentNode) {
+      renderer.removeChild(made.parentNode, made)
+    }
+  })
+  return {
+    show: () => {
+      if (!browser) {
+        return undefined
+      }
+      if (!made) {
+        made = renderer.createElement("input") as HTMLInputElement
+        for (const name of moves) {
+          const value = host.getAttribute(name)
+          if (value !== null) {
+            renderer.setAttribute(made, name, value)
+            renderer.removeAttribute(host, name)
+          }
+        }
+        renderer.appendChild(host, made)
+      }
+      return made
+    },
+    hide: () => {},
+    at: host as Node,
+  }
+}
+
+export { injectFormInputs, injectInputInside }

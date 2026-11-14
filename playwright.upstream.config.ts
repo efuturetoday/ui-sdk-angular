@@ -8,8 +8,24 @@ const specRoot = "vendor/ui/tests/specs"
 
 // Specs that fail for a reason that isn't a bug, by title, each with why.
 const knownGaps: Record<string, string> = {
-  "a menu inside the popover":
-    "The popover fixture leaves out its menu until Menu is ported.",
+  "a select finds its content inside a fragment":
+    "A data root renders a list of its own in React and Vue when its content is empty. Angular's content is the app's template, so an empty `*uiSelectContent` has no options.",
+  "a combobox finds its content inside a wrapping element":
+    "A data root renders a list of its own in React and Vue when its content is empty. Angular's content is the app's template, so an empty `*uiComboboxContent` has no options.",
+  "an autocomplete finds its content inside a wrapping element":
+    "A data root renders a list of its own in React and Vue when its content is empty. Angular's content is the app's template, so an empty `*uiAutocompleteContent` has no options.",
+  "a trigger menu finds its content inside a fragment":
+    "A data root renders a list of its own in React and Vue when its content is empty. Angular's content is the app's template, so an empty `uiTriggerMenuList` has no options.",
+  "moving through tabs with the arrow keys 200 times, then mounting and unmounting it 200 times, leaves nothing behind":
+    "An adapter leak, not a gap: after 400 mounts of the tabs the heap snapshot still holds the detached tabs, tabs-list, tabs-indicator and tabs-panel parts. Not found yet.",
+  "a click on a trigger in a shadow root opens the menu, and it stays open":
+    "With a portal container outside the shadow root, the menu's aria-labelledby points into the shadow root, which no browser resolves, so it has no name. Core's naming, to check upstream.",
+  "a label for a slider names its thumb":
+    "The label fixture leaves out its slider until Slider is ported.",
+  "a label names a control that renders after it":
+    "The label fixture leaves out its number input until NumberInput is ported.",
+  "without a default value, the first render already selects the first enabled tab":
+    "The spec watches nodes added to the document and reports the first tab panel. Angular creates a template's nodes inside its host, which is already in the document, so every node of the first render is added to it, tabs included; React and Vue attach a finished tree.",
 }
 
 // Only popups move into a portal container, so the portal project runs these

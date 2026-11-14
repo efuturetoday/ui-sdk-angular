@@ -36,7 +36,7 @@ import { injectPopupPart } from "./popup-layer"
 import type { PresentPartContext } from "./structural"
 import { optionalBoolean } from "./inputs"
 import {
-  injectShortcut,
+  injectShortcutPart,
   provideTrigger,
   type TriggerContext,
   unboundTrigger,
@@ -266,7 +266,7 @@ class UiDrawerTrigger implements OnInit, TriggerContext<typeof drawer> {
 class UiDrawerShortcut implements OnInit {
   /** The keys to show. Inside a trigger, its shortcut. */
   readonly shortcut = input<string>()
-  readonly #part = injectShortcut(drawer, this.shortcut)
+  readonly #part = injectShortcutPart(drawer, this.shortcut)
   /** The shortcut's state. */
   readonly state = this.#part.state
 

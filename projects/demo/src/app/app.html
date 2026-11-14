@@ -1,29 +1,55 @@
-<nav class="components" aria-label="Components">
-  <div class="title">
-    <h1>ui-sdk-angular</h1>
-    <button
-      type="button"
-      [attr.aria-label]="dark() ? 'Light theme' : 'Dark theme'"
-      (click)="dark.set(!dark())"
-    >
-      @if (dark()) {
-        <svg lucideSun aria-hidden="true"></svg>
-      } @else {
-        <svg lucideMoon aria-hidden="true"></svg>
-      }
-    </button>
-  </div>
+<ng-template #links>
+  <p class="group">Components</p>
   @for (component of components; track component) {
     <a
       [href]="'?component=' + component"
       [attr.aria-current]="component === current() ? 'page' : null"
       (click)="$event.preventDefault(); show(component)"
-      >{{ component }}</a
+      >{{ titleOf(component) }}</a
     >
   }
+</ng-template>
+
+<header class="title">
+  <h1>ui-sdk-angular</h1>
+  <button
+    type="button"
+    [attr.aria-label]="dark() ? 'Light theme' : 'Dark theme'"
+    (click)="dark.set(!dark())"
+  >
+    @if (dark()) {
+      <svg lucideSun aria-hidden="true"></svg>
+    } @else {
+      <svg lucideMoon aria-hidden="true"></svg>
+    }
+  </button>
+  <!-- On a phone, the components are in a drawer from the start edge. -->
+  <div class="mobile-nav">
+    <ng-container
+      uiDrawer
+      side="left"
+      [open]="navOpen()"
+      (openChange)="navOpen.set($event)"
+    >
+      <button uiDrawerTrigger aria-label="Components">
+        <svg lucideMenu aria-hidden="true"></svg>
+      </button>
+      <!-- Styled as upstream's drawer example, which its CSS scopes to an example. -->
+      <div data-example="nav">
+        <div *uiDrawerBackdrop></div>
+        <nav *uiDrawerContent aria-label="Components" class="drawer-nav">
+          <h2 uiDrawerTitle class="visually-hidden">Components</h2>
+          <ng-container [ngTemplateOutlet]="links" />
+        </nav>
+      </div>
+    </ng-container>
+  </div>
+</header>
+<nav class="components" aria-label="Components">
+  <ng-container [ngTemplateOutlet]="links" />
 </nav>
 <main>
-  <h2>{{ current() }}</h2>
+  <h2>{{ titleOf(current()) }}</h2>
   @for (name of names(); track name) {
     <section class="example">
       <h3>{{ name.split("/")[1] }}</h3>

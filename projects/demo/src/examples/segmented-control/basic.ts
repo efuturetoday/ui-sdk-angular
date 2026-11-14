@@ -1,0 +1,56 @@
+import { Component } from "@angular/core"
+import {
+  UiField,
+  UiFieldLabel,
+  UiSegmentedControl,
+  UiSegmentedControlIndicator,
+  UiSegmentedControlInput,
+  UiSegmentedControlItem,
+} from "ui-sdk-angular"
+
+@Component({
+  selector: "app-example",
+  imports: [
+    UiField,
+    UiFieldLabel,
+    UiSegmentedControl,
+    UiSegmentedControlIndicator,
+    UiSegmentedControlInput,
+    UiSegmentedControlItem,
+  ],
+  template: `
+    <div uiField>
+      <label uiFieldLabel>View</label>
+      <div uiSegmentedControl defaultValue="list">
+        <span uiSegmentedControlIndicator></span>
+        <button
+          uiSegmentedControlItem
+          #list="uiSegmentedControlItem"
+          value="list"
+        >
+          List
+        </button>
+        <input [uiSegmentedControlInput]="list" />
+        <button
+          uiSegmentedControlItem
+          #grid="uiSegmentedControlItem"
+          value="grid"
+        >
+          Grid
+        </button>
+        <input [uiSegmentedControlInput]="grid" />
+        <button
+          uiSegmentedControlItem
+          #board="uiSegmentedControlItem"
+          value="board"
+        >
+          Board
+        </button>
+        <input [uiSegmentedControlInput]="board" />
+      </div>
+    </div>
+  `,
+})
+class Example {}
+
+export { Example }

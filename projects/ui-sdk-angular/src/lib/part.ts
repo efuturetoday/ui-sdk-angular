@@ -69,6 +69,11 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
     at: element.at,
   }
 
+  // A binding on the part's own element can read its state before Angular
+  // sets the inputs, when a required one throws, so until `init()` the state
+  // is the part's without props.
+  const ready = signal(false)
+
   // Only a connected part has no instance, and it passes `unbound`.
   const liveVersion = signal(0)
   const state = computed(() => {
@@ -78,7 +83,8 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
     }
     handle.version()
     liveVersion()
-    return partState(handle.instance.part(slot, props())) as StateOf<P, S>
+    const current = ready() ? props() : ({} as PropsOf<P, S>)
+    return partState(handle.instance.part(slot, current)) as StateOf<P, S>
   })
 
   const connect = () => {
@@ -123,6 +129,7 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
       return
     }
     started = true
+    ready.set(true)
     rendered = browser && firstRender.done
     connect()
     if (browser) {
@@ -132,6 +139,9 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
 
   effect(() => {
     target()
+    if (!ready()) {
+      return
+    }
     props()
     untracked(() => {
       if (started) {
@@ -174,7 +184,7 @@ function injectPart<P extends Primitive, S extends SlotName<P>>(
   join?: JoinedPart
 ) {
   const el = inject(ElementRef).nativeElement as HTMLElement
-  return bindPart(
+  const part = bindPart(
     () => handle,
     slot,
     props,
@@ -182,6 +192,22 @@ function injectPart<P extends Primitive, S extends SlotName<P>>(
     undefined,
     join
   )
+  return { ...part, init: claimingInit(el, props, part.init) }
+}
+
+// An attribute named like one of the part's props, like `disabled` on a menu
+// trigger, is that prop, so it goes as the part starts and core and the host
+// bindings decide it. See the design's "Lifecycle".
+function claimingInit(el: HTMLElement, props: () => object, init: () => void) {
+  return () => {
+    for (const key in untracked(props)) {
+      const name = key.toLowerCase()
+      if (name !== "id" && el.hasAttribute(name)) {
+        el.removeAttribute(name)
+      }
+    }
+    init()
+  }
 }
 
 /**
@@ -218,7 +244,7 @@ function injectTargetPart<P extends Primitive, S extends SlotName<P>>(
   join?: JoinedPart
 ) {
   const el = inject(ElementRef).nativeElement as HTMLElement
-  return bindPart(
+  const part = bindPart(
     target,
     slot,
     props,
@@ -226,6 +252,7 @@ function injectTargetPart<P extends Primitive, S extends SlotName<P>>(
     unbound && { ...unbound, el },
     join
   )
+  return { ...part, init: claimingInit(el, props, part.init) }
 }
 
 /**

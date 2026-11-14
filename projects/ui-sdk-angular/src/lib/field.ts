@@ -80,15 +80,24 @@ function injectFieldControl() {
     return null
   }
   const el = inject(ElementRef).nativeElement as HTMLElement
-  let props: { id?: string; describedBy?: string } | undefined
+  let authored: { id?: string; describedBy?: string } | undefined
   const join: JoinedPart = {
-    part: () => {
-      // The element's own id and description, before anything writes either.
-      props ??= {
+    part: (own) => {
+      // The element's own id and description, before anything writes either,
+      // and the control's own description, like a date's format hint, ahead
+      // of the field's, as Vue passes it.
+      authored ??= {
         id: el.getAttribute("id") ?? undefined,
         describedBy: el.getAttribute("aria-describedby") ?? undefined,
       }
-      return context.handle.instance.part("control", props)
+      const describedBy =
+        [authored.describedBy, own["aria-describedby"]]
+          .filter(Boolean)
+          .join(" ") || undefined
+      return context.handle.instance.part("control", {
+        id: authored.id,
+        describedBy,
+      })
     },
     // The field decides the id, and its label names the control over the
     // control's own, but not over the author's. The control stays its own part.
@@ -196,9 +205,16 @@ class UiFieldLabel implements OnInit {
 @Directive({ selector: "[uiFieldDescription]", exportAs: "uiFieldDescription" })
 class UiFieldDescription implements OnInit {
   readonly #described = inject(DescribedToken, { optional: true })
-  readonly #part = this.#described
+  readonly #inside = this.#described
     ? injectPart(this.#described.handle, "description")
-    : injectOutside("description")
+    : undefined
+  readonly #part = this.#inside ?? injectOutside("description")
+  /**
+   * The field's state, like `valid`, for text that follows it:
+   * `#hint="uiFieldDescription"`, then `hint.state()?.valid`. Outside any
+   * field, it has none.
+   */
+  readonly state = this.#inside?.state ?? computed(() => undefined)
 
   ngOnInit() {
     this.#part.init()

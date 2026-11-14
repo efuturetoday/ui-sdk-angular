@@ -2,6 +2,9 @@
 
 :root {
   color-scheme: light dark;
+  /* The fonts upstream's example tokens name, as ui-sdk.dev loads them. */
+  --font-geist: "Geist";
+  --font-geist-mono: "Geist Mono";
 }
 
 body {
@@ -12,7 +15,9 @@ body {
 
 /* As on ui-sdk.dev: Geist, and square everywhere but marked shapes. */
 body {
-  font-family: Geist, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 :not([data-round]),

@@ -35,10 +35,18 @@ type PartElement<State> = {
  * checkbox: its attributes merge into the part's with `merge`, and both bind.
  * @experimental
  */
+// Another part on the same element, like the field's control part on an
+// input, given the element's own part's attributes. Its `part` may return
+// nothing, for a join that applies only to some shapes, like a range slider.
 type JoinedPart = {
-  part: () => Part
+  part: (own: Attrs) => Part | undefined
   merge: (own: Attrs, joined: Attrs) => Attrs
 }
+
+// Every instance's bindings. A part's attributes can follow another part's
+// props, like a radio item's `aria-checked` its group's `value`, so when one
+// part's props change, all of its instance's parts sync, as web components do.
+const bindings = new WeakMap<object, Set<() => void>>()
 
 // One part of one instance on its element: attributes, behavior once the page
 // has rendered, and changes in the next commit; suspended, it lets go of the
@@ -94,9 +102,10 @@ function createBinding<P extends Primitive, S extends SlotName<P>>(
       syncSoon()
     })
     unwatchJoined?.()
+    const joined = join?.part(partAttrs(record))
     unwatchJoined =
-      join &&
-      subscribe(join.part(), (liveOnly) => {
+      joined &&
+      subscribe(joined, (liveOnly) => {
         if (!liveOnly) {
           syncSoon()
         }
@@ -113,8 +122,9 @@ function createBinding<P extends Primitive, S extends SlotName<P>>(
       cleanup?.()
     }
     const cleanups = [bind(record, target)]
-    if (join) {
-      cleanups.push(bind(join.part(), target))
+    const joined = join?.part(partAttrs(record))
+    if (joined) {
+      cleanups.push(bind(joined, target))
     }
     cleanup = () => cleanups.forEach((stop) => stop())
     if (released) {
@@ -147,9 +157,10 @@ function createBinding<P extends Primitive, S extends SlotName<P>>(
       }
       takeOwnId(record, el.id || undefined)
       const attrs = partAttrs(record)
+      const joined = join?.part(attrs)
       applyAttrs(
         el,
-        join ? join.merge(attrs, partAttrs(join.part())) : attrs,
+        joined ? join!.merge(attrs, partAttrs(joined)) : attrs,
         channel
       )
       afterRendered(el, () => {
@@ -178,10 +189,18 @@ function createBinding<P extends Primitive, S extends SlotName<P>>(
     }
   }
   const syncSoon = () => schedule(syncLive, element.at)
+  const siblings = () => {
+    let set = bindings.get(handle.instance)
+    if (!set) {
+      bindings.set(handle.instance, (set = new Set()))
+    }
+    return set
+  }
 
   return {
     // Writes the part's attributes now, so the server's HTML has them.
     start(isRendered: boolean) {
+      siblings().add(syncSoon)
       current = props()
       pageRendered = isRendered
       watch()
@@ -189,7 +208,7 @@ function createBinding<P extends Primitive, S extends SlotName<P>>(
     },
     update() {
       read()
-      syncSoon()
+      siblings().forEach((sync) => sync())
     },
     render() {
       pageRendered = true
@@ -205,6 +224,7 @@ function createBinding<P extends Primitive, S extends SlotName<P>>(
     },
     destroy() {
       destroyed = true
+      siblings().delete(syncSoon)
       unwatch?.()
       unwatchJoined?.()
       release()

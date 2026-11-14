@@ -1,0 +1,33 @@
+import { Component } from "@angular/core"
+import { UiListbox, UiListboxItem } from "ui-sdk-angular"
+
+@Component({
+  selector: "app-example",
+  imports: [UiListbox, UiListboxItem],
+  template: `
+    <div
+      uiListbox
+      orientation="horizontal"
+      [loop]="false"
+      defaultValue="m"
+      aria-label="Size"
+    >
+      @for (size of sizes; track size.value) {
+        <div uiListboxItem [value]="size.value" [disabled]="size.disabled">
+          {{ size.label }}
+        </div>
+      }
+    </div>
+  `,
+})
+class Example {
+  protected readonly sizes = [
+    { value: "xs", label: "XS" },
+    { value: "s", label: "S" },
+    { value: "m", label: "M" },
+    { value: "l", label: "L" },
+    { value: "xl", label: "XL", disabled: true },
+  ]
+}
+
+export { Example }

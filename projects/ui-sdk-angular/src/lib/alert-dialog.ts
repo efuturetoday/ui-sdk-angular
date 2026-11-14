@@ -31,7 +31,7 @@ import { injectPopupPart } from "./popup-layer"
 import type { PresentPartContext } from "./structural"
 import { optionalBoolean } from "./inputs"
 import {
-  injectShortcut,
+  injectShortcutPart,
   provideTrigger,
   type TriggerContext,
   unboundTrigger,
@@ -188,7 +188,7 @@ class UiAlertDialogTrigger
 class UiAlertDialogShortcut implements OnInit {
   /** The keys to show. Inside a trigger, its shortcut. */
   readonly shortcut = input<string>()
-  readonly #part = injectShortcut(alertDialog, this.shortcut)
+  readonly #part = injectShortcutPart(alertDialog, this.shortcut)
   /** The shortcut's state. */
   readonly state = this.#part.state
 

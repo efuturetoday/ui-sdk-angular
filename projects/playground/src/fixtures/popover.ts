@@ -8,6 +8,10 @@ import {
 import {
   createPopoverController,
   type PopoverDismissAttemptDetails,
+  UiMenu,
+  UiMenuContent,
+  UiMenuItem,
+  UiMenuTrigger,
   UiPopover,
   UiPopoverArrow,
   UiPopoverClose,
@@ -18,10 +22,13 @@ import {
   UiPopoverTrigger,
 } from "ui-sdk-angular"
 
-// Upstream's fixture, without its menu (?menu) until Menu is ported.
 @Component({
   selector: "app-fixture",
   imports: [
+    UiMenu,
+    UiMenuContent,
+    UiMenuItem,
+    UiMenuTrigger,
     UiPopover,
     UiPopoverArrow,
     UiPopoverClose,
@@ -83,6 +90,16 @@ import {
               <button (click)="triggerShown.set(false)">{{ popoverFixture.remove }}</button>
             }
           </div>
+          @if (parts.menu) {
+            <ng-container uiMenu [container]="options.container" [onAction]="onMenuAction">
+              <button uiMenuTrigger>{{ popoverFixture.menu.trigger }}</button>
+              <div *uiMenuContent class="popup">
+                @for (item of popoverFixture.menu.items; track item.value) {
+                  <div uiMenuItem [value]="item.value" class="item">{{ item.label }}</div>
+                }
+              </div>
+            </ng-container>
+          }
           @if (parts.nested) {
             <ng-container uiPopover>
               <button uiPopoverTrigger>{{ popoverFixture.nested.trigger }}</button>
@@ -128,6 +145,7 @@ class Fixture {
   protected readonly controller = createPopoverController()
   protected readonly action = signal("")
   protected readonly triggerShown = signal(true)
+  protected readonly onMenuAction = (value: string) => this.action.set(value)
 
   protected onDismissAttempt(details: PopoverDismissAttemptDetails) {
     this.options.onDismissAttempt?.(details)

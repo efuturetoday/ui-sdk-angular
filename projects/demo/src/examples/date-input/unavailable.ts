@@ -1,0 +1,45 @@
+import { Component } from "@angular/core"
+import {
+  UiDateInput,
+  UiDateInputSegment,
+  UiField,
+  UiFieldDescription,
+  UiFieldError,
+  UiFieldLabel,
+} from "ui-sdk-angular"
+
+@Component({
+  selector: "app-example",
+  imports: [
+    UiDateInput,
+    UiDateInputSegment,
+    UiField,
+    UiFieldDescription,
+    UiFieldError,
+    UiFieldLabel,
+  ],
+  template: `
+    <div uiField>
+      <label uiFieldLabel>Delivery date</label>
+      <div
+        uiDateInput
+        #d="uiDateInput"
+        defaultValue="2026-11-02"
+        [unavailable]="{ weekday: [0, 6] }"
+      >
+        @for (segment of d.state().segments; track segment.key) {
+          @if (segment.editable) {
+            <input uiDateInputSegment [segment]="segment" />
+          } @else {
+            <span uiDateInputSegment [segment]="segment"></span>
+          }
+        }
+      </div>
+      <p uiFieldDescription>We deliver Monday to Friday.</p>
+      <div *uiFieldError></div>
+    </div>
+  `,
+})
+class Example {}
+
+export { Example }

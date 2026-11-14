@@ -8,6 +8,7 @@ import {
   InjectionToken,
   input,
   output,
+  signal,
   type InputSignal,
   type OnInit,
   type Signal,
@@ -52,6 +53,7 @@ import {
   UiValueAccessor,
 } from "./forms"
 import { optionalBoolean } from "./inputs"
+import { ListHighlight, VirtualIndex } from "./virtual-for"
 import { injectConnectedPart, injectPart, injectTargetPart } from "./part"
 import { injectPopupPart } from "./popup-layer"
 import {
@@ -97,7 +99,13 @@ const SelectTarget = new InjectionToken<
 @Directive({
   selector: "[uiSelect]",
   exportAs: "uiSelect",
-  providers: [provideRoot(select, () => UiSelect)],
+  providers: [
+    provideRoot(select, () => UiSelect),
+    {
+      provide: ListHighlight,
+      useFactory: () => inject(forwardRef(() => UiSelect)).highlighted,
+    },
+  ],
 })
 class UiSelect implements OnInit {
   /** The selected value, or values with `multiple`. Bind it, or `[(value)]`, to control it. */
@@ -211,6 +219,9 @@ class UiSelect implements OnInit {
     query: string
     details: SelectQueryChangeDetails
   }>()
+  readonly #highlighted = signal(-1)
+  /** @internal The highlighted item's index, which `uiVirtualRows` scrolls into view. */
+  readonly highlighted = this.#highlighted.asReadonly()
   /** Emits when the list scrolls near its end, to load more items. */
   readonly loadMore = output<void>()
   /** Emits when focus leaves the trigger while closed, which marks it touched in Signal Forms. */
@@ -266,8 +277,10 @@ class UiSelect implements OnInit {
         this.openChangeComplete.emit(open),
       onDismissAttempt: (details: DismissAttemptDetails<SelectDismissReason>) =>
         this.dismissAttempt.emit(details),
-      onHighlight: (value: unknown, details: ListHighlightDetails) =>
-        this.highlight.emit({ value, details }),
+      onHighlight: (value: unknown, details: ListHighlightDetails) => {
+        this.#highlighted.set(details.index)
+        this.highlight.emit({ value, details })
+      },
       onQueryChange: (query: string, details: SelectQueryChangeDetails) => {
         this.beforeQueryChange.emit({ query, details })
         if (!details.canceled) {
@@ -639,12 +652,13 @@ class UiSelectItem implements OnInit {
   })
   /** Its position among the data items, for screen readers while some aren't rendered. */
   readonly index = input<number>()
+  readonly #virtualIndex = inject(VirtualIndex, { optional: true })
   readonly #group = inject(UiSelectGroup, { optional: true })
   readonly #part = injectPart(injectHandle(select), "item", () => ({
     value: this.value() as string,
     label: this.label(),
     disabled: this.disabled(),
-    index: this.index(),
+    index: this.index() ?? this.#virtualIndex ?? undefined,
     group: this.#group?.id,
   }))
   /** The item's state. */

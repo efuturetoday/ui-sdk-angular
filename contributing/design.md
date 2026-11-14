@@ -47,6 +47,10 @@ A control takes what's around it through DI, as upstream's adapters do through c
 - **A radio** joins only a field of its own. In the group's field, the group is the control.
 - **Outside a field**, a label, description, error or control is a plain element with its `data-slot`, so a label around a whole field labels the control inside it natively, and core warns in development when it labels nothing.
 
+### Two parts on one element
+
+A control can be two parts at once, like a field's control and the input itself, a menu trigger that's a toolbar button, or a number input's field that's a toolbar input. Each directive binds its own part, and a `JoinedPart` merges another part into one element's attributes. It gets the element's own part's attributes, so the field's control part puts the control's own description, like a date's format hint, ahead of the field's. Its `part` may return nothing, for a join that applies only to some shapes, like a slider that joins its field only as a range.
+
 ### A control's hidden input
 
 A checkbox, switch or radio takes part in a native form through a hidden native input, as in every adapter. Here it's a part you write, like every other, after its control and pointing at it, as `[matAutocomplete]` points at its panel:
@@ -70,6 +74,8 @@ A list with an input outside its popup, like a combobox, shows as a sheet with t
 
 The adapter makes an element itself only when it's infrastructure: no upstream adapter exposes it as a part, and it never lands in your markup. Those are a sheet's viewport and header, whose presence core decides at runtime by device, and a list's form inputs, like a select's, which go right after its root, one per selected value with `multiple`. Write `name` on the root and a native form gets the value. A checkbox's, switch's or radio's hidden input is different: it would land inside your button or label, so you write it (see above).
 
+A control's own inputs are the same kind of infrastructure when Vue makes them inside a part and they hold no content of yours: a slider thumb's range input, an OTP input's one real input, the hidden input of a slider, number input, color picker or date picker, a rating star's radio buttons and inputs, and a token input's hidden `<textarea>`. `injectInputInside` (`form-inputs.ts`) makes one at the end of the directive's element, in the browser only, and moves the naming attributes written on the element, like `aria-label`, to it. A token input's custom tokens are a template, `<ng-template uiTokenInputTokens let-token>`, rendered into the places core makes for them in its editor.
+
 ### Cached views
 
 Angular can take a view out of the document and put it back later without destroying it, like a route a `RouteReuseStrategy` keeps, and tells its directives nothing. Vue's `<KeepAlive>` and React's `<Activity>` do the same. So one `MutationObserver` (`presence.ts`) reports when a part's place in the template leaves the document and comes back, while any part is bound. A part that leaves lets go of the page and keeps its state, as Vue's do: an open dialog stops locking scroll and leaves the top layer. The popup layer takes out the nodes Angular doesn't know it moved. Back, the layer puts them where they belong and the parts bind again. Upstream's `cached-page` spec checks it, with a fixture that detaches the view as the router does.
@@ -86,6 +92,10 @@ There's no `render` and no `as`. A part is whatever element its directive is on.
 ```
 
 State for classes comes from `exportAs` (`[class.open]="dialog.state().open"`) or from the data attributes (`[data-open]`).
+
+## Long lists
+
+`*uiVirtualFor="let item of items; rowHeight: 32"` takes `@for`'s place for a long list and renders only the rows in view. The list it's in scrolls, or the nearest element around it that does. The rows not rendered are room around the ones that are, as margins on the first and last rendered rows, so rows flow normally: padding on the list couldn't shrink, so a list that scrolls inside a popup's flex column would grow to hold every row. Its items take their `index` from it (`VirtualIndex`), and inside a list that provides `ListHighlight`, like a select's, it scrolls the highlighted row into view. Its state lives with its element, so a popup made anew starts at the top. Rows have a fixed height for now. Upstream leaves virtualizing to the app; this is ours.
 
 ## Components
 
@@ -127,11 +137,17 @@ A component file composes these, like a dialog's content: `injectPopupPart`, whi
 Angular sets inputs after the constructor, and options like `defaultOpen` count only when an instance is made. So:
 
 - `injectPrimitive` and `injectPart` run in field initializers, and their `init()` runs in `ngOnInit`. A root's `ngOnInit` runs before its parts'.
+- The instance follows Angular's own rule for signals: what's read is derived (`computed`), what has effects runs in `effect`. It derives from the options, since options like `defaultOpen` count only when it's made, and `init()` keeps it once Angular has set every input. So `state()` is pure and readable anywhere, even by a binding on the root's own element, which Angular runs before `ngOnInit`: `<button uiToggle #t="uiToggle" [class]="t.state().pressed ? 'on' : 'off'">`.
+- When a part's props change, every part of its instance syncs, as web components do, since a part's attributes can follow another's props, like a radio item's `aria-checked` its group's `value`.
 - A part writes its attributes in `ngOnInit`, on the server too, so the server's HTML has them. It binds its behavior after the app's first render, in the browser only (`afterNextRender`). A part made after that, like one inside a structural part, binds in `ngOnInit`, before the part around it, as React and Vue bind children first.
 - Parts render and bind as React and Vue commit (`commit.ts`). Every change a part follows, from core or from its inputs, waits a microtask, so core finishes it first and no part renders in the middle of another. The parts that changed then render together in template order, whatever order Angular made their directives in, and bind children first; parts made while a part renders, like a title in a drawer's content, wait for it. So a popup binds with its backdrop and its whole content in the page, which a sheet measures for its snap points. Only a part's first attributes are written at once, in `ngOnInit`.
 - A part's props are a function the binding reads in `ngOnInit`, on every change, and once more right before its behavior attaches, after its element's content has rendered. So props that come from that content, like an item's text, need no lifecycle hook of their own.
 - A part's `state()` follows its instance's renders and the live state that reaches the part, like which item is highlighted, which changes without a render and reaches only the parts it affects.
 - A part that renders no element, like a combobox's value, only gives its state (`injectStatePart`), on an `ng-container`: `<ng-container uiComboboxValue #value="uiComboboxValue">`.
+- A structural part with no element of its own, like a command's page, passes `bare` to `injectPresentPart`: its presence decides only whether the template shows, and no element of the template becomes the part.
+- Until `init()`, a part's state reads none of its props: a binding on its own element runs before Angular sets the inputs, and a required one throws then.
+- An attribute written on a part's element and named like one of its props, like `disabled` on a menu trigger, is that prop. Angular sets the input from it but leaves it on the element, where React and Vue never put it, so it goes as the part starts, and core's attributes and the directive's host bindings, which apply after, decide it: a disabled menubar trigger stays focusable with `aria-disabled`, and an input keeps `required`.
+- Core's handlers run after the app's on the same element, since Angular adds an app's `(click)` when it creates the element and core binds after the first render. React and Vue run core's first. So a router link that prevents a click's default stops a pagination link from paging; see the todo.
 - An element's content has one owner, decided by the template: written empty, like `<span uiSelectValue></span>` or `<span uiSelectItemText></span>`, the library fills it, through core where core writes it (a value, an item's text, a chip overflow's count) and otherwise from the part's state (`injectDefaultText`, like a chip's label); with content of its own, it's yours and core never writes into it. The directive decides it once in `ngOnInit` (`injectContentOwner`): its children exist by then, and core has written none yet.
 - The instance is kept after the first render and destroyed with its root (`DestroyRef`), so nothing outlives a server request.
 - Ids come from creation order (`UiIds`), so the server and the hydrating client agree.

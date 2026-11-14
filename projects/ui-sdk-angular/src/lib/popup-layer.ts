@@ -42,6 +42,11 @@ function createLayer<P extends Primitive>(
   let header: HTMLElement | undefined
   let placeholder: Comment | undefined
 
+  // iOS makes a tap a click only where something up to the document handles
+  // clicks, and core dismisses at the click of a tap outside, so while a
+  // popup shows the document handles them, as React's root does.
+  let untap: (() => void) | undefined
+
   const target = () => (container ? portalTarget(untracked(resolved)) : null)
   const sheet = () =>
     !!viewport && isPresent(handle.instance.part(viewport, {} as never))
@@ -151,12 +156,15 @@ function createLayer<P extends Primitive>(
   const placement: Placement = {
     place: (next) => {
       el = next
+      untap ??= renderer.listen("document", "click", () => {})
       arrange()
       watchPresence(presence)
     },
     forget: () => {
       unwatchPresence(presence)
       hideHeader()
+      untap?.()
+      untap = undefined
       el = undefined
     },
     providers: [{ provide: InheritedContainer, useValue: resolved }],

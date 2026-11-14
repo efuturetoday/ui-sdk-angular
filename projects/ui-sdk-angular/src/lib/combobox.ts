@@ -2,6 +2,7 @@ import {
   afterNextRender,
   computed,
   Directive,
+  forwardRef,
   ElementRef,
   inject,
   input,
@@ -53,6 +54,7 @@ import {
   UiValueAccessor,
 } from "./forms"
 import { optionalBoolean } from "./inputs"
+import { ListHighlight, VirtualIndex } from "./virtual-for"
 import { injectPart, injectStatePart } from "./part"
 import { injectPopupPart } from "./popup-layer"
 import {
@@ -91,7 +93,13 @@ type ComboboxQueryChangeDetails = ChangeDetails<ComboboxQueryChangeReason>
 @Directive({
   selector: "[uiCombobox]",
   exportAs: "uiCombobox",
-  providers: [provideRoot(combobox, () => UiCombobox)],
+  providers: [
+    provideRoot(combobox, () => UiCombobox),
+    {
+      provide: ListHighlight,
+      useFactory: () => inject(forwardRef(() => UiCombobox)).highlighted,
+    },
+  ],
 })
 class UiCombobox implements OnInit {
   /** The selected value, or values with `multiple`. Bind it, or `[(value)]`, to control it. */
@@ -212,6 +220,9 @@ class UiCombobox implements OnInit {
     value: unknown
     details: ListHighlightDetails
   }>()
+  readonly #highlighted = signal(-1)
+  /** @internal The highlighted item's index, which `uiVirtualRows` scrolls into view. */
+  readonly highlighted = this.#highlighted.asReadonly()
   /** Emits when the list scrolls near its end, to load more items. */
   readonly loadMore = output<void>()
   /** Emits when focus leaves the input while closed, which marks it touched in Signal Forms. */
@@ -278,8 +289,10 @@ class UiCombobox implements OnInit {
       onDismissAttempt: (
         details: DismissAttemptDetails<ComboboxDismissReason>
       ) => this.dismissAttempt.emit(details),
-      onHighlight: (value: unknown, details: ListHighlightDetails) =>
-        this.highlight.emit({ value, details }),
+      onHighlight: (value: unknown, details: ListHighlightDetails) => {
+        this.#highlighted.set(details.index)
+        this.highlight.emit({ value, details })
+      },
       onLoadMore: () => this.loadMore.emit(),
     })
   )
@@ -538,13 +551,14 @@ class UiComboboxItem implements OnInit {
   })
   /** Its position among the data items, for screen readers while some aren't rendered. */
   readonly index = input<number>()
+  readonly #virtualIndex = inject(VirtualIndex, { optional: true })
   readonly #group = inject(UiComboboxGroup, { optional: true })
   readonly #part = injectPart(injectHandle(combobox), "item", () => ({
     value: this.value() as string,
     label: this.label(),
     keywords: this.keywords(),
     disabled: this.disabled(),
-    index: this.index(),
+    index: this.index() ?? this.#virtualIndex ?? undefined,
     group: this.#group?.id,
   }))
   /** The item's state. */

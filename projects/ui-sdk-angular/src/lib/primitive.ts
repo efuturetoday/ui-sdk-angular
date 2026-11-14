@@ -39,7 +39,7 @@ class UiIds {
 type PrimitiveHandle<P extends Primitive> = {
   /** The primitive it's an instance of. */
   primitive: P
-  /** The core instance, with its `get()`, `part()` and `api`, made the first time anything reads it. */
+  /** The core instance, with its `get()`, `part()` and `api`, kept from `init()` on. */
   readonly instance: ReturnType<P>
   /** The methods its definition declares, like Collapsible's `toggle`. */
   readonly api: TypesOf<P>["api"]
@@ -129,21 +129,46 @@ function injectPrimitive<P extends Primitive>(
   const id = inject(UiIds).next()
   const snapshot = createListSnapshots(primitive, memo)
   const version = signal(0)
-  let instance: ReturnType<P> | undefined
-  let unsubscribe: (() => void) | undefined
+  const ready = signal(false)
+  // Every instance made, of which the one kept at `init()` stays.
+  const made = new Set<ReturnType<P>>()
+  let kept: ReturnType<P> | undefined
+
+  // Options like `defaultOpen` count only when it's made, so until `init()`
+  // it derives from the options so far, made anew as they change, then it's
+  // kept. Making it has no effect outside it, so any read before is safe.
+  const instance = computed(() => {
+    if (ready()) {
+      return kept!
+    }
+    const start = snapshot({ ...options(), id })
+    return untracked(() => {
+      const next = unwatched(() => primitive(start)) as ReturnType<P>
+      made.add(next)
+      return next
+    })
+  })
 
   const init = () => {
-    if (instance) {
-      return instance
+    if (!kept) {
+      kept = untracked(instance)
+      for (const other of made) {
+        if (other !== kept) {
+          other.destroy()
+        }
+      }
+      made.clear()
+      ready.set(true)
     }
-    const made = untracked(() =>
-      unwatched(() => primitive(snapshot({ ...options(), id })))
-    ) as ReturnType<P>
-    instance = made
-    version.set(renderVersion(made))
-    unsubscribe = made.subscribe(() => version.set(renderVersion(made)))
-    return made
+    return kept
   }
+
+  // Its changes reach Angular through `version`, written only here.
+  effect((onCleanup) => {
+    const current = instance()
+    untracked(() => version.set(renderVersion(current)))
+    onCleanup(current.subscribe(() => version.set(renderVersion(current))))
+  })
 
   // A server never keeps an instance, so nothing outlives a request. Nor does
   // it register with its controller, so a trigger outside its root renders
@@ -169,25 +194,27 @@ function injectPrimitive<P extends Primitive>(
     )
   })
   inject(DestroyRef).onDestroy(() => {
-    unsubscribe?.()
-    instance?.destroy()
+    kept?.destroy()
+    made.forEach((other) => other.destroy())
   })
   effect(() => {
     const next = snapshot({ ...options(), id })
-    untracked(() => instance?.setOptions(next))
+    if (ready()) {
+      untracked(() => kept!.setOptions(next))
+    }
   })
   const handle: PrimitiveHandle<P> = {
     primitive,
     init,
     get instance() {
-      return init()
+      return instance()
     },
     get api() {
-      return init().api as TypesOf<P>["api"]
+      return instance().api as TypesOf<P>["api"]
     },
     state: computed(() => {
       version()
-      return init().get() as TypesOf<P>["state"]
+      return instance().get() as TypesOf<P>["state"]
     }),
     version: version.asReadonly(),
   }

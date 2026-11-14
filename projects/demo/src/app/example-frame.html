@@ -41,10 +41,8 @@
       }
     </div>
   }
-  @if (caption(); as caption) {
-    <p class="caption">{{ caption }}</p>
-  }
   @if (log().length) {
+    <p class="console">Console</p>
     <ol #logList class="log" aria-label="Log">
       @for (entry of log(); track $index) {
         <li>{{ entry }}</li>
@@ -52,3 +50,6 @@
     </ol>
   }
 </div>
+@if (caption(); as caption) {
+  <p class="caption">{{ caption }}</p>
+}

@@ -1,6 +1,7 @@
 import {
   computed,
   Directive,
+  forwardRef,
   ElementRef,
   inject,
   input,
@@ -42,6 +43,7 @@ import {
   UiValueAccessor,
 } from "./forms"
 import { optionalBoolean } from "./inputs"
+import { ListHighlight, VirtualIndex } from "./virtual-for"
 import { injectPart } from "./part"
 import { injectPopupPart } from "./popup-layer"
 import {
@@ -75,7 +77,13 @@ type AutocompleteOpenChangeDetails = ChangeDetails<AutocompleteOpenChangeReason>
 @Directive({
   selector: "[uiAutocomplete]",
   exportAs: "uiAutocomplete",
-  providers: [provideRoot(autocomplete, () => UiAutocomplete)],
+  providers: [
+    provideRoot(autocomplete, () => UiAutocomplete),
+    {
+      provide: ListHighlight,
+      useFactory: () => inject(forwardRef(() => UiAutocomplete)).highlighted,
+    },
+  ],
 })
 class UiAutocomplete implements OnInit {
   /** The text. Bind it, or `[(value)]`, to control it. */
@@ -186,6 +194,9 @@ class UiAutocomplete implements OnInit {
     value: string | null
     details: ListHighlightDetails
   }>()
+  readonly #highlighted = signal(-1)
+  /** @internal The highlighted item's index, which `uiVirtualRows` scrolls into view. */
+  readonly highlighted = this.#highlighted.asReadonly()
   /** Emits when the list scrolls near its end, to load more suggestions. */
   readonly loadMore = output<void>()
   /** Emits when focus leaves the input while closed, which marks it touched in Signal Forms. */
@@ -245,8 +256,10 @@ class UiAutocomplete implements OnInit {
       ) => this.dismissAttempt.emit(details),
       onSubmit: (value: string, details: AutocompleteSubmitDetails) =>
         this.valueSubmit.emit({ value, details }),
-      onHighlight: (value: string | null, details: ListHighlightDetails) =>
-        this.highlight.emit({ value, details }),
+      onHighlight: (value: string | null, details: ListHighlightDetails) => {
+        this.#highlighted.set(details.index)
+        this.highlight.emit({ value, details })
+      },
       onLoadMore: () => this.loadMore.emit(),
     })
   )
@@ -519,13 +532,14 @@ class UiAutocompleteItem implements OnInit {
   })
   /** Its position among the visible suggestions, for lists that render only some. */
   readonly index = input<number>()
+  readonly #virtualIndex = inject(VirtualIndex, { optional: true })
   readonly #group = inject(UiAutocompleteGroup, { optional: true })
   readonly #part = injectPart(injectHandle(autocomplete), "item", () => ({
     value: this.value(),
     label: this.label(),
     keywords: this.keywords(),
     disabled: this.disabled(),
-    index: this.index(),
+    index: this.index() ?? this.#virtualIndex ?? undefined,
     group: this.#group?.id,
   }))
   /** The suggestion's state. */
