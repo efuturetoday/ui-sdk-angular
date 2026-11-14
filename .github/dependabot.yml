@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      angular:
+        patterns: ["@angular/*", "@angular-devkit/*", "ng-packagr"]
+      dev:
+        dependency-type: development
+        exclude-patterns: ["@angular/*", "@angular-devkit/*", "ng-packagr"]
+    # ui-sdk updates come with its submodule and its specs, by hand.
+    ignore:
+      - dependency-name: "@ui-sdk/core"
