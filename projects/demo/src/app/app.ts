@@ -7,7 +7,7 @@ import {
   UiDrawerContent,
   UiDrawerTitle,
   UiDrawerTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { examples } from "../examples"
 import { ExampleFrame } from "./example-frame"
 

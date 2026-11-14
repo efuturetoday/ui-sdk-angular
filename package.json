@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve demo",
-    "build:lib": "ng build ui-sdk-angular",
+    "build:lib": "ng build ngx-ui-sdk",
     "test:upstream": "playwright test -c playwright.upstream.config.ts",
     "format": "prettier --check . --log-level warn",
     "lint": "node scripts/check-code.mjs && node scripts/check-comments.mjs && node scripts/check-examples.mjs && eslint .",

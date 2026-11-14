@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { UiTooltip, UiTooltipContent, UiTooltipTrigger } from "ui-sdk-angular"
+import { UiTooltip, UiTooltipContent, UiTooltipTrigger } from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

@@ -7,7 +7,7 @@ import {
   UiRadioInput,
   UiRadioGroup,
   UiRadioIndicator,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 @Component({
   selector: "app-fixture",

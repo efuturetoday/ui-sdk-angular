@@ -36,7 +36,7 @@ import {
   UiSelectSeparator,
   UiSelectTrigger,
   UiSelectValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Entry =
   | string

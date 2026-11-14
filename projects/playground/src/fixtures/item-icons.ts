@@ -56,7 +56,7 @@ import {
   UiToggle,
   UiToggleGroup,
   UiToggleIcon,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // An entry's icon: its SVG, with its title, or its emoji.
 @Component({

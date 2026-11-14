@@ -1,6 +1,6 @@
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideCopy } from "@lucide/angular"
-import { UiTooltip, UiTooltipContent, UiTooltipTrigger } from "ui-sdk-angular"
+import { UiTooltip, UiTooltipContent, UiTooltipTrigger } from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",
@@ -36,7 +36,7 @@ import { UiTooltip, UiTooltipContent, UiTooltipTrigger } from "ui-sdk-angular"
   `,
 })
 class Example {
-  protected readonly command = "npm install ui-sdk-angular"
+  protected readonly command = "npm install ngx-ui-sdk"
   protected readonly copied = signal(false)
 
   protected copy() {

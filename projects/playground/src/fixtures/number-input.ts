@@ -10,7 +10,7 @@ import {
   UiNumberInputGroup,
   UiNumberInputIncrement,
   UiNumberInputScrubArea,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Value = number | null
 

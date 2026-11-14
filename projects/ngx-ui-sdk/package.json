@@ -1,12 +1,12 @@
 {
-  "name": "ui-sdk-angular",
+  "name": "ngx-ui-sdk",
   "version": "0.0.1",
   "description": "UI SDK behaviors for Angular, as directives on your own elements.",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/efuturetoday/ui-sdk-angular.git",
-    "directory": "projects/ui-sdk-angular"
+    "directory": "projects/ngx-ui-sdk"
   },
   "homepage": "https://efuturetoday.github.io/ui-sdk-angular/",
   "bugs": "https://github.com/efuturetoday/ui-sdk-angular/issues",

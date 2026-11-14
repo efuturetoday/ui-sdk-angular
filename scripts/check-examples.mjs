@@ -6,7 +6,7 @@ import path from "node:path"
 
 const root = path.resolve(import.meta.dirname, "..")
 const vendor = path.join(root, "vendor/ui")
-const lib = path.join(root, "projects/ui-sdk-angular/src/lib")
+const lib = path.join(root, "projects/ngx-ui-sdk/src/lib")
 const report = process.argv.includes("--report")
 const write = process.argv.includes("--write")
 

@@ -7,7 +7,7 @@ import {
   UiDialogDescription,
   UiDialogTitle,
   UiDialogTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 @Component({
   selector: "a[app-done-link]",

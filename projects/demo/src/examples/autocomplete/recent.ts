@@ -10,7 +10,7 @@ import {
   UiAutocompleteItem,
   UiAutocompleteItemText,
   UiAutocompleteList,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Recent = { type: "group"; label: string; items: string[] }
 

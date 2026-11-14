@@ -12,7 +12,7 @@ import {
   UiComboboxList,
   UiComboboxStatus,
   UiComboboxTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 const movieTitles = [
   "The Shawshank Redemption",

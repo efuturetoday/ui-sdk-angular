@@ -5,7 +5,7 @@ import {
   UiCommandInput,
   UiCommandItem,
   UiCommandList,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { injectLog } from "../../shared/log"
 
 const wait = (ms: number) =>

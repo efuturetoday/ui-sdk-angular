@@ -21,7 +21,7 @@ import {
   type DrawerOpenChangeDetails,
   type DrawerSnapPointChangeReason,
   type SnapPoint,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import type { ChangeDetails } from "@ui-sdk/core"
 
 @Component({

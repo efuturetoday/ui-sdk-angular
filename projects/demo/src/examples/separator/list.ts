@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { UiSeparator } from "ui-sdk-angular"
+import { UiSeparator } from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

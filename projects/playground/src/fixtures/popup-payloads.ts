@@ -18,7 +18,7 @@ import {
   UiPopover,
   UiPopoverContent,
   UiPopoverTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Upstream's tests/fixtures/popup-payloads.ts, inlined: it re-exports
 // `describeChange` with a ".ts" path, which this build can't compile. Its

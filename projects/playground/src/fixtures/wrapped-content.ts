@@ -19,7 +19,7 @@ import {
   UiTriggerMenuInput,
   UiTriggerMenuList,
   type TriggerDefinition,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Data roots whose content sits inside a wrapping element. Each should render
 // that content, and no second list of its own.

@@ -7,7 +7,7 @@ import {
   UiCommandItem,
   UiCommandList,
   UiCommandStatus,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 function searchIssues(query: string, { signal }: { signal: AbortSignal }) {
   const issues = [

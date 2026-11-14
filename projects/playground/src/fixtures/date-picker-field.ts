@@ -22,7 +22,7 @@ import {
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Upstream's fixture. The calendar inside the content is written out, which
 // Vue renders without content.

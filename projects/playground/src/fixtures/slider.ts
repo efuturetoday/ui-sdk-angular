@@ -10,7 +10,7 @@ import {
   UiSliderThumb,
   UiSliderTrack,
   UiSliderValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Value = number | number[]
 

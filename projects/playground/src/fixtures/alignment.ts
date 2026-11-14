@@ -24,7 +24,7 @@ import {
   UiTabsPanel,
   UiTabsTab,
   type MenuDataItem,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 @Component({
   selector: "app-fixture",

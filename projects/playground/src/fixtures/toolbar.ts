@@ -20,7 +20,7 @@ import {
   UiToolbarInput,
   UiToolbarLink,
   UiToolbarSeparator,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Upstream's fixture. With ?locked, groups wrap Text style, Spellcheck and
 // Help, written out for each case: Angular has no wrapper a template adds or

@@ -10,7 +10,7 @@ import {
   type ButtonActionDetails,
   type TogglePressedChangeReason,
   type ToggleGroupValueChangeReason,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import type { ChangeDetails } from "@ui-sdk/core"
 
 // A Promise and the buttons that settle it.

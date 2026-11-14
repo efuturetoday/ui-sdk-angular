@@ -7,7 +7,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Parts rendered as other elements, with class names of state.
 @Component({

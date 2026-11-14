@@ -8,7 +8,7 @@ import {
   UiSliderThumb,
   UiSliderTrack,
   UiSliderValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Format = {
   label: string

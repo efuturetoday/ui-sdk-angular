@@ -6,7 +6,7 @@ import {
   UiSwitch,
   UiSwitchInput,
   UiSwitchThumb,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { injectLog } from "../../shared/log"
 
 const save = (_checked: boolean) =>

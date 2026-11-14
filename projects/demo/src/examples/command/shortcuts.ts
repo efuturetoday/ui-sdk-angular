@@ -9,7 +9,7 @@ import {
   UiCommandItemIcon,
   UiCommandList,
   UiCommandShortcut,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { injectLog } from "../../shared/log"
 
 @Component({

@@ -8,7 +8,7 @@ import {
   UiComboboxLabel,
   UiComboboxList,
   UiComboboxTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Parts rendered as other elements, with class names of state.
 @Component({

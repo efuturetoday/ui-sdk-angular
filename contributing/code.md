@@ -22,4 +22,4 @@ Upstream's code standard applies to everything here: `vendor/ui/contributing/cod
 - **Inputs** take upstream's option and prop names. Booleans use `optionalBoolean`, never `booleanAttribute`, which turns `undefined` into `false`. A controlled value is `input()` plus `output()`, never `model()`. A structural part takes its props as one object input named after the directive.
 - **Selectors** are `ui` plus the part in camel case, as attributes; `exportAs` matches.
 - **Change detection.** Nothing in the package calls `ApplicationRef.tick()` or needs zone.js. The one `detectChanges()` renders a structural part's new view as it appears (`part.ts`).
-- **One file per component** in `projects/ui-sdk-angular/src/lib/`, like `dialog.ts`, with its root and parts. Shared pieces go in their own module, like `primitive.ts`.
+- **One file per component** in `projects/ngx-ui-sdk/src/lib/`, like `dialog.ts`, with its root and parts. Shared pieces go in their own module, like `primitive.ts`.

@@ -10,7 +10,7 @@ import {
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { injectLog } from "../../shared/log"
 
 @Component({

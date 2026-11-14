@@ -21,7 +21,7 @@ import {
   UiTriggerMenuList,
   UiTriggerMenuStatus,
   type TriggerMenuDataItem,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 let ids = 0
 

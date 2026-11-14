@@ -1,7 +1,7 @@
 import { Component } from "@angular/core"
 import { LucideFile } from "@lucide/angular"
 import type { ChangeDetails } from "@ui-sdk/core"
-import { UiTooltip, UiTooltipContent, UiTooltipTrigger } from "ui-sdk-angular"
+import { UiTooltip, UiTooltipContent, UiTooltipTrigger } from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

@@ -5,7 +5,7 @@ import {
   UiCommandItem,
   UiCommandList,
   UiVirtualFor,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Row = { value: string; label: string }
 

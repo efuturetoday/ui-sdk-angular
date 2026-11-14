@@ -6,7 +6,7 @@ import {
   UiAccordionItem,
   UiAccordionPanel,
   UiAccordionTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 const faq = [
   {

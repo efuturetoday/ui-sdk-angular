@@ -25,7 +25,7 @@ import {
   UiTriggerMenuHint,
   UiTriggerMenuItem,
   UiTriggerMenuList,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { injectLog } from "../../shared/log"
 
 const loadFile = () => new Promise<void>((resolve) => setTimeout(resolve, 800))

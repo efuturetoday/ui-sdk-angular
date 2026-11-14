@@ -1,10 +1,6 @@
 import { Component, signal } from "@angular/core"
 import { LucideCheck } from "@lucide/angular"
-import {
-  UiListbox,
-  UiListboxItem,
-  UiListboxItemIndicator,
-} from "ui-sdk-angular"
+import { UiListbox, UiListboxItem, UiListboxItemIndicator } from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

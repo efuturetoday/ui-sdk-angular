@@ -16,9 +16,9 @@
     "paths": {
       "tests/*": ["./vendor/ui/tests/*"],
       "playground-fixtures/*": ["./vendor/ui/apps/playground/src/fixtures/*"],
-      "ui-sdk-angular": ["./projects/ui-sdk-angular/src/public-api.ts"],
-      "ui-sdk-angular/overlays": [
-        "./projects/ui-sdk-angular/overlays/src/public-api.ts"
+      "ngx-ui-sdk": ["./projects/ngx-ui-sdk/src/public-api.ts"],
+      "ngx-ui-sdk/overlays": [
+        "./projects/ngx-ui-sdk/overlays/src/public-api.ts"
       ]
     }
   },
@@ -30,10 +30,10 @@
   "files": [],
   "references": [
     {
-      "path": "./projects/ui-sdk-angular/tsconfig.lib.json"
+      "path": "./projects/ngx-ui-sdk/tsconfig.lib.json"
     },
     {
-      "path": "./projects/ui-sdk-angular/tsconfig.spec.json"
+      "path": "./projects/ngx-ui-sdk/tsconfig.spec.json"
     },
     {
       "path": "./projects/demo/tsconfig.app.json"

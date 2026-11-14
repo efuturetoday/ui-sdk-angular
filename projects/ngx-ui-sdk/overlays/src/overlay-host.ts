@@ -39,7 +39,7 @@ import {
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 /**
  * Options for the toast regions the overlay host renders, like `side` and `class`.

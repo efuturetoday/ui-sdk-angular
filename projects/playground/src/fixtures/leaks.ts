@@ -87,7 +87,7 @@ import {
   UiWaterfallRow,
   UiWaterfallRowHeader,
   type TreeItemData,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // One component for the leak specs, picked with ?component=, and a button
 // that mounts and unmounts it. The tree's and the waterfall's rows are

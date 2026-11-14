@@ -7,7 +7,7 @@ import {
   UiNavigationMenuList,
   UiNavigationMenuTrigger,
   UiNavigationMenuViewport,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // A client-side router's link: it navigates without a page load.
 @Directive({

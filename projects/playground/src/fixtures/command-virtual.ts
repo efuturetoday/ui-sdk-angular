@@ -6,7 +6,7 @@ import {
   UiCommandItem,
   UiCommandList,
   UiVirtualFor,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Item = { value: string; label: string }
 

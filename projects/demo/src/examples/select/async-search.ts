@@ -14,7 +14,7 @@ import {
   UiSelectStatus,
   UiSelectTrigger,
   UiSelectValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Country = { value: string; label: string; disabled?: boolean }
 

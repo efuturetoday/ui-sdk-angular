@@ -12,7 +12,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Side = "top" | "right" | "bottom" | "left"
 type Align = "start" | "center" | "end"

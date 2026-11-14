@@ -8,7 +8,7 @@ import {
   UiSliderThumb,
   UiSliderTrack,
   UiSliderValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { injectLog } from "../../shared/log"
 import { uniqueId } from "../../shared/id"
 

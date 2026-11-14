@@ -1,12 +1,12 @@
 import { Component } from "@angular/core"
-import type { GaugeLabelDetails } from "ui-sdk-angular"
+import type { GaugeLabelDetails } from "ngx-ui-sdk"
 import {
   UiProgress,
   UiProgressIndicator,
   UiProgressLabel,
   UiProgressTrack,
   UiProgressValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

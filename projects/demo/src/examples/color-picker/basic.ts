@@ -13,7 +13,7 @@ import {
   UiColorPickerSwatch,
   UiColorPickerSwatches,
   UiColorPickerSwatchItem,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 const formats: { label: string; value: ColorFormat }[] = [
   { label: "Hex", value: "hex" },

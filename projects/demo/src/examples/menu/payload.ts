@@ -9,7 +9,7 @@ import {
   UiMenuItem,
   UiMenuSeparator,
   UiMenuTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { injectLog } from "../../shared/log"
 
 type File = { name: string; size: string }

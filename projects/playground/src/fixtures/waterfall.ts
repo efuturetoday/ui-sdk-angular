@@ -19,7 +19,7 @@ import {
   UiWaterfallRowHeader,
   UiWaterfallTick,
   type WaterfallExpandedChangeReason,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import type { ChangeDetails } from "@ui-sdk/core"
 
 // Upstream's fixture. The axis's ticks are written from its state, which Vue

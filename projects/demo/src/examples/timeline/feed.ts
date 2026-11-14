@@ -7,7 +7,7 @@ import {
   UiTimelineMarker,
   UiTimelineTime,
   UiTimelineTitle,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { injectLog } from "../../shared/log"
 
 @Component({

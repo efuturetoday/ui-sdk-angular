@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { UiButton } from "ui-sdk-angular"
+import { UiButton } from "ngx-ui-sdk"
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 

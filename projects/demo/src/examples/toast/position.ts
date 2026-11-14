@@ -14,7 +14,7 @@ import {
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Side = "top" | "bottom"
 type Align = "start" | "center" | "end"

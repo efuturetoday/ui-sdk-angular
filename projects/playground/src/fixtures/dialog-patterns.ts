@@ -30,7 +30,7 @@ import {
   UiPopoverContent,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Hooks upstream's shared.ts gives the specs, inlined: the open changes, the
 // pending delete action, and the container the share popover renders into.

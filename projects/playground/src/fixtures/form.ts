@@ -21,7 +21,7 @@ import {
   UiInputGroup,
   UiTextarea,
   type InputValueChangeReason,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import type { ChangeDetails } from "@ui-sdk/core"
 
 type Change = {

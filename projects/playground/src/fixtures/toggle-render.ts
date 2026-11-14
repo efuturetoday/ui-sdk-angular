@@ -4,7 +4,7 @@ import {
   UiSeparator,
   UiToggle,
   UiToggleGroup,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // A class on the toggle's own element reads its state only from a host
 // binding, which runs after the toggle's `ngOnInit`.

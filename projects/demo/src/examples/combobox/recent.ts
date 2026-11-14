@@ -14,7 +14,7 @@ import {
   UiComboboxLabel,
   UiComboboxList,
   UiComboboxTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Country = { value: string; label: string; keywords?: string[] }
 type Recent = { type: "group"; label: string; items: Country[] }

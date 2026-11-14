@@ -3,7 +3,7 @@ import {
   UiToolbar,
   UiToolbarButton,
   UiToolbarSeparator,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Upstream's fixture. Its render counts are React's alone, whose spec the
 // other frameworks skip, so the items are plain.

@@ -7,7 +7,7 @@ import {
   UiRadioInput,
   UiRadioGroup,
   UiRadioIndicator,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { uniqueId } from "../../shared/id"
 
 @Component({

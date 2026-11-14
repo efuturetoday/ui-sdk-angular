@@ -7,7 +7,7 @@ import {
   UiFieldLabel,
   UiTokenInput,
   UiTokenInputEditor,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { injectLog } from "../../shared/log"
 
 const chat: TokenCodec = {

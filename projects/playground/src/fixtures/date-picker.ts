@@ -22,7 +22,7 @@ import {
   UiDatePickerPreset,
   UiDatePickerTrigger,
   type DatePickerValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Upstream's fixture. The grid's weekdays, weeks and days are written from
 // its state, which Vue renders without content.

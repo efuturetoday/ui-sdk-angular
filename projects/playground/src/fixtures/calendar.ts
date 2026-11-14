@@ -19,7 +19,7 @@ import {
   UiCalendarWeekdays,
   UiCalendarYearSelect,
   type CalendarValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Upstream's fixture. Vue renders a grid's weekdays, weeks and days and a
 // select's options without content; here they're written from the states.

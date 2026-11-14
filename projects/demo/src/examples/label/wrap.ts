@@ -5,7 +5,7 @@ import {
   UiCheckboxIndicator,
   UiCheckboxInput,
   UiLabel,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

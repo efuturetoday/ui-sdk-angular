@@ -13,7 +13,7 @@ import {
   UiTreeItem,
   UiTreeItemIndicator,
   UiTreeItemLabel,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Node = { value: string; label: string; children?: Node[] }
 

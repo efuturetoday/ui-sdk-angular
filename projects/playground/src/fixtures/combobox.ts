@@ -42,7 +42,7 @@ import {
   UiComboboxStatus,
   UiComboboxTrigger,
   UiComboboxValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Entry = {
   value: string

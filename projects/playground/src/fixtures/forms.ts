@@ -23,7 +23,7 @@ import {
   UiSwitchInput,
   UiSwitchThumb,
   type CheckedState,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Details = { cancel: () => void; canceled: boolean; source: string }
 

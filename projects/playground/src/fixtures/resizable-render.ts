@@ -9,7 +9,7 @@ import {
   UiResizable,
   UiResizableHandle,
   UiResizablePanel,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // How often the first panel's content rendered, for specs that check a drag
 // renders nothing that doesn't read the size.

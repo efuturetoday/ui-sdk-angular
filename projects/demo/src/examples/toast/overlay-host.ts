@@ -11,7 +11,7 @@ import {
   UiOverlayHost,
   UiOverlayToast,
   createOverlays,
-} from "ui-sdk-angular/overlays"
+} from "ngx-ui-sdk/overlays"
 import {
   createConfirm,
   createToaster,
@@ -24,7 +24,7 @@ import {
   UiToast,
   UiToastTitle,
   type ConfirmOptions,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

@@ -7,7 +7,7 @@ import {
   UiFieldLabel,
   UiTokenInput,
   UiTokenInputEditor,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 const loadFile = () => new Promise<void>((resolve) => setTimeout(resolve, 800))
 

@@ -1,10 +1,5 @@
 import { Component } from "@angular/core"
-import {
-  UiField,
-  UiFieldDescription,
-  UiFieldLabel,
-  UiInput,
-} from "ui-sdk-angular"
+import { UiField, UiFieldDescription, UiFieldLabel, UiInput } from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

@@ -1,5 +1,5 @@
 import { Component, signal } from "@angular/core"
-import { UiOverlayHost, UiOverlayToast } from "ui-sdk-angular/overlays"
+import { UiOverlayHost, UiOverlayToast } from "ngx-ui-sdk/overlays"
 import {
   toastDuration,
   toastFixture,
@@ -23,7 +23,7 @@ import {
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // The page's toaster, the buttons' handlers and `window.showToast`, as
 // upstream's shared fixture has them; its imports don't compile here.

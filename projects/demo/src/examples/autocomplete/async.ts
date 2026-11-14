@@ -9,7 +9,7 @@ import {
   UiAutocompleteLabel,
   UiAutocompleteList,
   UiAutocompleteStatus,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 const cities = [
   "Amsterdam",

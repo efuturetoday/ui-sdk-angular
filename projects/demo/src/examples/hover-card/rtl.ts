@@ -4,7 +4,7 @@ import {
   UiHoverCardArrow,
   UiHoverCardContent,
   UiHoverCardTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

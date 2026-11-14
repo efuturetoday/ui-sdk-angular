@@ -1,9 +1,5 @@
 import { Component } from "@angular/core"
-import {
-  UiHoverCard,
-  UiHoverCardContent,
-  UiHoverCardTrigger,
-} from "ui-sdk-angular"
+import { UiHoverCard, UiHoverCardContent, UiHoverCardTrigger } from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

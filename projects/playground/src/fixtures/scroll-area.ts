@@ -11,7 +11,7 @@ import {
   UiScrollAreaScrollToEnd,
   UiScrollAreaThumb,
   UiScrollAreaViewport,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 const { tags, gallery, short, chat } = scrollAreaFixture
 

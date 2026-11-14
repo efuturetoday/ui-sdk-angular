@@ -8,7 +8,7 @@ import {
   UiCarouselPlayToggle,
   UiCarouselPrevious,
   UiCarouselViewport,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import { injectLog } from "../../shared/log"
 
 @Component({

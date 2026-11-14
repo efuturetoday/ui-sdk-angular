@@ -21,7 +21,7 @@ import path from "node:path"
 import ts from "typescript"
 
 const root = path.resolve(import.meta.dirname, "..")
-const library = path.join(root, "projects/ui-sdk-angular/src")
+const library = path.join(root, "projects/ngx-ui-sdk/src")
 const entry = path.join(library, "public-api.ts")
 const allowReturnType = /\/\/\s*check-code:\s*allow return-type(.*)$/
 const stabilityLabels = ["stable", "experimental"]

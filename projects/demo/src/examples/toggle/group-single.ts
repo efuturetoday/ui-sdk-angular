@@ -4,7 +4,7 @@ import {
   LucideTextAlignEnd,
   LucideTextAlignStart,
 } from "@lucide/angular"
-import { UiToggle, UiToggleGroup, UiToggleIcon } from "ui-sdk-angular"
+import { UiToggle, UiToggleGroup, UiToggleIcon } from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

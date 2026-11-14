@@ -8,7 +8,7 @@ import {
   UiInputClear,
   UiInputGroup,
   type InputValueChangeReason,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 import type { ChangeDetails } from "@ui-sdk/core"
 import { injectLog } from "../../shared/log"
 

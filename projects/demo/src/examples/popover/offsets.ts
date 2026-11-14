@@ -13,7 +13,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Name = "sideOffset" | "alignOffset" | "collisionPadding"
 

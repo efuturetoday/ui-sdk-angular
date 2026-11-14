@@ -17,7 +17,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 function fuzzy(item: { label: string }, query: string) {
   let at = 0

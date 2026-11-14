@@ -9,7 +9,7 @@ import {
   UiToolbar,
   UiToolbarInput,
   UiToolbarSeparator,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

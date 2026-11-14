@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideStar } from "@lucide/angular"
-import { UiToggle, UiToggleIcon } from "ui-sdk-angular"
+import { UiToggle, UiToggleIcon } from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

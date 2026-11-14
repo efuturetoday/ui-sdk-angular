@@ -18,7 +18,7 @@ import {
   UiDatePickerContent,
   UiDatePickerInput,
   UiDatePickerTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

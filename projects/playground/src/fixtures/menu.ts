@@ -16,7 +16,7 @@ import {
   UiMenuSub,
   UiMenuSubTrigger,
   UiMenuTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Upstream's fixture; an item's shortcut shows through the `uiMenuShortcut`
 // written in it, where Vue renders one for you.

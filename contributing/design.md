@@ -1,6 +1,6 @@
 # Design
 
-How ui-sdk-angular renders a ui-sdk primitive in Angular, and why. The behavior lives in `@ui-sdk/core`; this package only hands Angular's elements, inputs and lifecycle to it. Upstream's own architecture is in `vendor/ui/contributing/architecture.md`, and its rendering contract holds here too.
+How ngx-ui-sdk renders a ui-sdk primitive in Angular, and why. The behavior lives in `@ui-sdk/core`; this package only hands Angular's elements, inputs and lifecycle to it. Upstream's own architecture is in `vendor/ui/contributing/architecture.md`, and its rendering contract holds here too.
 
 ## The contract
 
@@ -101,7 +101,7 @@ State for classes comes from `exportAs` (`[class.open]="dialog.state().open"`) o
 
 A component brings an element of its own, which a part can't have inside a structure like a listbox, so the base package is directives only. Components come where they bring markup of their own around a whole: in entries of their own, unstyled, with upstream's default markup.
 
-- `ui-sdk-angular/overlays`: `<ui-overlay-host>` renders what `toast()` and `confirm()` open from anywhere, like Vue's `OverlayHost`. A renderer per overlay type (`OVERLAY_RENDERERS`), so a new type comes with `provideOverlayRenderer`, not a change to the host. `[toast]` gives its regions options, and `<ng-template uiOverlayToast let-toast>` its toasts markup of your own; that template gets the region's injector, so its parts find their region. A region you place yourself takes over its toaster.
+- `ngx-ui-sdk/overlays`: `<ui-overlay-host>` renders what `toast()` and `confirm()` open from anywhere, like Vue's `OverlayHost`. A renderer per overlay type (`OVERLAY_RENDERERS`), so a new type comes with `provideOverlayRenderer`, not a change to the host. `[toast]` gives its regions options, and `<ng-template uiOverlayToast let-toast>` its toasts markup of your own; that template gets the region's injector, so its parts find their region. A region you place yourself takes over its toaster.
 - Later: complete components with the loop inside, like `<ui-select [items]>`, never a component for part of a list.
 
 ## Inputs, outputs and state

@@ -9,7 +9,7 @@ import {
   UiSliderThumb,
   UiSliderTrack,
   UiSliderValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Parts rendered as other elements, and from their state. One fixture covers
 // Slider and Number Input.

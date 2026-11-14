@@ -1,4 +1,4 @@
-# ui-sdk-angular
+# ngx-ui-sdk
 
 > Built on `@ui-sdk/core` **0.1.0-beta.1** (Angular 22)
 
@@ -13,7 +13,7 @@ This isn't an official part of ui-sdk. To make sure it behaves the same way, it 
 Install the package together with `@ui-sdk/core`, which holds the actual behavior:
 
 ```bash
-npm install ui-sdk-angular @ui-sdk/core
+npm install ngx-ui-sdk @ui-sdk/core
 ```
 
 You need Angular 22 or newer. There's nothing to configure and no providers to add. Import the directives you need into your standalone component and put them on your elements:
@@ -28,7 +28,7 @@ import {
   UiDialogDescription,
   UiDialogTitle,
   UiDialogTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 @Component({
   selector: "app-edit-profile",

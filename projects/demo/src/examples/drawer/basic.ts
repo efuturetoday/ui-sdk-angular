@@ -8,7 +8,7 @@ import {
   UiDrawerDescription,
   UiDrawerTitle,
   UiDrawerTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 const goal = { initial: 350, min: 200, max: 400, step: 10 }
 

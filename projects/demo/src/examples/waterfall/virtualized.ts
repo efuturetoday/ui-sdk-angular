@@ -15,7 +15,7 @@ import {
   UiWaterfallRow,
   UiWaterfallRowHeader,
   visibleWaterfallRows,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 @Component({
   selector: "app-example",

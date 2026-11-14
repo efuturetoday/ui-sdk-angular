@@ -15,7 +15,7 @@ import {
   UiMenuSubTrigger,
   UiMenuTrigger,
   type MenuCheckedChangeDetails,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 // Upstream's fixture; an item's shortcut shows through the `uiMenuShortcut`
 // written in it.

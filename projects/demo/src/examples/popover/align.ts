@@ -5,7 +5,7 @@ import {
   UiPopoverDescription,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 const aligns = [
   { value: "start", label: "Start" },

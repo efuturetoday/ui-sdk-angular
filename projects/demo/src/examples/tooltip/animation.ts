@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideArchive } from "@lucide/angular"
-import { UiTooltip, UiTooltipContent, UiTooltipTrigger } from "ui-sdk-angular"
+import { UiTooltip, UiTooltipContent, UiTooltipTrigger } from "ngx-ui-sdk"
 import { injectLog } from "../../shared/log"
 
 @Component({

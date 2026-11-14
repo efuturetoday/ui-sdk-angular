@@ -8,7 +8,7 @@ import {
   UiTreeItemIndicator,
   UiTreeItemLabel,
   visibleTreeRows,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 const items: TreeItemData[] = Array.from({ length: 100 }, (_, folder) => ({
   value: `folder-${folder + 1}`,

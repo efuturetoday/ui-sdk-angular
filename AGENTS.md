@@ -1,4 +1,4 @@
-# ui-sdk-angular
+# ngx-ui-sdk
 
 An Angular adapter for [ui-sdk](https://github.com/vercel-labs/ui): `@ui-sdk/core`'s primitives as Angular directives on your own elements. It isn't part of the ui-sdk repo; `vendor/ui` holds that repo, pinned to the core release we depend on, for its specs and fixtures.
 
@@ -10,7 +10,7 @@ An Angular adapter for [ui-sdk](https://github.com/vercel-labs/ui): `@ui-sdk/cor
 
 ## Layout
 
-- `projects/ui-sdk-angular`: the package. The adapter's modules (`primitive.ts`, `binding.ts`, `commit.ts`, `presence.ts`, `part.ts`, `structural.ts`, `popup-layer.ts`) are listed in the design's "How the adapter is built"; one file per component beside them.
+- `projects/ngx-ui-sdk`: the package. The adapter's modules (`primitive.ts`, `binding.ts`, `commit.ts`, `presence.ts`, `part.ts`, `structural.ts`, `popup-layer.ts`) are listed in the design's "How the adapter is built"; one file per component beside them.
 - `projects/playground`: the fixtures for upstream's specs.
 - `projects/demo`: a page to try components by hand (`npm start`).
 - `vendor/ui`: upstream, a git submodule. Never edit it.
@@ -24,7 +24,7 @@ An Angular adapter for [ui-sdk](https://github.com/vercel-labs/ui): `@ui-sdk/cor
 
 ## Commands
 
-- `npm run build:lib`: builds the package to `dist/ui-sdk-angular`.
+- `npm run build:lib`: builds the package to `dist/ngx-ui-sdk`.
 - `npm run test:upstream`: upstream's specs against the playground (port 5320, or `PLAYGROUND_PORT`).
 - `npm run lint`: upstream's code rules, comment length and ESLint.
 - `npm run format`: checks Prettier; `npm run format:write` fixes it.

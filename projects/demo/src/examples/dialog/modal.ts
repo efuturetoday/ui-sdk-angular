@@ -18,7 +18,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ui-sdk-angular"
+} from "ngx-ui-sdk"
 
 type Mode = "true" | "trap-focus" | "false"
 

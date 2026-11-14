@@ -1,7 +1,7 @@
 import { Component, signal } from "@angular/core"
 import type { ChangeDetails } from "@ui-sdk/core"
 import { tabsOptions } from "tests/fixtures/page"
-import { UiTabs, UiTabsList, UiTabsPanel, UiTabsTab } from "ui-sdk-angular"
+import { UiTabs, UiTabsList, UiTabsPanel, UiTabsTab } from "ngx-ui-sdk"
 
 @Component({
   selector: "app-fixture",
