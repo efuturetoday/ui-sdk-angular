@@ -5,17 +5,19 @@
   --frame-paper: light-dark(#fff, #1a1a1a);
 
   display: grid;
-  grid-template-columns: 13rem minmax(0, 1fr);
+  grid-template-columns: 13rem minmax(0, 1fr) 13rem;
   grid-template-rows: auto 1fr;
+  align-items: start;
   min-height: 100vh;
 }
 
 .title {
+  position: sticky;
+  top: 0;
   display: flex;
   align-items: center;
   gap: 4px;
   padding: 1rem 1rem 0;
-  border-inline-end: 1px solid var(--frame-line);
 }
 
 .title h1 {
@@ -25,14 +27,29 @@
   font-weight: 600;
 }
 
-.title button {
+.title button,
+.icon {
   display: grid;
   place-items: center;
   padding: 8px;
   border: 0;
+  border-radius: 6px;
   background: none;
   color: var(--frame-muted);
   cursor: pointer;
+}
+
+.title button:hover,
+.icon:hover {
+  color: var(--frame-ink);
+}
+
+.tooltip {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--frame-ink);
+  color: var(--frame-paper);
+  font-size: 12px;
 }
 
 .title svg {
@@ -40,12 +57,45 @@
   height: 18px;
 }
 
-.components {
+/* The sidebars stay where they are while the page scrolls, and scroll on their own. */
+.components,
+.sections {
+  position: sticky;
   display: flex;
   flex-direction: column;
   gap: 2px;
   padding: 1rem;
-  border-inline-end: 1px solid var(--frame-line);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.components {
+  top: 3.5rem;
+  max-height: calc(100vh - 3.5rem);
+}
+
+.sections {
+  grid-row: 1 / span 2;
+  grid-column: 3;
+  top: 0;
+  max-height: 100vh;
+  padding-top: 5.25rem;
+}
+
+.sections a[aria-current="location"] {
+  color: var(--frame-ink);
+  font-weight: 500;
+}
+
+/* Below this, the section nav would squeeze the examples. */
+@media (width < 72rem) {
+  :host {
+    grid-template-columns: 13rem minmax(0, 1fr);
+  }
+
+  .sections {
+    display: none;
+  }
 }
 
 /* As ui-sdk.dev's sidebar: a mono group label, then plain links, the current one bold. */
@@ -103,6 +153,7 @@ main h2 {
 
 .example {
   margin-block-end: 2.5rem;
+  scroll-margin-top: 1.5rem;
 }
 
 .example h3 {
@@ -124,6 +175,8 @@ main h2 {
   width: 17rem;
   padding: 1.5rem 1rem max(1.5rem, env(safe-area-inset-bottom));
   overflow-y: auto;
+  /* Scrolling the list to its end doesn't scroll the page behind it, as iOS would. */
+  overscroll-behavior: contain;
 }
 
 .drawer-nav a {
@@ -161,6 +214,10 @@ main h2 {
 
   .components {
     display: none;
+  }
+
+  .example {
+    scroll-margin-top: 5rem;
   }
 
   main {

@@ -30,7 +30,7 @@
   cursor: pointer;
 }
 
-.bar button[aria-pressed="true"] {
+.bar [data-selected] {
   border-color: var(--frame-ink);
   color: var(--frame-ink);
 }
@@ -89,6 +89,14 @@
 
 .preview[hidden] {
   display: none;
+}
+
+.tooltip {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--frame-ink);
+  color: var(--frame-paper);
+  font-size: 12px;
 }
 
 /* Below the frame, as on ui-sdk.dev. */

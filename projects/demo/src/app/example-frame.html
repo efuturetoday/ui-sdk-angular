@@ -1,29 +1,26 @@
-<div class="frame">
+<div class="frame" uiTabs [value]="tab()" (valueChange)="tab.set($any($event))">
   <div class="bar">
-    <div class="tabs">
-      <button
-        type="button"
-        [attr.aria-pressed]="tab() === 'preview'"
-        (click)="tab.set('preview')"
-      >
-        Preview
-      </button>
-      <button
-        type="button"
-        [attr.aria-pressed]="tab() === 'code'"
-        (click)="tab.set('code')"
-      >
-        Code
-      </button>
+    <div uiTabsList class="tabs" aria-label="View">
+      <button uiTabsTab value="preview">Preview</button>
+      <button uiTabsTab value="code">Code</button>
     </div>
-    <button type="button" class="reset" aria-label="Reset" (click)="reset()">
-      <svg lucideRotateCcw aria-hidden="true"></svg>
-    </button>
+    <ng-container uiTooltip>
+      <button
+        uiButton
+        uiTooltipTrigger
+        class="reset"
+        aria-label="Reset"
+        (click)="reset()"
+      >
+        <svg lucideRotateCcw aria-hidden="true"></svg>
+      </button>
+      <div *uiTooltipContent class="tooltip">Reset</div>
+    </ng-container>
   </div>
   <div
+    *uiTabsPanel="'preview'; keepMounted: true"
     class="preview"
     [attr.data-example]="name()"
-    [hidden]="tab() !== 'preview'"
   >
     @for (current of [run()]; track current) {
       @if (component.value(); as example) {
@@ -31,16 +28,14 @@
       }
     }
   </div>
-  @if (tab() === "code") {
-    <div class="code">
-      @for (file of source.value(); track file.name) {
-        @if (source.value()!.length > 1) {
-          <p class="file">{{ file.name }}</p>
-        }
-        <div [innerHTML]="file.html"></div>
+  <div *uiTabsPanel="'code'" class="code">
+    @for (file of source.value(); track file.name) {
+      @if (source.value()!.length > 1) {
+        <p class="file">{{ file.name }}</p>
       }
-    </div>
-  }
+      <div [innerHTML]="file.html"></div>
+    }
+  </div>
   @if (log().length) {
     <p class="console">Console</p>
     <ol #logList class="log" aria-label="Log">

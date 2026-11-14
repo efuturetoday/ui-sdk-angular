@@ -13,6 +13,13 @@ import {
 } from "@angular/core"
 import { DomSanitizer } from "@angular/platform-browser"
 import { LucideRotateCcw } from "@lucide/angular"
+import { UiButton } from "ngx-ui-sdk/button"
+import { UiTabs, UiTabsList, UiTabsPanel, UiTabsTab } from "ngx-ui-sdk/tabs"
+import {
+  UiTooltip,
+  UiTooltipContent,
+  UiTooltipTrigger,
+} from "ngx-ui-sdk/tooltip"
 import { examples } from "../examples"
 import { ExampleLog } from "../shared/log"
 
@@ -26,7 +33,18 @@ const sharedSources: Record<string, () => Promise<string>> = {
 
 @Component({
   selector: "app-example-frame",
-  imports: [NgComponentOutlet, LucideRotateCcw],
+  imports: [
+    LucideRotateCcw,
+    NgComponentOutlet,
+    UiButton,
+    UiTabs,
+    UiTabsList,
+    UiTabsPanel,
+    UiTabsTab,
+    UiTooltip,
+    UiTooltipContent,
+    UiTooltipTrigger,
+  ],
   templateUrl: "./example-frame.html",
   styleUrl: "./example-frame.css",
 })
