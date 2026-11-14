@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve demo",
+    "start": "ng serve docs",
     "build:lib": "ng build core",
     "test:upstream": "playwright test -c playwright.upstream.config.ts",
     "format": "prettier --check . --log-level warn",

@@ -1,10 +1,19 @@
 <ng-template #links>
+  @for (group of groups; track group) {
+    <p class="group">{{ group }}</p>
+    @for (guide of guidesIn(group); track guide.slug) {
+      <a
+        [href]="'?doc=' + guide.slug"
+        [attr.aria-current]="isCurrent('doc', guide.slug) ? 'page' : null"
+        >{{ guide.title }}</a
+      >
+    }
+  }
   <p class="group">Components</p>
   @for (component of components; track component) {
     <a
       [href]="'?component=' + component"
-      [attr.aria-current]="component === current() ? 'page' : null"
-      (click)="$event.preventDefault(); show(component)"
+      [attr.aria-current]="isCurrent('component', component) ? 'page' : null"
       >{{ titleOf(component) }}</a
     >
   }
@@ -45,7 +54,7 @@
     </button>
     <div *uiTooltipContent class="tooltip">Dark theme</div>
   </ng-container>
-  <!-- On a phone, the components are in a drawer from the start edge. -->
+  <!-- On a phone, the navigation is in a drawer from the start edge. -->
   <div class="mobile-nav">
     <ng-container
       uiDrawer
@@ -53,39 +62,53 @@
       [open]="navOpen()"
       (openChange)="navOpen.set($event)"
     >
-      <button uiDrawerTrigger aria-label="Components">
+      <button uiDrawerTrigger aria-label="Navigation">
         <svg lucideMenu aria-hidden="true"></svg>
       </button>
       <!-- Styled as upstream's drawer example, which its CSS scopes to an example. -->
       <div data-example="nav">
         <div *uiDrawerBackdrop></div>
-        <nav *uiDrawerContent aria-label="Components" class="drawer-nav">
-          <h2 uiDrawerTitle class="visually-hidden">Components</h2>
+        <nav *uiDrawerContent aria-label="Navigation" class="drawer-nav">
+          <h2 uiDrawerTitle class="visually-hidden">Navigation</h2>
           <ng-container [ngTemplateOutlet]="links" />
         </nav>
       </div>
     </ng-container>
   </div>
 </header>
-<nav class="components" aria-label="Components">
+<nav class="components" aria-label="Navigation">
   <ng-container [ngTemplateOutlet]="links" />
 </nav>
 <main>
-  <h2>{{ titleOf(current()) }}</h2>
-  @for (name of names(); track name) {
-    <section class="example" [id]="anchorOf(name)">
-      <h3>{{ titleOfExample(name) }}</h3>
-      <app-example-frame [name]="name" />
-    </section>
+  @if (guide(); as guide) {
+    <h2>{{ guide.title }}</h2>
+    <p class="lead">{{ guide.description }}</p>
+    @if (guidePage.value(); as page) {
+      <ng-container *ngComponentOutlet="page" />
+    }
+  } @else {
+    <h2>{{ titleOf(page().name) }}</h2>
+    @for (name of names(); track name) {
+      <section
+        class="example"
+        [id]="anchorOf(name)"
+        [attr.data-title]="titleOfExample(name)"
+      >
+        <h3>{{ titleOfExample(name) }}</h3>
+        <app-example-frame [name]="name" />
+      </section>
+    }
   }
 </main>
 <nav class="sections" aria-label="On this page">
-  <p class="group">On this page</p>
-  @for (name of names(); track name) {
+  @if (sections().length) {
+    <p class="group">On this page</p>
+  }
+  @for (section of sections(); track section.id) {
     <a
-      [href]="'#' + anchorOf(name)"
-      [attr.aria-current]="anchorOf(name) === section() ? 'location' : null"
-      >{{ titleOfExample(name) }}</a
+      [href]="'#' + section.id"
+      [attr.aria-current]="section.id === activeSection() ? 'location' : null"
+      >{{ section.title }}</a
     >
   }
 </nav>

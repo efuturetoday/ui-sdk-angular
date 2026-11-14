@@ -28,10 +28,10 @@ jobs:
       - run: npm run test:unit
       - run: npm run build:lib
       - run: npm run build:theme
-      - run: npx ng build demo --base-href /${{ github.event.repository.name }}/
+      - run: npx ng build docs --base-href /${{ github.event.repository.name }}/
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: dist/demo/browser
+          path: dist/docs/browser
 
   upstream:
     name: Upstream specs (${{ matrix.shard }}/4)
@@ -59,7 +59,7 @@ jobs:
           retention-days: 7
 
   examples:
-    name: Demo examples
+    name: Docs examples
     # The iPhone taps and the phone swipes fail on Linux runners and pass on
     # macOS, where WebKit is Safari's.
     runs-on: macos-latest
@@ -82,7 +82,7 @@ jobs:
           retention-days: 7
 
   deploy:
-    name: Deploy the demo to GitHub Pages
+    name: Deploy the docs to GitHub Pages
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [check]
     runs-on: ubuntu-latest

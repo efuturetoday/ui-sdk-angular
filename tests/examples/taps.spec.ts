@@ -53,8 +53,8 @@ test("a tap on a drawer's backdrop closes it", async ({ page }) => {
 
 test("a tap on the page's drawer backdrop closes it", async ({ page }) => {
   await openComponent(page, "menu")
-  await page.getByRole("button", { name: "Components" }).tap()
-  const nav = page.getByRole("dialog", { name: "Components" })
+  await page.getByRole("button", { name: "Navigation" }).tap()
+  const nav = page.getByRole("dialog", { name: "Navigation" })
   await expect(nav).toBeVisible()
   await tapEdge(page)
   await expect(nav).toHaveCount(0)

@@ -1,6 +1,6 @@
 # Examples
 
-`projects/demo` shows upstream's examples, the ones on ui-sdk.dev, in Angular, with upstream's own CSS. Each is a copy of a Vue example: `vendor/ui/examples/components/<component>/vue/<name>.vue` becomes `projects/demo/src/examples/<component>/<name>.ts`.
+`projects/docs` shows upstream's examples, the ones on ui-sdk.dev, in Angular, with upstream's own CSS. Each is a copy of a Vue example: `vendor/ui/examples/components/<component>/vue/<name>.vue` becomes `projects/docs/src/examples/<component>/<name>.ts`.
 
 `node scripts/check-examples.mjs` (part of `npm run lint`) fails while an example or a spec fixture whose components we have is missing, so a component is done only with all of its examples. `--report` lists what waits on a component we don't have yet. `--write` regenerates the demo's list of examples and its stylesheet; never edit `examples/index.ts` or `examples.css` by hand.
 
@@ -61,7 +61,7 @@ A Vue component renders a default element; in Angular, write that element with t
 ## Checking one
 
 1. `node scripts/check-examples.mjs --write`.
-2. Build: `npx ng build demo`.
+2. Build: `npx ng build docs`.
 3. Open `/?component=<component>` on the demo (`npm start`) and use the example as on ui-sdk.dev: keyboard, pointer, its log.
 
 An example that needs something the adapter doesn't have stays out until it does. Never work around the adapter in an example.

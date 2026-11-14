@@ -29,11 +29,21 @@ const config = defineConfig(
     },
   },
   {
-    files: ["projects/demo/**/*.ts", "projects/playground/**/*.ts"],
+    files: ["projects/docs/**/*.ts", "projects/playground/**/*.ts"],
     rules: {
       "@angular-eslint/component-selector": [
         "error",
         { type: ["element", "attribute"], prefix: "app", style: "kebab-case" },
+      ],
+    },
+  },
+  // The docs' own directives, like a guide's custom parts, are the app's.
+  {
+    files: ["projects/docs/src/guides/**/*.ts"],
+    rules: {
+      "@angular-eslint/directive-selector": [
+        "error",
+        { type: "attribute", prefix: "app", style: "camelCase" },
       ],
     },
   },

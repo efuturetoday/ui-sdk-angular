@@ -2,7 +2,7 @@ import { readdirSync } from "node:fs"
 import { expect, test } from "@playwright/test"
 import { openComponent } from "./helpers"
 
-const components = readdirSync("projects/demo/src/examples", {
+const components = readdirSync("projects/docs/src/examples", {
   withFileTypes: true,
 })
   .filter((entry) => entry.isDirectory())

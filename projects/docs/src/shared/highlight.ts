@@ -1,9 +1,9 @@
 import { codeToHtml } from "shiki"
 
-// An example's source as HTML, in both themes, for the Code tab.
-function highlight(code: string) {
+// Code as HTML, in both themes, for the Code tab and the guides.
+function highlight(code: string, lang = "angular-ts") {
   return codeToHtml(code, {
-    lang: "angular-ts",
+    lang,
     themes: { light: "github-light", dark: "github-dark" },
   })
 }
