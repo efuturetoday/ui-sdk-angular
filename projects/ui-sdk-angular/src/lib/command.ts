@@ -22,7 +22,6 @@ import {
   type ListAnnouncement,
   type SearchFilter,
 } from "@ui-sdk/core/command"
-import type { ListHighlightDetails } from "@ui-sdk/core/listbox"
 import { injectContentOwner, injectDefaultText } from "./content"
 import { optionalBoolean } from "./inputs"
 import { injectPart } from "./part"
@@ -159,11 +158,10 @@ class UiCommand implements OnInit {
       ) => {
         this.beforeValueChange.emit({ value, details })
         if (!details.canceled) {
+          this.#highlighted.set(details.index)
           this.valueChange.emit(value)
         }
       },
-      onHighlight: (_value: unknown, details: ListHighlightDetails) =>
-        this.#highlighted.set(details.index),
       onQueryChange: (query: string, details: CommandQueryChangeDetails) => {
         this.beforeQueryChange.emit({ query, details })
         if (!details.canceled) {
