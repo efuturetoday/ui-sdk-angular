@@ -2,9 +2,20 @@
 
 > Built on `@ui-sdk/core` **0.1.0-beta.1** (Angular 22)
 
+**[Live demo and examples →](https://efuturetoday.github.io/ui-sdk-angular/)** · [ui-sdk documentation](https://ui-sdk.dev/docs) · [npm](https://www.npmjs.com/package/ngx-ui-sdk)
+
 This package adds Angular support for [ui-sdk](https://github.com/vercel-labs/ui). You get all the behavior: keyboard navigation, focus handling, dismissal, popups and the right ARIA attributes. You keep full control of your markup and styles. Every part of a component is a directive that you put on your own elements, so there are no wrapper components and nothing to override.
 
-This isn't an official part of ui-sdk. To make sure it behaves the same way, it runs upstream's own Playwright specs, unchanged, against Angular versions of upstream's test fixtures.
+## Tested with upstream's own specs
+
+This isn't an official part of ui-sdk, so it has to prove that it behaves exactly like the official adapters. It does that with ui-sdk's own end-to-end suite: **268 Playwright spec files and more than 4,000 tests**, run unchanged against Angular versions of upstream's test fixtures, on every push. They're the same specs React, Vue, Svelte, Solid and web components pass, and they cover:
+
+- **Behavior:** keyboard, pointer and touch, focus, dismissal, forms and controllers.
+- **Accessibility:** axe audits, screen reader announcements and WAI-ARIA patterns.
+- **Right to left**, for every component.
+- **Memory:** open, close, mount and unmount hundreds of times, and nothing is left behind.
+
+Upstream's server rendering specs and kitchen sinks don't run yet, since they need a server-rendered playground. On top of that, the demo's examples have end-to-end tests of their own, including real iOS taps in WebKit, and the adapter's wiring has unit tests in Vitest.
 
 ## Getting started
 
@@ -16,7 +27,7 @@ Install the package together with `@ui-sdk/core`, which holds the actual behavio
 npm install ngx-ui-sdk @ui-sdk/core
 ```
 
-You need Angular 22 or newer. There's nothing to configure and no providers to add. Import the directives you need into your standalone component and put them on your elements:
+You need Angular 22 or newer. There's nothing to configure and no providers to add. Each component has its own entry point, like `ngx-ui-sdk/dialog`, so your app only bundles what it imports. Import the directives you need into your standalone component and put them on your elements:
 
 ```ts
 import { Component, signal } from "@angular/core"
@@ -28,7 +39,7 @@ import {
   UiDialogDescription,
   UiDialogTitle,
   UiDialogTrigger,
-} from "ngx-ui-sdk"
+} from "ngx-ui-sdk/dialog"
 
 @Component({
   selector: "app-edit-profile",
