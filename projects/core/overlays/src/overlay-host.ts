@@ -125,16 +125,14 @@ abstract class OverlayHostContext {
         [maxVisible]="options()?.maxVisible"
         [expanded]="options()?.expanded"
         [shortcut]="options()?.shortcut"
-        [class]="options()?.class"
-      >
+        [class]="options()?.class">
         <ol uiToastList>
           @for (item of region.state().toasts; track item.toast.id) {
             @if (template(); as template) {
               <ng-container
                 [ngTemplateOutlet]="template"
                 [ngTemplateOutletContext]="{ $implicit: item.toast, item }"
-                [ngTemplateOutletInjector]="scope.injector"
-              />
+                [ngTemplateOutletInjector]="scope.injector" />
             } @else {
               <li [uiToast]="item.toast">
                 <div>
@@ -192,8 +190,7 @@ class HostedToaster {
     <ng-container
       uiAlertDialog
       [controller]="confirmEntry().controller"
-      (openChangeComplete)="!$event && confirmEntry().done()"
-    >
+      (openChangeComplete)="!$event && confirmEntry().done()">
       <div *uiAlertDialogContent>
         <h2 uiAlertDialogTitle>{{ question().title }}</h2>
         @if (question().description) {

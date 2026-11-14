@@ -39,8 +39,7 @@ class OwnWrapper {}
     <button
       uiOwnToggle
       [defaultPressed]="true"
-      (pressedChange)="pressed = $event"
-    >
+      (pressedChange)="pressed = $event">
       Bold
     </button>
     <ui-own-wrapper tabindex="0" (pressedChange)="wrapped = $event">

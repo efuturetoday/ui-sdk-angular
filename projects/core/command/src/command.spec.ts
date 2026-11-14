@@ -19,8 +19,7 @@ const items = ["Copy", "Paste", "Cut"].map((label) => ({
       uiCommand
       [items]="items"
       (valueChange)="value = $event"
-      (beforeValueChange)="cancel && $event.details.cancel()"
-    >
+      (beforeValueChange)="cancel && $event.details.cancel()">
       <input uiCommandInput aria-label="Search" />
       <div uiCommandList #list="uiCommandList">
         @for (item of $any(list.state().items); track item.value) {
