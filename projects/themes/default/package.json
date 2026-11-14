@@ -1,6 +1,6 @@
 {
   "name": "@ngx-ui-sdk/theme-default",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "ui-sdk's example look for @ngx-ui-sdk/core, as plain CSS.",
   "license": "Apache-2.0",
   "repository": {
