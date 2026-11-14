@@ -12,7 +12,7 @@ The specs press and then read the page in their next step, like a fixture's `<ou
 
 Only what Angular templates render waits. The adapter writes a part's attributes, presence and focus through core while the event runs, so the specs about ARIA, focus and keyboard behavior see the real timing either way.
 
-`src/render-like-the-specs.ts` ticks the app a microtask after every user event, the way Vue renders, in this one place. The playground runs zoneless, as Angular's default, and apps using the adapter need nothing like it.
+`src/render-like-the-specs.ts` ticks the app right after every user event, once the adapter has committed, the way Vue renders, in this one place. The playground runs zoneless, as Angular's default, and apps using the adapter need nothing like it.
 
 ## Core's development checks
 

@@ -16,8 +16,6 @@ const knownGaps: Record<string, string> = {
     "A data root renders a list of its own in React and Vue when its content is empty. Angular's content is the app's template, so an empty `*uiAutocompleteContent` has no options.",
   "a trigger menu finds its content inside a fragment":
     "A data root renders a list of its own in React and Vue when its content is empty. Angular's content is the app's template, so an empty `uiTriggerMenuList` has no options.",
-  "moving through tabs with the arrow keys 200 times, then mounting and unmounting it 200 times, leaves nothing behind":
-    "An adapter leak, not a gap: after 400 mounts of the tabs the heap snapshot still holds the detached tabs, tabs-list, tabs-indicator and tabs-panel parts. Not found yet.",
   "a click on a trigger in a shadow root opens the menu, and it stays open":
     "With a portal container outside the shadow root, the menu's aria-labelledby points into the shadow root, which no browser resolves, so it has no name. Core's naming, to check upstream.",
   "a label for a slider names its thumb":

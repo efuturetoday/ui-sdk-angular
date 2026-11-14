@@ -25,7 +25,8 @@ function renderLikeTheSpecs(app: ApplicationRef) {
     window.addEventListener(type, () => {
       if (!queued) {
         queued = true
-        queueMicrotask(tick)
+        // After the adapter's commit: Angular counts view changes right after a tick as a loop.
+        queueMicrotask(() => queueMicrotask(tick))
       }
     })
   }
