@@ -1,22 +1,22 @@
 # ngx-ui-sdk
 
-> Built on `@ui-sdk/core` **0.1.0-beta.1** (Angular 22)
+Angular directives for [ui-sdk](https://github.com/vercel-labs/ui). Built on `@ui-sdk/core` 0.1.0-beta.1, for Angular 22.
 
-**[Live demo and examples →](https://efuturetoday.github.io/ui-sdk-angular/)** · [ui-sdk documentation](https://ui-sdk.dev/docs) · [npm](https://www.npmjs.com/package/@ngx-ui-sdk/core)
+[Demo](https://efuturetoday.github.io/ui-sdk-angular/) · [Documentation](https://ui-sdk.dev/docs) · [npm](https://www.npmjs.com/package/@ngx-ui-sdk/core)
 
-This package adds Angular support for [ui-sdk](https://github.com/vercel-labs/ui). You get all the behavior: keyboard navigation, focus handling, dismissal, popups and the right ARIA attributes. You keep full control of your markup and styles. Every part of a component is a directive that you put on your own elements, so there are no wrapper components and nothing to override.
+ui-sdk handles keyboard navigation, focus, dismissal, popups and ARIA. This package brings that to Angular. Each part of a component is a directive on your own element. You write the markup and the styles.
+
+The package is experimental. Expect breaking changes until 1.0.
 
 ## Getting started
 
-> The package is experimental, so expect breaking changes until 1.0.
-
-Install the package together with `@ui-sdk/core`, which holds the actual behavior:
+Install it with `@ui-sdk/core`:
 
 ```bash
 npm install @ngx-ui-sdk/core @ui-sdk/core
 ```
 
-You need Angular 22 or newer. There's nothing to configure and no providers to add. Each component has its own entry point, like `@ngx-ui-sdk/core/dialog`, so your app only bundles what it imports. Import the directives you need into your standalone component and put them on your elements:
+Each component has its own entry point, like `@ngx-ui-sdk/core/dialog`, so your app only bundles what it imports. Import the directives into a standalone component:
 
 ```ts
 import { Component, signal } from "@angular/core"
@@ -58,13 +58,15 @@ export class EditProfile {
 }
 ```
 
+No providers or configuration needed. The [ui-sdk documentation](https://ui-sdk.dev/docs) describes every component, its parts and options. The names are the same here: `DialogTrigger` is `uiDialogTrigger`.
+
 ## Styling
 
-Everything is unstyled. The directives set behavior and ARIA, never a color or a margin, so what you see is your own CSS. They give you three things to style with:
+The directives add no styles. Style the parts with:
 
-- **Data attributes** for state, like `data-open`, `data-highlighted`, `data-selected` and `data-disabled`, and `data-starting-style` and `data-ending-style` while a part animates in and out.
-- **`data-slot`** on every part, like `data-slot="dialog-content"`, so one stylesheet can style a component wherever it's used.
-- **CSS variables** for what only the browser knows, like `--anchor-width` and `--available-height` on a popup.
+- **State attributes**: `data-open`, `data-highlighted`, `data-selected`, `data-disabled`, and `data-starting-style` and `data-ending-style` for animations.
+- **`data-slot`** on every part, like `data-slot="dialog-content"`.
+- **CSS variables** on popups, like `--anchor-width` and `--available-height`.
 
 ```css
 [data-slot="dialog-content"] {
@@ -77,22 +79,29 @@ Everything is unstyled. The directives set behavior and ARIA, never a color or a
 }
 ```
 
-### A ready-made look
+### Default theme
 
-The look of the [demo](https://efuturetoday.github.io/ui-sdk-angular/) is ui-sdk's own example styling, and it ships as an optional package, [`@ngx-ui-sdk/theme-default`](https://www.npmjs.com/package/@ngx-ui-sdk/theme-default):
+The demo uses ui-sdk's example styles. They're available as a separate package:
 
 ```bash
 npm install @ngx-ui-sdk/theme-default
 ```
 
+Add it to `angular.json`:
+
 ```json
-// angular.json
 "styles": ["@ngx-ui-sdk/theme-default/all.css", "src/styles.css"]
 ```
 
-Then put `data-ui-theme` on `<body>`, or on the part of the page it should style. Import single files instead of `all.css`, like `tokens.css`, `base.css` and `dialog.css`, to ship only what you use, and override its CSS variables to make it yours. More themes will follow as their own packages.
+The theme only styles elements inside `data-ui-theme`. To style the whole app, add it to `<body>`:
 
-## Status
+```html
+<body data-ui-theme></body>
+```
+
+To load less CSS, import `tokens.css`, `base.css` and only the components you use instead of `all.css`. Colors, radii and sizes are CSS variables you can override.
+
+## Components
 
 | Component         | Supported |
 | ----------------- | :-------: |
@@ -156,25 +165,25 @@ Then put `data-ui-theme` on `<body>`, or on the part of the page it should style
 | Waterfall         |    ✅     |
 | Agent tools       |    ❌     |
 
-## Tested with upstream's own specs
+## Testing
 
-This isn't an official part of ui-sdk, so it has to prove that it behaves exactly like the official adapters. It does that with ui-sdk's own end-to-end suite: **268 Playwright spec files and more than 4,000 tests**, run unchanged against Angular versions of upstream's test fixtures, on every push. They're the same specs React, Vue, Svelte, Solid and web components pass, and they cover:
+This is not an official ui-sdk package. It runs ui-sdk's own end-to-end tests, unchanged: 268 Playwright spec files with more than 4,000 tests, the same ones the React, Vue, Svelte, Solid and web component adapters pass. They cover:
 
-- **Behavior:** keyboard, pointer and touch, focus, dismissal, forms and controllers.
-- **Accessibility:** axe audits, screen reader announcements and WAI-ARIA patterns.
-- **Right to left**, for every component.
-- **Memory:** open, close, mount and unmount hundreds of times, and nothing is left behind.
+- keyboard, pointer and touch input, focus, dismissal, forms and controllers
+- axe audits, screen reader announcements and WAI-ARIA patterns
+- right-to-left layouts
+- memory leaks across hundreds of mounts
 
-Upstream's server rendering specs and kitchen sinks don't run yet, since they need a server-rendered playground. On top of that, the demo's examples have end-to-end tests of their own, including real iOS taps in WebKit, and the adapter's wiring has unit tests in Vitest.
+ui-sdk's server rendering tests don't run yet. The demo examples and the adapter internals have their own tests. Everything runs in CI on every push.
 
-## Develop
+## Development
 
-Start with [AGENTS.md](AGENTS.md), then read [contributing/design.md](contributing/design.md) and [contributing/code.md](contributing/code.md).
+Read [AGENTS.md](AGENTS.md), [contributing/design.md](contributing/design.md) and [contributing/code.md](contributing/code.md) first.
 
 ```bash
 git submodule update --init
 npm install
-npm start               # the demo
-npm run test:upstream   # upstream's specs against the playground
+npm start               # demo
+npm run test:upstream   # ui-sdk's tests against the playground
 npm run lint
 ```
