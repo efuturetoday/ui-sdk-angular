@@ -47,7 +47,8 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
   props: () => PropsOf<P, S>,
   element: PartElement<StateOf<P, S>>,
   unbound?: Unbound<StateOf<P, S>> & { el: HTMLElement },
-  join?: JoinedPart
+  join?: JoinedPart,
+  claims?: HTMLElement
 ) {
   const browser = isPlatformBrowser(inject(PLATFORM_ID))
   const firstRender = inject(FirstRender)
@@ -128,6 +129,9 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
     if (started) {
       return
     }
+    if (claims) {
+      claim(claims, props)
+    }
     started = true
     ready.set(true)
     rendered = browser && firstRender.done
@@ -136,6 +140,10 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
       watchPresence(presence)
     }
   }
+
+  // It starts on its own in its first effect run, once Angular has set the
+  // inputs; a directive that calls `init()` in `ngOnInit` starts it sooner.
+  effect(() => untracked(init))
 
   effect(() => {
     target()
@@ -172,8 +180,8 @@ function bindPart<P extends Primitive, S extends SlotName<P>>(
 
 /**
  * Makes this directive's element one part of a primitive, for a part that's
- * always present. Call it in a field initializer and its `init()` from
- * `ngOnInit`. `state` is the part's state. `join` makes the element a part of
+ * always present. Call it in a field initializer; it starts once Angular has
+ * set the inputs. `state` is the part's state. `join` makes the element a part of
  * another instance too, like a field's control.
  * @experimental
  */
@@ -184,36 +192,33 @@ function injectPart<P extends Primitive, S extends SlotName<P>>(
   join?: JoinedPart
 ) {
   const el = inject(ElementRef).nativeElement as HTMLElement
-  const part = bindPart(
+  return bindPart(
     () => handle,
     slot,
     props,
     { show: () => el, hide: () => {}, at: el },
     undefined,
-    join
+    join,
+    el
   )
-  return { ...part, init: claimingInit(el, props, part.init) }
 }
 
 // An attribute named like one of the part's props, like `disabled` on a menu
 // trigger, is that prop, so it goes as the part starts and core and the host
 // bindings decide it. See the design's "Lifecycle".
-function claimingInit(el: HTMLElement, props: () => object, init: () => void) {
-  return () => {
-    for (const key in untracked(props)) {
-      const name = key.toLowerCase()
-      if (name !== "id" && el.hasAttribute(name)) {
-        el.removeAttribute(name)
-      }
+function claim(el: HTMLElement, props: () => object) {
+  for (const key in untracked(props)) {
+    const name = key.toLowerCase()
+    if (name !== "id" && el.hasAttribute(name)) {
+      el.removeAttribute(name)
     }
-    init()
   }
 }
 
 /**
  * A part that renders no element, only its state, like a combobox's value
- * read on an `ng-container`. Call it in a field initializer and its `init()`
- * from `ngOnInit`.
+ * read on an `ng-container`. Call it in a field initializer; it starts once
+ * Angular has set the inputs.
  * @experimental
  */
 function injectStatePart<P extends Primitive, S extends SlotName<P>>(
@@ -232,8 +237,8 @@ function injectStatePart<P extends Primitive, S extends SlotName<P>>(
 /**
  * Makes this directive's element one part of whichever instance `target`
  * gives, like a hidden input of the checkbox its input names. While it gives
- * none, the element shows `unbound`. Call it in a field initializer and its
- * `init()` from `ngOnInit`.
+ * none, the element shows `unbound`. Call it in a field initializer; it
+ * starts once Angular has set the inputs.
  * @experimental
  */
 function injectTargetPart<P extends Primitive, S extends SlotName<P>>(
@@ -244,23 +249,23 @@ function injectTargetPart<P extends Primitive, S extends SlotName<P>>(
   join?: JoinedPart
 ) {
   const el = inject(ElementRef).nativeElement as HTMLElement
-  const part = bindPart(
+  return bindPart(
     target,
     slot,
     props,
     { show: () => el, hide: () => {}, at: el },
     unbound && { ...unbound, el },
-    join
+    join,
+    el
   )
-  return { ...part, init: claimingInit(el, props, part.init) }
 }
 
 /**
  * Makes this directive's element one part of the instance `controller` is
  * attached to, from anywhere on the page, or else of the root it sits in,
  * like a dialog's trigger in a table row. Until that instance is on the page,
- * the element shows `unbound`. Call it in a field initializer and its `init()`
- * from `ngOnInit`; `target` is the instance it's a part of.
+ * the element shows `unbound`. Call it in a field initializer; it starts once
+ * Angular has set the inputs. `target` is the instance it's a part of.
  * @experimental
  */
 function injectConnectedPart<P extends Primitive, S extends SlotName<P>>(

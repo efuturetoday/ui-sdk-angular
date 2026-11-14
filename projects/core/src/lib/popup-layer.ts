@@ -192,7 +192,7 @@ function createLayer<P extends Primitive>(
  * element the layer makes around it. A list with an input outside its popup,
  * like a combobox's, passes `header` too: while the sheet is open, the input
  * moves into a header the layer makes at the content's top. Call it in a field
- * initializer and its `init()` from `ngOnInit`.
+ * initializer; it starts once Angular has set the inputs.
  * @experimental
  */
 function injectPopupPart<P extends Primitive, S extends SlotName<P>>(

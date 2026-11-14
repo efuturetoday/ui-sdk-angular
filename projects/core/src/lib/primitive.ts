@@ -47,7 +47,7 @@ type PrimitiveHandle<P extends Primitive> = {
   state: Signal<TypesOf<P>["state"]>
   /** Changes whenever state that affects rendering changes, for parts that read state of their own. */
   version: Signal<number>
-  /** Makes the instance with the inputs Angular has set. Call it from the root's `ngOnInit`. */
+  /** Makes the instance with the inputs Angular has set. It runs on its own; call it from `ngOnInit` to make it sooner. */
   init: () => ReturnType<P>
 }
 
@@ -118,8 +118,8 @@ const memo = <Value>(compute: () => Value) => {
 /**
  * Creates an instance of a primitive for this directive, keeps its options
  * current, and destroys it with the directive. Call it in a field initializer
- * with a getter that reads the signal inputs, and its `init()` from
- * `ngOnInit`, once Angular has set them.
+ * with a getter that reads the signal inputs; it makes the instance once
+ * Angular has set them.
  * @experimental
  */
 function injectPrimitive<P extends Primitive>(
@@ -162,6 +162,10 @@ function injectPrimitive<P extends Primitive>(
     }
     return kept
   }
+
+  // It starts on its own in its first effect run, once Angular has set the
+  // inputs; a root that calls `init()` in `ngOnInit` starts it sooner.
+  effect(() => untracked(init))
 
   // Its changes reach Angular through `version`, written only here.
   effect((onCleanup) => {

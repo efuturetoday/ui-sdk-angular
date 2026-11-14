@@ -38,8 +38,8 @@ type Placement = {
  * also depends on the app, like a toast's title on its data: it returns the
  * instance while the part may be present. A part that renders no element of
  * its own, like a command's page, passes `bare`: its presence only decides
- * whether the template shows. Call it in a field initializer and its `init()`
- * from `ngOnInit`.
+ * whether the template shows. Call it in a field initializer; it starts once
+ * Angular has set the inputs.
  * @experimental
  */
 function injectPresentPart<P extends Primitive, S extends SlotName<P>>(
