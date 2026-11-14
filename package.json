@@ -4,13 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve demo",
-    "build:lib": "ng build ngx-ui-sdk",
+    "build:lib": "ng build core",
     "test:upstream": "playwright test -c playwright.upstream.config.ts",
     "format": "prettier --check . --log-level warn",
     "lint": "node scripts/check-code.mjs && node scripts/check-comments.mjs && node scripts/check-examples.mjs && eslint .",
     "format:write": "prettier --write . --log-level warn",
     "test:examples": "playwright test -c playwright.examples.config.ts",
-    "test:unit": "ng test ngx-ui-sdk --watch=false"
+    "test:unit": "ng test core --watch=false"
   },
   "private": true,
   "packageManager": "npm@11.19.0",

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideChevronDown } from "@lucide/angular"
-import { UiVirtualFor } from "ngx-ui-sdk"
+import { UiVirtualFor } from "@ngx-ui-sdk/core"
 import {
   UiCombobox,
   UiComboboxContent,
@@ -10,7 +10,7 @@ import {
   UiComboboxLabel,
   UiComboboxList,
   UiComboboxTrigger,
-} from "ngx-ui-sdk/combobox"
+} from "@ngx-ui-sdk/core/combobox"
 
 type Item = { value: string; label: string }
 

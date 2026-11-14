@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideStar } from "@lucide/angular"
-import { UiRating, UiRatingItem } from "ngx-ui-sdk/rating"
+import { UiRating, UiRatingItem } from "@ngx-ui-sdk/core/rating"
 
 @Component({
   selector: "app-example",

@@ -7,12 +7,12 @@ import {
   UiColorPickerSlider,
   UiColorPickerSliderThumb,
   UiColorPickerSwatch,
-} from "ngx-ui-sdk/color-picker"
+} from "@ngx-ui-sdk/core/color-picker"
 import {
   UiPopover,
   UiPopoverContent,
   UiPopoverTrigger,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 
 @Component({
   selector: "app-example",

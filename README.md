@@ -2,7 +2,7 @@
 
 > Built on `@ui-sdk/core` **0.1.0-beta.1** (Angular 22)
 
-**[Live demo and examples →](https://efuturetoday.github.io/ui-sdk-angular/)** · [ui-sdk documentation](https://ui-sdk.dev/docs) · [npm](https://www.npmjs.com/package/ngx-ui-sdk)
+**[Live demo and examples →](https://efuturetoday.github.io/ui-sdk-angular/)** · [ui-sdk documentation](https://ui-sdk.dev/docs) · [npm](https://www.npmjs.com/package/@ngx-ui-sdk/core)
 
 This package adds Angular support for [ui-sdk](https://github.com/vercel-labs/ui). You get all the behavior: keyboard navigation, focus handling, dismissal, popups and the right ARIA attributes. You keep full control of your markup and styles. Every part of a component is a directive that you put on your own elements, so there are no wrapper components and nothing to override.
 
@@ -13,10 +13,10 @@ This package adds Angular support for [ui-sdk](https://github.com/vercel-labs/ui
 Install the package together with `@ui-sdk/core`, which holds the actual behavior:
 
 ```bash
-npm install ngx-ui-sdk @ui-sdk/core
+npm install @ngx-ui-sdk/core @ui-sdk/core
 ```
 
-You need Angular 22 or newer. There's nothing to configure and no providers to add. Each component has its own entry point, like `ngx-ui-sdk/dialog`, so your app only bundles what it imports. Import the directives you need into your standalone component and put them on your elements:
+You need Angular 22 or newer. There's nothing to configure and no providers to add. Each component has its own entry point, like `@ngx-ui-sdk/core/dialog`, so your app only bundles what it imports. Import the directives you need into your standalone component and put them on your elements:
 
 ```ts
 import { Component, signal } from "@angular/core"
@@ -28,7 +28,7 @@ import {
   UiDialogDescription,
   UiDialogTitle,
   UiDialogTrigger,
-} from "ngx-ui-sdk/dialog"
+} from "@ngx-ui-sdk/core/dialog"
 
 @Component({
   selector: "app-edit-profile",

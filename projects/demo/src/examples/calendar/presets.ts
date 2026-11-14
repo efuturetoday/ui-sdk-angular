@@ -12,7 +12,7 @@ import {
   UiCalendarWeek,
   UiCalendarWeekday,
   UiCalendarWeekdays,
-} from "ngx-ui-sdk/calendar"
+} from "@ngx-ui-sdk/core/calendar"
 
 const today = "2026-10-16"
 

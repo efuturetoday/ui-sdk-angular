@@ -9,8 +9,8 @@ import {
   UiAutocompleteItem,
   UiAutocompleteItemText,
   UiAutocompleteList,
-} from "ngx-ui-sdk/autocomplete"
-import { type ListAnnouncement } from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/autocomplete"
+import { type ListAnnouncement } from "@ngx-ui-sdk/core/select"
 
 type Recent = { type: "group"; label: string; items: string[] }
 

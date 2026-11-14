@@ -4,7 +4,7 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-} from "ngx-ui-sdk/checkbox"
+} from "@ngx-ui-sdk/core/checkbox"
 import {
   createToaster,
   UiToast,
@@ -12,7 +12,7 @@ import {
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ngx-ui-sdk/toast"
+} from "@ngx-ui-sdk/core/toast"
 
 @Component({
   selector: "app-example",

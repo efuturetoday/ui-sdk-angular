@@ -4,7 +4,7 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-} from "ngx-ui-sdk/checkbox"
+} from "@ngx-ui-sdk/core/checkbox"
 import {
   UiCombobox,
   UiComboboxContent,
@@ -13,7 +13,7 @@ import {
   UiComboboxItem,
   UiComboboxItemIndicator,
   UiComboboxList,
-} from "ngx-ui-sdk/combobox"
+} from "@ngx-ui-sdk/core/combobox"
 import {
   UiSelect,
   UiSelectContent,
@@ -22,7 +22,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/select"
 
 type Side = "top" | "right" | "bottom" | "left"
 type Align = "start" | "center" | "end"

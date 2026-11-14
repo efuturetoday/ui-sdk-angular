@@ -13,11 +13,11 @@ import {
   UiMenuSubTrigger,
   UiMenuTrigger,
   type MenuCheckedChangeDetails,
-} from "ngx-ui-sdk/menu"
+} from "@ngx-ui-sdk/core/menu"
 import {
   createMenubarController,
   UiMenubar,
-} from "ngx-ui-sdk/menubar"
+} from "@ngx-ui-sdk/core/menubar"
 
 // Upstream's fixture; an item's shortcut shows through the `uiMenuShortcut`
 // written in it.

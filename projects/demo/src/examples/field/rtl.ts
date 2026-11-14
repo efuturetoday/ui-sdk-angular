@@ -4,9 +4,13 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-} from "ngx-ui-sdk/checkbox"
-import { UiField, UiFieldDescription, UiFieldLabel } from "ngx-ui-sdk/field"
-import { UiInput } from "ngx-ui-sdk/input"
+} from "@ngx-ui-sdk/core/checkbox"
+import {
+  UiField,
+  UiFieldDescription,
+  UiFieldLabel,
+} from "@ngx-ui-sdk/core/field"
+import { UiInput } from "@ngx-ui-sdk/core/input"
 
 @Component({
   selector: "app-example",

@@ -15,7 +15,7 @@ import {
 import {
   UiListbox,
   UiListboxItem,
-} from "ngx-ui-sdk/listbox"
+} from "@ngx-ui-sdk/core/listbox"
 
 @Component({
   selector: "app-picker",

@@ -7,7 +7,7 @@ import {
   UiAlertDialogDescription,
   UiAlertDialogTitle,
   createConfirm,
-} from "ngx-ui-sdk/alert-dialog"
+} from "@ngx-ui-sdk/core/alert-dialog"
 import { injectLog } from "../../shared/log"
 
 type Project = { name: string }

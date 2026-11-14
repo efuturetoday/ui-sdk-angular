@@ -7,7 +7,7 @@ import {
   UiPaginationList,
   UiPaginationNext,
   UiPaginationPrevious,
-} from "ngx-ui-sdk/pagination"
+} from "@ngx-ui-sdk/core/pagination"
 
 // A client-side router: links navigate without a page load, unless a handler
 // before it prevented that. A directive on the link itself runs before core's,

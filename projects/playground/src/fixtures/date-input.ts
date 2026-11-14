@@ -9,16 +9,16 @@ import {
   createDateInputController,
   UiDateInput,
   UiDateInputSegment,
-} from "ngx-ui-sdk/date-input"
+} from "@ngx-ui-sdk/core/date-input"
 import {
   UiField,
   UiFieldError,
   UiFieldLabel,
-} from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/field"
 import {
   UiTimeInput,
   UiTimeInputSegment,
-} from "ngx-ui-sdk/time-input"
+} from "@ngx-ui-sdk/core/time-input"
 
 @Component({
   selector: "app-fixture",

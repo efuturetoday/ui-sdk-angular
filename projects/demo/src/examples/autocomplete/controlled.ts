@@ -9,7 +9,7 @@ import {
   UiAutocompleteItem,
   UiAutocompleteLabel,
   UiAutocompleteList,
-} from "ngx-ui-sdk/autocomplete"
+} from "@ngx-ui-sdk/core/autocomplete"
 import { injectLog } from "../../shared/log"
 
 @Component({

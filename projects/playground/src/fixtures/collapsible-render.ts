@@ -3,7 +3,7 @@ import {
   UiCollapsible,
   UiCollapsiblePanel,
   UiCollapsibleTrigger,
-} from "ngx-ui-sdk/collapsible"
+} from "@ngx-ui-sdk/core/collapsible"
 
 @Component({
   selector: "app-fixture",

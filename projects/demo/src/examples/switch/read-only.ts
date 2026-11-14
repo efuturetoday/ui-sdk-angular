@@ -1,6 +1,10 @@
 import { Component } from "@angular/core"
-import { UiField, UiFieldDescription, UiFieldLabel } from "ngx-ui-sdk/field"
-import { UiSwitch, UiSwitchInput, UiSwitchThumb } from "ngx-ui-sdk/switch"
+import {
+  UiField,
+  UiFieldDescription,
+  UiFieldLabel,
+} from "@ngx-ui-sdk/core/field"
+import { UiSwitch, UiSwitchInput, UiSwitchThumb } from "@ngx-ui-sdk/core/switch"
 
 @Component({
   selector: "app-example",

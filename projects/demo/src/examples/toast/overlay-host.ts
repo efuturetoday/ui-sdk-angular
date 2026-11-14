@@ -11,7 +11,7 @@ import {
   UiOverlayHost,
   UiOverlayToast,
   createOverlays,
-} from "ngx-ui-sdk/overlays"
+} from "@ngx-ui-sdk/core/overlays"
 import {
   createConfirm,
   UiAlertDialog,
@@ -21,8 +21,8 @@ import {
   UiAlertDialogDescription,
   UiAlertDialogTitle,
   type ConfirmOptions,
-} from "ngx-ui-sdk/alert-dialog"
-import { createToaster, UiToast, UiToastTitle } from "ngx-ui-sdk/toast"
+} from "@ngx-ui-sdk/core/alert-dialog"
+import { createToaster, UiToast, UiToastTitle } from "@ngx-ui-sdk/core/toast"
 
 @Component({
   selector: "app-example",

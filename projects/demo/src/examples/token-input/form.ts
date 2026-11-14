@@ -4,13 +4,13 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-} from "ngx-ui-sdk/checkbox"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/checkbox"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   type TokenInputValue,
   UiTokenInput,
   UiTokenInputEditor,
-} from "ngx-ui-sdk/token-input"
+} from "@ngx-ui-sdk/core/token-input"
 import { injectLog } from "../../shared/log"
 import { uniqueId } from "../../shared/id"
 

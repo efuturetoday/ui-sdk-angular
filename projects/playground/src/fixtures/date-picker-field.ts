@@ -13,20 +13,20 @@ import {
   UiCalendarWeek,
   UiCalendarWeekday,
   UiCalendarWeekdays,
-} from "ngx-ui-sdk/calendar"
+} from "@ngx-ui-sdk/core/calendar"
 import {
   UiDatePicker,
   UiDatePickerContent,
   UiDatePickerHint,
   UiDatePickerInput,
   UiDatePickerTrigger,
-} from "ngx-ui-sdk/date-picker"
+} from "@ngx-ui-sdk/core/date-picker"
 import {
   UiField,
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
-} from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/field"
 
 // Upstream's fixture. The calendar inside the content is written out, which
 // Vue renders without content.

@@ -4,8 +4,8 @@ import {
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
-} from "ngx-ui-sdk/field"
-import { UiSwitch, UiSwitchInput, UiSwitchThumb } from "ngx-ui-sdk/switch"
+} from "@ngx-ui-sdk/core/field"
+import { UiSwitch, UiSwitchInput, UiSwitchThumb } from "@ngx-ui-sdk/core/switch"
 import { injectLog } from "../../shared/log"
 
 @Component({

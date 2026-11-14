@@ -1,7 +1,7 @@
 import { Component } from "@angular/core"
-import { UiDateInput, UiDateInputSegment } from "ngx-ui-sdk/date-input"
-import { UiField, UiFieldError, UiFieldLabel } from "ngx-ui-sdk/field"
-import { UiTimeInput, UiTimeInputSegment } from "ngx-ui-sdk/time-input"
+import { UiDateInput, UiDateInputSegment } from "@ngx-ui-sdk/core/date-input"
+import { UiField, UiFieldError, UiFieldLabel } from "@ngx-ui-sdk/core/field"
+import { UiTimeInput, UiTimeInputSegment } from "@ngx-ui-sdk/core/time-input"
 import { injectLog } from "../../shared/log"
 
 @Component({

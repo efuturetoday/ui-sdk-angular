@@ -8,7 +8,7 @@ import {
   UiFileInputItemRemove,
   UiFileInputList,
   UiFileInputTrigger,
-} from "ngx-ui-sdk/file-input"
+} from "@ngx-ui-sdk/core/file-input"
 
 @Component({
   selector: "app-example",

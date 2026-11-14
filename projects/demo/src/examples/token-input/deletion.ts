@@ -1,6 +1,6 @@
 import { Component, signal } from "@angular/core"
 import { LucideCheck, LucideChevronDown, LucideFile } from "@lucide/angular"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiSelect,
   UiSelectContent,
@@ -9,7 +9,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/select"
 import {
   type TokenDeletion,
   type TokenInputValue,
@@ -18,7 +18,7 @@ import {
   UiTokenInputEditor,
   UiTokenInputToken,
   UiTokenInputTokens,
-} from "ngx-ui-sdk/token-input"
+} from "@ngx-ui-sdk/core/token-input"
 import {
   type TriggerDefinition,
   type TriggerMenuDataItem,
@@ -26,7 +26,7 @@ import {
   UiTriggerMenuContent,
   UiTriggerMenuItem,
   UiTriggerMenuList,
-} from "ngx-ui-sdk/trigger-menu"
+} from "@ngx-ui-sdk/core/trigger-menu"
 import { injectLog } from "../../shared/log"
 
 @Component({

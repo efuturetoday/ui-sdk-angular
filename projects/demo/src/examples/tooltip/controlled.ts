@@ -5,12 +5,12 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-} from "ngx-ui-sdk/checkbox"
+} from "@ngx-ui-sdk/core/checkbox"
 import {
   UiTooltip,
   UiTooltipContent,
   UiTooltipTrigger,
-} from "ngx-ui-sdk/tooltip"
+} from "@ngx-ui-sdk/core/tooltip"
 import { injectLog } from "../../shared/log"
 
 @Component({

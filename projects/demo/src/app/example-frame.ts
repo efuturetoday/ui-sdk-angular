@@ -13,13 +13,18 @@ import {
 } from "@angular/core"
 import { DomSanitizer } from "@angular/platform-browser"
 import { LucideRotateCcw } from "@lucide/angular"
-import { UiButton } from "ngx-ui-sdk/button"
-import { UiTabs, UiTabsList, UiTabsPanel, UiTabsTab } from "ngx-ui-sdk/tabs"
+import { UiButton } from "@ngx-ui-sdk/core/button"
+import {
+  UiTabs,
+  UiTabsList,
+  UiTabsPanel,
+  UiTabsTab,
+} from "@ngx-ui-sdk/core/tabs"
 import {
   UiTooltip,
   UiTooltipContent,
   UiTooltipTrigger,
-} from "ngx-ui-sdk/tooltip"
+} from "@ngx-ui-sdk/core/tooltip"
 import { examples } from "../examples"
 import { ExampleLog } from "../shared/log"
 

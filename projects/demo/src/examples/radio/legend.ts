@@ -1,11 +1,15 @@
 import { Component } from "@angular/core"
-import { UiFieldDescription, UiFieldLegend, UiFieldSet } from "ngx-ui-sdk/field"
+import {
+  UiFieldDescription,
+  UiFieldLegend,
+  UiFieldSet,
+} from "@ngx-ui-sdk/core/field"
 import {
   UiRadio,
   UiRadioInput,
   UiRadioGroup,
   UiRadioIndicator,
-} from "ngx-ui-sdk/radio"
+} from "@ngx-ui-sdk/core/radio"
 import { uniqueId } from "../../shared/id"
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideBookmark } from "@lucide/angular"
-import { UiToggle, UiToggleIcon } from "ngx-ui-sdk/toggle"
+import { UiToggle, UiToggleIcon } from "@ngx-ui-sdk/core/toggle"
 
 @Component({
   selector: "app-example",

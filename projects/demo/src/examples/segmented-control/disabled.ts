@@ -4,7 +4,7 @@ import {
   UiSegmentedControlIndicator,
   UiSegmentedControlInput,
   UiSegmentedControlItem,
-} from "ngx-ui-sdk/segmented-control"
+} from "@ngx-ui-sdk/core/segmented-control"
 
 @Component({
   selector: "app-example",

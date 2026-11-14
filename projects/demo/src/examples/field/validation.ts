@@ -4,8 +4,8 @@ import {
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
-} from "ngx-ui-sdk/field"
-import { UiInput } from "ngx-ui-sdk/input"
+} from "@ngx-ui-sdk/core/field"
+import { UiInput } from "@ngx-ui-sdk/core/input"
 import { injectLog } from "../../shared/log"
 
 @Component({

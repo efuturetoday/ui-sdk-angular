@@ -4,8 +4,12 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-} from "ngx-ui-sdk/checkbox"
-import { UiField, UiFieldDescription, UiFieldLabel } from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/checkbox"
+import {
+  UiField,
+  UiFieldDescription,
+  UiFieldLabel,
+} from "@ngx-ui-sdk/core/field"
 import { injectLog } from "../../shared/log"
 
 @Component({

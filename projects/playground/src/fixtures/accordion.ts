@@ -10,7 +10,7 @@ import {
   UiAccordionPanel,
   UiAccordionTrigger,
   type AccordionValueChangeReason,
-} from "ngx-ui-sdk/accordion"
+} from "@ngx-ui-sdk/core/accordion"
 
 @Component({
   selector: "app-fixture",

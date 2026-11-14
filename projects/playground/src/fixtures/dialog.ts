@@ -24,7 +24,7 @@ import {
   UiAlertDialogDescription,
   UiAlertDialogTitle,
   UiAlertDialogTrigger,
-} from "ngx-ui-sdk/alert-dialog"
+} from "@ngx-ui-sdk/core/alert-dialog"
 import {
   createDialogController,
   UiDialog,
@@ -36,7 +36,7 @@ import {
   UiDialogTitle,
   UiDialogTrigger,
   type DialogOpenChangeDetails,
-} from "ngx-ui-sdk/dialog"
+} from "@ngx-ui-sdk/core/dialog"
 
 @Component({
   selector: "app-fixture",

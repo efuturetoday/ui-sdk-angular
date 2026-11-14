@@ -4,7 +4,7 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-} from "ngx-ui-sdk/checkbox"
+} from "@ngx-ui-sdk/core/checkbox"
 import {
   UiPopover,
   UiPopoverClose,
@@ -12,7 +12,7 @@ import {
   UiPopoverDescription,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 
 @Component({
   selector: "app-example",

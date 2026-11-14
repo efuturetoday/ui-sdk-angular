@@ -10,7 +10,7 @@ import {
   UiMenuContent,
   UiMenuItem,
   UiMenuTrigger,
-} from "ngx-ui-sdk/menu"
+} from "@ngx-ui-sdk/core/menu"
 import {
   createPopoverController,
   type PopoverDismissAttemptDetails,
@@ -22,7 +22,7 @@ import {
   UiPopoverShortcut,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 
 @Component({
   selector: "app-fixture",

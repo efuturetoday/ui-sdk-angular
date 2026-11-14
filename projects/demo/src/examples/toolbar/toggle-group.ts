@@ -6,8 +6,8 @@ import {
   LucideList,
   LucideListOrdered,
 } from "@lucide/angular"
-import { UiToggle, UiToggleGroup, UiToggleIcon } from "ngx-ui-sdk/toggle"
-import { UiToolbar, UiToolbarSeparator } from "ngx-ui-sdk/toolbar"
+import { UiToggle, UiToggleGroup, UiToggleIcon } from "@ngx-ui-sdk/core/toggle"
+import { UiToolbar, UiToolbarSeparator } from "@ngx-ui-sdk/core/toolbar"
 import { injectLog } from "../../shared/log"
 
 @Component({

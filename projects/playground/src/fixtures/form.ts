@@ -16,14 +16,14 @@ import {
   UiFieldLabel,
   UiFieldLegend,
   UiFieldSet,
-} from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/field"
 import {
   UiInput,
   UiInputClear,
   UiInputGroup,
   UiTextarea,
   type InputValueChangeReason,
-} from "ngx-ui-sdk/input"
+} from "@ngx-ui-sdk/core/input"
 import type { ChangeDetails } from "@ui-sdk/core"
 
 type Change = {

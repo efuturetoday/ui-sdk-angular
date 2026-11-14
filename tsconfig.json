@@ -16,8 +16,8 @@
     "paths": {
       "tests/*": ["./vendor/ui/tests/*"],
       "playground-fixtures/*": ["./vendor/ui/apps/playground/src/fixtures/*"],
-      "ngx-ui-sdk": ["./projects/ngx-ui-sdk/src/public-api.ts"],
-      "ngx-ui-sdk/*": ["./projects/ngx-ui-sdk/*/src/public-api.ts"]
+      "@ngx-ui-sdk/core": ["./projects/core/src/public-api.ts"],
+      "@ngx-ui-sdk/core/*": ["./projects/core/*/src/public-api.ts"]
     }
   },
   "angularCompilerOptions": {
@@ -28,10 +28,10 @@
   "files": [],
   "references": [
     {
-      "path": "./projects/ngx-ui-sdk/tsconfig.lib.json"
+      "path": "./projects/core/tsconfig.lib.json"
     },
     {
-      "path": "./projects/ngx-ui-sdk/tsconfig.spec.json"
+      "path": "./projects/core/tsconfig.spec.json"
     },
     {
       "path": "./projects/demo/tsconfig.app.json"

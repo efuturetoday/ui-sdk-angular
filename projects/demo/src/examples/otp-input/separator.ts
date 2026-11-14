@@ -5,7 +5,7 @@ import {
   UiOtpInputGroup,
   UiOtpInputSeparator,
   UiOtpInputSlot,
-} from "ngx-ui-sdk/otp-input"
+} from "@ngx-ui-sdk/core/otp-input"
 
 @Component({
   selector: "app-example",

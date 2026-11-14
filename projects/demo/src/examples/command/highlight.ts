@@ -16,7 +16,7 @@ import {
   UiCommandItemIcon,
   UiCommandItemText,
   UiCommandList,
-} from "ngx-ui-sdk/command"
+} from "@ngx-ui-sdk/core/command"
 
 @Component({
   selector: "app-example",

@@ -10,7 +10,7 @@ import {
   UiComboboxLabel,
   UiComboboxList,
   UiComboboxTrigger,
-} from "ngx-ui-sdk/combobox"
+} from "@ngx-ui-sdk/core/combobox"
 import {
   UiSelect,
   UiSelectContent,
@@ -19,7 +19,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/select"
 
 function fuzzy(item: { label: string }, query: string) {
   let at = 0

@@ -7,7 +7,7 @@ import {
   UiDrawerDescription,
   UiDrawerTitle,
   UiDrawerTrigger,
-} from "ngx-ui-sdk/drawer"
+} from "@ngx-ui-sdk/core/drawer"
 
 const paragraphs = [
   "The drawer rises from any edge, rests on snap points and follows your finger with the same spring as a system sheet.",

@@ -7,7 +7,7 @@ import {
   UiTreeItem,
   UiTreeItemIndicator,
   UiTreeItemLabel,
-} from "ngx-ui-sdk/tree"
+} from "@ngx-ui-sdk/core/tree"
 
 // A tree of links, rendered with the tree fixture's classes. The current page
 // follows the address.

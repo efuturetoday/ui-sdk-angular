@@ -4,7 +4,7 @@ import {
   UiListbox,
   UiListboxItem,
   UiListboxItemIndicator,
-} from "ngx-ui-sdk/listbox"
+} from "@ngx-ui-sdk/core/listbox"
 import { injectLog } from "../../shared/log"
 
 @Component({

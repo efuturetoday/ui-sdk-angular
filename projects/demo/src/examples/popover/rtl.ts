@@ -6,7 +6,7 @@ import {
   UiPopoverDescription,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 
 @Component({
   selector: "app-example",

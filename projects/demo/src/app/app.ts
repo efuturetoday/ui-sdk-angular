@@ -14,13 +14,13 @@ import {
   UiDrawerContent,
   UiDrawerTitle,
   UiDrawerTrigger,
-} from "ngx-ui-sdk/drawer"
-import { UiToggle } from "ngx-ui-sdk/toggle"
+} from "@ngx-ui-sdk/core/drawer"
+import { UiToggle } from "@ngx-ui-sdk/core/toggle"
 import {
   UiTooltip,
   UiTooltipContent,
   UiTooltipTrigger,
-} from "ngx-ui-sdk/tooltip"
+} from "@ngx-ui-sdk/core/tooltip"
 import { examples } from "../examples"
 import { ExampleFrame } from "./example-frame"
 

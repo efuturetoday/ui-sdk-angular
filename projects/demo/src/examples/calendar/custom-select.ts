@@ -8,7 +8,7 @@ import {
   UiCalendarWeek,
   UiCalendarWeekday,
   UiCalendarWeekdays,
-} from "ngx-ui-sdk/calendar"
+} from "@ngx-ui-sdk/core/calendar"
 import {
   UiSelect,
   UiSelectContent,
@@ -16,7 +16,7 @@ import {
   UiSelectItemIndicator,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/select"
 
 @Component({
   selector: "app-example",

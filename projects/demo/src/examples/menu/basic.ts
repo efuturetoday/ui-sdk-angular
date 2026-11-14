@@ -7,7 +7,7 @@ import {
   UiMenuItem,
   UiMenuSeparator,
   UiMenuTrigger,
-} from "ngx-ui-sdk/menu"
+} from "@ngx-ui-sdk/core/menu"
 import { injectLog } from "../../shared/log"
 
 @Component({

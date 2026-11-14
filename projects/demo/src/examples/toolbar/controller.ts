@@ -1,11 +1,11 @@
 import { Component } from "@angular/core"
 import { LucideBold, LucideItalic, LucideLink } from "@lucide/angular"
-import { injectShortcut } from "ngx-ui-sdk"
+import { injectShortcut } from "@ngx-ui-sdk/core"
 import {
   createToolbarController,
   UiToolbar,
   UiToolbarButton,
-} from "ngx-ui-sdk/toolbar"
+} from "@ngx-ui-sdk/core/toolbar"
 import { injectLog } from "../../shared/log"
 
 @Component({

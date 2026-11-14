@@ -1,12 +1,12 @@
 import { Component } from "@angular/core"
 import { LucideMinus } from "@lucide/angular"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiOtpInput,
   UiOtpInputGroup,
   UiOtpInputSeparator,
   UiOtpInputSlot,
-} from "ngx-ui-sdk/otp-input"
+} from "@ngx-ui-sdk/core/otp-input"
 
 @Component({
   selector: "app-example",

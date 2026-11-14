@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideMinus, LucideMoveHorizontal, LucidePlus } from "@lucide/angular"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiNumberInput,
   UiNumberInputControl,
@@ -9,7 +9,7 @@ import {
   UiNumberInputIncrement,
   UiNumberInputScrubArea,
   UiNumberInputScrubAreaCursor,
-} from "ngx-ui-sdk/number-input"
+} from "@ngx-ui-sdk/core/number-input"
 import { injectLog } from "../../shared/log"
 
 @Component({

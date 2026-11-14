@@ -5,12 +5,12 @@ import {
   UiDialog,
   UiDialogContent,
   UiDialogTrigger,
-} from "ngx-ui-sdk/dialog"
+} from "@ngx-ui-sdk/core/dialog"
 import {
   UiDrawer,
   UiDrawerContent,
   UiDrawerTrigger,
-} from "ngx-ui-sdk/drawer"
+} from "@ngx-ui-sdk/core/drawer"
 import {
   UiMenu,
   UiMenuContent,
@@ -18,13 +18,13 @@ import {
   UiMenuGroupLabel,
   UiMenuItem,
   UiMenuTrigger,
-} from "ngx-ui-sdk/menu"
+} from "@ngx-ui-sdk/core/menu"
 import {
   createPopoverController,
   UiPopover,
   UiPopoverContent,
   UiPopoverTrigger,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 
 // Upstream's tests/fixtures/popup-payloads.ts, inlined: it re-exports
 // `describeChange` with a ".ts" path, which this build can't compile. Its

@@ -7,7 +7,7 @@ import {
 import { dialogPatternsFixture as f } from "tests/fixtures/dialog"
 import {
   injectShortcut,
-} from "ngx-ui-sdk"
+} from "@ngx-ui-sdk/core"
 import {
   UiAlertDialog,
   UiAlertDialogBackdrop,
@@ -16,7 +16,7 @@ import {
   UiAlertDialogDescription,
   UiAlertDialogTitle,
   UiAlertDialogTrigger,
-} from "ngx-ui-sdk/alert-dialog"
+} from "@ngx-ui-sdk/core/alert-dialog"
 import {
   createDialogController,
   UiDialog,
@@ -26,19 +26,19 @@ import {
   UiDialogShortcut,
   UiDialogTitle,
   UiDialogTrigger,
-} from "ngx-ui-sdk/dialog"
+} from "@ngx-ui-sdk/core/dialog"
 import {
   UiMenu,
   UiMenuContent,
   UiMenuItem,
   UiMenuTrigger,
-} from "ngx-ui-sdk/menu"
+} from "@ngx-ui-sdk/core/menu"
 import {
   UiPopover,
   UiPopoverContent,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 
 // Hooks upstream's shared.ts gives the specs, inlined: the open changes, the
 // pending delete action, and the container the share popover renders into.

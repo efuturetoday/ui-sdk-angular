@@ -13,13 +13,13 @@ import {
   UiComboboxList,
   UiComboboxTrigger,
   UiComboboxValue,
-} from "ngx-ui-sdk/combobox"
+} from "@ngx-ui-sdk/core/combobox"
 import {
   UiField,
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
-} from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/field"
 import { injectLog } from "../../shared/log"
 
 @Component({

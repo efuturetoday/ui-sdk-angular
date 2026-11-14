@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { UiField, UiFieldControl, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiField, UiFieldControl, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   type TriggerDefinition,
   type TriggerMenuDataItem,
@@ -10,7 +10,7 @@ import {
   UiTriggerMenuItem,
   UiTriggerMenuList,
   UiTriggerMenuStatus,
-} from "ngx-ui-sdk/trigger-menu"
+} from "@ngx-ui-sdk/core/trigger-menu"
 
 @Component({
   selector: "app-example",

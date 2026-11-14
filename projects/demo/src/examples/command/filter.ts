@@ -6,7 +6,7 @@ import {
   UiCommandInput,
   UiCommandItem,
   UiCommandList,
-} from "ngx-ui-sdk/command"
+} from "@ngx-ui-sdk/core/command"
 import {
   UiSelect,
   UiSelectContent,
@@ -15,7 +15,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/select"
 
 type Mode = "fuzzy" | "contains" | "startsWith" | "words"
 

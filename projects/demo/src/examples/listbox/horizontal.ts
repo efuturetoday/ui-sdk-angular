@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { UiListbox, UiListboxItem } from "ngx-ui-sdk/listbox"
+import { UiListbox, UiListboxItem } from "@ngx-ui-sdk/core/listbox"
 
 @Component({
   selector: "app-example",

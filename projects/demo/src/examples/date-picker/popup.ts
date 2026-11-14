@@ -13,7 +13,7 @@ import {
   UiCalendarWeek,
   UiCalendarWeekday,
   UiCalendarWeekdays,
-} from "ngx-ui-sdk/calendar"
+} from "@ngx-ui-sdk/core/calendar"
 import {
   type DatePickerMonthChangeReason,
   type DatePickerOpenChangeReason,
@@ -22,7 +22,7 @@ import {
   UiDatePickerHint,
   UiDatePickerInput,
   UiDatePickerTrigger,
-} from "ngx-ui-sdk/date-picker"
+} from "@ngx-ui-sdk/core/date-picker"
 import { injectLog } from "../../shared/log"
 
 @Component({

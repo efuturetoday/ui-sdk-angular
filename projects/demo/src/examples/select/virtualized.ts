@@ -1,7 +1,7 @@
 import { Component } from "@angular/core"
 import { LucideChevronDown } from "@lucide/angular"
-import { UiVirtualFor } from "ngx-ui-sdk"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiVirtualFor } from "@ngx-ui-sdk/core"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiSelect,
   UiSelectContent,
@@ -9,7 +9,7 @@ import {
   UiSelectList,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/select"
 
 type Item = { value: string; label: string }
 

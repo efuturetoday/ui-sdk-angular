@@ -4,7 +4,7 @@ import {
   UiCollapsible,
   UiCollapsiblePanel,
   UiCollapsibleTrigger,
-} from "ngx-ui-sdk/collapsible"
+} from "@ngx-ui-sdk/core/collapsible"
 import {
   UiTimeline,
   UiTimelineConnector,
@@ -13,7 +13,7 @@ import {
   UiTimelineMarker,
   UiTimelineTime,
   UiTimelineTitle,
-} from "ngx-ui-sdk/timeline"
+} from "@ngx-ui-sdk/core/timeline"
 
 @Component({
   selector: "app-example",

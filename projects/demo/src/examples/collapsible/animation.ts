@@ -4,7 +4,7 @@ import {
   UiCollapsible,
   UiCollapsiblePanel,
   UiCollapsibleTrigger,
-} from "ngx-ui-sdk/collapsible"
+} from "@ngx-ui-sdk/core/collapsible"
 import { injectLog } from "../../shared/log"
 
 @Component({

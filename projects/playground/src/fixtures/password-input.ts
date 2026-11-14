@@ -9,13 +9,13 @@ import {
   UiField,
   UiFieldDescription,
   UiFieldLabel,
-} from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/field"
 import {
   createPasswordInputController,
   UiPasswordInput,
   UiPasswordInputControl,
   UiPasswordInputToggle,
-} from "ngx-ui-sdk/password-input"
+} from "@ngx-ui-sdk/core/password-input"
 
 @Component({
   selector: "app-fixture",

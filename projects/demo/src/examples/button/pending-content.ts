@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { LucideArrowDownToLine, LucideLoaderCircle } from "@lucide/angular"
-import { UiButton } from "ngx-ui-sdk/button"
+import { UiButton } from "@ngx-ui-sdk/core/button"
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 

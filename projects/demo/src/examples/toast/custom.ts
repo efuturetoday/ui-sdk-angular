@@ -9,7 +9,7 @@ import {
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ngx-ui-sdk/toast"
+} from "@ngx-ui-sdk/core/toast"
 import { injectLog } from "../../shared/log"
 
 @Component({

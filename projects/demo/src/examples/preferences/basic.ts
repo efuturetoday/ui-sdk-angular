@@ -1,7 +1,7 @@
 import { Component } from "@angular/core"
 import { createLocalStorage, createPreference } from "@ui-sdk/core"
-import { UiButton } from "ngx-ui-sdk/button"
-import { injectPreference, UiPreferences } from "ngx-ui-sdk/preferences"
+import { UiButton } from "@ngx-ui-sdk/core/button"
+import { injectPreference, UiPreferences } from "@ngx-ui-sdk/core/preferences"
 import { injectLog } from "../../shared/log"
 
 const view = createPreference({

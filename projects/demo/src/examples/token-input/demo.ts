@@ -1,13 +1,13 @@
 import { Component } from "@angular/core"
 import { LucideX } from "@lucide/angular"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiTokenInput,
   UiTokenInputEditor,
   UiTokenInputToken,
   UiTokenInputTokenRemove,
   UiTokenInputTokens,
-} from "ngx-ui-sdk/token-input"
+} from "@ngx-ui-sdk/core/token-input"
 import {
   type TriggerDefinition,
   type TriggerMenuDataItem,
@@ -15,7 +15,7 @@ import {
   UiTriggerMenuContent,
   UiTriggerMenuItem,
   UiTriggerMenuList,
-} from "ngx-ui-sdk/trigger-menu"
+} from "@ngx-ui-sdk/core/trigger-menu"
 
 @Component({
   selector: "app-example",

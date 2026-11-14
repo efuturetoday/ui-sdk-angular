@@ -4,7 +4,7 @@ import {
   createRatingController,
   UiRating,
   UiRatingItem,
-} from "ngx-ui-sdk/rating"
+} from "@ngx-ui-sdk/core/rating"
 import { injectLog } from "../../shared/log"
 
 @Component({

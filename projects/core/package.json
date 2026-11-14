@@ -1,0 +1,30 @@
+{
+  "name": "@ngx-ui-sdk/core",
+  "version": "0.0.1",
+  "description": "UI SDK behaviors for Angular, as directives on your own elements.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/efuturetoday/ui-sdk-angular.git",
+    "directory": "projects/core"
+  },
+  "homepage": "https://efuturetoday.github.io/ui-sdk-angular/",
+  "bugs": "https://github.com/efuturetoday/ui-sdk-angular/issues",
+  "keywords": [
+    "angular",
+    "ui-sdk",
+    "headless",
+    "accessibility",
+    "directives"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/forms": "^22.0.0",
+    "@ui-sdk/core": "^0.1.0-beta.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

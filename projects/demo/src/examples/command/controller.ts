@@ -6,7 +6,7 @@ import {
   UiCommandItem,
   UiCommandList,
   UiCommandPage,
-} from "ngx-ui-sdk/command"
+} from "@ngx-ui-sdk/core/command"
 import { injectLog } from "../../shared/log"
 
 @Component({

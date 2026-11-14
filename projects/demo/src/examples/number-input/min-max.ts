@@ -1,13 +1,17 @@
 import { Component } from "@angular/core"
 import { LucideMinus, LucidePlus } from "@lucide/angular"
-import { UiField, UiFieldDescription, UiFieldLabel } from "ngx-ui-sdk/field"
+import {
+  UiField,
+  UiFieldDescription,
+  UiFieldLabel,
+} from "@ngx-ui-sdk/core/field"
 import {
   UiNumberInput,
   UiNumberInputControl,
   UiNumberInputDecrement,
   UiNumberInputGroup,
   UiNumberInputIncrement,
-} from "ngx-ui-sdk/number-input"
+} from "@ngx-ui-sdk/core/number-input"
 
 @Component({
   selector: "app-example",

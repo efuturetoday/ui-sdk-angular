@@ -1,6 +1,6 @@
 import { Component, computed, signal } from "@angular/core"
 import { LucideChevronRight } from "@lucide/angular"
-import { type ListHighlightDetails } from "ngx-ui-sdk/select"
+import { type ListHighlightDetails } from "@ngx-ui-sdk/core/select"
 import {
   type TreeItemData,
   UiTree,
@@ -8,7 +8,7 @@ import {
   UiTreeItemIndicator,
   UiTreeItemLabel,
   visibleTreeRows,
-} from "ngx-ui-sdk/tree"
+} from "@ngx-ui-sdk/core/tree"
 
 const items: TreeItemData[] = Array.from({ length: 100 }, (_, folder) => ({
   value: `folder-${folder + 1}`,

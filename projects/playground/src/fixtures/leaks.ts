@@ -13,26 +13,26 @@ import {
   UiAccordionItem,
   UiAccordionPanel,
   UiAccordionTrigger,
-} from "ngx-ui-sdk/accordion"
+} from "@ngx-ui-sdk/core/accordion"
 import {
   UiAutocomplete,
   UiAutocompleteContent,
   UiAutocompleteInput,
   UiAutocompleteItem,
   UiAutocompleteList,
-} from "ngx-ui-sdk/autocomplete"
+} from "@ngx-ui-sdk/core/autocomplete"
 import {
   UiCollapsible,
   UiCollapsiblePanel,
   UiCollapsibleTrigger,
-} from "ngx-ui-sdk/collapsible"
+} from "@ngx-ui-sdk/core/collapsible"
 import {
   UiCombobox,
   UiComboboxContent,
   UiComboboxInput,
   UiComboboxItem,
   UiComboboxList,
-} from "ngx-ui-sdk/combobox"
+} from "@ngx-ui-sdk/core/combobox"
 import {
   UiDialog,
   UiDialogClose,
@@ -40,7 +40,7 @@ import {
   UiDialogDescription,
   UiDialogTitle,
   UiDialogTrigger,
-} from "ngx-ui-sdk/dialog"
+} from "@ngx-ui-sdk/core/dialog"
 import {
   UiDrawer,
   UiDrawerBackdrop,
@@ -49,79 +49,79 @@ import {
   UiDrawerDescription,
   UiDrawerTitle,
   UiDrawerTrigger,
-} from "ngx-ui-sdk/drawer"
+} from "@ngx-ui-sdk/core/drawer"
 import {
   UiHoverCard,
   UiHoverCardContent,
   UiHoverCardTrigger,
-} from "ngx-ui-sdk/hover-card"
+} from "@ngx-ui-sdk/core/hover-card"
 import {
   UiMenu,
   UiMenuContent,
   UiMenuItem,
   UiMenuTrigger,
-} from "ngx-ui-sdk/menu"
+} from "@ngx-ui-sdk/core/menu"
 import {
   UiPopover,
   UiPopoverClose,
   UiPopoverContent,
   UiPopoverTrigger,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 import {
   UiResizable,
   UiResizableHandle,
   UiResizablePanel,
-} from "ngx-ui-sdk/resizable"
+} from "@ngx-ui-sdk/core/resizable"
 import {
   UiScrollArea,
   UiScrollAreaContent,
   UiScrollAreaScrollbar,
   UiScrollAreaThumb,
   UiScrollAreaViewport,
-} from "ngx-ui-sdk/scroll-area"
+} from "@ngx-ui-sdk/core/scroll-area"
 import {
   UiSelect,
   UiSelectContent,
   UiSelectItem,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/select"
 import {
   UiSlider,
   UiSliderControl,
   UiSliderIndicator,
   UiSliderThumb,
   UiSliderTrack,
-} from "ngx-ui-sdk/slider"
+} from "@ngx-ui-sdk/core/slider"
 import {
   UiTabs,
   UiTabsIndicator,
   UiTabsList,
   UiTabsPanel,
   UiTabsTab,
-} from "ngx-ui-sdk/tabs"
+} from "@ngx-ui-sdk/core/tabs"
 import {
   UiToolbar,
   UiToolbarButton,
-} from "ngx-ui-sdk/toolbar"
+} from "@ngx-ui-sdk/core/toolbar"
 import {
   UiTooltip,
   UiTooltipContent,
   UiTooltipTrigger,
-} from "ngx-ui-sdk/tooltip"
+} from "@ngx-ui-sdk/core/tooltip"
 import {
   UiTree,
   UiTreeGroup,
   UiTreeItem,
   UiTreeItemLabel,
   type TreeItemData,
-} from "ngx-ui-sdk/tree"
+} from "@ngx-ui-sdk/core/tree"
 import {
   UiWaterfall,
   UiWaterfallBar,
   UiWaterfallRow,
   UiWaterfallRowHeader,
-} from "ngx-ui-sdk/waterfall"
+} from "@ngx-ui-sdk/core/waterfall"
 
 // One component for the leak specs, picked with ?component=, and a button
 // that mounts and unmounts it. The tree's and the waterfall's rows are

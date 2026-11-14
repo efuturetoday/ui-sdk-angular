@@ -1,14 +1,14 @@
 import { Component, inject, signal } from "@angular/core"
 import {
   UiButton,
-} from "ngx-ui-sdk/button"
+} from "@ngx-ui-sdk/core/button"
 import {
   UiSeparator,
-} from "ngx-ui-sdk/separator"
+} from "@ngx-ui-sdk/core/separator"
 import {
   UiToggle,
   UiToggleGroup,
-} from "ngx-ui-sdk/toggle"
+} from "@ngx-ui-sdk/core/toggle"
 
 // A class on the toggle's own element reads its state only from a host
 // binding, which runs after the toggle's `ngOnInit`.

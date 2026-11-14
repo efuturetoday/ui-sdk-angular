@@ -6,7 +6,7 @@ import {
   UiPopoverDescription,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 import {
   UiSelect,
   UiSelectContent,
@@ -15,7 +15,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/select"
 
 type Side = "top" | "right" | "bottom" | "left"
 type Align = "start" | "center" | "end"

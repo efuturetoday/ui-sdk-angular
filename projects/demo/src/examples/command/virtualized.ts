@@ -1,11 +1,11 @@
 import { Component } from "@angular/core"
-import { UiVirtualFor } from "ngx-ui-sdk"
+import { UiVirtualFor } from "@ngx-ui-sdk/core"
 import {
   UiCommand,
   UiCommandInput,
   UiCommandItem,
   UiCommandList,
-} from "ngx-ui-sdk/command"
+} from "@ngx-ui-sdk/core/command"
 
 type Row = { value: string; label: string }
 

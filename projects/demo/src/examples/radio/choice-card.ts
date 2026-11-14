@@ -1,11 +1,11 @@
 import { Component } from "@angular/core"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiRadio,
   UiRadioInput,
   UiRadioGroup,
   UiRadioIndicator,
-} from "ngx-ui-sdk/radio"
+} from "@ngx-ui-sdk/core/radio"
 
 @Component({
   selector: "app-example",

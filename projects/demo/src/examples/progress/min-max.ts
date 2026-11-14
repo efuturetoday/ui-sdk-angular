@@ -5,7 +5,7 @@ import {
   UiProgressLabel,
   UiProgressTrack,
   UiProgressValue,
-} from "ngx-ui-sdk/progress"
+} from "@ngx-ui-sdk/core/progress"
 
 @Component({
   selector: "app-example",

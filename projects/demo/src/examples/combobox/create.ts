@@ -18,7 +18,7 @@ import {
   UiComboboxLabel,
   UiComboboxList,
   UiComboboxValue,
-} from "ngx-ui-sdk/combobox"
+} from "@ngx-ui-sdk/core/combobox"
 
 const initialLabels = [
   "Bug",

@@ -1,12 +1,12 @@
 import { Component } from "@angular/core"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   fromText,
   toText,
   type TokenCodec,
   UiTokenInput,
   UiTokenInputEditor,
-} from "ngx-ui-sdk/token-input"
+} from "@ngx-ui-sdk/core/token-input"
 import { injectLog } from "../../shared/log"
 
 const chat: TokenCodec = {

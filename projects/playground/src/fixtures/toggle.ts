@@ -4,17 +4,17 @@ import { toggleAction, toggleFixture } from "tests/fixtures/toggle"
 import {
   UiButton,
   type ButtonActionDetails,
-} from "ngx-ui-sdk/button"
+} from "@ngx-ui-sdk/core/button"
 import {
   UiSeparator,
-} from "ngx-ui-sdk/separator"
+} from "@ngx-ui-sdk/core/separator"
 import {
   createToggleGroupController,
   UiToggle,
   UiToggleGroup,
   type TogglePressedChangeReason,
   type ToggleGroupValueChangeReason,
-} from "ngx-ui-sdk/toggle"
+} from "@ngx-ui-sdk/core/toggle"
 import type { ChangeDetails } from "@ui-sdk/core"
 
 // A Promise and the buttons that settle it.

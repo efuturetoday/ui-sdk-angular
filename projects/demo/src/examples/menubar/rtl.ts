@@ -7,8 +7,8 @@ import {
   UiMenuSub,
   UiMenuSubTrigger,
   UiMenuTrigger,
-} from "ngx-ui-sdk/menu"
-import { UiMenubar } from "ngx-ui-sdk/menubar"
+} from "@ngx-ui-sdk/core/menu"
+import { UiMenubar } from "@ngx-ui-sdk/core/menubar"
 
 @Component({
   selector: "app-example",

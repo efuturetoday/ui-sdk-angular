@@ -6,20 +6,20 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-ui-sdk": {
+    "core": {
       "projectType": "library",
-      "root": "projects/ngx-ui-sdk",
-      "sourceRoot": "projects/ngx-ui-sdk/src",
+      "root": "projects/core",
+      "sourceRoot": "projects/core/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngx-ui-sdk/tsconfig.lib.prod.json"
+              "tsConfig": "projects/core/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ngx-ui-sdk/tsconfig.lib.json"
+              "tsConfig": "projects/core/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,7 +27,7 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/ngx-ui-sdk/tsconfig.spec.json",
+            "tsConfig": "projects/core/tsconfig.spec.json",
             "include": ["**/*.spec.ts", "../*/src/**/*.spec.ts"]
           }
         }

@@ -1,12 +1,12 @@
 import { Component } from "@angular/core"
-import { type NumberFormat } from "ngx-ui-sdk/meter"
+import { type NumberFormat } from "@ngx-ui-sdk/core/meter"
 import {
   UiProgress,
   UiProgressIndicator,
   UiProgressLabel,
   UiProgressTrack,
   UiProgressValue,
-} from "ngx-ui-sdk/progress"
+} from "@ngx-ui-sdk/core/progress"
 
 @Component({
   selector: "app-example",

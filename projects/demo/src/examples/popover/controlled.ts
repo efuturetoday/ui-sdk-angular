@@ -4,9 +4,9 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-} from "ngx-ui-sdk/checkbox"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
-import { UiInput } from "ngx-ui-sdk/input"
+} from "@ngx-ui-sdk/core/checkbox"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
+import { UiInput } from "@ngx-ui-sdk/core/input"
 import {
   type PopoverOpenChangeDetails,
   UiPopover,
@@ -15,7 +15,7 @@ import {
   UiPopoverDescription,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 import { injectLog } from "../../shared/log"
 
 @Component({

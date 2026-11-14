@@ -5,7 +5,7 @@ import {
   UiTabsList,
   UiTabsPanel,
   UiTabsTab,
-} from "ngx-ui-sdk/tabs"
+} from "@ngx-ui-sdk/core/tabs"
 
 // Many tabs for the counts specs.
 @Component({

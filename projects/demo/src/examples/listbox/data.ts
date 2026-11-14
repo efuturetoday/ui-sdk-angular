@@ -4,8 +4,8 @@ import {
   UiListbox,
   UiListboxItem,
   UiListboxItemIndicator,
-} from "ngx-ui-sdk/listbox"
-import { type ListData } from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/listbox"
+import { type ListData } from "@ngx-ui-sdk/core/select"
 import { injectLog } from "../../shared/log"
 
 type Plan = { id: string; price: number }

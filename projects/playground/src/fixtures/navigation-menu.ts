@@ -15,7 +15,7 @@ import {
   UiNavigationMenuList,
   UiNavigationMenuTrigger,
   UiNavigationMenuViewport,
-} from "ngx-ui-sdk/navigation-menu"
+} from "@ngx-ui-sdk/core/navigation-menu"
 
 @Component({
   selector: "app-fixture",

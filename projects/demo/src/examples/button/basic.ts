@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { UiButton } from "ngx-ui-sdk/button"
+import { UiButton } from "@ngx-ui-sdk/core/button"
 import { injectLog } from "../../shared/log"
 
 @Component({

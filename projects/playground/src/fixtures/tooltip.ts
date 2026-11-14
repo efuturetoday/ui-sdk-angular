@@ -11,7 +11,7 @@ import {
   UiPopoverContent,
   UiPopoverTitle,
   UiPopoverTrigger,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 import {
   createTooltipController,
   UiTooltip,
@@ -19,7 +19,7 @@ import {
   UiTooltipContent,
   UiTooltipShortcut,
   UiTooltipTrigger,
-} from "ngx-ui-sdk/tooltip"
+} from "@ngx-ui-sdk/core/tooltip"
 
 @Component({
   selector: "app-fixture",

@@ -3,7 +3,7 @@ import { listboxAction, listboxFixture as f } from "tests/fixtures/listbox"
 import {
   UiListbox,
   UiListboxItem,
-} from "ngx-ui-sdk/listbox"
+} from "@ngx-ui-sdk/core/listbox"
 
 // Parts rendered as other elements, with class names of state.
 @Component({

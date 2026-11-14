@@ -16,7 +16,7 @@ import {
   UiTokenInputToken,
   UiTokenInputTokenRemove,
   UiTokenInputTokens,
-} from "ngx-ui-sdk/token-input"
+} from "@ngx-ui-sdk/core/token-input"
 import {
   type TriggerDefinition,
   type TriggerMenuDataItem,
@@ -27,7 +27,7 @@ import {
   UiTriggerMenuHint,
   UiTriggerMenuItem,
   UiTriggerMenuList,
-} from "ngx-ui-sdk/trigger-menu"
+} from "@ngx-ui-sdk/core/trigger-menu"
 import { injectLog } from "../../shared/log"
 
 const loadFile = () => new Promise<void>((resolve) => setTimeout(resolve, 800))

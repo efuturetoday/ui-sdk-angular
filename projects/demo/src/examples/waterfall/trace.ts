@@ -13,7 +13,7 @@ import {
   UiWaterfallRowHeader,
   UiWaterfallTick,
   visibleWaterfallRows,
-} from "ngx-ui-sdk/waterfall"
+} from "@ngx-ui-sdk/core/waterfall"
 import { injectLog } from "../../shared/log"
 
 @Component({

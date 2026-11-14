@@ -21,7 +21,7 @@ import path from "node:path"
 import ts from "typescript"
 
 const root = path.resolve(import.meta.dirname, "..")
-const library = path.join(root, "projects/ngx-ui-sdk")
+const library = path.join(root, "projects/core")
 // The primary entry and one secondary entry per component.
 const entries = [
   path.join(library, "src/public-api.ts"),
@@ -40,8 +40,8 @@ const allowances = []
 const program = ts.createProgram(entries, {
   module: ts.ModuleKind.ESNext,
   paths: {
-    "ngx-ui-sdk": [path.join(library, "src/public-api.ts")],
-    "ngx-ui-sdk/*": [path.join(library, "*/src/public-api.ts")],
+    "@ngx-ui-sdk/core": [path.join(library, "src/public-api.ts")],
+    "@ngx-ui-sdk/core/*": [path.join(library, "*/src/public-api.ts")],
   },
   target: ts.ScriptTarget.ES2022,
   moduleResolution: ts.ModuleResolutionKind.Bundler,

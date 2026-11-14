@@ -4,7 +4,7 @@ import {
   UiTooltipArrow,
   UiTooltipContent,
   UiTooltipTrigger,
-} from "ngx-ui-sdk/tooltip"
+} from "@ngx-ui-sdk/core/tooltip"
 
 @Component({
   selector: "app-example",

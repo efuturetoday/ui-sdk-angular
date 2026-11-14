@@ -4,8 +4,8 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-} from "ngx-ui-sdk/checkbox"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/checkbox"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiSelect,
   UiSelectContent,
@@ -13,7 +13,7 @@ import {
   UiSelectItemIndicator,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/select"
 
 @Component({
   selector: "app-example",

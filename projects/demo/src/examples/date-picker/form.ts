@@ -13,19 +13,19 @@ import {
   UiCalendarWeek,
   UiCalendarWeekday,
   UiCalendarWeekdays,
-} from "ngx-ui-sdk/calendar"
+} from "@ngx-ui-sdk/core/calendar"
 import {
   UiDatePicker,
   UiDatePickerContent,
   UiDatePickerInput,
   UiDatePickerTrigger,
-} from "ngx-ui-sdk/date-picker"
+} from "@ngx-ui-sdk/core/date-picker"
 import {
   UiField,
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
-} from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/field"
 import { injectLog } from "../../shared/log"
 
 @Component({

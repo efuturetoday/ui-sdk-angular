@@ -7,7 +7,7 @@ import {
   UiListboxItem,
   UiListboxItemIndicator,
   UiListboxSeparator,
-} from "ngx-ui-sdk/listbox"
+} from "@ngx-ui-sdk/core/listbox"
 
 @Component({
   selector: "app-example",

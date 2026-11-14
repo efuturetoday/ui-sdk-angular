@@ -6,7 +6,7 @@ import {
   LucideShare,
   LucideTrash,
 } from "@lucide/angular"
-import { UiField, UiFieldControl, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiField, UiFieldControl, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   type TriggerDefinition,
   UiTriggerMenu,
@@ -15,7 +15,7 @@ import {
   UiTriggerMenuItem,
   UiTriggerMenuItemIcon,
   UiTriggerMenuList,
-} from "ngx-ui-sdk/trigger-menu"
+} from "@ngx-ui-sdk/core/trigger-menu"
 
 @Component({
   selector: "app-example",

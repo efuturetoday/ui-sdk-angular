@@ -11,7 +11,7 @@ import {
   UiResizable,
   UiResizableHandle,
   UiResizablePanel,
-} from "ngx-ui-sdk/resizable"
+} from "@ngx-ui-sdk/core/resizable"
 
 @Component({
   selector: "app-fixture",

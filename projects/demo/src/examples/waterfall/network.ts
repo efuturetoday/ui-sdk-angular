@@ -13,7 +13,7 @@ import {
   UiWaterfallRow,
   UiWaterfallRowHeader,
   UiWaterfallTick,
-} from "ngx-ui-sdk/waterfall"
+} from "@ngx-ui-sdk/core/waterfall"
 
 @Component({
   selector: "app-example",

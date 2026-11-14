@@ -1,5 +1,5 @@
 import { Component, signal } from "@angular/core"
-import { UiOverlayHost, UiOverlayToast } from "ngx-ui-sdk/overlays"
+import { UiOverlayHost, UiOverlayToast } from "@ngx-ui-sdk/core/overlays"
 import {
   toastDuration,
   toastFixture,
@@ -9,14 +9,14 @@ import {
 } from "tests/fixtures/toast"
 import {
   confirm,
-} from "ngx-ui-sdk/alert-dialog"
+} from "@ngx-ui-sdk/core/alert-dialog"
 import {
   UiDialog,
   UiDialogClose,
   UiDialogContent,
   UiDialogTitle,
   UiDialogTrigger,
-} from "ngx-ui-sdk/dialog"
+} from "@ngx-ui-sdk/core/dialog"
 import {
   createToaster,
   type ToastOptions,
@@ -27,7 +27,7 @@ import {
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ngx-ui-sdk/toast"
+} from "@ngx-ui-sdk/core/toast"
 
 // The page's toaster, the buttons' handlers and `window.showToast`, as
 // upstream's shared fixture has them; its imports don't compile here.

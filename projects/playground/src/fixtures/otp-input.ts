@@ -11,7 +11,7 @@ import {
   UiOtpInputGroup,
   UiOtpInputSeparator,
   UiOtpInputSlot,
-} from "ngx-ui-sdk/otp-input"
+} from "@ngx-ui-sdk/core/otp-input"
 
 const { code, recovery, form } = otpInputFixture
 

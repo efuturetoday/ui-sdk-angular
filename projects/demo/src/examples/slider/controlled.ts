@@ -1,5 +1,5 @@
 import { Component, signal } from "@angular/core"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiSlider,
   UiSliderControl,
@@ -7,7 +7,7 @@ import {
   UiSliderThumb,
   UiSliderTrack,
   UiSliderValue,
-} from "ngx-ui-sdk/slider"
+} from "@ngx-ui-sdk/core/slider"
 import { injectLog } from "../../shared/log"
 
 @Component({

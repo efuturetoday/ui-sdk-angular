@@ -4,7 +4,7 @@ import {
   UiMeterIndicator,
   UiMeterTrack,
   UiMeterValue,
-} from "ngx-ui-sdk/meter"
+} from "@ngx-ui-sdk/core/meter"
 
 // Parts rendered as other elements, and from their state.
 @Component({

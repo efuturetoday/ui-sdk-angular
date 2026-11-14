@@ -8,7 +8,7 @@ import {
   UiDialogTitle,
   UiDialogTrigger,
   UiDialogShortcut,
-} from "ngx-ui-sdk/dialog"
+} from "@ngx-ui-sdk/core/dialog"
 
 @Component({
   selector: "app-example",

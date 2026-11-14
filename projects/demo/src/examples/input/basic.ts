@@ -1,12 +1,16 @@
 import { Component } from "@angular/core"
 import { LucideX } from "@lucide/angular"
-import { UiField, UiFieldDescription, UiFieldLabel } from "ngx-ui-sdk/field"
+import {
+  UiField,
+  UiFieldDescription,
+  UiFieldLabel,
+} from "@ngx-ui-sdk/core/field"
 import {
   UiInput,
   UiInputClear,
   UiInputGroup,
   type InputValueChangeReason,
-} from "ngx-ui-sdk/input"
+} from "@ngx-ui-sdk/core/input"
 import type { ChangeDetails } from "@ui-sdk/core"
 import { injectLog } from "../../shared/log"
 

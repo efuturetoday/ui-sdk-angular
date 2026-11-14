@@ -4,13 +4,13 @@ import {
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
-} from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/field"
 import {
   UiRadio,
   UiRadioGroup,
   UiRadioIndicator,
   UiRadioInput,
-} from "ngx-ui-sdk/radio"
+} from "@ngx-ui-sdk/core/radio"
 import { injectLog } from "../../shared/log"
 
 @Component({

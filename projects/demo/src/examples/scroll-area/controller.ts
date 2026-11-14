@@ -7,7 +7,7 @@ import {
   UiScrollAreaThumb,
   UiScrollAreaViewport,
   createScrollAreaController,
-} from "ngx-ui-sdk/scroll-area"
+} from "@ngx-ui-sdk/core/scroll-area"
 
 @Component({
   selector: "app-example",

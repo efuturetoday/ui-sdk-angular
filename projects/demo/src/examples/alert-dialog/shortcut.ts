@@ -8,7 +8,7 @@ import {
   UiAlertDialogShortcut,
   UiAlertDialogTitle,
   UiAlertDialogTrigger,
-} from "ngx-ui-sdk/alert-dialog"
+} from "@ngx-ui-sdk/core/alert-dialog"
 
 @Component({
   selector: "app-example",

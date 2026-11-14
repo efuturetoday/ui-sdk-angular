@@ -8,17 +8,17 @@ import {
   UiHoverCard,
   UiHoverCardContent,
   UiHoverCardTrigger,
-} from "ngx-ui-sdk/hover-card"
+} from "@ngx-ui-sdk/core/hover-card"
 import {
   UiPopover,
   UiPopoverContent,
   UiPopoverTrigger,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 import {
   UiTooltip,
   UiTooltipContent,
   UiTooltipTrigger,
-} from "ngx-ui-sdk/tooltip"
+} from "@ngx-ui-sdk/core/tooltip"
 
 @Component({
   selector: "app-fixture",

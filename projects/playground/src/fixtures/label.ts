@@ -3,15 +3,15 @@ import { labelFixture } from "tests/fixtures/label"
 import {
   UiCheckbox,
   UiCheckboxInput,
-} from "ngx-ui-sdk/checkbox"
+} from "@ngx-ui-sdk/core/checkbox"
 import {
   UiLabel,
-} from "ngx-ui-sdk/label"
+} from "@ngx-ui-sdk/core/label"
 import {
   UiRadio,
   UiRadioGroup,
   UiRadioInput,
-} from "ngx-ui-sdk/radio"
+} from "@ngx-ui-sdk/core/radio"
 
 @Component({
   selector: "app-fixture",

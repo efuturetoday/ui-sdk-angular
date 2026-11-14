@@ -10,7 +10,7 @@ import {
   UiTabsPanel,
   UiTabsTab,
   type TabsValueChangeReason,
-} from "ngx-ui-sdk/tabs"
+} from "@ngx-ui-sdk/core/tabs"
 
 @Component({
   selector: "app-fixture",

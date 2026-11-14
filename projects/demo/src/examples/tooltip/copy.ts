@@ -4,7 +4,7 @@ import {
   UiTooltip,
   UiTooltipContent,
   UiTooltipTrigger,
-} from "ngx-ui-sdk/tooltip"
+} from "@ngx-ui-sdk/core/tooltip"
 
 @Component({
   selector: "app-example",
@@ -40,7 +40,7 @@ import {
   `,
 })
 class Example {
-  protected readonly command = "npm install ngx-ui-sdk"
+  protected readonly command = "npm install @ngx-ui-sdk/core"
   protected readonly copied = signal(false)
 
   protected copy() {

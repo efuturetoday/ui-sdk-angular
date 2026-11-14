@@ -5,7 +5,7 @@ import {
   UiMeterLabel,
   UiMeterTrack,
   UiMeterValue,
-} from "ngx-ui-sdk/meter"
+} from "@ngx-ui-sdk/core/meter"
 
 @Component({
   selector: "app-example",

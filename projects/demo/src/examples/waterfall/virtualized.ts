@@ -6,7 +6,7 @@ import {
   viewChild,
 } from "@angular/core"
 import { LucideChevronRight } from "@lucide/angular"
-import { type ListHighlightDetails } from "ngx-ui-sdk/select"
+import { type ListHighlightDetails } from "@ngx-ui-sdk/core/select"
 import {
   type WaterfallData,
   UiWaterfall,
@@ -15,7 +15,7 @@ import {
   UiWaterfallRow,
   UiWaterfallRowHeader,
   visibleWaterfallRows,
-} from "ngx-ui-sdk/waterfall"
+} from "@ngx-ui-sdk/core/waterfall"
 
 @Component({
   selector: "app-example",

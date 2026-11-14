@@ -8,7 +8,7 @@ import {
   UiSelectLabel,
   UiSelectTrigger,
   UiSelectValue,
-} from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/select"
 import {
   createToaster,
   UiToast,
@@ -16,7 +16,7 @@ import {
   UiToastList,
   UiToastRegion,
   UiToastTitle,
-} from "ngx-ui-sdk/toast"
+} from "@ngx-ui-sdk/core/toast"
 
 type Side = "top" | "bottom"
 type Align = "start" | "center" | "end"

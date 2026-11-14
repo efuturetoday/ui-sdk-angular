@@ -17,7 +17,7 @@ import {
   UiImageCropperZoom,
   type ImageCropperCropChangeDetails,
   type ImageCropperCropCommitDetails,
-} from "ngx-ui-sdk/image-cropper"
+} from "@ngx-ui-sdk/core/image-cropper"
 
 @Component({
   selector: "app-fixture",

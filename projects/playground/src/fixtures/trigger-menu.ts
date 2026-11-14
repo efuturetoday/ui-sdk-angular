@@ -12,7 +12,7 @@ import {
 } from "tests/fixtures/trigger-menu"
 import {
   UiTextarea,
-} from "ngx-ui-sdk/input"
+} from "@ngx-ui-sdk/core/input"
 import {
   UiTriggerMenu,
   UiTriggerMenuContent,
@@ -23,7 +23,7 @@ import {
   UiTriggerMenuList,
   UiTriggerMenuStatus,
   type TriggerMenuDataItem,
-} from "ngx-ui-sdk/trigger-menu"
+} from "@ngx-ui-sdk/core/trigger-menu"
 
 let ids = 0
 

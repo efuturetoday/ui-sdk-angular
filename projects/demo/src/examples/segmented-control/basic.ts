@@ -1,11 +1,11 @@
 import { Component } from "@angular/core"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import {
   UiSegmentedControl,
   UiSegmentedControlIndicator,
   UiSegmentedControlInput,
   UiSegmentedControlItem,
-} from "ngx-ui-sdk/segmented-control"
+} from "@ngx-ui-sdk/core/segmented-control"
 
 @Component({
   selector: "app-example",

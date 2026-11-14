@@ -9,7 +9,7 @@ import {
   UiDialogDescription,
   UiDialogTitle,
   UiDialogTrigger,
-} from "ngx-ui-sdk/dialog"
+} from "@ngx-ui-sdk/core/dialog"
 import { injectLog } from "../../shared/log"
 
 type Invoice = {

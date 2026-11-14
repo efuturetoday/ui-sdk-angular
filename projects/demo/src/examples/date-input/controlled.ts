@@ -1,6 +1,6 @@
 import { Component, signal } from "@angular/core"
-import { UiDateInput, UiDateInputSegment } from "ngx-ui-sdk/date-input"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+import { UiDateInput, UiDateInputSegment } from "@ngx-ui-sdk/core/date-input"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 import { injectLog } from "../../shared/log"
 
 @Component({

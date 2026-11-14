@@ -8,7 +8,7 @@ import {
   UiTreeItem,
   UiTreeItemIndicator,
   UiTreeItemLabel,
-} from "ngx-ui-sdk/tree"
+} from "@ngx-ui-sdk/core/tree"
 import { injectLog } from "../../shared/log"
 
 @Component({

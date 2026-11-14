@@ -2,17 +2,17 @@ import { Component, signal } from "@angular/core"
 import {
   UiAvatar,
   UiAvatarFallback,
-} from "ngx-ui-sdk/avatar"
+} from "@ngx-ui-sdk/core/avatar"
 import {
   UiOtpInput,
   UiOtpInputSlot,
-} from "ngx-ui-sdk/otp-input"
+} from "@ngx-ui-sdk/core/otp-input"
 import {
   UiProgress,
   UiProgressIndicator,
   UiProgressTrack,
   UiProgressValue,
-} from "ngx-ui-sdk/progress"
+} from "@ngx-ui-sdk/core/progress"
 
 @Component({
   selector: "app-fixture",

@@ -3,8 +3,8 @@ import {
   createDateInputController,
   UiDateInput,
   UiDateInputSegment,
-} from "ngx-ui-sdk/date-input"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/date-input"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
 
 @Component({
   selector: "app-example",

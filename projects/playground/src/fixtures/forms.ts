@@ -11,25 +11,25 @@ import {
   UiCheckboxGroupInput,
   UiCheckboxIndicator,
   type CheckedState,
-} from "ngx-ui-sdk/checkbox"
+} from "@ngx-ui-sdk/core/checkbox"
 import {
   UiField,
   UiFieldControl,
   UiFieldDescription,
   UiFieldError,
   UiFieldLabel,
-} from "ngx-ui-sdk/field"
+} from "@ngx-ui-sdk/core/field"
 import {
   UiRadio,
   UiRadioInput,
   UiRadioGroup,
   UiRadioIndicator,
-} from "ngx-ui-sdk/radio"
+} from "@ngx-ui-sdk/core/radio"
 import {
   UiSwitch,
   UiSwitchInput,
   UiSwitchThumb,
-} from "ngx-ui-sdk/switch"
+} from "@ngx-ui-sdk/core/switch"
 
 type Details = { cancel: () => void; canceled: boolean; source: string }
 

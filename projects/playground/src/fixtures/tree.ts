@@ -15,7 +15,7 @@ import {
   UiTreeItemIndicator,
   UiTreeItemLabel,
   type TreeExpandedChangeDetails,
-} from "ngx-ui-sdk/tree"
+} from "@ngx-ui-sdk/core/tree"
 
 @Component({
   selector: "app-fixture",

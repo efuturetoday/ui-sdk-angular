@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
-import { UiLabel } from "ngx-ui-sdk/label"
-import { UiSwitch, UiSwitchInput, UiSwitchThumb } from "ngx-ui-sdk/switch"
+import { UiLabel } from "@ngx-ui-sdk/core/label"
+import { UiSwitch, UiSwitchInput, UiSwitchThumb } from "@ngx-ui-sdk/core/switch"
 
 @Component({
   selector: "app-example",

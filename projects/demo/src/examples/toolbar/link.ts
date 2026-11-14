@@ -5,7 +5,7 @@ import {
   UiToolbarButton,
   UiToolbarLink,
   UiToolbarSeparator,
-} from "ngx-ui-sdk/toolbar"
+} from "@ngx-ui-sdk/core/toolbar"
 import { injectLog } from "../../shared/log"
 
 @Component({

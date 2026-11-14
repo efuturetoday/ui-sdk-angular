@@ -7,7 +7,7 @@ import {
   UiCollapsiblePanel,
   UiCollapsibleTrigger,
   type CollapsibleOpenChangeReason,
-} from "ngx-ui-sdk/collapsible"
+} from "@ngx-ui-sdk/core/collapsible"
 import type { ChangeDetails } from "@ui-sdk/core"
 
 @Component({

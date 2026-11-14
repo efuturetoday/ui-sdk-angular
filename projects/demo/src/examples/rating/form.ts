@@ -1,7 +1,7 @@
 import { Component } from "@angular/core"
 import { LucideStar } from "@lucide/angular"
-import { UiField, UiFieldLabel } from "ngx-ui-sdk/field"
-import { UiRating, UiRatingItem } from "ngx-ui-sdk/rating"
+import { UiField, UiFieldLabel } from "@ngx-ui-sdk/core/field"
+import { UiRating, UiRatingItem } from "@ngx-ui-sdk/core/rating"
 import { injectLog } from "../../shared/log"
 
 @Component({

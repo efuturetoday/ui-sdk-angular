@@ -13,8 +13,8 @@ import {
   UiComboboxLabel,
   UiComboboxList,
   UiComboboxTrigger,
-} from "ngx-ui-sdk/combobox"
-import { type ListAnnouncement } from "ngx-ui-sdk/select"
+} from "@ngx-ui-sdk/core/combobox"
+import { type ListAnnouncement } from "@ngx-ui-sdk/core/select"
 
 type Country = { value: string; label: string; keywords?: string[] }
 type Recent = { type: "group"; label: string; items: Country[] }

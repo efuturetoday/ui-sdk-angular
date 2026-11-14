@@ -2,13 +2,13 @@ import { Component } from "@angular/core"
 import { longItems } from "tests/fixtures/select"
 import {
   UiVirtualFor,
-} from "ngx-ui-sdk"
+} from "@ngx-ui-sdk/core"
 import {
   UiCommand,
   UiCommandInput,
   UiCommandItem,
   UiCommandList,
-} from "ngx-ui-sdk/command"
+} from "@ngx-ui-sdk/core/command"
 
 type Item = { value: string; label: string }
 

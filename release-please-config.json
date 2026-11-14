@@ -3,9 +3,9 @@
   "bump-minor-pre-major": true,
   "include-component-in-tag": false,
   "packages": {
-    "projects/ngx-ui-sdk": {
+    "projects/core": {
       "release-type": "node",
-      "package-name": "ngx-ui-sdk"
+      "package-name": "@ngx-ui-sdk/core"
     }
   }
 }

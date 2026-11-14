@@ -14,7 +14,7 @@ import {
   UiTokenInputTokenRemove,
   UiTokenInputTokens,
   type TokenInputValue,
-} from "ngx-ui-sdk/token-input"
+} from "@ngx-ui-sdk/core/token-input"
 import {
   UiTriggerMenu,
   UiTriggerMenuContent,
@@ -23,7 +23,7 @@ import {
   UiTriggerMenuList,
   type TriggerMenuDataItem,
   type TriggerMenuSelectDetails,
-} from "ngx-ui-sdk/trigger-menu"
+} from "@ngx-ui-sdk/core/trigger-menu"
 
 @Component({
   selector: "app-fixture",

@@ -15,20 +15,20 @@ import {
   UiMenuRadioItem,
   UiMenuTrigger,
   type MenuDataItem,
-} from "ngx-ui-sdk/menu"
+} from "@ngx-ui-sdk/core/menu"
 import {
   createPopoverController,
   UiPopover,
   UiPopoverContent,
   UiPopoverTitle,
-} from "ngx-ui-sdk/popover"
+} from "@ngx-ui-sdk/core/popover"
 import {
   createTabsController,
   UiTabs,
   UiTabsList,
   UiTabsPanel,
   UiTabsTab,
-} from "ngx-ui-sdk/tabs"
+} from "@ngx-ui-sdk/core/tabs"
 
 @Component({
   selector: "app-fixture",

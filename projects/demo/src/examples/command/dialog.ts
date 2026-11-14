@@ -17,7 +17,7 @@ import {
   UiCommandItem,
   UiCommandItemIcon,
   UiCommandList,
-} from "ngx-ui-sdk/command"
+} from "@ngx-ui-sdk/core/command"
 import {
   UiDialog,
   UiDialogBackdrop,
@@ -25,7 +25,7 @@ import {
   UiDialogShortcut,
   UiDialogTitle,
   UiDialogTrigger,
-} from "ngx-ui-sdk/dialog"
+} from "@ngx-ui-sdk/core/dialog"
 import { injectLog } from "../../shared/log"
 
 @Component({

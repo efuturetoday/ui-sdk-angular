@@ -4,12 +4,12 @@ import {
   UiCheckbox,
   UiCheckboxIndicator,
   UiCheckboxInput,
-} from "ngx-ui-sdk/checkbox"
+} from "@ngx-ui-sdk/core/checkbox"
 import {
   UiResizable,
   UiResizableHandle,
   UiResizablePanel,
-} from "ngx-ui-sdk/resizable"
+} from "@ngx-ui-sdk/core/resizable"
 
 @Component({
   selector: "app-example",
