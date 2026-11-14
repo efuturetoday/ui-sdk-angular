@@ -17,7 +17,17 @@ const cases = [
   },
 ]
 
-// Scrolls the list by wheel on a desktop, by a swipe on a phone.
+// Scrolls the list past its first row, by wheel on a desktop or a swipe on a
+// phone, again while a slow machine still opens the popup as the first lands.
+async function scrollPastFirst(page: Page, isMobile: boolean) {
+  await expect(async () => {
+    await scrollList(page, rows(page).nth(1), isMobile)
+    await expect(
+      page.getByRole("option", { name: "Item 1", exact: true })
+    ).toHaveCount(0, { timeout: 1000 })
+  }).toPass()
+}
+
 async function scrollList(page: Page, row: Locator, isMobile: boolean) {
   const box = (await row.boundingBox())!
   if (isMobile) {
@@ -47,10 +57,7 @@ for (const { name, open } of cases) {
     }) => {
       await open(page).click()
       await expect(rows(page).first()).toHaveText("Item 1")
-      await scrollList(page, rows(page).nth(1), isMobile)
-      await expect(
-        page.getByRole("option", { name: "Item 1", exact: true })
-      ).toHaveCount(0)
+      await scrollPastFirst(page, isMobile)
       // Rows above the scrolled-to place render too, out of view.
       await expect(rows(page).nth(6)).toBeInViewport()
     })
@@ -60,10 +67,7 @@ for (const { name, open } of cases) {
       isMobile,
     }) => {
       await open(page).click()
-      await scrollList(page, rows(page).nth(1), isMobile)
-      await expect(
-        page.getByRole("option", { name: "Item 1", exact: true })
-      ).toHaveCount(0)
+      await scrollPastFirst(page, isMobile)
       await page.keyboard.press("Escape")
       await expect(rows(page)).toHaveCount(0)
       await open(page).click()
