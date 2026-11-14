@@ -77,9 +77,20 @@ Everything is unstyled. The directives set behavior and ARIA, never a color or a
 }
 ```
 
-The look of the [demo](https://efuturetoday.github.io/ui-sdk-angular/) is ui-sdk's own example styling, unchanged: [`tokens.css`](https://github.com/vercel-labs/ui/blob/main/examples/styles/tokens.css), [`base.css`](https://github.com/vercel-labs/ui/blob/main/examples/styles/base.css) and one stylesheet per component in [`examples/components`](https://github.com/vercel-labs/ui/tree/main/examples/components). It's a good starting point: copy the files for the components you use and change them from there.
+### A ready-made look
 
-The components, their parts and options work the same way as in every other ui-sdk framework. The [ui-sdk documentation](https://ui-sdk.dev/docs) explains them in detail. Its [Vue guide](https://ui-sdk.dev/docs/vue) is the closest to how things work here.
+The look of the [demo](https://efuturetoday.github.io/ui-sdk-angular/) is ui-sdk's own example styling, and it ships as an optional package, [`@ngx-ui-sdk/theme-default`](https://www.npmjs.com/package/@ngx-ui-sdk/theme-default):
+
+```bash
+npm install @ngx-ui-sdk/theme-default
+```
+
+```json
+// angular.json
+"styles": ["@ngx-ui-sdk/theme-default/all.css", "src/styles.css"]
+```
+
+Then put `data-ui-theme` on `<body>`, or on the part of the page it should style. Import single files instead of `all.css`, like `tokens.css`, `base.css` and `dialog.css`, to ship only what you use, and override its CSS variables to make it yours. More themes will follow as their own packages.
 
 ## Status
 

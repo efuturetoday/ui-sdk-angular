@@ -1,11 +1,17 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "bump-minor-pre-major": true,
-  "include-component-in-tag": false,
+  "include-component-in-tag": true,
   "packages": {
     "projects/core": {
       "release-type": "node",
-      "package-name": "@ngx-ui-sdk/core"
+      "package-name": "@ngx-ui-sdk/core",
+      "component": "core"
+    },
+    "projects/themes/default": {
+      "release-type": "node",
+      "package-name": "@ngx-ui-sdk/theme-default",
+      "component": "theme-default"
     }
   }
 }

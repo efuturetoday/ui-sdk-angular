@@ -1,0 +1,33 @@
+{
+  "name": "@ngx-ui-sdk/theme-default",
+  "version": "0.0.1",
+  "description": "ui-sdk's example look for @ngx-ui-sdk/core, as plain CSS.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/efuturetoday/ui-sdk-angular.git",
+    "directory": "projects/themes/default"
+  },
+  "homepage": "https://efuturetoday.github.io/ui-sdk-angular/",
+  "bugs": "https://github.com/efuturetoday/ui-sdk-angular/issues",
+  "keywords": [
+    "angular",
+    "ui-sdk",
+    "css",
+    "theme"
+  ],
+  "style": "./all.css",
+  "exports": {
+    ".": "./all.css",
+    "./*.css": "./*.css",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "*.css",
+    "README.md",
+    "LICENSE"
+  ]
+}

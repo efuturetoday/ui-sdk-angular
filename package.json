@@ -7,10 +7,11 @@
     "build:lib": "ng build core",
     "test:upstream": "playwright test -c playwright.upstream.config.ts",
     "format": "prettier --check . --log-level warn",
-    "lint": "node scripts/check-code.mjs && node scripts/check-comments.mjs && node scripts/check-examples.mjs && eslint .",
+    "lint": "node scripts/check-code.mjs && node scripts/check-comments.mjs && node scripts/check-examples.mjs && node scripts/build-theme.mjs --check && eslint .",
     "format:write": "prettier --write . --log-level warn",
     "test:examples": "playwright test -c playwright.examples.config.ts",
-    "test:unit": "ng test core --watch=false"
+    "test:unit": "ng test core --watch=false",
+    "build:theme": "node scripts/build-theme.mjs --check && rm -rf dist/theme-default && mkdir -p dist/theme-default && cp projects/themes/default/src/*.css projects/themes/default/package.json projects/themes/default/README.md projects/themes/default/LICENSE dist/theme-default/"
   },
   "private": true,
   "packageManager": "npm@11.19.0",
@@ -37,6 +38,7 @@
     "eslint": "^10.14.0",
     "jsdom": "^30.0.0",
     "ng-packagr": "^22.2.0",
+    "postcss": "8.5.32",
     "prettier": "^3.8.1",
     "shiki": "^4.6.0",
     "typescript": "~6.0.2",
