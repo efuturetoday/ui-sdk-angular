@@ -126,13 +126,6 @@ The components, their parts and options work the same way as in every other ui-s
 | Waterfall         |    ✅     |
 | Agent tools       |    ❌     |
 
-A few things still have known issues:
-
-- **Pagination:** page links that use `routerLink` don't change the page yet.
-- **Tree:** two accessibility checks fail while branches are expanded.
-- **Command:** with a long virtualized list, holding an arrow key can lose the highlight.
-- **Tabs:** memory grows when tabs are mounted and unmounted many times.
-
 ## Source
 
 The code, the demo and how to contribute are on [GitHub](https://github.com/efuturetoday/ui-sdk-angular). There's also a [live demo](https://efuturetoday.github.io/ui-sdk-angular/).

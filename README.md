@@ -126,13 +126,6 @@ The components, their parts and options work the same way as in every other ui-s
 | Waterfall         |    ✅     |
 | Agent tools       |    ❌     |
 
-A few things still have known issues:
-
-- **Pagination:** page links that use `routerLink` don't change the page yet.
-- **Tree:** two accessibility checks fail while branches are expanded.
-- **Command:** with a long virtualized list, holding an arrow key can lose the highlight.
-- **Tabs:** memory grows when tabs are mounted and unmounted many times.
-
 ## Develop
 
 Start with [AGENTS.md](AGENTS.md), then read [contributing/design.md](contributing/design.md) and [contributing/code.md](contributing/code.md).
