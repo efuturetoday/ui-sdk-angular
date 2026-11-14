@@ -58,7 +58,26 @@ export class EditProfile {
 }
 ```
 
-The directives don't add any styles. Style the elements however you like, and use the `data-*` attributes they set, like `data-open`, for states and animations.
+## Styling
+
+Everything is unstyled. The directives set behavior and ARIA, never a color or a margin, so what you see is your own CSS. They give you three things to style with:
+
+- **Data attributes** for state, like `data-open`, `data-highlighted`, `data-selected` and `data-disabled`, and `data-starting-style` and `data-ending-style` while a part animates in and out.
+- **`data-slot`** on every part, like `data-slot="dialog-content"`, so one stylesheet can style a component wherever it's used.
+- **CSS variables** for what only the browser knows, like `--anchor-width` and `--available-height` on a popup.
+
+```css
+[data-slot="dialog-content"] {
+  transition: opacity 150ms;
+}
+
+[data-slot="dialog-content"][data-starting-style],
+[data-slot="dialog-content"][data-ending-style] {
+  opacity: 0;
+}
+```
+
+The look of the [demo](https://efuturetoday.github.io/ui-sdk-angular/) is ui-sdk's own example styling, unchanged: [`tokens.css`](https://github.com/vercel-labs/ui/blob/main/examples/styles/tokens.css), [`base.css`](https://github.com/vercel-labs/ui/blob/main/examples/styles/base.css) and one stylesheet per component in [`examples/components`](https://github.com/vercel-labs/ui/tree/main/examples/components). It's a good starting point: copy the files for the components you use and change them from there.
 
 The components, their parts and options work the same way as in every other ui-sdk framework. The [ui-sdk documentation](https://ui-sdk.dev/docs) explains them in detail. Its [Vue guide](https://ui-sdk.dev/docs/vue) is the closest to how things work here.
 
