@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/efuturetoday/ui-sdk-angular/compare/core-v0.2.0...core-v0.2.1) (2026-11-15)
+
+
+### Bug Fixes
+
+* **core:** update to @ui-sdk/core 0.1.0-beta.5 ([#6](https://github.com/efuturetoday/ui-sdk-angular/issues/6)) ([59305b3](https://github.com/efuturetoday/ui-sdk-angular/commit/59305b31338f2e5c4e06a3892af33eb3a1c1155a))
+
 ## [0.2.0](https://github.com/efuturetoday/ui-sdk-angular/compare/core-v0.1.0...core-v0.2.0) (2026-11-14)
 
 
