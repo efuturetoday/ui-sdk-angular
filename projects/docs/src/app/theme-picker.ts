@@ -111,6 +111,14 @@ const titleOf = (name: string) =>
       color: var(--ui-muted-foreground);
     }
 
+    /* On a phone, the icon alone: the name would widen the page. */
+    @media (width < 40rem) {
+      .trigger .label,
+      .trigger .value {
+        display: none;
+      }
+    }
+
     .backdrop {
       position: fixed;
       inset: 0;
@@ -239,7 +247,7 @@ const titleOf = (name: string) =>
       <button uiDialogTrigger class="trigger" aria-label="Theme" data-round>
         <svg lucidePalette aria-hidden="true"></svg>
         <span class="label">Theme</span>
-        {{ labelOf(current()) }}
+        <span class="value">{{ labelOf(current()) }}</span>
         <svg lucideChevronDown aria-hidden="true"></svg>
       </button>
       <div *uiDialogBackdrop class="backdrop"></div>

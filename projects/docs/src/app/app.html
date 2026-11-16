@@ -140,7 +140,7 @@
     <div class="toc">
       @for (section of sections(); track section.id) {
         <a
-          [href]="'#' + section.id"
+          [href]="hrefOf(section.id)"
           [attr.aria-current]="
             section.id === activeSection() ? 'location' : null
           ">
