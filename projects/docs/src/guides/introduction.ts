@@ -35,11 +35,13 @@ import { Component } from "@angular/core"
     <section id="styles" data-title="Styles">
       <h3>Styles</h3>
       <p>
-        The parts have no styles. Use your own CSS, or start with
-        <code>@ngx-ui-sdk/theme-default</code>
-        . That is the theme of this site.
+        The parts have no styles. Use your own CSS, or start with a theme from
+        <code>@ngx-ui-sdk/themes</code>
+        , the ones on this site.
+        <a href="?doc=themes">Themes</a>
+        and
         <a href="?doc=styling">Styling and Animation</a>
-        explains both.
+        explain both.
       </p>
     </section>
 

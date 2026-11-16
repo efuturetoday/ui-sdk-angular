@@ -79,27 +79,27 @@ The directives add no styles. Style the parts with:
 }
 ```
 
-### Default theme
+### Themes
 
-The demo uses ui-sdk's example styles. They're available as a separate package:
+The demo's themes are a separate package: ui-sdk's own, shadcn, Material and daisyUI, some with palettes.
 
 ```bash
-npm install @ngx-ui-sdk/theme-default
+npm install @ngx-ui-sdk/themes
 ```
 
-Add it to `angular.json`:
+Add one to `angular.json`:
 
 ```json
-"styles": ["@ngx-ui-sdk/theme-default/all.css", "src/styles.css"]
+"styles": ["@ngx-ui-sdk/themes/default/all.css", "src/styles.css"]
 ```
 
-The theme only styles elements inside `data-ui-theme`. To style the whole app, add it to `<body>`:
+A theme only styles elements inside `data-ui-theme`. To style the whole app, add it to `<body>`:
 
 ```html
 <body data-ui-theme></body>
 ```
 
-To load less CSS, import `tokens.css`, `base.css` and only the components you use instead of `all.css`. Colors, radii and sizes are CSS variables you can override.
+Colors, radii and sizes are CSS variables you can override. [Its readme](https://www.npmjs.com/package/@ngx-ui-sdk/themes) has the themes, their palettes and how to load less CSS.
 
 ## Components
 

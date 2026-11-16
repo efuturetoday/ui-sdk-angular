@@ -27,7 +27,7 @@ jobs:
       - run: npm run format
       - run: npm run test:unit
       - run: npm run build:lib
-      - run: npm run build:theme
+      - run: npm run build:themes
       - run: npx ng build docs --base-href /${{ github.event.repository.name }}/
       - uses: actions/upload-pages-artifact@v5
         with:
