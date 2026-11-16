@@ -3,15 +3,15 @@
   /* The menu sits near the top, centered, with room below for its open panels inside the preview. */
 
   [data-slot="navigation-menu"] {
-    position: relative;
-
-    &:not([data-nested]) {
-      padding: 3px;
-      border-radius: var(--radius-surface);
-      background: var(--surface-1);
-      box-shadow: var(--shadow-1);
-    }
+    position: relative
   }
+
+    [data-slot="navigation-menu"]:not([data-nested]) {
+      padding: 3px;
+      border-radius: var(--ui-radius-surface);
+      background: var(--ui-surface-1);
+      box-shadow: var(--ui-shadow-sm);
+    }
 
   [data-slot="navigation-menu-list"] {
     display: flex;
@@ -21,15 +21,14 @@
     gap: 2px;
     margin: 0;
     padding: 0;
-    list-style: none;
+    list-style: none
+  }
 
-    &[data-orientation="vertical"] {
+    [data-slot="navigation-menu-list"][data-orientation="vertical"] {
       flex-direction: column;
       flex-wrap: nowrap;
       align-items: stretch;
-      width: 12rem;
     }
-  }
 
   [data-slot="navigation-menu-trigger"],
   [data-slot="navigation-menu-link"]:not(
@@ -42,53 +41,69 @@
     height: 30px;
     padding-inline: 10px;
     border: 0;
-    border-radius: var(--radius-row);
+    border-radius: var(--ui-radius-row);
     background: transparent;
-    color: var(--ink);
+    color: var(--ui-foreground);
     font: inherit;
     font-weight: 500;
     white-space: nowrap;
     text-decoration: none;
     cursor: default;
-    user-select: none;
+    user-select: none
+  }
 
-    &:hover:not([data-disabled]) {
-      background: var(--tint);
+    [data-slot="navigation-menu-trigger"]:hover:not([data-disabled]), [data-slot="navigation-menu-link"]:not(
+    [data-slot="navigation-menu-content"] *
+  ):hover:not([data-disabled]) {
+      background: var(--ui-muted);
     }
 
-    &:focus-visible {
+    [data-slot="navigation-menu-trigger"]:focus-visible, [data-slot="navigation-menu-link"]:not(
+    [data-slot="navigation-menu-content"] *
+  ):focus-visible {
       outline-offset: 0;
     }
 
-    &[data-open] {
-      background: var(--tint);
-      box-shadow: inset 0 0 0 1px var(--ink);
+    [data-slot="navigation-menu-trigger"][data-open], [data-slot="navigation-menu-link"]:not(
+    [data-slot="navigation-menu-content"] *
+  )[data-open] {
+      background: var(--ui-muted);
+      box-shadow: inset 0 0 0 1px var(--ui-border-strong);
     }
 
-    &[data-current] {
-      background: var(--tint);
+    [data-slot="navigation-menu-trigger"][data-current], [data-slot="navigation-menu-link"]:not(
+    [data-slot="navigation-menu-content"] *
+  )[data-current] {
+      background: var(--ui-muted);
       font-weight: 600;
     }
 
-    &[data-disabled] {
-      color: var(--line-disabled);
+    [data-slot="navigation-menu-trigger"][data-disabled], [data-slot="navigation-menu-link"]:not(
+    [data-slot="navigation-menu-content"] *
+  )[data-disabled] {
+      color: var(--ui-border-disabled);
     }
 
-    & > svg {
+    [data-slot="navigation-menu-trigger"] > svg, [data-slot="navigation-menu-link"]:not(
+    [data-slot="navigation-menu-content"] *
+  ) > svg {
       width: 14px;
       height: 14px;
       opacity: 0.7;
     }
 
-    [data-orientation="vertical"] & {
+    [data-orientation="vertical"] [data-slot="navigation-menu-trigger"], [data-orientation="vertical"] [data-slot="navigation-menu-link"]:not(
+    [data-slot="navigation-menu-content"] *
+  ) {
       justify-content: space-between;
-      width: 100%;
+      width: 100%
+    }
 
-      & > svg:is([dir="rtl"], [dir="rtl"] *) {
+      [data-orientation="vertical"] [data-slot="navigation-menu-trigger"] > svg:is([dir="rtl"], [dir="rtl"] *), [data-orientation="vertical"] [data-slot="navigation-menu-link"]:not(
+    [data-slot="navigation-menu-content"] *
+  ) > svg:is([dir="rtl"], [dir="rtl"] *) {
         rotate: 180deg;
       }
-    }
-  }
 
   [data-slot="navigation-menu-trigger"][data-open]:not(
       [data-orientation="vertical"] *
@@ -115,19 +130,19 @@
     padding: 0;
     overflow: hidden;
     border: 0;
-    border-radius: var(--radius-popup);
-    background: var(--surface-2);
-    box-shadow: var(--shadow-2);
-    color: var(--ink);
+    border-radius: var(--ui-radius-popup);
+    background: var(--ui-surface-2);
+    box-shadow: var(--ui-shadow-md);
+    color: var(--ui-foreground);
     outline: none;
-    transform-origin: var(--transform-origin);
+    transform-origin: var(--transform-origin)
+  }
 
-    & [data-slot="navigation-menu-content"]:not([popover]) {
+    [data-slot="navigation-menu-viewport"] [data-slot="navigation-menu-content"]:not([popover]) {
       position: absolute;
       inset-block-start: 0;
       inset-inline-start: 0;
     }
-  }
 
   [data-slot="navigation-menu-content"] {
     box-sizing: border-box;
@@ -136,142 +151,142 @@
     max-height: var(--available-height);
     overflow-y: auto;
     padding: 5px;
-    color: var(--ink);
-    outline: none;
+    color: var(--ui-foreground);
+    outline: none
+  }
 
-    &[popover] {
+    [data-slot="navigation-menu-content"][popover] {
       margin: 0;
       border: 0;
-      border-radius: var(--radius-popup);
-      background: var(--surface-2);
-      box-shadow: var(--shadow-2);
+      border-radius: var(--ui-radius-popup);
+      background: var(--ui-surface-2);
+      box-shadow: var(--ui-shadow-md);
       transform-origin: var(--transform-origin);
     }
 
-    & > [data-slot="hint"] {
-      padding: var(--space-1) 10px var(--space-2);
+    [data-slot="navigation-menu-content"] > [data-slot="hint"] {
+      padding: var(--ui-space-1) 10px var(--ui-space-2);
     }
 
-    & ul {
+    [data-slot="navigation-menu-content"] ul {
       width: 12rem;
       max-width: 100%;
       margin: 0;
       padding: 0;
-      list-style: none;
+      list-style: none
+    }
 
-      &:has([data-slot="hint"]):not([data-slot="grid"]) {
+      [data-slot="navigation-menu-content"] ul:has([data-slot="hint"]):not([data-slot="grid"]) {
         width: 18rem;
       }
 
-      & + ul {
-        margin-top: var(--space-1);
-        padding-top: var(--space-1);
-        border-top: 1px solid var(--line-faint);
+      [data-slot="navigation-menu-content"] ul + ul {
+        margin-top: var(--ui-space-1);
+        padding-top: var(--ui-space-1);
+        border-top: 1px solid var(--ui-border);
       }
+
+    [data-slot="navigation-menu-content"] [data-slot="grid"] {
+      gap: 2px;
+      width: 30rem
     }
 
-    & [data-slot="grid"] {
-      gap: 2px;
-      width: 30rem;
-
-      &:has([data-variant="featured"]) {
+      [data-slot="navigation-menu-content"] [data-slot="grid"]:has([data-variant="featured"]) {
         grid-template-columns: 0.8fr 1fr;
         width: 26rem;
       }
 
-      & > li:has([data-variant="featured"]) {
+      [data-slot="navigation-menu-content"] [data-slot="grid"] > li:has([data-variant="featured"]) {
         grid-row: span 3;
       }
 
       @media (width < 40rem) {
-        &,
-        &:has([data-variant="featured"]) {
+        [data-slot="navigation-menu-content"] [data-slot="grid"],
+        [data-slot="navigation-menu-content"] [data-slot="grid"]:has([data-variant="featured"]) {
           grid-template-columns: minmax(0, 1fr);
         }
 
-        & > li:has([data-variant="featured"]) {
+        [data-slot="navigation-menu-content"] [data-slot="grid"] > li:has([data-variant="featured"]) {
           grid-row: auto;
         }
       }
-    }
-  }
 
   [data-slot="navigation-menu-content"] [data-slot="navigation-menu-link"] {
     display: flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--ui-space-2);
     box-sizing: border-box;
     min-height: 32px;
     padding: 6px 10px;
-    border-radius: var(--radius-row);
+    border-radius: var(--ui-radius-row);
     color: inherit;
     text-decoration: none;
     outline: none;
-    cursor: default;
+    cursor: default
+  }
 
-    &:is(:hover, :focus-visible) {
-      background: var(--tint);
-      box-shadow: inset 0 0 0 1px var(--ink);
+    [data-slot="navigation-menu-content"] [data-slot="navigation-menu-link"]:is(:hover, :focus-visible) {
+      background: var(--ui-muted);
+      box-shadow: inset 0 0 0 1px var(--ui-border-strong);
     }
 
-    &[data-current]:not(:hover, :focus-visible) {
-      background: var(--tint);
+    [data-slot="navigation-menu-content"] [data-slot="navigation-menu-link"][data-current]:not(:hover, :focus-visible) {
+      background: var(--ui-muted);
     }
 
-    &[data-current] {
+    [data-slot="navigation-menu-content"] [data-slot="navigation-menu-link"][data-current] {
       font-weight: 500;
     }
 
-    &:has(> [data-slot="hint"]:not([data-show])) {
+    [data-slot="navigation-menu-content"] [data-slot="navigation-menu-link"]:has(> [data-slot="hint"]:not([data-show])) {
       flex-direction: column;
       align-items: stretch;
       gap: 2px;
-      padding: var(--space-2) 10px;
+      padding: var(--ui-space-2) 10px
+    }
 
-      & > :first-child {
+      [data-slot="navigation-menu-content"] [data-slot="navigation-menu-link"]:has(> [data-slot="hint"]:not([data-show])) > :first-child {
         font-weight: 500;
       }
 
-      & > [data-slot="hint"] {
+      [data-slot="navigation-menu-content"] [data-slot="navigation-menu-link"]:has(> [data-slot="hint"]:not([data-show])) > [data-slot="hint"] {
         display: -webkit-box;
         overflow: hidden;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
       }
 
-      &[data-variant="featured"] {
+      [data-slot="navigation-menu-content"] [data-slot="navigation-menu-link"]:has(> [data-slot="hint"]:not([data-show]))[data-variant="featured"] {
         justify-content: flex-end;
         height: 100%;
-        padding: var(--space-4);
-        border-radius: var(--radius-control);
-        background: var(--tint);
+        padding: var(--ui-space-4);
+        border-radius: var(--ui-radius-control);
+        background: var(--ui-muted)
+      }
 
-        & > :first-child {
+        [data-slot="navigation-menu-content"] [data-slot="navigation-menu-link"]:has(> [data-slot="hint"]:not([data-show]))[data-variant="featured"] > :first-child {
           font-size: 18px;
           font-weight: 600;
           line-height: 24px;
         }
 
-        & > [data-slot="hint"] {
+        [data-slot="navigation-menu-content"] [data-slot="navigation-menu-link"]:has(> [data-slot="hint"]:not([data-show]))[data-variant="featured"] > [data-slot="hint"] {
           display: block;
         }
-      }
-    }
-  }
 
   [data-slot="navigation-menu-link-icon"] {
     display: flex;
-    color: var(--muted);
+    color: var(--ui-muted-foreground)
+  }
 
-    :is(:hover, :focus-visible) > & {
+    :hover > [data-slot="navigation-menu-link-icon"], :focus-visible > [data-slot="navigation-menu-link-icon"] {
       color: inherit;
     }
 
-    & svg {
+    [data-slot="navigation-menu-link-icon"] svg {
       width: 14px;
       height: 14px;
     }
-  }
 
   /* Only this demo animates; the slide between panels is what it shows. */
 }

@@ -2,30 +2,31 @@
 @scope ([data-ui-theme]) {
   [data-slot="rating"] {
     display: inline-flex;
-    gap: 2px;
+    gap: 2px
+  }
 
-    &[data-disabled] {
+    [data-slot="rating"][data-disabled] {
       opacity: 0.6;
     }
-  }
 
   /* The fill is the star's own shape, painted up to --rating-fill from the start edge. */
   [data-slot="rating-item"] {
-    --rating-color: var(--ink);
+    --rating-color: var(--ui-foreground);
     --rating-direction: to right;
 
     display: inline-flex;
-    color: var(--line);
+    color: var(--ui-input)
+  }
 
-    &:dir(rtl) {
+    [data-slot="rating-item"]:dir(rtl) {
       --rating-direction: to left;
     }
 
-    &[data-highlighted] {
-      --rating-color: var(--muted);
+    [data-slot="rating-item"][data-highlighted] {
+      --rating-color: var(--ui-muted-foreground);
     }
 
-    &::before {
+    [data-slot="rating-item"]::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -39,18 +40,17 @@
       pointer-events: none;
     }
 
-    & > svg {
+    [data-slot="rating-item"] > svg {
       width: 24px;
       height: 24px;
     }
-  }
 
   [data-slot="rating-radio"] {
-    border-radius: var(--radius-control);
-    cursor: default;
+    border-radius: var(--ui-radius-control);
+    cursor: default
+  }
 
-    &:focus-visible {
+    [data-slot="rating-radio"]:focus-visible {
       outline-offset: 0;
     }
-  }
 }

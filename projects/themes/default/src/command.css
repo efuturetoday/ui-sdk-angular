@@ -4,24 +4,18 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    width: 24rem;
-    max-width: 100%;
     max-height: 20rem;
     overflow: hidden;
-    border-radius: var(--radius-popup);
-    background: var(--surface-3);
-    box-shadow: var(--shadow-3);
-    color: var(--ink);
+    border-radius: var(--ui-radius-popup);
+    background: var(--ui-surface-3);
+    box-shadow: var(--ui-shadow-lg);
+    color: var(--ui-foreground)
+  }
 
-    &:has([data-slot="command-input"]:focus-visible) {
-      outline: 3px solid var(--halo);
+    [data-slot="command"]:has([data-slot="command-input"]:focus-visible) {
+      outline: 3px solid var(--ui-ring);
       outline-offset: 2px;
     }
-  }
-
-  [data-slot="stack"]:has(> [data-slot="command"] [data-slot="command-input"]) {
-    max-width: 24rem;
-  }
 
   [data-slot="command-input"] {
     box-sizing: border-box;
@@ -30,52 +24,52 @@
     min-width: 0;
     height: 42px;
     margin: 0;
-    padding: 0 var(--space-3);
+    padding: 0 var(--ui-space-3);
     border: 0;
     border-radius: 0;
     background: transparent;
-    box-shadow: inset 0 -1px 0 var(--line-faint);
+    box-shadow: inset 0 -1px 0 var(--ui-border);
     color: inherit;
     font: inherit;
-    outline: none;
-
-    &::placeholder {
-      color: var(--muted);
-    }
+    outline: none
   }
+
+    [data-slot="command-input"]::placeholder {
+      color: var(--ui-muted-foreground);
+    }
 
   [data-slot="command"] > [data-slot="row"] {
     flex-shrink: 0;
     flex-wrap: nowrap;
-    padding-inline: var(--space-3);
+    padding-inline: var(--ui-space-3)
+  }
 
-    &:has([data-slot="command-input"]) {
-      box-shadow: inset 0 -1px 0 var(--line-faint);
-      color: var(--muted);
+    [data-slot="command"] > [data-slot="row"]:has([data-slot="command-input"]) {
+      box-shadow: inset 0 -1px 0 var(--ui-border);
+      color: var(--ui-muted-foreground)
+    }
 
-      & [data-slot="command-input"] {
+      [data-slot="command"] > [data-slot="row"]:has([data-slot="command-input"]) [data-slot="command-input"] {
         padding: 0;
         box-shadow: none;
-        color: var(--ink);
+        color: var(--ui-foreground);
       }
+
+    [data-slot="command"] > [data-slot="row"]:not(:has([data-slot="command-input"])) {
+      gap: var(--ui-space-1);
+      padding-block-start: var(--ui-space-2)
     }
 
-    &:not(:has([data-slot="command-input"])) {
-      gap: var(--space-1);
-      padding-block-start: var(--space-2);
-
-      &:not(:has(*)) {
+      [data-slot="command"] > [data-slot="row"]:not(:has([data-slot="command-input"])):not(:has(*)) {
         display: none;
       }
-    }
-  }
 
   [data-slot="command-status"] {
     flex-shrink: 0;
-    padding: 6px var(--space-3);
-    box-shadow: inset 0 -1px 0 var(--line-faint);
-    color: var(--muted);
-    font-size: var(--text-xs);
+    padding: 6px var(--ui-space-3);
+    box-shadow: inset 0 -1px 0 var(--ui-border);
+    color: var(--ui-muted-foreground);
+    font-size: var(--ui-text-xs);
   }
 
   [data-slot="command-empty"] {
@@ -91,16 +85,16 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     scroll-padding-block: 5px;
-    outline: none;
+    outline: none
+  }
 
-    &:not(:has([data-slot="command-item"])) {
+    [data-slot="command-list"]:not(:has([data-slot="command-item"])) {
       display: none;
     }
 
-    &[data-has-icons] [data-slot="command-item"]:not([data-has-icon]) {
-      padding-inline-start: calc(10px + var(--space-4) + 14px);
+    [data-slot="command-list"][data-has-icons] [data-slot="command-item"]:not([data-has-icon]) {
+      padding-inline-start: calc(10px + var(--ui-space-4) + 14px);
     }
-  }
 
   [data-slot="command"] > :has(> [data-slot="command-list"]) {
     position: relative;
@@ -114,48 +108,48 @@
 
   [data-slot="command-item"] {
     color: inherit;
-    text-decoration: none;
+    text-decoration: none
+  }
 
-    &[aria-posinset] {
+    [data-slot="command-item"][aria-posinset] {
       position: absolute;
       inset-inline: 5px;
       height: 32px;
     }
 
-    & > svg,
-    & > [data-slot="hint"] {
+    [data-slot="command-item"] > svg,
+    [data-slot="command-item"] > [data-slot="hint"] {
       margin-inline-start: auto;
     }
 
-    & > svg {
+    [data-slot="command-item"] > svg {
       width: 14px;
       height: 14px;
     }
 
-    &:not([data-pending]) > [data-slot="spinner"],
-    &:is(a):not([data-highlighted]) > svg {
+    [data-slot="command-item"]:not([data-pending]) > [data-slot="spinner"],
+    [data-slot="command-item"]:is(a):not([data-highlighted]) > svg {
       display: none;
     }
 
-    & > strong {
+    [data-slot="command-item"] > strong {
       font-weight: 500;
     }
-  }
 
   [data-slot="command-item-icon"] {
     display: flex;
     margin-inline-start: 0;
-    color: var(--muted);
+    color: var(--ui-muted-foreground)
+  }
 
-    :is([data-highlighted], [data-disabled]) > & {
+    [data-highlighted] > [data-slot="command-item-icon"], [data-disabled] > [data-slot="command-item-icon"] {
       color: inherit;
     }
 
-    & svg {
+    [data-slot="command-item-icon"] svg {
       width: 14px;
       height: 14px;
     }
-  }
 
   [data-slot="command-item-text"] mark {
     background: none;
@@ -168,12 +162,13 @@
 
   [data-slot="command-item"]:not([data-highlighted])
     [data-slot="command-item-text"][data-matched] {
-    color: var(--muted);
-
-    & mark {
-      color: var(--ink);
-    }
+    color: var(--ui-muted-foreground)
   }
+
+    [data-slot="command-item"]:not([data-highlighted])
+    [data-slot="command-item-text"][data-matched] mark {
+      color: var(--ui-foreground);
+    }
 
   [data-slot="dialog-content"]:has(> [data-slot="command"]) {
     inset: min(6rem, 10dvh) 0 auto;
@@ -181,9 +176,10 @@
     max-height: 80dvh;
     margin: 0 auto;
     padding: 0;
-    overflow: hidden;
+    overflow: hidden
+  }
 
-    & > [data-slot="dialog-title"] {
+    [data-slot="dialog-content"]:has(> [data-slot="command"]) > [data-slot="dialog-title"] {
       position: absolute;
       width: 1px;
       height: 1px;
@@ -192,12 +188,11 @@
       white-space: nowrap;
     }
 
-    & > [data-slot="command"] {
+    [data-slot="dialog-content"]:has(> [data-slot="command"]) > [data-slot="command"] {
       width: auto;
       max-width: none;
       border-radius: 0;
       background: none;
       box-shadow: none;
     }
-  }
 }

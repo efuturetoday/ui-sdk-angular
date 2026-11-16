@@ -3,105 +3,87 @@
   /* The trigger sits near the top, centered, with room below for the open popover inside the preview. */
 
   /* Stacks, forms and fields take the popover's width, not the 20rem a stack with a field gets elsewhere. */
-  :scope [data-slot="popover-content"] > :is([data-slot="stack"], form) {
-    width: auto;
-    max-width: none;
-  }
-
-  :scope
-    [data-slot="popover-content"]
-    :is(
-      [data-slot="field"],
-      [data-slot="field-control"],
-      textarea,
-      select,
-      input:not([type="checkbox"], [type="radio"], [type="hidden"])
-    ) {
-    box-sizing: border-box;
-    width: 100%;
-    max-width: none;
-  }
 
   [data-slot="popover-content"] {
-    gap: var(--space-3);
+    gap: var(--ui-space-3);
     box-sizing: border-box;
     width: 18rem;
     max-width: calc(100vw - 2rem);
-    padding: var(--space-4);
-    font-size: var(--text-sm);
+    padding: var(--ui-space-4);
+    font-size: var(--ui-text-sm)
 
-    & > :is([data-slot="stack"], form) {
+    /* Actions sit at the bottom, aligned to the end, with the primary last. */
+
+    /* A question inside the popover, with its answers at the end. */
+  }
+
+    [data-slot="popover-content"] > [data-slot="stack"], [data-slot="popover-content"] > form {
       align-items: stretch;
     }
 
-    & > form {
+    [data-slot="popover-content"] > form {
       display: flex;
       flex-direction: column;
-      gap: var(--space-3);
+      gap: var(--ui-space-3);
     }
 
-    & [data-slot="field"] {
+    [data-slot="popover-content"] [data-slot="field"] {
       gap: 6px;
     }
 
-    & [data-slot="field-label"] {
-      font-size: var(--text-sm);
+    [data-slot="popover-content"] [data-slot="field-label"] {
+      font-size: var(--ui-text-sm);
     }
 
-    & > [data-slot="stack"]:has(> [data-slot="label"]) {
-      gap: var(--space-2);
+    [data-slot="popover-content"] > [data-slot="stack"]:has(> [data-slot="label"]) {
+      gap: var(--ui-space-2);
     }
 
-    & textarea {
+    [data-slot="popover-content"] textarea {
       min-height: 5rem;
     }
-
-    /* Actions sit at the bottom, aligned to the end, with the primary last. */
-    & > [data-slot="row"],
-    & > form > [data-slot="row"] {
+    [data-slot="popover-content"] > [data-slot="row"],
+    [data-slot="popover-content"] > form > [data-slot="row"] {
       justify-content: flex-end;
-      margin-top: var(--space-1);
+      margin-top: var(--ui-space-1);
     }
-
-    /* A question inside the popover, with its answers at the end. */
-    & > [data-slot="row"][role="alert"] {
+    [data-slot="popover-content"] > [data-slot="row"][role="alert"] {
       justify-content: space-between;
-      padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
-      border-radius: var(--radius-control);
-      background: var(--tint);
+      padding: var(--ui-space-2) var(--ui-space-2) var(--ui-space-2) var(--ui-space-3);
+      border-radius: var(--ui-radius-control);
+      background: var(--ui-muted);
     }
 
-    &[data-presentation="sheet"] {
+    [data-slot="popover-content"][data-presentation="sheet"] {
       width: min(36rem, 100%);
       max-width: none;
       margin: 0 auto;
-      border-radius: var(--radius-popup) var(--radius-popup) 0 0;
-      padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
-      --sheet-backdrop: var(--backdrop);
+      border-radius: var(--ui-radius-popup) var(--ui-radius-popup) 0 0;
+      padding-bottom: max(var(--ui-space-4), env(safe-area-inset-bottom));
+      --sheet-backdrop: var(--ui-overlay);
     }
-  }
 
   [data-slot="popover-title"] {
     margin: 0;
-    font-size: var(--text-md);
+    font-size: var(--ui-text-md);
     font-weight: 600;
     line-height: 20px;
   }
 
   [data-slot="popover-description"] {
     margin: 0;
-    color: var(--muted);
-    font-size: var(--text-sm);
+    color: var(--ui-muted-foreground);
+    font-size: var(--ui-text-sm);
   }
 
   /* The title and description read as one header. */
   [data-slot="popover-title"] + [data-slot="popover-description"] {
-    margin-top: calc(var(--space-3) * -1 + 2px);
+    margin-top: calc(var(--ui-space-3) * -1 + 2px);
   }
 
   a[data-slot="popover-close"] {
     align-self: flex-start;
-    color: var(--ink);
+    color: var(--ui-foreground);
     text-underline-offset: 3px;
   }
 
@@ -112,8 +94,8 @@
 
   /* The arrow takes the popover's fill and border. */
   [data-slot="popover-arrow"] {
-    background: var(--surface-2);
-    border-color: var(--line);
+    background: var(--ui-surface-2);
+    border-color: var(--ui-input);
   }
 
   /* Room around the trigger for the popover on any side. */
