@@ -113,3 +113,12 @@
     monospace;
   color: var(--frame-muted, #737373);
 }
+
+/* An example wider than a phone, like upstream's 20rem menu, scrolls in its
+   frame, not the page, with what it positions, like a form's hidden input. */
+@media (width < 40rem) {
+  .preview {
+    position: relative;
+    overflow-x: auto;
+  }
+}

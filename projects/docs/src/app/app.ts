@@ -137,7 +137,15 @@ class App {
   }
   protected readonly groups = [...new Set(guides.map((guide) => guide.group))]
   protected readonly titleOf = titleOf
-  protected readonly page = signal(pageOf(location.search))
+  // A section's link, from the page's own address: the base href would
+  // turn a bare `#id` into the home page's.
+  protected hrefOf(id: string) {
+    return `${location.pathname}${location.search}#${id}`
+  }
+  // The same page again, as going back to a section, keeps what's shown.
+  protected readonly page = signal(pageOf(location.search), {
+    equal: (a, b) => a.kind === b.kind && a.name === b.name,
+  })
   protected readonly guide = computed(() => {
     const { kind, name } = this.page()
     return kind === "doc"
