@@ -28,7 +28,8 @@ const guides: Guide[] = [
   {
     slug: "themes",
     title: "Themes",
-    description: "Install a theme, change its look, or make your own.",
+    description:
+      "Install a theme, choose a palette, change its look, or make your own.",
     group: "Get started",
     load: () => import("./themes").then((m) => m.Page),
   },

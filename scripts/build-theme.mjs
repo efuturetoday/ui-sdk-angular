@@ -1,6 +1,6 @@
 // Writes each theme's stylesheets, projects/themes/<name>/src, from upstream's
 // examples and the theme's tokens, and the docs' with upstream's examples.
-// `--check` fails when any is out of date. See projects/themes/default/README.md.
+// `--check` fails when any is out of date. See projects/themes/README.md.
 import {
   existsSync,
   mkdirSync,

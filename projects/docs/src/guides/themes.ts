@@ -14,10 +14,20 @@ import { CodeBlock } from "./code"
 
     <section id="install" data-title="Install a Theme">
       <h3>Install a Theme</h3>
-      <p>The default theme is ui-sdk's example styling, as on this site.</p>
-      <app-code lang="bash" code="npm install @ngx-ui-sdk/theme-default" />
       <p>
-        Add it to
+        One package has the themes on this site: ui-sdk's own as
+        <code>default</code>
+        , and
+        <code>shadcn</code>
+        ,
+        <code>material</code>
+        and
+        <code>daisyui</code>
+        . Try them with the Theme button at the top.
+      </p>
+      <app-code lang="bash" code="npm install @ngx-ui-sdk/themes" />
+      <p>
+        Add one to
         <code>angular.json</code>
         , before your own styles:
       </p>
@@ -36,6 +46,30 @@ import { CodeBlock } from "./code"
         , so set
         <code>color-scheme</code>
         on your page for light, dark or both. The font comes from your app.
+      </p>
+    </section>
+
+    <section id="palettes" data-title="Choose a Palette">
+      <h3>Choose a Palette</h3>
+      <p>
+        A palette changes a theme's colors and keeps its shapes. Material has
+        eight, each made from a seed color, and daisyUI has one for each of its
+        own themes, like
+        <code>dracula</code>
+        or
+        <code>cupcake</code>
+        . Import it after the theme:
+      </p>
+      <app-code lang="css" [code]="paletteCss" />
+      <p>
+        Name it with
+        <code>data-ui-palette</code>
+        , on the theme's element or one around it:
+      </p>
+      <app-code lang="html" [code]="paletteHtml" />
+      <p>
+        Material's palettes have light and dark colors. Each of daisyUI's is
+        light or dark only, and sets that color scheme.
       </p>
     </section>
 
@@ -93,7 +127,7 @@ import { CodeBlock } from "./code"
       </p>
       <app-code lang="html" [code]="tokens" />
       <p>
-        The variables are also in the package's
+        The variables are also in each theme's
         <code>tokens/</code>
         folder, in the
         <a href="https://www.designtokens.org/">Design Tokens</a>
@@ -115,11 +149,14 @@ import { CodeBlock } from "./code"
   `,
 })
 class Page {
-  protected readonly angularJson = `"styles": ["@ngx-ui-sdk/theme-default/all.css", "src/styles.css"]`
+  protected readonly angularJson = `"styles": ["@ngx-ui-sdk/themes/default/all.css", "src/styles.css"]`
   protected readonly body = `<body data-ui-theme></body>`
-  protected readonly lessCss = `@import "@ngx-ui-sdk/theme-default/tokens.css";
-@import "@ngx-ui-sdk/theme-default/base.css";
-@import "@ngx-ui-sdk/theme-default/dialog.css";`
+  protected readonly paletteCss = `@import "@ngx-ui-sdk/themes/daisyui/all.css";
+@import "@ngx-ui-sdk/themes/daisyui/palettes/dracula.css";`
+  protected readonly paletteHtml = `<body data-ui-theme data-ui-palette="dracula"></body>`
+  protected readonly lessCss = `@import "@ngx-ui-sdk/themes/default/tokens.css";
+@import "@ngx-ui-sdk/themes/default/base.css";
+@import "@ngx-ui-sdk/themes/default/dialog.css";`
   protected readonly customizeCss = `[data-ui-theme] {
   --ui-primary: #2563eb;
   --ui-radius: 4px;

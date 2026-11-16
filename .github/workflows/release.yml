@@ -12,8 +12,8 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     outputs:
-      core: ${{ steps.release.outputs['projects/core--release_created'] }}
-      theme-default: ${{ steps.release.outputs['projects/themes/default--release_created'] }}
+      # One release for both packages, with one version.
+      created: ${{ steps.release.outputs.release_created }}
     steps:
       - id: release
         uses: googleapis/release-please-action@v5
@@ -25,33 +25,31 @@ jobs:
       matrix:
         package:
           - name: "@ngx-ui-sdk/core"
-            output: core
             build: build:lib
             dist: dist/core
-          - name: "@ngx-ui-sdk/theme-default"
-            output: theme-default
-            build: build:theme
-            dist: dist/theme-default
+          - name: "@ngx-ui-sdk/themes"
+            build: build:themes
+            dist: dist/themes
     runs-on: ubuntu-latest
     permissions:
       contents: read
       # npm's trusted publishing: no token, and the package gets provenance.
       id-token: write
     steps:
-      - if: needs.release-please.outputs[matrix.package.output] == 'true'
+      - if: needs.release-please.outputs.created == 'true'
         uses: actions/checkout@v7
         with:
           submodules: true
-      - if: needs.release-please.outputs[matrix.package.output] == 'true'
+      - if: needs.release-please.outputs.created == 'true'
         uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
           registry-url: https://registry.npmjs.org
-      - if: needs.release-please.outputs[matrix.package.output] == 'true'
+      - if: needs.release-please.outputs.created == 'true'
         run: npm ci
-      - if: needs.release-please.outputs[matrix.package.output] == 'true'
+      - if: needs.release-please.outputs.created == 'true'
         run: npm run ${{ matrix.package.build }}
-      - if: needs.release-please.outputs[matrix.package.output] == 'true'
+      - if: needs.release-please.outputs.created == 'true'
         run: npm publish --access public
         working-directory: ${{ matrix.package.dist }}

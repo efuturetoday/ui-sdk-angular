@@ -1,6 +1,6 @@
 {
   "name": "ui-sdk-angular",
-  "version": "0.0.0",
+  "version": "0.2.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve docs",
@@ -12,7 +12,7 @@
     "test:examples": "playwright test -c playwright.examples.config.ts",
     "bench": "playwright test -c playwright.bench.config.ts",
     "test:unit": "ng test core --watch=false",
-    "build:theme": "node scripts/build-theme.mjs --check && rm -rf dist/theme-default && mkdir -p dist/theme-default && cp -R projects/themes/default/src/*.css projects/themes/default/tokens projects/themes/default/package.json projects/themes/default/README.md projects/themes/default/LICENSE dist/theme-default/"
+    "build:themes": "node scripts/build-theme.mjs --check && rm -rf dist/themes && mkdir -p dist/themes && cp projects/themes/package.json projects/themes/README.md projects/themes/LICENSE dist/themes/ && for dir in projects/themes/*/; do theme=$(basename $dir) && mkdir -p dist/themes/$theme && cp -R $dir/src/. $dir/tokens dist/themes/$theme/; done"
   },
   "private": true,
   "packageManager": "npm@11.19.0",

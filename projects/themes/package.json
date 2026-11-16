@@ -1,12 +1,12 @@
 {
-  "name": "@ngx-ui-sdk/theme-default",
-  "version": "0.1.0",
-  "description": "ui-sdk's example look for @ngx-ui-sdk/core, as plain CSS.",
+  "name": "@ngx-ui-sdk/themes",
+  "version": "0.2.1",
+  "description": "Themes for @ngx-ui-sdk/core, as plain CSS: ui-sdk's own, shadcn, Material and daisyUI, with palettes.",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/efuturetoday/ui-sdk-angular.git",
-    "directory": "projects/themes/default"
+    "directory": "projects/themes"
   },
   "homepage": "https://efuturetoday.github.io/ui-sdk-angular/",
   "bugs": "https://github.com/efuturetoday/ui-sdk-angular/issues",
@@ -14,22 +14,19 @@
     "angular",
     "ui-sdk",
     "css",
-    "theme"
+    "theme",
+    "shadcn",
+    "material",
+    "daisyui"
   ],
-  "style": "./all.css",
+  "style": "./default/all.css",
   "exports": {
-    ".": "./all.css",
+    ".": "./default/all.css",
     "./*.css": "./*.css",
-    "./tokens/*.json": "./tokens/*.json",
+    "./*.json": "./*.json",
     "./package.json": "./package.json"
   },
   "sideEffects": [
     "*.css"
-  ],
-  "files": [
-    "*.css",
-    "tokens",
-    "README.md",
-    "LICENSE"
   ]
 }
