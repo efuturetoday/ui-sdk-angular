@@ -1,0 +1,171 @@
+{
+  "$description": "The daisyUI theme's light colors, from daisyUI 5's light theme, by scripts/build-daisyui.mjs. Each mode has the same tokens.",
+  "color": {
+    "$type": "color",
+    "background": {
+      "$description": "The page.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "hex": "#ffffff"
+      }
+    },
+    "foreground": {
+      "$description": "Text.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0941, 0.0941, 0.1059],
+        "hex": "#18181b"
+      }
+    },
+    "surface-1": {
+      "$description": "Controls, like a button or an input.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "hex": "#ffffff"
+      }
+    },
+    "surface-2": {
+      "$description": "Popups, like a menu or a dialog.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "hex": "#ffffff"
+      }
+    },
+    "surface-3": {
+      "$description": "A surface on a popup.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9725, 0.9725, 0.9725],
+        "hex": "#f8f8f8"
+      }
+    },
+    "muted": {
+      "$description": "A quiet surface, like a hovered item or a button.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9725, 0.9725, 0.9725],
+        "hex": "#f8f8f8"
+      }
+    },
+    "muted-foreground": {
+      "$description": "Secondary text, like a description.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0941, 0.0941, 0.1059],
+        "alpha": 0.6,
+        "hex": "#18181b"
+      }
+    },
+    "primary": {
+      "$description": "Fills that stand out, like a solid button or a checked checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.2588, 0.1647, 0.8353],
+        "hex": "#422ad5"
+      }
+    },
+    "primary-foreground": {
+      "$description": "Text and icons on the primary color.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.8784, 0.9059, 1],
+        "hex": "#e0e7ff"
+      }
+    },
+    "ring": {
+      "$description": "The focus ring.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.2588, 0.1647, 0.8353],
+        "alpha": 0.4,
+        "hex": "#422ad5"
+      }
+    },
+    "input": {
+      "$description": "The border of a control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0941, 0.0941, 0.1059],
+        "alpha": 0.2,
+        "hex": "#18181b"
+      }
+    },
+    "border": {
+      "$description": "Dividers and quiet borders.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0941, 0.0941, 0.1059],
+        "alpha": 0.1,
+        "hex": "#18181b"
+      }
+    },
+    "border-strong": {
+      "$description": "The border of a button or a checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0941, 0.0941, 0.1059],
+        "alpha": 0.15,
+        "hex": "#18181b"
+      }
+    },
+    "border-disabled": {
+      "$description": "The border and text of a disabled control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0941, 0.0941, 0.1059],
+        "alpha": 0.4,
+        "hex": "#18181b"
+      }
+    },
+    "destructive": {
+      "$description": "Errors.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.3843, 0.4902],
+        "hex": "#ff627d"
+      }
+    },
+    "destructive-muted": {
+      "$description": "A surface behind an error.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.3843, 0.4902],
+        "alpha": 0.12,
+        "hex": "#ff627d"
+      }
+    },
+    "overlay": {
+      "$description": "Behind a modal dialog or drawer.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.4,
+        "hex": "#000000"
+      }
+    }
+  },
+  "shadow-color": {
+    "$type": "color",
+    "soft": {
+      "$description": "A soft shadow.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.1,
+        "hex": "#000000"
+      }
+    },
+    "deep": {
+      "$description": "A dialog's deep shadow.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.25,
+        "hex": "#000000"
+      }
+    }
+  }
+}

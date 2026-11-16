@@ -42,9 +42,11 @@ import { CodeBlock } from "./code"
     <section id="styles" data-title="Add Your Styles">
       <h3>Add Your Styles</h3>
       <p>
-        The directives add no styles. Use your own CSS or the default theme.
+        The directives add no styles. Install a theme, or write your own CSS.
+        <a href="?doc=themes">Themes</a>
+        shows how to install one and make your own, and
         <a href="?doc=styling">Styling and Animation</a>
-        explains both.
+        how to style the parts.
       </p>
     </section>
 
@@ -63,8 +65,8 @@ import { CodeBlock } from "./code"
 
     <p>
       Next,
-      <a href="?doc=first-component">First Component</a>
-      adds a working toggle to your app.
+      <a href="?doc=themes">Themes</a>
+      styles your components.
     </p>
   `,
 })

@@ -1,0 +1,177 @@
+{
+  "$description": "The shadcn theme's dark colors, from shadcn/ui's neutral theme. Each mode has the same tokens.",
+  "color": {
+    "$type": "color",
+    "background": {
+      "$description": "The page.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0392, 0.0392, 0.0392],
+        "hex": "#0a0a0a"
+      }
+    },
+    "foreground": {
+      "$description": "Text.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9804, 0.9804, 0.9804],
+        "hex": "#fafafa"
+      }
+    },
+    "surface-1": {
+      "$description": "Controls, like a button or an input.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0824, 0.0824, 0.0824],
+        "hex": "#151515"
+      }
+    },
+    "surface-2": {
+      "$description": "Popups, like a menu or a dialog.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0902, 0.0902, 0.0902],
+        "hex": "#171717"
+      }
+    },
+    "surface-3": {
+      "$description": "A surface on a popup.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.149, 0.149, 0.149],
+        "hex": "#262626"
+      }
+    },
+    "muted": {
+      "$description": "A quiet surface, like a hovered item.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.149, 0.149, 0.149],
+        "hex": "#262626"
+      }
+    },
+    "muted-foreground": {
+      "$description": "Secondary text, like a description.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.6314, 0.6314, 0.6314],
+        "hex": "#a1a1a1"
+      }
+    },
+    "primary": {
+      "$description": "Fills that stand out, like a solid button or a checked checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.898, 0.898, 0.898],
+        "hex": "#e5e5e5"
+      }
+    },
+    "primary-foreground": {
+      "$description": "Text and icons on the primary color.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0902, 0.0902, 0.0902],
+        "hex": "#171717"
+      }
+    },
+    "ring": {
+      "$description": "The focus ring.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.451, 0.451, 0.451],
+        "alpha": 0.5,
+        "hex": "#737373"
+      }
+    },
+    "input": {
+      "$description": "The border of a control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "alpha": 0.15,
+        "hex": "#ffffff"
+      }
+    },
+    "border": {
+      "$description": "Dividers and quiet borders.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "alpha": 0.1,
+        "hex": "#ffffff"
+      }
+    },
+    "border-strong": {
+      "$description": "The border of a button or a checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "alpha": 0.15,
+        "hex": "#ffffff"
+      }
+    },
+    "border-disabled": {
+      "$description": "The border and text of a disabled control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.3216, 0.3216, 0.3216],
+        "hex": "#525252"
+      }
+    },
+    "destructive": {
+      "$description": "Errors.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.3922, 0.4039],
+        "hex": "#ff6467"
+      }
+    },
+    "destructive-muted": {
+      "$description": "A surface behind an error.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.1647, 0.0706, 0.0745],
+        "hex": "#2a1213"
+      }
+    },
+    "overlay": {
+      "$description": "Behind a modal dialog or drawer.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.5,
+        "hex": "#000000"
+      }
+    }
+  },
+  "shadow-color": {
+    "$type": "color",
+    "xs": {
+      "$description": "Under a control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.05,
+        "hex": "#000000"
+      }
+    },
+    "md": {
+      "$description": "Under a popup.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.1,
+        "hex": "#000000"
+      }
+    },
+    "lg": {
+      "$description": "Under a dialog.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.1,
+        "hex": "#000000"
+      }
+    }
+  }
+}

@@ -51,7 +51,49 @@
                 "input": "projects/docs/public"
               }
             ],
-            "styles": ["projects/docs/src/styles.css"]
+            "styles": [
+              "projects/docs/src/styles.css",
+              {
+                "input": "projects/themes/default/src/all.css",
+                "bundleName": "theme-default",
+                "inject": false
+              },
+              {
+                "input": "projects/docs/src/themes/default.css",
+                "bundleName": "docs-default",
+                "inject": false
+              },
+              {
+                "input": "projects/themes/daisyui/src/all.css",
+                "bundleName": "theme-daisyui",
+                "inject": false
+              },
+              {
+                "input": "projects/docs/src/themes/daisyui.css",
+                "bundleName": "docs-daisyui",
+                "inject": false
+              },
+              {
+                "input": "projects/themes/material/src/all.css",
+                "bundleName": "theme-material",
+                "inject": false
+              },
+              {
+                "input": "projects/docs/src/themes/material.css",
+                "bundleName": "docs-material",
+                "inject": false
+              },
+              {
+                "input": "projects/themes/shadcn/src/all.css",
+                "bundleName": "theme-shadcn",
+                "inject": false
+              },
+              {
+                "input": "projects/docs/src/themes/shadcn.css",
+                "bundleName": "docs-shadcn",
+                "inject": false
+              }
+            ]
           },
           "configurations": {
             "production": {

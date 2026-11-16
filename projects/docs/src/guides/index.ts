@@ -26,6 +26,13 @@ const guides: Guide[] = [
     load: () => import("./installation").then((m) => m.Page),
   },
   {
+    slug: "themes",
+    title: "Themes",
+    description: "Install a theme, change its look, or make your own.",
+    group: "Get started",
+    load: () => import("./themes").then((m) => m.Page),
+  },
+  {
     slug: "first-component",
     title: "First Component",
     description: "Add a component to your app and style its state.",

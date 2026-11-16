@@ -1,0 +1,184 @@
+{
+  "$description": "The Material theme's dark colors, made from #6750A4 by scripts/build-material.mjs. Each mode has the same tokens.",
+  "color": {
+    "$type": "color",
+    "background": {
+      "$description": "The page.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0784, 0.0706, 0.0941],
+        "hex": "#141218"
+      }
+    },
+    "foreground": {
+      "$description": "Text.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.902, 0.8784, 0.9137],
+        "hex": "#e6e0e9"
+      }
+    },
+    "surface-1": {
+      "$description": "Controls, like a button or an input.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0784, 0.0706, 0.0941],
+        "hex": "#141218"
+      }
+    },
+    "surface-2": {
+      "$description": "Popups, like a menu or a dialog.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.1294, 0.1216, 0.1412],
+        "hex": "#211f24"
+      }
+    },
+    "surface-3": {
+      "$description": "A surface on a popup.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.1686, 0.1608, 0.1843],
+        "hex": "#2b292f"
+      }
+    },
+    "muted": {
+      "$description": "A quiet surface, like a hovered item.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.902, 0.8784, 0.9137],
+        "alpha": 0.08,
+        "hex": "#e6e0e9"
+      }
+    },
+    "muted-foreground": {
+      "$description": "Secondary text, like a description.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.7922, 0.7686, 0.8118],
+        "hex": "#cac4cf"
+      }
+    },
+    "primary": {
+      "$description": "Fills that stand out, like a checked checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.8118, 0.7412, 0.9961],
+        "hex": "#cfbdfe"
+      }
+    },
+    "primary-foreground": {
+      "$description": "Text and icons on the primary color.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.2118, 0.1529, 0.3647],
+        "hex": "#36275d"
+      }
+    },
+    "ring": {
+      "$description": "The focus ring.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.8118, 0.7412, 0.9961],
+        "alpha": 0.4,
+        "hex": "#cfbdfe"
+      }
+    },
+    "input": {
+      "$description": "The border of a control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.5804, 0.5608, 0.6],
+        "hex": "#948f99"
+      }
+    },
+    "border": {
+      "$description": "Dividers and quiet borders.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.2863, 0.2706, 0.3059],
+        "hex": "#49454e"
+      }
+    },
+    "border-strong": {
+      "$description": "The border of a button or a checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.5804, 0.5608, 0.6],
+        "hex": "#948f99"
+      }
+    },
+    "border-disabled": {
+      "$description": "The border and text of a disabled control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.902, 0.8784, 0.9137],
+        "alpha": 0.38,
+        "hex": "#e6e0e9"
+      }
+    },
+    "destructive": {
+      "$description": "Errors.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.7059, 0.6706],
+        "hex": "#ffb4ab"
+      }
+    },
+    "destructive-muted": {
+      "$description": "A surface behind an error.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.5765, 0, 0.0392],
+        "hex": "#93000a"
+      }
+    },
+    "overlay": {
+      "$description": "Behind a modal dialog or drawer.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.32,
+        "hex": "#000000"
+      }
+    },
+    "field": {
+      "$description": "The fill of a text field.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.2118, 0.2039, 0.2275],
+        "hex": "#36343a"
+      }
+    }
+  },
+  "shadow-color": {
+    "$type": "color",
+    "key": {
+      "$description": "The key shadow of a raised surface.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.3,
+        "hex": "#000000"
+      }
+    },
+    "ambient": {
+      "$description": "The ambient shadow of a raised surface.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.15,
+        "hex": "#000000"
+      }
+    },
+    "none": {
+      "$description": "No shadow.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0,
+        "hex": "#000000"
+      }
+    }
+  }
+}

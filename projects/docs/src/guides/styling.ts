@@ -75,37 +75,11 @@ import { CodeBlock } from "./code"
       </p>
     </section>
 
-    <section id="theme" data-title="Default Theme">
-      <h3>Default Theme</h3>
-      <p>
-        The examples on this site use ui-sdk's example styles. You can install
-        them as a package.
-      </p>
-      <app-code lang="bash" code="npm install @ngx-ui-sdk/theme-default" />
-      <p>
-        Add it to
-        <code>angular.json</code>
-        :
-      </p>
-      <app-code lang="json" [code]="angularJson" />
-      <p>
-        The theme only styles elements inside
-        <code>data-ui-theme</code>
-        . Put it on
-        <code>&lt;body&gt;</code>
-        to style the whole app.
-      </p>
-      <app-code lang="html" [code]="body" />
-      <p>
-        You can load less CSS. Import
-        <code>tokens.css</code>
-        ,
-        <code>base.css</code>
-        and only the components you use, instead of
-        <code>all.css</code>
-        . Colors, radii and sizes are CSS variables. You can override them.
-      </p>
-    </section>
+    <p>
+      To start from finished styles instead,
+      <a href="?doc=themes">Themes</a>
+      shows how to install a theme and change it.
+    </p>
   `,
 })
 class Page {
@@ -141,8 +115,6 @@ class Page {
   opacity: 0;
   scale: 0.96;
 }`
-  protected readonly body = "<body data-ui-theme>"
-  protected readonly angularJson = `"styles": ["@ngx-ui-sdk/theme-default/all.css", "src/styles.css"]`
 }
 
 export { Page }

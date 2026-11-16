@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-docs-theme="default" data-ui-tokens>
   <head>
     <meta charset="utf-8" />
     <title>ngx-ui-sdk</title>
@@ -10,6 +10,29 @@
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono&display=swap" />
+    <link
+      id="theme"
+      rel="stylesheet"
+      href="docs-default.css"
+      data-theme-sheet="default" />
+    <script>
+      // The theme picked last time, before the page shows, so it doesn't flash.
+      try {
+        const [theme, palette] = (
+          localStorage.getItem("docs-theme") ?? ""
+        ).split("/")
+        if (["shadcn", "material", "daisyui"].includes(theme)) {
+          const root = document.documentElement
+          const link = document.getElementById("theme")
+          root.dataset.docsTheme = theme
+          link.href = "docs-" + theme + ".css"
+          link.dataset.themeSheet = theme
+          if (palette) {
+            root.dataset.uiPalette = palette
+          }
+        }
+      } catch {}
+    </script>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body>

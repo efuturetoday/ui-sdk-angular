@@ -1,0 +1,338 @@
+{
+  "$description": "The Material theme's tokens that both color modes share, in the Design Tokens Community Group format, from Material 3's shape, elevation and motion. light.json and dark.json hold the colors.",
+  "shadow": {
+    "$type": "shadow",
+    "drop": {
+      "$description": "Under a raised control. Material's outlined buttons have none.",
+      "$value": {
+        "color": "{shadow-color.none}",
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 0,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 0,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
+      }
+    },
+    "drop-pressed": {
+      "$description": "Under a pressed raised control.",
+      "$value": {
+        "color": "{shadow-color.none}",
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 0,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 0,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
+      }
+    },
+    "float": {
+      "$description": "Under a floating surface, at Material's elevation level 2.",
+      "$value": [
+        {
+          "color": "{shadow-color.key}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 2,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": "{shadow-color.ambient}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 2,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 6,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 2,
+            "unit": "px"
+          }
+        }
+      ]
+    },
+    "sm": {
+      "$description": "A control's outline.",
+      "$value": [
+        {
+          "color": "{color.input}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 0,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 0,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 1,
+            "unit": "px"
+          }
+        }
+      ]
+    },
+    "md": {
+      "$description": "A popup, at Material's elevation level 2.",
+      "$value": [
+        {
+          "color": "{shadow-color.key}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 2,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": "{shadow-color.ambient}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 2,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 6,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 2,
+            "unit": "px"
+          }
+        }
+      ]
+    },
+    "lg": {
+      "$description": "A dialog, at Material's elevation level 3.",
+      "$value": [
+        {
+          "color": "{shadow-color.key}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 3,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": "{shadow-color.ambient}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 8,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 3,
+            "unit": "px"
+          }
+        }
+      ]
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "base": {
+      "$description": "Material's extra small corner, for inputs, menus and their items. Surfaces are three times as round.",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    }
+  },
+  "space": {
+    "$type": "dimension",
+    "1": {
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "2": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      }
+    },
+    "3": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "4": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "6": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    },
+    "8": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    }
+  },
+  "size": {
+    "$type": "dimension",
+    "sm": {
+      "$description": "A small control's height.",
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "md": {
+      "$description": "A control's height, like a Material button.",
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      }
+    },
+    "lg": {
+      "$description": "A large control's height.",
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      }
+    },
+    "item": {
+      "$description": "An item's height in a list.",
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      }
+    },
+    "icon": {
+      "$description": "An icon.",
+      "$value": {
+        "value": 18,
+        "unit": "px"
+      }
+    }
+  },
+  "text": {
+    "$type": "dimension",
+    "xs": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "sm": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      }
+    },
+    "md": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      }
+    },
+    "lg": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    }
+  },
+  "leading": {
+    "$type": "dimension",
+    "$description": "The line height.",
+    "$value": {
+      "value": 20,
+      "unit": "px"
+    }
+  },
+  "font-mono": {
+    "$type": "fontFamily",
+    "$description": "Code and numbers that line up.",
+    "$value": ["Roboto Mono", "ui-monospace", "SF Mono", "Menlo", "monospace"]
+  },
+  "duration": {
+    "$type": "duration",
+    "$description": "Transitions, Material's short duration. It's 0ms when the user prefers less motion.",
+    "$value": {
+      "value": 200,
+      "unit": "ms"
+    }
+  }
+}

@@ -1,55 +1,68 @@
 :host {
-  --frame-ink: light-dark(#171717, #ededed);
-  --frame-muted: light-dark(#737373, #8f8f8f);
-  --frame-line: light-dark(#e5e5e5, #2e2e2e);
-  --frame-paper: light-dark(#fff, #1a1a1a);
+  /* The docs take the theme's colors and corners, from data-ui-tokens. */
+  --frame-ink: var(--ui-foreground);
+  --frame-muted: var(--ui-muted-foreground);
+  --frame-line: var(--ui-border);
+  --frame-paper: var(--ui-surface-1);
+  --header: 4.375rem;
+  --divider: color-mix(in oklab, var(--frame-ink) 6%, transparent);
 
+  /* As ui-sdk.dev's docs: a bar on top, the navigation, the page and what's on it. */
   display: grid;
-  grid-template-columns: 13rem minmax(0, 1fr) 13rem;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: 16rem minmax(0, 1fr) 16rem;
+  grid-template-rows: var(--header) 1fr;
   align-items: start;
+  box-sizing: border-box;
+  max-width: 1920px;
   min-height: 100vh;
+  margin-inline: auto;
+  padding-inline: 2.5rem;
 }
 
 .title {
   position: sticky;
   top: 0;
+  z-index: 10;
+  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 1rem 1rem 0;
+  box-sizing: border-box;
+  height: var(--header);
+  border-block-end: 1px solid var(--divider);
+  background: var(--ui-background);
 }
 
+/* As big as ui-sdk.dev's logo beside it. */
 .title h1 {
   flex: 1;
+  white-space: nowrap;
   margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
-.title button,
+.title button:not(.theme *),
 .icon {
   display: grid;
   place-items: center;
   padding: 8px;
   border: 0;
-  border-radius: 6px;
+  border-radius: var(--ui-radius-control);
   background: none;
   color: var(--frame-muted);
   cursor: pointer;
 }
 
-.title button:hover,
+.title button:not(.theme *):hover,
 .icon:hover {
   color: var(--frame-ink);
 }
 
-.tooltip {
-  padding: 4px 8px;
-  border-radius: 6px;
-  background: var(--frame-ink);
-  color: var(--frame-paper);
-  font-size: 12px;
+.theme {
+  margin-inline-end: 4px;
+  font-size: 13px;
 }
 
 .title svg {
@@ -61,36 +74,88 @@
 .components,
 .sections {
   position: sticky;
+  top: var(--header);
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 1rem;
+  box-sizing: border-box;
+  max-height: calc(100vh - var(--header));
+  padding-block: 2.5rem 2rem;
   overflow-y: auto;
   overscroll-behavior: contain;
+  scrollbar-width: none;
 }
 
 .components {
-  top: 3.5rem;
-  max-height: calc(100vh - 3.5rem);
+  padding-inline-end: 1rem;
+  border-inline-end: 1px solid var(--divider);
 }
 
 .sections {
-  grid-row: 1 / span 2;
-  grid-column: 3;
-  top: 0;
-  max-height: 100vh;
-  padding-top: 5.25rem;
+  padding-inline-start: 1.5rem;
+  border-inline-start: 1px solid var(--divider);
 }
 
-.sections a[aria-current="location"] {
+/* The dividers run the window's height, however short the list beside them. */
+.components,
+.sections {
+  height: calc(100vh - var(--header));
+}
+
+/* The page's sections on a line, the current one marked on it. */
+.toc {
+  display: flex;
+  flex-direction: column;
+  margin-inline-start: calc(-1.5rem - 1px);
+}
+
+.toc a {
+  margin-inline-start: -1px;
+  padding: 3px 0 3px 1.5rem;
+  border-inline-start: 1px solid transparent;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.toc a[aria-current="location"] {
+  border-color: var(--frame-ink);
   color: var(--frame-ink);
-  font-weight: 500;
 }
 
-/* Below this, the section nav would squeeze the examples. */
-@media (width < 72rem) {
+.sections hr {
+  width: 100%;
+  margin: 1rem 0;
+  border: 0;
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--frame-ink) 10%, transparent);
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--frame-muted);
+  font: inherit;
+  font-size: 13px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.action:hover {
+  color: var(--frame-ink);
+}
+
+.action svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Below this, the page's sections would squeeze the examples. */
+@media (width < 80rem) {
   :host {
-    grid-template-columns: 13rem minmax(0, 1fr);
+    grid-template-columns: 16rem minmax(0, 1fr);
   }
 
   .sections {
@@ -100,24 +165,23 @@
 
 /* As ui-sdk.dev's sidebar: a mono group label, then plain links, the current one bold. */
 .group {
-  margin: 0 0 0.5rem;
-  padding: 0 8px;
+  margin: 0 0 10px;
   color: var(--frame-muted);
   font:
     500 11px var(--font-geist-mono),
     ui-monospace,
     monospace;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 /* Each group after the first stands apart from the links above it. */
 a + .group {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 a {
-  padding: 4px 8px;
+  padding: 4px 0;
   color: var(--frame-muted);
   font-size: 14px;
   text-decoration: none;
@@ -141,17 +205,27 @@ a[aria-current="page"] {
   white-space: nowrap;
 }
 
+/* The page in the middle, as wide as a line of text reads well. */
 main {
-  grid-row: 1 / span 2;
   grid-column: 2;
+  box-sizing: border-box;
+  width: 100%;
   min-width: 0;
-  max-width: 56rem;
-  padding: 1rem 2rem 4rem;
+  max-width: 42rem;
+  margin-inline: auto;
+  padding: 2.5rem 2.5rem 6rem;
+}
+
+@media (width >= 100rem) {
+  main {
+    max-width: 48rem;
+  }
 }
 
 main h2 {
-  margin: 1.75rem 0 2rem;
-  font-size: 1.75rem;
+  margin: 0 0 0.75rem;
+  font-size: 28px;
+  line-height: 1.25;
   font-weight: 500;
   letter-spacing: -0.02em;
 }
@@ -170,10 +244,11 @@ main h2 {
 }
 
 .lead {
-  max-width: 44rem;
-  margin: -1.25rem 0 2rem;
+  margin: 0 0 2.5rem;
   color: var(--frame-muted);
-  font-size: 1.0625rem;
+  font-size: 15px;
+  line-height: 1.625;
+  text-wrap: pretty;
 }
 
 .example {
@@ -213,24 +288,25 @@ main h2 {
   color: var(--frame-ink);
 }
 
-/* On a phone, as on ui-sdk.dev: a bar on top, one column, the components in a drawer. */
-@media (width < 48rem) {
+/* Below a laptop, as on ui-sdk.dev: a bar on top, one column, the components in a drawer. */
+@media (width < 64rem) {
   :host {
     display: block;
+    padding-inline: 0;
   }
 
   .title {
     position: sticky;
     top: 0;
     z-index: 10;
-    padding: 0.75rem 1.5rem;
+    padding: 0 1.5rem;
     border-inline-end: 0;
     border-block-end: 1px solid var(--frame-line);
-    background: light-dark(#fafafa, #111);
+    background: var(--ui-background);
   }
 
   .title h1 {
-    font-size: 1.125rem;
+    font-size: 20px;
   }
 
   .mobile-nav {
@@ -246,11 +322,8 @@ main h2 {
   }
 
   main {
-    padding: 0 1.5rem 4rem;
-  }
-
-  main h2 {
-    font-size: 2rem;
+    max-width: none;
+    padding: 2rem 1.5rem 6rem;
   }
 
   .drawer-nav a {

@@ -1,0 +1,150 @@
+{
+  "$description": "The daisyUI theme's wireframe palette, from daisyUI 5's wireframe theme, by scripts/build-daisyui.mjs. It's light only.",
+  "color": {
+    "$type": "color",
+    "background": {
+      "$description": "The page.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "hex": "#ffffff"
+      }
+    },
+    "foreground": {
+      "$description": "Text.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0863, 0.0863, 0.0863],
+        "hex": "#161616"
+      }
+    },
+    "surface-1": {
+      "$description": "Controls, like a button or an input.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "hex": "#ffffff"
+      }
+    },
+    "surface-2": {
+      "$description": "Popups, like a menu or a dialog.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "hex": "#ffffff"
+      }
+    },
+    "surface-3": {
+      "$description": "A surface on a popup.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9608, 0.9608, 0.9608],
+        "hex": "#f5f5f5"
+      }
+    },
+    "muted": {
+      "$description": "A quiet surface, like a hovered item or a button.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9608, 0.9608, 0.9608],
+        "hex": "#f5f5f5"
+      }
+    },
+    "muted-foreground": {
+      "$description": "Secondary text, like a description.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0863, 0.0863, 0.0863],
+        "alpha": 0.6,
+        "hex": "#161616"
+      }
+    },
+    "primary": {
+      "$description": "Fills that stand out, like a solid button or a checked checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.8314, 0.8314, 0.8314],
+        "hex": "#d4d4d4"
+      }
+    },
+    "primary-foreground": {
+      "$description": "Text and icons on the primary color.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.1412, 0.1412, 0.1412],
+        "hex": "#242424"
+      }
+    },
+    "ring": {
+      "$description": "The focus ring.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.8314, 0.8314, 0.8314],
+        "alpha": 0.4,
+        "hex": "#d4d4d4"
+      }
+    },
+    "input": {
+      "$description": "The border of a control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0863, 0.0863, 0.0863],
+        "alpha": 0.2,
+        "hex": "#161616"
+      }
+    },
+    "border": {
+      "$description": "Dividers and quiet borders.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0863, 0.0863, 0.0863],
+        "alpha": 0.1,
+        "hex": "#161616"
+      }
+    },
+    "border-strong": {
+      "$description": "The border of a button or a checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0863, 0.0863, 0.0863],
+        "alpha": 0.15,
+        "hex": "#161616"
+      }
+    },
+    "border-disabled": {
+      "$description": "The border and text of a disabled control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0863, 0.0863, 0.0863],
+        "alpha": 0.4,
+        "hex": "#161616"
+      }
+    },
+    "destructive": {
+      "$description": "Errors.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.6157, 0.0157, 0.0627],
+        "hex": "#9d0410"
+      }
+    },
+    "destructive-muted": {
+      "$description": "A surface behind an error.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.6157, 0.0157, 0.0627],
+        "alpha": 0.12,
+        "hex": "#9d0410"
+      }
+    },
+    "overlay": {
+      "$description": "Behind a modal dialog or drawer.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.4,
+        "hex": "#000000"
+      }
+    }
+  }
+}
