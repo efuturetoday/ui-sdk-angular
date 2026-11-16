@@ -20,3 +20,7 @@ updates:
     # ui-sdk updates come with its submodule and its specs, by hand.
     ignore:
       - dependency-name: "@ui-sdk/core"
+      # Angular sets the TypeScript range, so it moves with Angular.
+      - dependency-name: "typescript"
+        update-types:
+          ["version-update:semver-major", "version-update:semver-minor"]
