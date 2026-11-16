@@ -1,0 +1,22 @@
+@scope ([data-ui-theme]) {
+  /* Material's tabs are underlined: the selected one in the primary color. */
+  [data-slot="tabs-tab"]:is(*, [data-slot]) {
+    border-radius: 0;
+
+    &[data-selected] {
+      color: var(--ui-primary);
+    }
+
+    [data-slot="tabs-list"]:not(:has([data-slot="tabs-indicator"]))
+      > &[data-selected] {
+      background: transparent;
+      box-shadow: inset 0 -3px 0 var(--ui-primary);
+    }
+  }
+
+  [data-slot="tabs-indicator"]:is(*, [data-slot]) {
+    border-radius: 0;
+    background: transparent;
+    box-shadow: inset 0 -3px 0 var(--ui-primary);
+  }
+}

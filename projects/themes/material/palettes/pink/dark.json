@@ -1,0 +1,154 @@
+{
+  "$description": "The Material theme's pink palette in dark, made from #E91E63 by scripts/build-material.mjs.",
+  "color": {
+    "$type": "color",
+    "background": {
+      "$description": "The page.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.098, 0.0667, 0.0706],
+        "hex": "#191112"
+      }
+    },
+    "foreground": {
+      "$description": "Text.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9412, 0.8706, 0.8784],
+        "hex": "#f0dee0"
+      }
+    },
+    "surface-1": {
+      "$description": "Controls, like a button or an input.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.098, 0.0667, 0.0706],
+        "hex": "#191112"
+      }
+    },
+    "surface-2": {
+      "$description": "Popups, like a menu or a dialog.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.149, 0.1137, 0.1176],
+        "hex": "#261d1e"
+      }
+    },
+    "surface-3": {
+      "$description": "A surface on a popup.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.1922, 0.1569, 0.1608],
+        "hex": "#312829"
+      }
+    },
+    "muted": {
+      "$description": "A quiet surface, like a hovered item.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9412, 0.8706, 0.8784],
+        "alpha": 0.08,
+        "hex": "#f0dee0"
+      }
+    },
+    "muted-foreground": {
+      "$description": "Secondary text, like a description.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.8392, 0.7608, 0.7647],
+        "hex": "#d6c2c3"
+      }
+    },
+    "primary": {
+      "$description": "Fills that stand out, like a checked checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.698, 0.7451],
+        "hex": "#ffb2be"
+      }
+    },
+    "primary-foreground": {
+      "$description": "Text and icons on the primary color.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.3373, 0.1137, 0.1647],
+        "hex": "#561d2a"
+      }
+    },
+    "ring": {
+      "$description": "The focus ring.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.698, 0.7451],
+        "alpha": 0.4,
+        "hex": "#ffb2be"
+      }
+    },
+    "input": {
+      "$description": "The border of a control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.6235, 0.549, 0.5569],
+        "hex": "#9f8c8e"
+      }
+    },
+    "border": {
+      "$description": "Dividers and quiet borders.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.3216, 0.2627, 0.2706],
+        "hex": "#524345"
+      }
+    },
+    "border-strong": {
+      "$description": "The border of a button or a checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.6235, 0.549, 0.5569],
+        "hex": "#9f8c8e"
+      }
+    },
+    "border-disabled": {
+      "$description": "The border and text of a disabled control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9412, 0.8706, 0.8784],
+        "alpha": 0.38,
+        "hex": "#f0dee0"
+      }
+    },
+    "destructive": {
+      "$description": "Errors.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.7059, 0.6706],
+        "hex": "#ffb4ab"
+      }
+    },
+    "destructive-muted": {
+      "$description": "A surface behind an error.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.5765, 0, 0.0392],
+        "hex": "#93000a"
+      }
+    },
+    "overlay": {
+      "$description": "Behind a modal dialog or drawer.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.32,
+        "hex": "#000000"
+      }
+    },
+    "field": {
+      "$description": "The fill of a text field.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.2353, 0.1961, 0.2],
+        "hex": "#3c3233"
+      }
+    }
+  }
+}

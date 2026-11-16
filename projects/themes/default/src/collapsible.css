@@ -3,205 +3,200 @@
   [data-slot="collapsible"] {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
-    width: 20rem;
-    max-width: 100%;
+    gap: var(--ui-space-2)
+  }
 
-    & > h3 {
+    [data-slot="collapsible"] > h3 {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: var(--space-1);
+      gap: var(--ui-space-1);
       margin: 0;
       font: inherit;
     }
 
-    &:not([data-open]) [data-show="open"],
-    &[data-open] [data-show="closed"] {
+    [data-slot="collapsible"]:not([data-open]) [data-show="open"],
+    [data-slot="collapsible"][data-open] [data-show="closed"] {
       display: none;
     }
 
-    &[data-disabled] {
-      color: var(--line-disabled);
+    [data-slot="collapsible"][data-disabled] {
+      color: var(--ui-border-disabled);
     }
 
-    li > & {
+    li > [data-slot="collapsible"] {
       gap: 0;
     }
-  }
 
   [data-slot="collapsible-trigger"] {
-    align-self: flex-start;
+    align-self: flex-start
+  }
 
-    &[data-open] > svg:last-child {
+    [data-slot="collapsible-trigger"][data-open] > svg:last-child {
       rotate: 180deg;
     }
 
-    &:is([dir="rtl"], [dir="rtl"] *) > svg:first-child:not(:last-child) {
+    [data-slot="collapsible-trigger"][dir="rtl"] > svg:first-child:not(:last-child), [data-slot="collapsible-trigger"]:is([dir="rtl"] *) > svg:first-child:not(:last-child) {
       scale: -1 1;
     }
 
-    &[data-open] > svg:first-child:not(:last-child) {
+    [data-slot="collapsible-trigger"][data-open] > svg:first-child:not(:last-child) {
       rotate: 90deg;
     }
 
-    &[data-open]:is([dir="rtl"], [dir="rtl"] *)
+    [data-slot="collapsible-trigger"][data-open][dir="rtl"]
+      > svg:first-child:not(:last-child), [data-slot="collapsible-trigger"][data-open]:is([dir="rtl"] *)
       > svg:first-child:not(:last-child) {
       rotate: -90deg;
     }
 
-    &[data-variant="ghost"] {
+    [data-slot="collapsible-trigger"][data-variant="ghost"] {
       align-self: stretch;
       justify-content: flex-start;
-      height: var(--size-sm);
-      padding-inline: var(--space-1);
-      border-radius: var(--radius-row);
-      font-weight: 400;
-
-      & > svg {
-        color: var(--muted);
-      }
+      height: var(--ui-size-sm);
+      padding-inline: var(--ui-space-1);
+      border-radius: var(--ui-radius-row);
+      font-weight: 400
     }
-  }
+
+      [data-slot="collapsible-trigger"][data-variant="ghost"] > svg {
+        color: var(--ui-muted-foreground);
+      }
 
   [data-slot="collapsible-panel"] {
-    font-size: var(--text-sm);
+    font-size: var(--ui-text-sm);
   }
 
   /* Pinned to the top, so opening only grows the demo downward. */
-  :scope:has([data-slot="collapsible"]) {
-    justify-content: flex-start;
-  }
 
   /* A card whose header is the trigger. */
   [data-slot="collapsible"][data-variant="card"] {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    width: 22rem;
-    padding: 0;
+    padding: 0
+  }
 
-    & > h3 {
+    [data-slot="collapsible"][data-variant="card"] > h3 {
       display: block;
     }
 
-    & [data-slot="collapsible-trigger"] {
+    [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-trigger"] {
       align-self: stretch;
       justify-content: space-between;
       width: 100%;
       height: auto;
-      padding: var(--space-3);
-      border-radius: var(--radius-surface);
+      padding: var(--ui-space-3);
+      border-radius: var(--ui-radius-surface);
       background: transparent;
       box-shadow: none;
       font-weight: 400;
-      text-align: start;
+      text-align: start
+    }
 
-      &:hover {
-        background: var(--tint);
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-trigger"]:hover {
+        background: var(--ui-muted);
       }
 
-      &:active {
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-trigger"]:active {
         scale: none;
         box-shadow: none;
       }
 
-      &[data-open] {
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-trigger"][data-open] {
         border-end-start-radius: 0;
         border-end-end-radius: 0;
       }
 
-      & > [data-slot="stack"] {
-        gap: 0;
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-trigger"] > [data-slot="stack"] {
+        gap: 0
+      }
 
-        & > :first-child {
+        [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-trigger"] > [data-slot="stack"] > :first-child {
           font-weight: 500;
         }
+
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-trigger"] > svg {
+        color: var(--ui-muted-foreground);
       }
 
-      & > svg {
-        color: var(--muted);
-      }
-    }
-
-    & [data-slot="collapsible-panel"] {
+    [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-panel"] {
       margin: 0;
       padding: 0;
-      border-top: 1px solid var(--line-faint);
-      list-style: none;
+      border-top: 1px solid var(--ui-border);
+      list-style: none
+    }
 
-      &[hidden] {
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-panel"][hidden] {
         border-top: 0;
       }
 
-      & > :not([data-slot="row"]) {
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-panel"] > :not([data-slot="row"]) {
         margin: 0;
-        padding: var(--space-3);
+        padding: var(--ui-space-3);
       }
 
-      & > [data-slot="field"] {
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-panel"] > [data-slot="field"] {
         box-sizing: border-box;
-        width: 100%;
+        width: 100%
+      }
 
-        & > textarea {
+        [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-panel"] > [data-slot="field"] > textarea {
           width: 100%;
         }
+
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-panel"] > [data-slot="stack"] {
+        align-items: flex-start;
+        gap: var(--ui-space-3)
       }
 
-      & > [data-slot="stack"] {
-        align-items: flex-start;
-        gap: var(--space-3);
-
-        & > ul {
+        [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-panel"] > [data-slot="stack"] > ul {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: var(--space-2) var(--space-6);
+          gap: var(--ui-space-2) var(--ui-space-6);
           margin: 0;
           padding: 0;
           list-style: none;
-          font-family: var(--mono);
-          font-size: var(--text-sm);
+          font-family: var(--ui-font-mono);
+          font-size: var(--ui-text-sm);
         }
-      }
 
-      & > ul:not([data-slot]) {
-        padding-inline-start: calc(var(--space-3) + 1.25em);
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-panel"] > ul:not([data-slot]) {
+        padding-inline-start: calc(var(--ui-space-3) + 1.25em);
         list-style: disc;
       }
 
-      & > [data-slot="row"] {
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-panel"] > [data-slot="row"] {
         justify-content: space-between;
-        padding: var(--space-2) var(--space-3);
+        padding: var(--ui-space-2) var(--ui-space-3);
         font-variant-numeric: tabular-nums;
       }
 
-      & > [data-slot="row"] + [data-slot="row"] {
-        border-top: 1px solid var(--line-faint);
+      [data-slot="collapsible"][data-variant="card"] [data-slot="collapsible-panel"] > [data-slot="row"] + [data-slot="row"] {
+        border-top: 1px solid var(--ui-border);
       }
-    }
-  }
 
   ul:has([data-slot="collapsible"]) {
     margin: 0;
     padding: 0;
-    list-style: none;
+    list-style: none
+  }
 
-    & ul {
+    ul:has([data-slot="collapsible"]) ul {
       margin: 0;
       margin-inline-start: 14px;
       padding: 0;
       padding-inline-start: 6px;
-      border-inline-start: 1px solid var(--line-faint);
+      border-inline-start: 1px solid var(--ui-border);
       list-style: none;
     }
 
-    & li > [data-slot="row"] {
-      min-height: var(--size-sm);
+    ul:has([data-slot="collapsible"]) li > [data-slot="row"] {
+      min-height: var(--ui-size-sm);
       padding-inline-start: calc(
-        var(--space-1) + var(--size-icon) + var(--space-2)
+        var(--ui-space-1) + var(--ui-size-icon) + var(--ui-space-2)
       );
     }
-  }
 
   /* Only this demo animates; the height transition is what it shows. */
 }

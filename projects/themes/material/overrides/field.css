@@ -1,0 +1,115 @@
+@scope ([data-ui-theme]) {
+  /* Material's filled text field: a tinted box with a line under it. */
+  :is(
+    [data-slot="input"],
+    [data-slot="input-group"],
+    [data-slot="password-input"],
+    [data-slot="textarea"],
+    [data-slot="select-trigger"],
+    [data-slot="date-input"],
+    [data-slot="time-input"],
+    [data-slot="combobox-input"],
+    [data-slot="autocomplete-input"],
+    [data-slot="combobox-chips"]
+  ):not(
+    [data-size],
+    [data-slot="input-group"] *,
+    [data-slot="password-input"] *,
+    [data-slot="number-input-group"] *,
+    [data-slot="combobox-chips"] *
+  ) {
+    box-sizing: border-box;
+    height: 56px;
+    padding-inline: 16px;
+    border-radius: var(--ui-radius) var(--ui-radius) 0 0;
+    background-color: var(--ui-field);
+    box-shadow: inset 0 -1px 0 var(--ui-muted-foreground);
+
+    &[data-slot="textarea"] {
+      height: auto;
+      min-height: 80px;
+    }
+
+    &:hover {
+      box-shadow: inset 0 -1px 0 var(--ui-foreground);
+    }
+
+    &:is(:focus-visible, :focus-within) {
+      outline: 0;
+      box-shadow: inset 0 -2px 0 var(--ui-primary);
+    }
+
+    &:is(
+      [data-invalid],
+      [aria-invalid="true"],
+      :has(input[aria-invalid="true"])
+    ) {
+      box-shadow: inset 0 -2px 0 var(--ui-destructive);
+    }
+
+    &:is(:disabled, [data-disabled], :has(input:disabled)) {
+      background-color: color-mix(in oklab, var(--ui-field) 40%, transparent);
+      box-shadow: inset 0 -1px 0 var(--ui-border-disabled);
+    }
+  }
+
+  /* A field's label sits inside its text field, at the top. */
+  [data-slot="field"]:has(
+    > [data-slot="field-label"]
+      + :is(
+        [data-slot="input"],
+        [data-slot="input-group"],
+        [data-slot="password-input"],
+        [data-slot="textarea"],
+        [data-slot="select-trigger"],
+        [data-slot="date-input"],
+        [data-slot="time-input"]
+      )
+  ) {
+    position: relative;
+
+    & > [data-slot="field-label"] {
+      position: absolute;
+      z-index: 1;
+      top: 8px;
+      inset-inline-start: 16px;
+      color: var(--ui-muted-foreground);
+      font-size: var(--ui-text-xs);
+      font-weight: 400;
+      line-height: 16px;
+      pointer-events: none;
+      transition:
+        top var(--ui-duration),
+        font-size var(--ui-duration),
+        color var(--ui-duration);
+    }
+
+    & > [data-slot="field-label"] + * {
+      padding-top: 18px;
+    }
+
+    &:has(:focus-visible) > [data-slot="field-label"] {
+      color: var(--ui-primary);
+    }
+
+    /* While a plain input is empty, its label rests in the middle in place
+       of the placeholder. A prefix, like https://, keeps it at the top. */
+    &:has(
+      > [data-slot="field-label"]
+        + :is(
+          [data-slot="input"],
+          [data-slot="textarea"]
+        ):placeholder-shown:not(:focus)
+    ) {
+      & > [data-slot="field-label"] {
+        top: 18px;
+        font-size: var(--ui-text-lg);
+        line-height: 20px;
+      }
+
+      & ::placeholder {
+        color: transparent;
+      }
+    }
+  }
+}

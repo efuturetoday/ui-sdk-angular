@@ -1,0 +1,6 @@
+@scope ([data-ui-theme]) {
+  /* Material's dialogs have its extra large corner. */
+  [data-slot="alert-dialog-content"]:is(*, [data-slot]) {
+    border-radius: 28px;
+  }
+}

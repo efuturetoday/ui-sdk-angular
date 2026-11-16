@@ -1,0 +1,6 @@
+{
+  "--ui-radius-row": "calc(var(--ui-radius) - 4px)",
+  "--ui-radius-control": "calc(var(--ui-radius) - 2px)",
+  "--ui-radius-surface": "var(--ui-radius)",
+  "--ui-radius-popup": "calc(var(--ui-radius) - 2px)"
+}

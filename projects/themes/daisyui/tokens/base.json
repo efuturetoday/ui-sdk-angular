@@ -1,0 +1,359 @@
+{
+  "$description": "The daisyUI theme's tokens that both color modes share, in the Design Tokens Community Group format, from daisyUI 5's sizes, radii and depth. light.json and dark.json hold the colors.",
+  "shadow": {
+    "$type": "shadow",
+    "drop": {
+      "$description": "Under a raised control, like a button.",
+      "$value": [
+        {
+          "color": "{shadow-color.soft}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 3,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 2,
+            "unit": "px"
+          },
+          "spread": {
+            "value": -2,
+            "unit": "px"
+          }
+        },
+        {
+          "color": "{shadow-color.soft}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 3,
+            "unit": "px"
+          },
+          "spread": {
+            "value": -2,
+            "unit": "px"
+          }
+        }
+      ]
+    },
+    "drop-pressed": {
+      "$description": "Under a pressed raised control.",
+      "$value": {
+        "color": "{shadow-color.soft}",
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 1,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 1,
+          "unit": "px"
+        },
+        "spread": {
+          "value": -1,
+          "unit": "px"
+        }
+      }
+    },
+    "float": {
+      "$description": "Under a floating surface.",
+      "$value": [
+        {
+          "color": "{shadow-color.soft}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 10,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 15,
+            "unit": "px"
+          },
+          "spread": {
+            "value": -3,
+            "unit": "px"
+          }
+        },
+        {
+          "color": "{shadow-color.soft}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 6,
+            "unit": "px"
+          },
+          "spread": {
+            "value": -4,
+            "unit": "px"
+          }
+        }
+      ]
+    },
+    "sm": {
+      "$description": "A control's border.",
+      "$value": [
+        {
+          "color": "{color.input}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 0,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 0,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 1,
+            "unit": "px"
+          }
+        }
+      ]
+    },
+    "md": {
+      "$description": "A popup's shadow.",
+      "$value": [
+        {
+          "color": "{color.border}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 0,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 0,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 1,
+            "unit": "px"
+          }
+        },
+        {
+          "color": "{shadow-color.soft}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 10,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 15,
+            "unit": "px"
+          },
+          "spread": {
+            "value": -3,
+            "unit": "px"
+          }
+        },
+        {
+          "color": "{shadow-color.soft}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 6,
+            "unit": "px"
+          },
+          "spread": {
+            "value": -4,
+            "unit": "px"
+          }
+        }
+      ]
+    },
+    "lg": {
+      "$description": "A dialog's shadow.",
+      "$value": [
+        {
+          "color": "{shadow-color.deep}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 25,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 50,
+            "unit": "px"
+          },
+          "spread": {
+            "value": -12,
+            "unit": "px"
+          }
+        }
+      ]
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "base": {
+      "$description": "daisyUI's field radius, for buttons and inputs. Boxes, like popups and cards, are twice as round.",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    }
+  },
+  "space": {
+    "1": {
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "2": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      }
+    },
+    "3": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "4": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "6": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    },
+    "8": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "$type": "dimension"
+  },
+  "size": {
+    "$type": "dimension",
+    "sm": {
+      "$description": "A small control's height.",
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "md": {
+      "$description": "A control's height.",
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      }
+    },
+    "lg": {
+      "$description": "A large control's height.",
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      }
+    },
+    "item": {
+      "$description": "An item's height in a list.",
+      "$value": {
+        "value": 36,
+        "unit": "px"
+      }
+    },
+    "icon": {
+      "$description": "An icon.",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    }
+  },
+  "text": {
+    "$type": "dimension",
+    "xs": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "sm": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      }
+    },
+    "md": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      }
+    },
+    "lg": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    }
+  },
+  "leading": {
+    "$type": "dimension",
+    "$description": "The line height.",
+    "$value": {
+      "value": 20,
+      "unit": "px"
+    }
+  },
+  "font-mono": {
+    "$type": "fontFamily",
+    "$description": "Code and numbers that line up.",
+    "$value": ["ui-monospace", "SF Mono", "Menlo", "monospace"]
+  },
+  "duration": {
+    "$type": "duration",
+    "$description": "Transitions. It's 0ms when the user prefers less motion.",
+    "$value": {
+      "value": 200,
+      "unit": "ms"
+    }
+  }
+}

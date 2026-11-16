@@ -9,7 +9,12 @@ import {
   resource,
   signal,
 } from "@angular/core"
-import { LucideMenu, LucideMoon, LucideSun } from "@lucide/angular"
+import {
+  LucideCircleArrowUp,
+  LucideMenu,
+  LucideMoon,
+  LucideSun,
+} from "@lucide/angular"
 import {
   UiDrawer,
   UiDrawerBackdrop,
@@ -28,6 +33,32 @@ import { compositions } from "../examples/composition"
 import { type Guide, guides } from "../guides"
 import { Composition } from "./composition"
 import { ExampleFrame } from "./example-frame"
+import { Overview } from "./overview"
+import { type Choice, ThemePicker } from "./theme-picker"
+import { loadThemes, showTheme } from "./theme-sheets"
+import { palettes } from "../themes/palettes"
+
+// The themes the docs show, each with upstream's examples, as the build writes
+// them.
+const themes = [
+  { value: "default", label: "Default" },
+  { value: "shadcn", label: "shadcn" },
+  { value: "material", label: "Material" },
+  { value: "daisyui", label: "daisyUI" },
+]
+// A theme and one of its palettes, as the picker names them.
+const paletteOf = (choice: Choice) => {
+  const [theme, name = null] = choice.split("/")
+  return palettes[theme!]?.find((palette) => palette.name === name)
+}
+const storedChoice = (): Choice => {
+  try {
+    const stored = localStorage.getItem("docs-theme")
+    return stored && paletteOf(stored) ? stored : "default"
+  } catch {
+    return "default"
+  }
+}
 
 const components = [
   ...new Set(Object.keys(examples).map((key) => key.split("/")[0]!)),
@@ -46,10 +77,13 @@ const titleOf = (name: string) =>
     .join(" ")
 
 // The page a URL shows: a guide by `?doc=`, a component by `?component=`,
-// and the introduction without either.
-type Page = { kind: "doc" | "component"; name: string }
+// all components by `?components`, and the introduction without any.
+type Page = { kind: "doc" | "component" | "overview"; name: string }
 const pageOf = (search: string): Page => {
   const params = new URLSearchParams(search)
+  if (params.has("components")) {
+    return { kind: "overview", name: "components" }
+  }
   const component = params.get("component")
   if (component && components.includes(component)) {
     return { kind: "component", name: component }
@@ -66,11 +100,14 @@ const pageOf = (search: string): Page => {
   imports: [
     Composition,
     ExampleFrame,
+    LucideCircleArrowUp,
     LucideMenu,
     LucideMoon,
     LucideSun,
     NgComponentOutlet,
     NgTemplateOutlet,
+    Overview,
+    ThemePicker,
     UiDrawer,
     UiDrawerBackdrop,
     UiDrawerContent,
@@ -87,6 +124,17 @@ const pageOf = (search: string): Page => {
 })
 class App {
   protected readonly components = components
+  protected readonly tiles = components.map((name) => ({
+    name,
+    title: titleOf(name),
+    examples: Object.keys(examples).filter((key) => key.startsWith(`${name}/`))
+      .length,
+  }))
+
+  protected toTop() {
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" })
+  }
   protected readonly groups = [...new Set(guides.map((guide) => guide.group))]
   protected readonly titleOf = titleOf
   protected readonly page = signal(pageOf(location.search))
@@ -105,6 +153,15 @@ class App {
     params: () => this.guide(),
     loader: ({ params }) => params.load(),
   })
+  protected readonly themes = themes
+  protected readonly choice = signal(storedChoice())
+  // The theme and palette highlighted in the picker, shown until it closes.
+  protected readonly preview = signal<Choice | null>(null)
+  protected readonly shown = computed(() => this.preview() ?? this.choice())
+  // A palette with one color scheme, which the dark toggle can't change.
+  protected readonly scheme = computed(
+    () => paletteOf(this.shown())?.scheme ?? null
+  )
   protected readonly navOpen = signal(false)
   protected readonly dark = signal(
     matchMedia("(prefers-color-scheme: dark)").matches
@@ -144,10 +201,31 @@ class App {
     addEventListener("popstate", back)
     inject(DestroyRef).onDestroy(() => removeEventListener("popstate", back))
     effect(() => {
-      document.documentElement.style.colorScheme = this.dark()
-        ? "dark"
-        : "light"
+      const [theme, palette] = this.shown().split("/")
+      const scheme = this.scheme() ?? (this.dark() ? "dark" : "light")
+      showTheme(theme!, () => {
+        const root = document.documentElement
+        root.dataset["docsTheme"] = theme
+        if (palette) {
+          root.dataset["uiPalette"] = palette
+        } else {
+          delete root.dataset["uiPalette"]
+        }
+        root.style.colorScheme = scheme
+      })
     })
+    effect(() => {
+      const choice = this.choice()
+      try {
+        localStorage.setItem("docs-theme", choice)
+      } catch {
+        // Without storage, the theme only lasts until the page reloads.
+      }
+    })
+  }
+
+  protected loadThemes() {
+    loadThemes(themes.map((theme) => theme.value))
   }
 
   protected guidesIn(group: string) {

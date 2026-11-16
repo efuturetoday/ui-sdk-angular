@@ -40,6 +40,7 @@ a {
 code {
   padding: 1px 5px;
   border: 1px solid var(--frame-line);
+  border-radius: var(--ui-radius-row);
   font:
     0.85em var(--font-geist-mono),
     ui-monospace,
@@ -74,6 +75,7 @@ th {
   margin: 1rem 0 1.5rem;
   padding: 2rem 1rem;
   border: 1px solid var(--frame-line);
+  border-radius: var(--ui-radius-surface);
   background: var(--frame-paper);
 }
 
@@ -94,6 +96,7 @@ th {
   display: block;
   padding: 16px;
   border: 1px solid var(--frame-line);
+  border-radius: var(--ui-radius-surface);
   background: var(--frame-paper);
   text-decoration: none;
 }

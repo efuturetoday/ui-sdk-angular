@@ -1,0 +1,151 @@
+{
+  "$description": "The default theme's dark colors. Each mode has the same tokens.",
+  "color": {
+    "$type": "color",
+    "background": {
+      "$description": "The page.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0784, 0.0784, 0.0745],
+        "hex": "#141413"
+      }
+    },
+    "foreground": {
+      "$description": "Text.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.8706, 0.8627, 0.8431],
+        "hex": "#dedcd7"
+      }
+    },
+    "surface-1": {
+      "$description": "Controls, like a button or an input.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.102, 0.102, 0.098],
+        "hex": "#1a1a19"
+      }
+    },
+    "surface-2": {
+      "$description": "Popups, like a menu or a dialog.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.1294, 0.1294, 0.1255],
+        "hex": "#212120"
+      }
+    },
+    "surface-3": {
+      "$description": "A surface on a popup.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.1569, 0.1569, 0.1529],
+        "hex": "#282827"
+      }
+    },
+    "muted": {
+      "$description": "A quiet surface, like a hovered item.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.149, 0.149, 0.1451],
+        "hex": "#262625"
+      }
+    },
+    "muted-foreground": {
+      "$description": "Secondary text, like a description.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.6039, 0.5961, 0.5765],
+        "hex": "#9a9893"
+      }
+    },
+    "input": {
+      "$description": "The border of a control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.4353, 0.4314, 0.4196],
+        "hex": "#6f6e6b"
+      }
+    },
+    "border": {
+      "$description": "Dividers and quiet borders.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.2275, 0.2235, 0.2157],
+        "hex": "#3a3937"
+      }
+    },
+    "border-disabled": {
+      "$description": "The border of a disabled control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.3725, 0.3686, 0.3569],
+        "hex": "#5f5e5b"
+      }
+    },
+    "destructive": {
+      "$description": "Errors.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9255, 0.4784, 0.4471],
+        "hex": "#ec7a72"
+      }
+    },
+    "overlay": {
+      "$description": "Behind a modal dialog or drawer.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.0392, 0.0392, 0.0392],
+        "alpha": 0.72,
+        "hex": "#0a0a0a"
+      }
+    }
+  },
+  "shadow-color": {
+    "$type": "color",
+    "drop": {
+      "$description": "Under a raised control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.6,
+        "hex": "#000000"
+      }
+    },
+    "sm": {
+      "$description": "Under a control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.4,
+        "hex": "#000000"
+      }
+    },
+    "near": {
+      "$description": "The near layer under a floating surface.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.5333,
+        "hex": "#000000"
+      }
+    },
+    "float-far": {
+      "$description": "The far layer under a popup.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.8,
+        "hex": "#000000"
+      }
+    },
+    "lg-far": {
+      "$description": "The far layer under a dialog.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.9333,
+        "hex": "#000000"
+      }
+    }
+  }
+}

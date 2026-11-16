@@ -1,0 +1,18 @@
+@scope ([data-ui-theme]) {
+  /* Material's buttons are pills, round at any size. */
+  :is(
+    [data-slot="button"],
+    :where(button):not([data-slot]):where(:not([data-slot="input-group"] > *)),
+    [data-slot="dialog-trigger"],
+    [data-slot="dialog-close"],
+    [data-slot="alert-dialog-trigger"],
+    [data-slot="alert-dialog-close"],
+    [data-slot="drawer-trigger"],
+    [data-slot="drawer-close"],
+    [data-slot="popover-trigger"],
+    [data-slot="file-input-trigger"],
+    [data-slot="toast-action"]
+  ):is(*, [data-size]) {
+    border-radius: 999px;
+  }
+}

@@ -20,6 +20,7 @@ import { DomSanitizer } from "@angular/platform-browser"
       display: block;
       margin: 1rem 0 1.5rem;
       border: 1px solid var(--frame-line);
+      border-radius: var(--ui-radius-surface);
       background: var(--frame-paper);
       overflow: hidden;
     }

@@ -1,5 +1,3 @@
-@import "./examples.css";
-
 :root {
   color-scheme: light dark;
   /* The fonts upstream's example tokens name, as ui-sdk.dev loads them. */
@@ -7,21 +5,30 @@
   --font-geist-mono: "Geist Mono";
 }
 
-body {
-  margin: 0;
-  background: light-dark(#fafafa, #111);
-  color: light-dark(#171717, #dedcd7);
+/* A short page keeps the scrollbar's room, so the centered layout doesn't
+   move between pages. */
+html {
+  scrollbar-gutter: stable;
 }
 
-/* As on ui-sdk.dev: Geist, and square everywhere but marked shapes. */
+body {
+  margin: 0;
+  background: var(--ui-background);
+  color: var(--ui-foreground);
+}
+
+/* As on ui-sdk.dev: Geist, and with the default theme square everywhere but
+   marked shapes. */
 body {
   font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
-:not([data-round]),
-:not([data-round])::before,
-:not([data-round])::after {
-  border-radius: 0 !important;
+:root[data-docs-theme="default"] {
+  :not([data-round]),
+  :not([data-round])::before,
+  :not([data-round])::after {
+    border-radius: 0 !important;
+  }
 }

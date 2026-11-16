@@ -1,0 +1,8 @@
+{
+  "--ui-ring": "color-mix(in oklab, var(--ui-primary) 22%, transparent)",
+  "--ui-destructive-muted": "color-mix(in oklab, var(--ui-destructive) 9%, var(--ui-surface-2))",
+  "--ui-radius-row": "calc(var(--ui-radius) - 1px)",
+  "--ui-radius-control": "var(--ui-radius)",
+  "--ui-radius-surface": "calc(var(--ui-radius) + 2px)",
+  "--ui-radius-popup": "calc(var(--ui-radius) + 4px)"
+}

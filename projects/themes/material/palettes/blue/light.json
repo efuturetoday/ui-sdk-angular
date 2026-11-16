@@ -1,0 +1,154 @@
+{
+  "$description": "The Material theme's blue palette in light, made from #2196F3 by scripts/build-material.mjs.",
+  "color": {
+    "$type": "color",
+    "background": {
+      "$description": "The page.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9725, 0.9765, 1],
+        "hex": "#f8f9ff"
+      }
+    },
+    "foreground": {
+      "$description": "Text.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.098, 0.1098, 0.1255],
+        "hex": "#191c20"
+      }
+    },
+    "surface-1": {
+      "$description": "Controls, like a button or an input.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9725, 0.9765, 1],
+        "hex": "#f8f9ff"
+      }
+    },
+    "surface-2": {
+      "$description": "Popups, like a menu or a dialog.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9255, 0.9333, 0.9569],
+        "hex": "#eceef4"
+      }
+    },
+    "surface-3": {
+      "$description": "A surface on a popup.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.902, 0.9098, 0.9333],
+        "hex": "#e6e8ee"
+      }
+    },
+    "muted": {
+      "$description": "A quiet surface, like a hovered item.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.098, 0.1098, 0.1255],
+        "alpha": 0.08,
+        "hex": "#191c20"
+      }
+    },
+    "muted-foreground": {
+      "$description": "Secondary text, like a description.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.2627, 0.2784, 0.3059],
+        "hex": "#43474e"
+      }
+    },
+    "primary": {
+      "$description": "Fills that stand out, like a checked checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.2118, 0.3804, 0.5569],
+        "hex": "#36618e"
+      }
+    },
+    "primary-foreground": {
+      "$description": "Text and icons on the primary color.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "hex": "#ffffff"
+      }
+    },
+    "ring": {
+      "$description": "The focus ring.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.2118, 0.3804, 0.5569],
+        "alpha": 0.4,
+        "hex": "#36618e"
+      }
+    },
+    "input": {
+      "$description": "The border of a control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.451, 0.4667, 0.498],
+        "hex": "#73777f"
+      }
+    },
+    "border": {
+      "$description": "Dividers and quiet borders.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.7647, 0.7804, 0.8118],
+        "hex": "#c3c7cf"
+      }
+    },
+    "border-strong": {
+      "$description": "The border of a button or a checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.451, 0.4667, 0.498],
+        "hex": "#73777f"
+      }
+    },
+    "border-disabled": {
+      "$description": "The border and text of a disabled control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.098, 0.1098, 0.1255],
+        "alpha": 0.38,
+        "hex": "#191c20"
+      }
+    },
+    "destructive": {
+      "$description": "Errors.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.7294, 0.102, 0.102],
+        "hex": "#ba1a1a"
+      }
+    },
+    "destructive-muted": {
+      "$description": "A surface behind an error.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.8549, 0.8392],
+        "hex": "#ffdad6"
+      }
+    },
+    "overlay": {
+      "$description": "Behind a modal dialog or drawer.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.32,
+        "hex": "#000000"
+      }
+    },
+    "field": {
+      "$description": "The fill of a text field.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.8824, 0.8863, 0.9098],
+        "hex": "#e1e2e8"
+      }
+    }
+  }
+}

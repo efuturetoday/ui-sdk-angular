@@ -1,0 +1,154 @@
+{
+  "$description": "The Material theme's amber palette in light, made from #FFC107 by scripts/build-material.mjs.",
+  "color": {
+    "$type": "color",
+    "background": {
+      "$description": "The page.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.9725, 0.949],
+        "hex": "#fff8f2"
+      }
+    },
+    "foreground": {
+      "$description": "Text.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.1216, 0.1059, 0.0745],
+        "hex": "#1f1b13"
+      }
+    },
+    "surface-1": {
+      "$description": "Controls, like a button or an input.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.9725, 0.949],
+        "hex": "#fff8f2"
+      }
+    },
+    "surface-2": {
+      "$description": "Popups, like a menu or a dialog.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9647, 0.9255, 0.8745],
+        "hex": "#f6ecdf"
+      }
+    },
+    "surface-3": {
+      "$description": "A surface on a popup.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9451, 0.9059, 0.851],
+        "hex": "#f1e7d9"
+      }
+    },
+    "muted": {
+      "$description": "A quiet surface, like a hovered item.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.1216, 0.1059, 0.0745],
+        "alpha": 0.08,
+        "hex": "#1f1b13"
+      }
+    },
+    "muted-foreground": {
+      "$description": "Secondary text, like a description.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.302, 0.2745, 0.2235],
+        "hex": "#4d4639"
+      }
+    },
+    "primary": {
+      "$description": "Fills that stand out, like a checked checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.4667, 0.3529, 0.0431],
+        "hex": "#775a0b"
+      }
+    },
+    "primary-foreground": {
+      "$description": "Text and icons on the primary color.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "hex": "#ffffff"
+      }
+    },
+    "ring": {
+      "$description": "The focus ring.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.4667, 0.3529, 0.0431],
+        "alpha": 0.4,
+        "hex": "#775a0b"
+      }
+    },
+    "input": {
+      "$description": "The border of a control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.498, 0.4627, 0.4039],
+        "hex": "#7f7667"
+      }
+    },
+    "border": {
+      "$description": "Dividers and quiet borders.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.8157, 0.7725, 0.7059],
+        "hex": "#d0c5b4"
+      }
+    },
+    "border-strong": {
+      "$description": "The border of a button or a checkbox.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.498, 0.4627, 0.4039],
+        "hex": "#7f7667"
+      }
+    },
+    "border-disabled": {
+      "$description": "The border and text of a disabled control.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.1216, 0.1059, 0.0745],
+        "alpha": 0.38,
+        "hex": "#1f1b13"
+      }
+    },
+    "destructive": {
+      "$description": "Errors.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.7294, 0.102, 0.102],
+        "hex": "#ba1a1a"
+      }
+    },
+    "destructive-muted": {
+      "$description": "A surface behind an error.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.8549, 0.8392],
+        "hex": "#ffdad6"
+      }
+    },
+    "overlay": {
+      "$description": "Behind a modal dialog or drawer.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.32,
+        "hex": "#000000"
+      }
+    },
+    "field": {
+      "$description": "The fill of a text field.",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9216, 0.8824, 0.8314],
+        "hex": "#ebe1d4"
+      }
+    }
+  }
+}

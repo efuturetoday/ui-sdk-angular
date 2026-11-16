@@ -1,0 +1,32 @@
+@scope ([data-ui-theme]) {
+  /* daisyUI's buttons are filled, with a bold label. Variants, pressed and
+     disabled buttons keep their own look. */
+  :is(
+    [data-slot="button"],
+    :where(button):not([data-slot]):where(:not([data-slot="input-group"] > *)),
+    [data-slot="dialog-trigger"],
+    [data-slot="dialog-close"],
+    [data-slot="alert-dialog-trigger"],
+    [data-slot="alert-dialog-close"],
+    [data-slot="drawer-trigger"],
+    [data-slot="drawer-close"],
+    [data-slot="popover-trigger"],
+    [data-slot="menu-trigger"]:where(:not([data-slot="menu-content"] *)),
+    [data-slot="file-input-trigger"],
+    [data-slot="toast-action"]
+  ):not(
+    [data-variant],
+    [aria-pressed="true"],
+    [data-copied],
+    :disabled,
+    [data-disabled],
+    [aria-disabled="true"]
+  ) {
+    background: var(--ui-muted);
+    font-weight: 600;
+
+    &:hover {
+      background: color-mix(in oklab, var(--ui-foreground) 6%, var(--ui-muted));
+    }
+  }
+}

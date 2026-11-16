@@ -3,7 +3,7 @@
   [data-slot="otp-input"] {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--ui-space-2);
   }
 
   /* Each demo, a field or a stack of them, sits centered in the preview. */
@@ -19,39 +19,40 @@
 
   [data-slot="otp-input-group"] {
     display: flex;
-    border-radius: var(--radius-control);
+    border-radius: var(--ui-radius-control)
+  }
 
-    [data-focused] > & {
+    [data-focused] > [data-slot="otp-input-group"] {
       outline: none;
     }
-  }
 
   [data-slot="otp-input-slot"] {
     position: relative;
     display: grid;
     place-items: center;
     box-sizing: border-box;
-    width: var(--size);
-    height: var(--size);
-    background: var(--surface-1);
-    box-shadow: inset 0 0 0 1px var(--line);
-    color: var(--ink);
-    font-size: var(--text-md);
+    width: var(--ui-size-md);
+    height: var(--ui-size-md);
+    background: var(--ui-surface-1);
+    box-shadow: inset 0 0 0 1px var(--ui-input);
+    color: var(--ui-foreground);
+    font-size: var(--ui-text-md);
     font-weight: 400;
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric: tabular-nums
+  }
 
-    & + & {
+    [data-slot="otp-input-slot"] + [data-slot="otp-input-slot"] {
       margin-inline-start: -1px;
     }
 
-    &:first-child {
-      border-start-start-radius: var(--radius-control);
-      border-end-start-radius: var(--radius-control);
+    [data-slot="otp-input-slot"]:first-child {
+      border-start-start-radius: var(--ui-radius-control);
+      border-end-start-radius: var(--ui-radius-control);
     }
 
-    &:last-child {
-      border-start-end-radius: var(--radius-control);
-      border-end-end-radius: var(--radius-control);
+    [data-slot="otp-input-slot"]:last-child {
+      border-start-end-radius: var(--ui-radius-control);
+      border-end-end-radius: var(--ui-radius-control);
     }
 
     [data-slot="otp-input"]:hover:not(
@@ -59,54 +60,53 @@
         [data-disabled],
         :has([readonly], [aria-invalid="true"])
       )
-      & {
+      [data-slot="otp-input-slot"] {
       box-shadow: inset 0 0 0 1px
-        color-mix(in oklab, var(--ink) 45%, var(--surface-1));
+        color-mix(in oklab, var(--ui-border-strong) 45%, var(--ui-surface-1));
     }
 
-    &[data-active] {
+    [data-slot="otp-input-slot"][data-active] {
       z-index: 1;
-      outline: 3px solid var(--halo);
+      outline: 3px solid var(--ui-ring);
       outline-offset: 0;
-      box-shadow: inset 0 0 0 1px var(--ink);
+      box-shadow: inset 0 0 0 1px var(--ui-border-strong);
     }
 
-    &[data-fake-caret]:empty::after,
-    & > span:empty {
+    [data-slot="otp-input-slot"][data-fake-caret]:empty::after,
+    [data-slot="otp-input-slot"] > span:empty {
       content: "";
       width: 1px;
-      height: var(--size-icon);
-      background: var(--ink);
+      height: var(--ui-size-icon);
+      background: var(--ui-primary);
       animation: otp-input-caret 1s step-end infinite;
     }
 
-    [data-slot="otp-input"]:has([readonly]) & {
-      box-shadow: inset 0 0 0 1px var(--line-faint);
+    [data-slot="otp-input"]:has([readonly]) [data-slot="otp-input-slot"] {
+      box-shadow: inset 0 0 0 1px var(--ui-border);
     }
 
-    [data-slot="otp-input"]:has([aria-invalid="true"]) & {
-      box-shadow: inset 0 0 0 1px var(--danger);
+    [data-slot="otp-input"]:has([aria-invalid="true"]) [data-slot="otp-input-slot"] {
+      box-shadow: inset 0 0 0 1px var(--ui-destructive)
+    }
 
-      &[data-active] {
-        outline-color: color-mix(in oklab, var(--danger) 20%, transparent);
+      [data-slot="otp-input"]:has([aria-invalid="true"]) [data-slot="otp-input-slot"][data-active] {
+        outline-color: color-mix(in oklab, var(--ui-destructive) 20%, transparent);
       }
-    }
 
-    &[data-disabled] {
-      background-color: var(--tint);
-      box-shadow: inset 0 0 0 1px var(--line-faint);
-      color: var(--line-disabled);
+    [data-slot="otp-input-slot"][data-disabled] {
+      background-color: var(--ui-muted);
+      box-shadow: inset 0 0 0 1px var(--ui-border);
+      color: var(--ui-border-disabled);
     }
-  }
 
   [data-slot="otp-input-separator"] {
     display: flex;
-    color: var(--muted);
-
-    &[data-disabled] {
-      color: var(--line-disabled);
-    }
+    color: var(--ui-muted-foreground)
   }
+
+    [data-slot="otp-input-separator"][data-disabled] {
+      color: var(--ui-border-disabled);
+    }
 
   @media (prefers-reduced-motion: reduce) {
     [data-slot="otp-input-slot"]::after,
