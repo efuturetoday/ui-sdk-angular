@@ -152,12 +152,9 @@ class UiFieldDescription implements OnInit {
   // described by both. A field set's description takes the same props.
   readonly #id = inject(UiIds).next()
   readonly #inside = this.#described
-    ? injectPart(
-        this.#described.handle,
-        "description",
-        // The slot's props take a value, which its public type leaves out.
-        () => ({ value: this.#id }) as never
-      )
+    ? injectPart(this.#described.handle, "description", () => ({
+        value: this.#id,
+      }))
     : undefined
   readonly #part = this.#inside ?? injectOutside("description")
   /**
@@ -200,10 +197,7 @@ class UiFieldError implements TextSource {
     ? injectPresentPart(
         this.#field.handle,
         "error",
-        // The slot's props take a value, which its public type leaves out.
-        computed(
-          () => ({ ...this.#props(), value: this.#id }) as FieldErrorProps
-        )
+        computed(() => ({ ...this.#props(), value: this.#id }))
       )
     : injectOutsideError(this.#props)
 
