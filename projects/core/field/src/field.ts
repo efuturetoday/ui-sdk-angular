@@ -148,8 +148,16 @@ class UiFieldLabel implements OnInit {
 @Directive({ selector: "[uiFieldDescription]", exportAs: "uiFieldDescription" })
 class UiFieldDescription implements OnInit {
   readonly #described = inject(DescribedToken, { optional: true })
+  // Each description is keyed by an id of its own, so a control with two is
+  // described by both. A field set's description takes the same props.
+  readonly #id = inject(UiIds).next()
   readonly #inside = this.#described
-    ? injectPart(this.#described.handle, "description")
+    ? injectPart(
+        this.#described.handle,
+        "description",
+        // The slot's props take a value, which its public type leaves out.
+        () => ({ value: this.#id }) as never
+      )
     : undefined
   readonly #part = this.#inside ?? injectOutside("description")
   /**
@@ -185,20 +193,17 @@ class UiFieldError implements TextSource {
   })
   readonly #props = computed<FieldErrorProps>(() => ({ match: this.match() }))
   readonly #field = inject(FieldContextToken, { optional: true })
-  // Only an error with `match` needs an id of its own. One without takes the
-  // field's, which the control points at before the field binds.
+  // Each error is its own part, keyed by a made value. Core gives the first
+  // one that shows the id the control points at before the field binds.
   readonly #id = inject(UiIds).next()
   readonly #part = this.#field
     ? injectPresentPart(
         this.#field.handle,
         "error",
-        computed(() => {
-          const props = this.#props()
-          // The slot's props take an id, which its public type leaves out.
-          return props.match === undefined
-            ? props
-            : ({ ...props, id: this.#id } as FieldErrorProps)
-        })
+        // The slot's props take a value, which its public type leaves out.
+        computed(
+          () => ({ ...this.#props(), value: this.#id }) as FieldErrorProps
+        )
       )
     : injectOutsideError(this.#props)
 

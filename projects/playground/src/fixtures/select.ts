@@ -153,6 +153,7 @@ class StyledContent {}
             [defaultValue]="o.defaultValue"
             [required]="o.required"
             [readOnly]="o.readOnly"
+            [virtualFocus]="o.virtualFocus"
             [disabled]="o.disabled"
             [defaultOpen]="o.defaultOpen"
             [modal]="o.modal"

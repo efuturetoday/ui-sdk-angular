@@ -68,7 +68,7 @@ import {
           </button>
         }
         <div
-          *uiPopoverContent="let state; sideOffset: 8; side: content.side; align: content.align; initialFocus: content.initialFocus"
+          *uiPopoverContent="let state; sideOffset: 8; side: content.side; align: content.align; initialFocus: content.initialFocus; inline: content.inline"
           class="popup"
         >
           <div uiPopoverArrow class="arrow"></div>

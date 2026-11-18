@@ -143,8 +143,8 @@ class UiCombobox implements OnInit {
   readonly itemToLabel = input<(item: any) => string>()
   /** Whether an item's value is the selected one, for values that are objects. */
   readonly isItemEqualToValue = input<(itemValue: any, value: any) => boolean>()
-  /** Whether the first match is highlighted as the user types; `"always"` keeps one highlighted. */
-  readonly autoHighlight = input<boolean | "always">()
+  /** Whether the first match is highlighted as the user types; `"always"` keeps one highlighted, and `"selected"` starts on the selected item. */
+  readonly autoHighlight = input<boolean | "always" | "selected">()
   /** Keeps the text after choosing, instead of the chosen item's label. */
   readonly keepQuery = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,

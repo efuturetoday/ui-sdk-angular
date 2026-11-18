@@ -156,6 +156,10 @@ class UiSelect implements OnInit {
   readonly loop = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
   })
+  /** Keeps focus on the trigger while the list is open, as on a native select; the trigger points at the highlighted item with `aria-activedescendant`. */
+  readonly virtualFocus = input<boolean | undefined, unknown>(undefined, {
+    transform: optionalBoolean,
+  })
   /** Whether the page behind is inert while open. */
   readonly modal = input<boolean | "pointer">()
   /** How it presents: `"sheet"` slides up from the bottom, `"auto"` does that on small touch screens. */
@@ -253,6 +257,7 @@ class UiSelect implements OnInit {
       itemToLabel: this.itemToLabel(),
       isItemEqualToValue: this.isItemEqualToValue(),
       loop: this.loop(),
+      virtualFocus: this.virtualFocus(),
       modal: this.modal(),
       presentation: this.presentation(),
       disabled:

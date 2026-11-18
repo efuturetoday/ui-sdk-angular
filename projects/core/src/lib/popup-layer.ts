@@ -31,7 +31,8 @@ function createLayer<P extends Primitive>(
   handle: PrimitiveHandle<P>,
   container: (() => PopupContainer) | undefined,
   viewport: SlotName<P> | undefined,
-  input: (() => HTMLElement | undefined) | undefined
+  input: (() => HTMLElement | undefined) | undefined,
+  inline: (() => boolean | undefined) | undefined
 ) {
   const renderer = inject(Renderer2)
   const anchor = inject(ViewContainerRef).element.nativeElement as Node
@@ -47,7 +48,10 @@ function createLayer<P extends Primitive>(
   // popup shows the document handles them, as React's root does.
   let untap: (() => void) | undefined
 
-  const target = () => (container ? portalTarget(untracked(resolved)) : null)
+  const target = () =>
+    container && !untracked(() => inline?.())
+      ? portalTarget(untracked(resolved))
+      : null
   const sheet = () =>
     !!viewport && isPresent(handle.instance.part(viewport, {} as never))
 
@@ -191,8 +195,9 @@ function createLayer<P extends Primitive>(
  * popup's `viewport` slot: while that's present, the part sits in a viewport
  * element the layer makes around it. A list with an input outside its popup,
  * like a combobox's, passes `header` too: while the sheet is open, the input
- * moves into a header the layer makes at the content's top. Call it in a field
- * initializer; it starts once Angular has set the inputs.
+ * moves into a header the layer makes at the content's top. An `inline` part
+ * stays in place, out of any container. Call it in a field initializer; it
+ * starts once Angular has set the inputs.
  * @experimental
  */
 function injectPopupPart<P extends Primitive, S extends SlotName<P>>(
@@ -203,13 +208,15 @@ function injectPopupPart<P extends Primitive, S extends SlotName<P>>(
     container,
     viewport,
     header,
+    inline,
   }: {
     container?: () => PopupContainer
     viewport?: SlotName<P>
     header?: { slot: SlotName<P>; input: () => HTMLElement | undefined }
+    inline?: () => boolean | undefined
   } = {}
 ) {
-  const layer = createLayer(handle, container, viewport, header?.input)
+  const layer = createLayer(handle, container, viewport, header?.input, inline)
   const part = injectPresentPart(handle, slot, props, layer.placement)
   const extras = [
     viewport &&

@@ -10,6 +10,7 @@ import {
   injectPart,
   injectHandle,
   injectPrimitive,
+  optionalBoolean,
   type PrimitiveHandle,
   provideRoot,
   TextSource,
@@ -49,6 +50,10 @@ class UiPagination implements OnInit {
   readonly boundaries = input<number>()
   /** A page's URL, which makes the links `<a>` elements. */
   readonly getHref = input<(page: number) => string>()
+  /** Disables every page and step, as a step at its end is. */
+  readonly disabled = input<boolean | undefined, unknown>(undefined, {
+    transform: optionalBoolean,
+  })
   /** Sets the page from anywhere. Create one with `createPaginationController()`. */
   readonly controller = input<PaginationController>()
   /** Logs every state change with its reason to the console, in development builds. */
@@ -71,6 +76,7 @@ class UiPagination implements OnInit {
       siblings: this.siblings(),
       boundaries: this.boundaries(),
       getHref: this.getHref(),
+      disabled: this.disabled(),
       controller: this.controller(),
       debug: this.debug(),
       onPageChange: (page: number, details: PaginationPageChangeDetails) => {
