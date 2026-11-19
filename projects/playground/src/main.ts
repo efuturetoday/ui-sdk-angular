@@ -66,6 +66,7 @@ const fixtures: Record<string, () => Promise<{ Fixture: Type<unknown> }>> = {
   "menu-cases": () => import("./fixtures/menu-cases"),
   "menu-groups": () => import("./fixtures/menu-groups"),
   "menu-render": () => import("./fixtures/menu-render"),
+  "menu-unmount": () => import("./fixtures/menu-unmount"),
   menubar: () => import("./fixtures/menubar"),
   "navigation-menu": () => import("./fixtures/navigation-menu"),
   "number-input": () => import("./fixtures/number-input"),

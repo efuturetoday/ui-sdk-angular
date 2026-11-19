@@ -28,6 +28,7 @@ import {
   type AutocompleteOpenChangeReason,
   type AutocompletePrimitive,
   type AutocompleteSubmitDetails,
+  type AutocompleteValueChangeDetails,
   type AutocompleteValueChangeReason,
   type ListAnnouncement,
   type ListData,
@@ -56,13 +57,6 @@ import {
   TextSource,
   showMarked,
 } from "@ngx-ui-sdk/core"
-
-/**
- * Why the autocomplete's text changes.
- * @experimental
- */
-type AutocompleteValueChangeDetails =
-  ChangeDetails<AutocompleteValueChangeReason>
 
 /**
  * Why the autocomplete's suggestions open or close.
@@ -727,6 +721,7 @@ export type {
   AutocompleteStatusState,
   AutocompleteSubmitDetails,
   AutocompleteTriggerState,
+  AutocompleteValueChangeDetails,
   AutocompleteValueChangeReason,
   ListAnnouncement,
   ListData,
@@ -741,7 +736,6 @@ export type {
 
 export {
   type AutocompleteOpenChangeDetails,
-  type AutocompleteValueChangeDetails,
   UiAutocomplete,
   UiAutocompleteArrow,
   UiAutocompleteClear,

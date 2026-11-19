@@ -14,9 +14,9 @@ import { createBinding } from "./binding"
 import { bindPart } from "./part"
 import type { PrimitiveHandle } from "./primitive"
 
-// A list's form inputs, like a select's, are infrastructure no adapter
-// exposes as parts, so the adapter makes them right after the list's root:
-// one `form-input`, and with `multiple` a `value-input` per selected value.
+// A list's form inputs, like a select's, are infrastructure no adapter exposes
+// as parts, so the adapter makes them after the list's root: a textarea
+// `form-input`, as upstream's, and with `multiple` a `value-input` per value.
 function injectFormInputs<P extends Primitive>(
   handle: PrimitiveHandle<P>,
   values: () => string[]
@@ -30,8 +30,8 @@ function injectFormInputs<P extends Primitive>(
     [...made].reverse().find((node) => node.parentNode === root.parentNode) ??
     root
 
-  const make = () => {
-    const input = renderer.createElement("input") as HTMLInputElement
+  const make = <E extends HTMLElement = HTMLInputElement>(tag = "input") => {
+    const input = renderer.createElement(tag) as E
     renderer.insertBefore(root.parentNode, input, after().nextSibling)
     made.push(input)
     return input
@@ -41,14 +41,16 @@ function injectFormInputs<P extends Primitive>(
     renderer.removeChild(input.parentNode, input)
   }
 
-  let formInput: HTMLInputElement | undefined
+  let formInput: HTMLTextAreaElement | undefined
   const part = bindPart(
     () => handle,
     "form-input" as SlotName<P>,
     () => ({}) as never,
     {
       show: () =>
-        browser && root.parentNode ? (formInput ??= make()) : undefined,
+        browser && root.parentNode
+          ? (formInput ??= make<HTMLTextAreaElement>("textarea"))
+          : undefined,
       hide: () => {},
       at: root,
     }

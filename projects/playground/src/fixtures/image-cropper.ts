@@ -52,10 +52,10 @@ import {
           <img uiImageCropperImage [alt]="f.alt" />
           <div uiImageCropperSelection>
             <div uiImageCropperGrid></div>
-            @for (position of f.handles; track position) {
-              <div uiImageCropperHandle [position]="position"></div>
-            }
           </div>
+          @for (position of f.handles; track position) {
+            <div uiImageCropperHandle [position]="position"></div>
+          }
         </div>
         <input uiImageCropperZoom />
         <button uiImageCropperRotate>Rotate</button>

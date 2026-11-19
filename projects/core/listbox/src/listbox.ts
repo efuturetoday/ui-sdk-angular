@@ -81,6 +81,10 @@ class UiListbox implements OnInit {
   readonly loop = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
   })
+  /** Keeps focus on the list itself: arrow keys, Home, End and typing move a highlight the list points at with `aria-activedescendant`. */
+  readonly virtualFocus = input<boolean | undefined, unknown>(undefined, {
+    transform: optionalBoolean,
+  })
   /** Scrolls the selected item into view as the value changes. */
   readonly keepInView = input<boolean | undefined, unknown>(undefined, {
     transform: optionalBoolean,
@@ -144,6 +148,7 @@ class UiListbox implements OnInit {
       deselectable: this.deselectable(),
       orientation: this.orientation(),
       loop: this.loop(),
+      virtualFocus: this.virtualFocus(),
       keepInView: this.keepInView(),
       items: this.items(),
       itemToValue: this.itemToValue(),

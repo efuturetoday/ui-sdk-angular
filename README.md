@@ -1,6 +1,6 @@
 # ngx-ui-sdk
 
-Angular directives for [ui-sdk](https://github.com/vercel-labs/ui). Built on `@ui-sdk/core` 0.1.0-beta.5, for Angular 22.
+Angular directives for [ui-sdk](https://github.com/vercel-labs/ui). Built on `@ui-sdk/core` 0.1.0-beta.10, for Angular 22.
 
 [Demo](https://efuturetoday.github.io/ui-sdk-angular/) · [Documentation](https://ui-sdk.dev/docs) · [npm](https://www.npmjs.com/package/@ngx-ui-sdk/core)
 

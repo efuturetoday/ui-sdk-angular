@@ -78,7 +78,6 @@
     }
 
   [data-slot="image-cropper-handle"] {
-    position: absolute;
     width: 10px;
     height: 10px;
     border-radius: 2px;
@@ -91,30 +90,6 @@
       content: "";
       position: absolute;
       inset: -12px;
-    }
-
-    [data-slot="image-cropper-handle"][data-position*="n"] {
-      top: 0;
-    }
-
-    [data-slot="image-cropper-handle"][data-position*="s"] {
-      top: 100%;
-    }
-
-    [data-slot="image-cropper-handle"][data-position*="w"] {
-      left: 0;
-    }
-
-    [data-slot="image-cropper-handle"][data-position*="e"] {
-      left: 100%;
-    }
-
-    [data-slot="image-cropper-handle"]:is([data-position="n"], [data-position="s"]) {
-      left: 50%;
-    }
-
-    [data-slot="image-cropper-handle"]:is([data-position="e"], [data-position="w"]) {
-      top: 50%;
     }
 
     [data-slot="image-cropper-handle"]:focus-visible {

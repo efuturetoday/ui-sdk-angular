@@ -267,6 +267,11 @@ class UiPopoverContent implements OnInit {
     alias: "uiPopoverContentKeepMounted",
     transform: optionalBoolean,
   })
+  /** Renders the popover where it is in the page, out of the top layer, so it can stay inside a frame; the page places it. */
+  readonly inline = input<boolean | undefined, unknown>(undefined, {
+    alias: "uiPopoverContentInline",
+    transform: optionalBoolean,
+  })
   /** Where the popover renders, instead of the root's `container`. */
   readonly container = input<PopoverContentProps["container"]>(undefined, {
     alias: "uiPopoverContentContainer",
@@ -282,6 +287,7 @@ class UiPopoverContent implements OnInit {
     initialFocus: this.initialFocus(),
     finalFocus: this.finalFocus(),
     keepMounted: this.keepMounted(),
+    inline: this.inline(),
   }))
   readonly #root = inject(UiPopover)
   readonly #part = injectPopupPart(
@@ -290,6 +296,7 @@ class UiPopoverContent implements OnInit {
     this.#props,
     {
       container: () => this.container() ?? this.#root.container(),
+      inline: () => this.inline(),
       viewport: "viewport",
     }
   )

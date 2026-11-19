@@ -52,6 +52,7 @@ import {
         [activation]="o.activation"
         [orientation]="o.orientation"
         [loop]="o.loop"
+        [virtualFocus]="o.virtualFocus"
         [deselectable]="o.deselectable"
         [required]="o.required"
         [readOnly]="o.readOnly"

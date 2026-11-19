@@ -255,6 +255,11 @@ class UiDialogContent implements OnInit {
     alias: "uiDialogContentKeepMounted",
     transform: optionalBoolean,
   })
+  /** Renders the dialog where it is in the page, out of the top layer, with its backdrop, so it can stay inside a frame. */
+  readonly inline = input<boolean | undefined, unknown>(undefined, {
+    alias: "uiDialogContentInline",
+    transform: optionalBoolean,
+  })
   /** Where the dialog renders, instead of the root's `container`. */
   readonly container = input<DialogContentProps["container"]>(undefined, {
     alias: "uiDialogContentContainer",
@@ -263,6 +268,7 @@ class UiDialogContent implements OnInit {
     initialFocus: this.initialFocus(),
     finalFocus: this.finalFocus(),
     keepMounted: this.keepMounted(),
+    inline: this.inline(),
     container: this.container(),
   }))
   readonly #root = inject(UiDialog)
@@ -272,6 +278,7 @@ class UiDialogContent implements OnInit {
     this.#props,
     {
       container: () => this.container() ?? this.#root.container(),
+      inline: () => this.inline(),
       viewport: "viewport",
     }
   )

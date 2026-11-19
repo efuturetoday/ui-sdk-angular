@@ -77,7 +77,7 @@ import {
           <div *uiDialogBackdrop class="dialog-backdrop"></div>
         }
         <div
-          *uiDialogContent="let state; initialFocus: content.initialFocus; finalFocus: content.finalFocus"
+          *uiDialogContent="let state; initialFocus: content.initialFocus; finalFocus: content.finalFocus; inline: content.inline"
           class="dialog"
         >
           @if (parts.title) {
@@ -106,6 +106,7 @@ import {
           @if (parts.nested) {
             <ng-container
               uiDialog
+              [defaultOpen]="parts.nestedOpen"
               (beforeOpenChange)="record('nested', $event)"
             >
               <button uiDialogTrigger>{{ dialogFixture.nested.trigger }}</button>
@@ -174,6 +175,7 @@ class Fixture {
   protected readonly content = dialogContentOptions() as {
     initialFocus?: "content" | "none"
     finalFocus?: "none"
+    inline?: boolean
   }
   protected readonly parts = dialogParts()
   protected readonly controller = createDialogController()
