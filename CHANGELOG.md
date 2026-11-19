@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/efuturetoday/ui-sdk-angular/compare/v0.3.0...v0.4.0) (2026-11-19)
+
+
+### Features
+
+* update to @ui-sdk/core 0.1.0-beta.10 ([#16](https://github.com/efuturetoday/ui-sdk-angular/issues/16)) ([b258fd3](https://github.com/efuturetoday/ui-sdk-angular/commit/b258fd38e248b9cd11548b6c135f80697f8ceaa9))
+
+
+### Bug Fixes
+
+* **docs:** section links and phone width ([#14](https://github.com/efuturetoday/ui-sdk-angular/issues/14)) ([c3d1b31](https://github.com/efuturetoday/ui-sdk-angular/commit/c3d1b314e8be190b248f0f2b9e6315c11440cc8d))
+
 ## [0.3.0](https://github.com/efuturetoday/ui-sdk-angular/compare/v0.2.1...v0.3.0) (2026-11-16)
 
 
