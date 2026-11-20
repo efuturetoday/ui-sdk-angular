@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/efuturetoday/ui-sdk-angular/compare/v0.4.0...v0.4.1) (2026-11-20)
+
+
+### Bug Fixes
+
+* keep a controlled null value controlled ([#18](https://github.com/efuturetoday/ui-sdk-angular/issues/18)) ([2bf473f](https://github.com/efuturetoday/ui-sdk-angular/commit/2bf473f630553f2a1661aa43431f3a528a58b7b0))
+
 ## [0.4.0](https://github.com/efuturetoday/ui-sdk-angular/compare/v0.3.0...v0.4.0) (2026-11-19)
 
 
