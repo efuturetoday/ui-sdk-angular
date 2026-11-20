@@ -1,6 +1,8 @@
 # ngx-ui-sdk
 
-Angular directives for [ui-sdk](https://github.com/vercel-labs/ui). Built on `@ui-sdk/core` 0.1.0-beta.10, for Angular 22.
+[![CI](https://github.com/efuturetoday/ui-sdk-angular/actions/workflows/ci.yml/badge.svg)](https://github.com/efuturetoday/ui-sdk-angular/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/@ngx-ui-sdk/core)](https://www.npmjs.com/package/@ngx-ui-sdk/core) [![Downloads](https://img.shields.io/npm/dm/@ngx-ui-sdk/core)](https://www.npmjs.com/package/@ngx-ui-sdk/core) [![License](https://img.shields.io/npm/l/@ngx-ui-sdk/core)](LICENSE)
+
+Angular directives for [ui-sdk](https://github.com/vercel-labs/ui). Built on `@ui-sdk/core` 0.1.0-beta.13, for Angular 22.
 
 [Demo](https://efuturetoday.github.io/ui-sdk-angular/) · [Documentation](https://ui-sdk.dev/docs) · [npm](https://www.npmjs.com/package/@ngx-ui-sdk/core)
 
