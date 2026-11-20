@@ -94,7 +94,7 @@ class UiSegmentedControl implements OnInit {
   readonly handle: PrimitiveHandle<SegmentedControlPrimitive> = injectPrimitive(
     segmentedControl,
     () => ({
-      value: this.value() ?? this.#form?.value(),
+      value: this.value() !== undefined ? this.value() : this.#form?.value(),
       defaultValue: this.defaultValue(),
       disabled:
         this.disabled() || this.#form?.disabled() || this.#field?.disabled(),

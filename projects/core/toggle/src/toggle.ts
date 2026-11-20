@@ -80,7 +80,7 @@ class UiToggleGroup implements OnInit {
     toggleGroup,
     () => ({
       toolbar: this.#toolbar(),
-      value: this.value() ?? this.#form?.value(),
+      value: this.value() !== undefined ? this.value() : this.#form?.value(),
       defaultValue: this.defaultValue(),
       multiple: this.multiple(),
       deselectable: this.deselectable(),

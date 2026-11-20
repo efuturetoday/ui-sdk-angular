@@ -204,7 +204,7 @@ class UiAutocomplete implements OnInit {
   readonly handle: PrimitiveHandle<AutocompletePrimitive> = injectPrimitive(
     autocomplete,
     () => ({
-      value: this.value() ?? this.#form?.value(),
+      value: this.value() !== undefined ? this.value() : this.#form?.value(),
       defaultValue: this.defaultValue(),
       open: this.open(),
       defaultOpen: this.defaultOpen(),

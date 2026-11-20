@@ -238,7 +238,7 @@ class UiCombobox implements OnInit {
   readonly handle: PrimitiveHandle<ComboboxPrimitive> = injectPrimitive(
     combobox,
     () => ({
-      value: this.value() ?? this.#form?.value(),
+      value: this.value() !== undefined ? this.value() : this.#form?.value(),
       defaultValue: this.defaultValue(),
       query: this.query(),
       defaultQuery: this.defaultQuery(),

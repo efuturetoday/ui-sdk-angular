@@ -236,7 +236,7 @@ class UiCheckboxGroup implements OnInit {
   readonly handle: PrimitiveHandle<CheckboxGroupPrimitive> = injectPrimitive(
     checkboxGroup,
     () => ({
-      value: this.value() ?? this.#form?.value(),
+      value: this.value() !== undefined ? this.value() : this.#form?.value(),
       defaultValue: this.defaultValue(),
       allValues: this.allValues(),
       readOnly: this.readOnly() ?? this.readonly(),
