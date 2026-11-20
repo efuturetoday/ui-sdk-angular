@@ -114,7 +114,7 @@ class Composer {
 
 @Component({
   selector: "app-fixture",
-  imports: [UiText, Composer],
+  imports: [Composer],
   template: `
     <div class="fixture">
       <button>Before</button>

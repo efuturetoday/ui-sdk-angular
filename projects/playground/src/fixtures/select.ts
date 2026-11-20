@@ -99,7 +99,7 @@ class DataItems {
 // component of the app's own, as a styled layer does.
 @Component({
   selector: "app-styled-content",
-  imports: [UiText, DataItems, UiSelectContent],
+  imports: [DataItems, UiSelectContent],
   template: `
     <div *uiSelectContent="let state" class="popup list-popup">
       <app-data-items [items]="state().items" />
