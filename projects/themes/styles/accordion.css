@@ -1,0 +1,110 @@
+@scope ([data-ui-theme]) {
+  [data-slot="accordion"] {
+    width: 100%;
+    margin-inline: auto;
+    border-top: 1px solid var(--ui-border);
+  }
+
+  [data-slot="accordion-item"] {
+    border-bottom: 1px solid var(--ui-border);
+  }
+
+  [data-slot="accordion-header"] {
+    display: flex;
+    margin: 0;
+    font: inherit;
+  }
+
+  [data-slot="accordion-trigger"] {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--ui-space-2);
+    padding: 11px 2px;
+    border: 0;
+    border-radius: min(4px, var(--ui-radius));
+    background: none;
+    color: var(--ui-foreground);
+    font: inherit;
+    font-size: var(--ui-text-md);
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: start;
+    cursor: default;
+
+    &:focus-visible {
+      outline-offset: 0;
+    }
+
+    & > svg {
+      flex: none;
+      order: -1;
+      color: color-mix(
+        in oklab,
+        var(--ui-foreground) 55%,
+        var(--ui-primary-foreground)
+      );
+      rotate: -90deg;
+
+      &:is([dir="rtl"], [dir="rtl"] *) {
+        rotate: 90deg;
+      }
+    }
+
+    &[data-open] > svg {
+      rotate: 0deg;
+    }
+
+    & > [data-slot="hint"]:last-child {
+      margin-inline-start: auto;
+    }
+
+    &:not([data-open]) [data-show="open"],
+    &[data-open] [data-show="closed"] {
+      display: none;
+    }
+
+    &[data-disabled] {
+      color: var(--ui-border-disabled);
+
+      & > svg {
+        color: var(--ui-border-disabled);
+      }
+    }
+  }
+
+  [data-slot="accordion-panel"] {
+    padding-inline: 26px 2px;
+    color: var(--ui-foreground);
+    font-size: var(--ui-text-md);
+    font-weight: 400;
+
+    &::after {
+      display: block;
+      height: 11px;
+      content: "";
+    }
+
+    & [data-slot="accordion"] {
+      max-width: none;
+      border-top: 0;
+    }
+
+    & [data-slot="accordion-item"]:last-child {
+      border-bottom: 0;
+    }
+  }
+  [data-slot="accordion-trigger"] > svg {
+    transition: rotate var(--ui-duration);
+  }
+  [data-slot="accordion-panel"] {
+    box-sizing: border-box;
+    height: var(--accordion-panel-height);
+    overflow: hidden;
+    transition: height calc(var(--ui-duration) * 2) ease-out;
+  }
+  [data-slot="accordion-panel"]:is([data-starting-style], [data-ending-style]) {
+    height: 0;
+  }
+}

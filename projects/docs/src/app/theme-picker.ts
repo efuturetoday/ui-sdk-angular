@@ -244,14 +244,14 @@ const titleOf = (name: string) =>
   `,
   template: `
     <ng-container uiDialog [open]="open()" (openChange)="toggled($event)">
-      <button uiDialogTrigger class="trigger" aria-label="Theme" data-round>
+      <button uiDialogTrigger class="trigger" aria-label="Theme">
         <svg lucidePalette aria-hidden="true"></svg>
         <span class="label">Theme</span>
         <span class="value">{{ labelOf(current()) }}</span>
         <svg lucideChevronDown aria-hidden="true"></svg>
       </button>
       <div *uiDialogBackdrop class="backdrop"></div>
-      <div *uiDialogContent class="picker" data-round>
+      <div *uiDialogContent class="picker">
         <h2 uiDialogTitle class="visually-hidden">Theme</h2>
         <div
           uiCommand
@@ -271,10 +271,10 @@ const titleOf = (name: string) =>
               <div uiCommandGroup>
                 <div uiCommandGroupLabel>{{ group.label }}</div>
                 @for (item of group.items; track item.value) {
-                  <div uiCommandItem [value]="item.value" data-round>
+                  <div uiCommandItem [value]="item.value">
                     <span class="swatches" aria-hidden="true">
                       @for (swatch of item.swatches; track $index) {
-                        <span [style.background]="swatch" data-round></span>
+                        <span [style.background]="swatch"></span>
                       }
                     </span>
                     <span class="name">{{ item.label }}</span>

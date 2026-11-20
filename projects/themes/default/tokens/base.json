@@ -275,9 +275,9 @@
   "radius": {
     "$type": "dimension",
     "base": {
-      "$description": "A control's corners. Rows, surfaces and popups follow it.",
+      "$description": "A control's corners, square as on ui-sdk.dev. Rows, surfaces and popups follow it.",
       "$value": {
-        "value": 8,
+        "value": 0,
         "unit": "px"
       }
     }

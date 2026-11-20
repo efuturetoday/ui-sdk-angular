@@ -17,18 +17,9 @@ body {
   color: var(--ui-foreground);
 }
 
-/* As on ui-sdk.dev: Geist, and with the default theme square everywhere but
-   marked shapes. */
+/* As on ui-sdk.dev: Geist. */
 body {
   font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-}
-
-:root[data-docs-theme="default"] {
-  :not([data-round]),
-  :not([data-round])::before,
-  :not([data-round])::after {
-    border-radius: 0 !important;
-  }
 }

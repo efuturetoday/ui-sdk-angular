@@ -164,15 +164,18 @@ const ported = dirs(ours).flatMap((component) =>
     .filter((file) => file.endsWith(".ts"))
     .map((file) => `${component}/${file.replace(/\.ts$/, "")}`)
 )
-// A data-slot an example writes itself, like "stack", only hooks the example
-// styles, so a name they don't style is a typo nothing else would catch.
+// A data-slot an example writes itself, like "stack", only hooks the theme's
+// or the demo's styles, so a name they don't style is a typo nothing else
+// would catch.
 const styled = new Set()
 const stylesheets = [
-  ...readdirSync(path.join(vendor, "examples/styles")).map((file) =>
-    path.join(vendor, "examples/styles", file)
-  ),
-  ...dirs(examples).map((c) => path.join(examples, c, `${c}.css`)),
-].filter((file) => file.endsWith(".css") && existsSync(file))
+  path.join(root, "projects/themes/styles"),
+  path.join(root, "projects/docs/src/demo"),
+].flatMap((dir) =>
+  readdirSync(dir)
+    .filter((file) => file.endsWith(".css"))
+    .map((file) => path.join(dir, file))
+)
 for (const file of stylesheets) {
   for (const [, slot] of read(file).matchAll(/data-slot[~|^$*]?="?([\w-]+)/g)) {
     styled.add(slot)

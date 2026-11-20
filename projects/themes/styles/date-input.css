@@ -1,0 +1,72 @@
+@scope ([data-ui-theme]) {
+  :is([data-slot="date-input"], [data-slot="time-input"]) {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    padding-inline: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* A field around a date or time takes the input's width, so its description wraps under it. */
+  [data-slot="field"]:has(
+    > :is([data-slot="date-input"], [data-slot="time-input"])
+  ) {
+    width: max-content;
+
+    & > [data-slot="field-description"] {
+      contain: inline-size;
+    }
+  }
+
+  :is([data-slot="date-input-segment"], [data-slot="time-input-segment"]) {
+    &[data-type="literal"] {
+      padding-inline: 1px;
+      color: var(--ui-muted-foreground);
+      white-space: pre;
+    }
+
+    &:not([data-type="literal"]) {
+      box-sizing: content-box;
+      width: 2ch;
+      height: 22px;
+      padding: 0 2px;
+      border: 0;
+      border-radius: min(4px, var(--ui-radius));
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      text-align: center;
+      caret-color: transparent;
+      outline: none;
+
+      &::placeholder {
+        color: var(--ui-muted-foreground);
+      }
+
+      &::selection {
+        background: transparent;
+      }
+
+      &:focus {
+        background: var(--ui-primary);
+        color: var(--ui-primary-foreground);
+
+        &::placeholder {
+          color: var(--ui-primary-foreground);
+        }
+      }
+
+      &:disabled {
+        color: inherit;
+      }
+    }
+
+    &[data-type="year"] {
+      width: 4ch;
+    }
+
+    &[data-type="dayPeriod"] {
+      width: 2.6ch;
+    }
+  }
+}

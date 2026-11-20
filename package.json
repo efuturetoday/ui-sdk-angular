@@ -12,7 +12,7 @@
     "test:examples": "playwright test -c playwright.examples.config.ts",
     "bench": "playwright test -c playwright.bench.config.ts",
     "test:unit": "ng test core --watch=false",
-    "build:themes": "node scripts/build-theme.mjs --check && rm -rf dist/themes && mkdir -p dist/themes && cp projects/themes/package.json projects/themes/README.md projects/themes/LICENSE dist/themes/ && for dir in projects/themes/*/; do theme=$(basename $dir) && mkdir -p dist/themes/$theme && cp -R $dir/src/. $dir/tokens dist/themes/$theme/; done"
+    "build:themes": "node scripts/build-theme.mjs --check && rm -rf dist/themes && mkdir -p dist/themes && cp projects/themes/package.json projects/themes/README.md projects/themes/LICENSE dist/themes/ && for dir in projects/themes/*/; do [ -d $dir/tokens ] || continue; theme=$(basename $dir) && mkdir -p dist/themes/$theme && cp -R $dir/src/. $dir/tokens dist/themes/$theme/; done"
   },
   "private": true,
   "packageManager": "npm@11.19.0",
