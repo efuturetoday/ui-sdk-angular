@@ -1,0 +1,39 @@
+@scope ([data-ui-theme]) {
+  [data-slot="hover-card-trigger"] {
+    border-radius: min(4px, var(--ui-radius));
+    color: var(--ui-foreground);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: var(--ui-input);
+    text-underline-offset: 3px;
+
+    &:hover,
+    &[data-open] {
+      text-decoration-color: var(--ui-foreground);
+    }
+  }
+
+  [data-slot="hover-card-content"] {
+    gap: var(--ui-space-1);
+    width: 18rem;
+    font-size: var(--ui-text-sm);
+
+    & > p:first-of-type,
+    & [data-slot="stack"] > p:first-child {
+      font-size: var(--ui-text-md);
+      font-weight: 600;
+    }
+
+    & [data-slot="stack"] {
+      gap: var(--ui-space-1);
+    }
+
+    & p + p {
+      margin-top: 0;
+    }
+
+    & p[data-slot="hint"] {
+      margin-top: var(--ui-space-1);
+    }
+  }
+}

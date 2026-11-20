@@ -1,0 +1,109 @@
+@scope ([data-ui-theme]) {
+  [data-slot="switch"] {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    box-sizing: border-box;
+    width: 38px;
+    height: 22px;
+    padding: 3px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--ui-surface-1);
+    box-shadow: inset 0 0 0 1px var(--ui-input);
+    cursor: default;
+    transition:
+      background-color var(--ui-duration),
+      box-shadow var(--ui-duration);
+
+    &:hover:not([data-disabled], [data-readonly], [data-checked]) {
+      box-shadow: inset 0 0 0 1px
+        color-mix(in oklab, var(--ui-border-strong) 45%, var(--ui-surface-1));
+    }
+
+    &[data-checked] {
+      background: var(--ui-primary);
+      box-shadow: inset 0 0 0 1px var(--ui-border-strong);
+    }
+
+    &:is([data-invalid], [aria-invalid="true"]) {
+      box-shadow: inset 0 0 0 1px var(--ui-destructive);
+    }
+
+    &[data-readonly]:not([data-checked]) {
+      background: var(--ui-muted);
+    }
+
+    &[data-disabled] {
+      box-shadow: inset 0 0 0 1px var(--ui-border);
+    }
+
+    &[data-disabled][data-checked] {
+      background: var(--ui-border-disabled);
+      box-shadow: inset 0 0 0 1px var(--ui-border-disabled);
+    }
+
+    &[data-size="sm"] {
+      width: 30px;
+      height: 18px;
+    }
+  }
+
+  [data-slot="switch-thumb"] {
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    width: var(--ui-size-icon);
+    height: var(--ui-size-icon);
+    border-radius: 50%;
+    background: var(--ui-surface-1);
+    box-shadow:
+      inset 0 0 0 1px var(--ui-input),
+      0 1px 2px color-mix(in oklab, var(--ui-border-strong) 10%, transparent);
+    color: var(--ui-muted-foreground);
+    transition: translate var(--ui-duration);
+
+    & > svg {
+      width: 10px;
+      height: 10px;
+      stroke-width: 2.5;
+    }
+
+    &[data-checked] {
+      translate: 16px 0;
+      background: var(--ui-background);
+      box-shadow: var(--ui-shadow-drop);
+
+      &:is([dir="rtl"], [dir="rtl"] *) {
+        translate: -16px 0;
+      }
+    }
+
+    [data-disabled] > & {
+      box-shadow: inset 0 0 0 1px var(--ui-border);
+    }
+
+    [data-size="sm"] > & {
+      width: 12px;
+      height: 12px;
+
+      &[data-checked] {
+        translate: 12px 0;
+
+        &:is([dir="rtl"], [dir="rtl"] *) {
+          translate: -12px 0;
+        }
+      }
+    }
+  }
+
+  :is([data-slot="label"], [data-slot="field"]):has(
+    [data-slot="switch"][data-disabled]
+  ) {
+    color: var(--ui-border-disabled);
+  }
+
+  [data-slot="field-set"] > [data-slot="label"]:has(> [data-slot="switch"]) {
+    font-weight: 400;
+  }
+}

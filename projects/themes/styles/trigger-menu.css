@@ -1,0 +1,95 @@
+@scope ([data-ui-theme]) {
+  [data-slot="trigger-menu-input"] {
+    box-sizing: border-box;
+    min-height: 80px;
+    max-height: 12rem;
+    padding: var(--ui-space-2) 10px;
+    border: 0;
+    border-radius: var(--ui-radius-control);
+    background: var(--ui-surface-1);
+    box-shadow: inset 0 0 0 1px var(--ui-input);
+    color: var(--ui-foreground);
+    font: inherit;
+    resize: vertical;
+
+    &::placeholder {
+      color: var(--ui-muted-foreground);
+    }
+
+    &:hover:not(:focus-visible, :disabled, [readonly]) {
+      box-shadow: inset 0 0 0 1px
+        color-mix(in oklab, var(--ui-border-strong) 45%, var(--ui-surface-1));
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--ui-ring);
+      outline-offset: 0;
+      box-shadow: inset 0 0 0 1px var(--ui-border-strong);
+    }
+
+    &:is(input) {
+      min-height: 0;
+      height: var(--ui-size-md);
+      padding-block: 0;
+    }
+  }
+
+  [data-slot="stack"]:has(> [data-slot="trigger-menu-input"]) {
+    align-items: stretch;
+  }
+
+  [data-slot="trigger-menu-content"] {
+    width: 14rem;
+    max-width: calc(100vw - 2rem);
+    max-height: min(16rem, var(--available-height));
+    scroll-padding-block: 5px;
+
+    &[data-trigger="/"] [data-slot="trigger-menu-item"] {
+      font-family: var(--ui-font-mono);
+      font-size: var(--ui-text-sm);
+    }
+  }
+
+  [data-slot="trigger-menu-item"] {
+    & > [data-slot="trigger-menu-item-icon"],
+    & > [data-slot="badge"] {
+      color: var(--ui-muted-foreground);
+    }
+
+    & > :is([data-slot="badge"], [data-slot="hint"]) {
+      margin-inline-start: auto;
+    }
+
+    &[data-highlighted] > [data-slot="trigger-menu-item-icon"] {
+      color: inherit;
+    }
+  }
+
+  [data-slot="trigger-menu-item-icon"] {
+    display: flex;
+
+    & svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  [data-slot="trigger-menu-status"],
+  [data-slot="trigger-menu-hint"] {
+    min-height: var(--ui-leading);
+    color: var(--ui-muted-foreground);
+    font-size: var(--ui-text-sm);
+  }
+
+  [data-slot="trigger-menu-hint"] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  [data-slot="trigger-menu-content"] > [data-slot="trigger-menu-status"] {
+    padding: 6px 10px;
+
+    &:empty {
+      display: none;
+    }
+  }
+}

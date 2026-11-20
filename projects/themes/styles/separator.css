@@ -1,0 +1,49 @@
+@scope ([data-ui-theme]) {
+  [data-slot="separator"] {
+    flex-shrink: 0;
+    border: 0;
+    background: var(--ui-border);
+
+    &[data-orientation="horizontal"] {
+      width: 100%;
+      height: 1px;
+    }
+
+    &[data-orientation="vertical"] {
+      align-self: stretch;
+      width: 1px;
+    }
+  }
+
+  [data-slot="row"]:has(
+    > [data-slot="separator"][data-orientation="horizontal"]
+  ) {
+    flex-wrap: nowrap;
+    gap: var(--ui-space-3);
+    color: var(--ui-muted-foreground);
+    font-size: var(--ui-text-sm);
+
+    & > [data-slot="separator"] {
+      flex: 1;
+    }
+  }
+
+  [data-slot="row"]:has(
+    > [data-slot="separator"][data-orientation="vertical"]
+  ) {
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: var(--ui-space-4);
+  }
+
+  [data-slot="stack"]:has(
+    > [data-slot="separator"],
+    > [data-slot="row"] > [data-slot="separator"][data-orientation="horizontal"]
+  ) {
+    align-items: stretch;
+
+    & > [data-slot="stack"] {
+      gap: var(--ui-space-1);
+    }
+  }
+}

@@ -1,0 +1,8 @@
+@scope ([data-ui-theme]) {
+  [data-slot="label"] {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ui-space-2);
+    font-weight: 500;
+  }
+}

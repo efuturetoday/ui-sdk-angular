@@ -7,6 +7,7 @@ An Angular adapter for [ui-sdk](https://github.com/vercel-labs/ui): `@ui-sdk/cor
 1. [contributing/design.md](contributing/design.md): how parts map to Angular and why.
 2. [contributing/code.md](contributing/code.md): the code standard, upstream's plus Angular's.
 3. [projects/playground/README.md](projects/playground/README.md): the fixtures upstream's specs run against.
+4. [contributing/themes.md](contributing/themes.md): the themes' CSS and what to do when upstream's changes.
 
 ## Layout
 

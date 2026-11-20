@@ -107,6 +107,19 @@ import { CodeBlock } from "./code"
       <app-code lang="css" [code]="shapeCss" />
     </section>
 
+    <section id="animation" data-title="Animation">
+      <h3>Animation</h3>
+      <p>
+        Popups fade in and out, dialogs slide in, and accordions and
+        collapsibles open and close by their height. Every animation lasts as
+        long as
+        <code>--ui-duration</code>
+        , which is 0 for anyone who prefers reduced motion. To turn them off,
+        set it to 0:
+      </p>
+      <app-code lang="css" [code]="motionCss" />
+    </section>
+
     <section id="own" data-title="Make Your Own Theme">
       <h3>Make Your Own Theme</h3>
       <p>
@@ -160,6 +173,9 @@ class Page {
   protected readonly customizeCss = `[data-ui-theme] {
   --ui-primary: #2563eb;
   --ui-radius: 4px;
+}`
+  protected readonly motionCss = `[data-ui-theme] {
+  --ui-duration: 0ms;
 }`
   protected readonly shapeCss = `[data-ui-theme] [data-slot="button"] {
   border-radius: 999px;
