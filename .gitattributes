@@ -1,0 +1,3 @@
+# Written by scripts/build-theme.mjs: collapsed in diffs, left out of the language stats.
+projects/themes/*/src/** linguist-generated
+projects/docs/src/themes/** linguist-generated
