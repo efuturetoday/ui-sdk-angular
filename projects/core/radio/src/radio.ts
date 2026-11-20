@@ -93,7 +93,7 @@ class UiRadioGroup implements OnInit {
   readonly handle: PrimitiveHandle<RadioGroupPrimitive> = injectPrimitive(
     radioGroup,
     () => ({
-      value: this.value() ?? this.#form?.value(),
+      value: this.value() !== undefined ? this.value() : this.#form?.value(),
       defaultValue: this.defaultValue(),
       disabled:
         this.disabled() || this.#form?.disabled() || this.#field?.disabled(),

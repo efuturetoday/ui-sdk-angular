@@ -240,7 +240,7 @@ class UiSelect implements OnInit {
   readonly handle: PrimitiveHandle<SelectPrimitive> = injectPrimitive(
     select,
     () => ({
-      value: this.value() ?? this.#form?.value(),
+      value: this.value() !== undefined ? this.value() : this.#form?.value(),
       defaultValue: this.defaultValue(),
       open: this.open(),
       defaultOpen: this.defaultOpen(),

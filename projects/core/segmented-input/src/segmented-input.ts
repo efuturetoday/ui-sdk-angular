@@ -98,7 +98,7 @@ abstract class SegmentedInput {
   constructor() {
     const primitive = inject(SegmentedPrimitive)
     this.handle = injectPrimitive(primitive, () => ({
-      value: this.value() ?? this.#form?.value(),
+      value: this.value() !== undefined ? this.value() : this.#form?.value(),
       defaultValue: this.defaultValue(),
       min: this.min(),
       max: this.max(),

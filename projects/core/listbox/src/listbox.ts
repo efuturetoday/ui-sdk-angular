@@ -141,7 +141,7 @@ class UiListbox implements OnInit {
   readonly handle: PrimitiveHandle<ListboxPrimitive> = injectPrimitive(
     listbox,
     () => ({
-      value: this.value() ?? this.#form?.value(),
+      value: this.value() !== undefined ? this.value() : this.#form?.value(),
       defaultValue: this.defaultValue(),
       multiple: this.multiple(),
       activation: this.activation(),
