@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/efuturetoday/ui-sdk-angular/compare/v0.5.0...v0.6.0) (2026-11-20)
+
+
+### Features
+
+* **themes:** keep the theme styles in the repo ([#22](https://github.com/efuturetoday/ui-sdk-angular/issues/22)) ([20fcf8b](https://github.com/efuturetoday/ui-sdk-angular/commit/20fcf8b33d79fd564bc38f61395106dd24ab4f75))
+
 ## [0.5.0](https://github.com/efuturetoday/ui-sdk-angular/compare/v0.4.1...v0.5.0) (2026-11-20)
 
 
